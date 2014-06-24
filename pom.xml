@@ -52,6 +52,16 @@
         <artifactId>tyrael-process-mgmt-models</artifactId>
         <version>${tyrael.version}</version>
       </dependency>
+      <dependency>
+        <groupId>tyrael-process-mgmt</groupId>
+        <artifactId>tyrael-process-mgmt-services</artifactId>
+        <version>${tyrael.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>tyrael-commons</groupId>
+        <artifactId>tyrael-commons-data</artifactId>
+        <version>${tyrael.version}</version>
+      </dependency>
 
       <!-- PROJECT -->
       <dependency>
@@ -322,8 +332,6 @@
   </build>
 
   <modules>
-    <module>tyrael-commons</module>
-    <module>tyrael-process-mgmt</module>
     <module>ppla-app</module>
   </modules>
 </project>
