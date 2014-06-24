@@ -12,6 +12,9 @@ import com.ppla.app.config.MainConfig;
 import com.ppla.app.config.PplaPersistenceConfig;
 import com.ppla.app.services.PplaSalesOrderService;
 
+/**
+ * @author Mark
+ */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = {MainConfig.class, PplaPersistenceConfig.class})
 public class PplaSalesOrderServiceTest {
@@ -21,6 +24,6 @@ public class PplaSalesOrderServiceTest {
 
     @Test
     public void testRepo() {
-        assertEquals(0, service.findAll());
+        assertEquals(0, service.findAll().size());
     }
 }

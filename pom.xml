@@ -333,5 +333,6 @@
 
   <modules>
     <module>ppla-app</module>
+    <module>ppla-web</module>
   </modules>
 </project>
