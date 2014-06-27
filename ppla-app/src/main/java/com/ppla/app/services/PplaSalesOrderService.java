@@ -9,4 +9,6 @@ import com.ppla.app.models.PplaSalesOrder;
  */
 public interface PplaSalesOrderService extends JpaRepository<PplaSalesOrder, Long> {
 
+    public PplaSalesOrder findByTrackingNo(String trackingNo);
+
 }

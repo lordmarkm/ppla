@@ -48,6 +48,18 @@
     <dependencies>
       <!-- SELF -->
       <dependency>
+        <groupId>ppla</groupId>
+        <artifactId>ppla-core</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>ppla</groupId>
+        <artifactId>ppla-app</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+
+      <!-- Tyrael -->
+      <dependency>
         <groupId>tyrael-process-mgmt</groupId>
         <artifactId>tyrael-process-mgmt-models</artifactId>
         <version>${tyrael.version}</version>
@@ -60,6 +72,11 @@
       <dependency>
         <groupId>tyrael-commons</groupId>
         <artifactId>tyrael-commons-data</artifactId>
+        <version>${tyrael.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>tyrael-commons</groupId>
+        <artifactId>tyrael-commons-mapper</artifactId>
         <version>${tyrael.version}</version>
       </dependency>
 
@@ -80,7 +97,7 @@
         <version>${baldy-commons.version}</version>
       </dependency>
       <dependency>
-        <groupId>baldy.commons.web</groupId>
+        <groupId>baldy.commons</groupId>
         <artifactId>baldy-commons-web</artifactId>
         <version>${baldy-commons.version}</version>
       </dependency>
@@ -334,5 +351,6 @@
   <modules>
     <module>ppla-app</module>
     <module>ppla-web</module>
+    <module>ppla-core</module>
   </modules>
 </project>

@@ -5,20 +5,19 @@
     <artifactId>ppla</artifactId>
     <version>1.0</version>
   </parent>
-  <artifactId>ppla-web</artifactId>
-  <packaging>war</packaging>
-  <name>PPLA :: Web</name>
+  <artifactId>ppla-core</artifactId>
+  <name>PPLA :: Commons</name>
   
   <dependencies>
+    <!-- Tyrael -->
     <dependency>
-      <groupId>ppla</groupId>
-      <artifactId>ppla-app</artifactId>
+      <groupId>tyrael-commons</groupId>
+      <artifactId>tyrael-commons-mapper</artifactId>
     </dependency>
-    
     <!-- Baldy -->
     <dependency>
       <groupId>baldy.commons</groupId>
-      <artifactId>baldy-commons-web</artifactId>
+      <artifactId>baldy-commons-models</artifactId>
     </dependency>
   </dependencies>
 </project>
