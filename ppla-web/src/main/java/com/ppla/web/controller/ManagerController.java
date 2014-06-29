@@ -21,11 +21,10 @@ public class ManagerController extends GenericController {
 
     private static Logger LOG = LoggerFactory.getLogger(ManagerController.class);
 
-    @RequestMapping(value = "/so", method = GET)
+    @RequestMapping(method = GET)
     public ModelAndView browseSalesOrders(Principal principal) {
-        LOG.debug("Sales order browse request. principal={}", principal);
-
-        return mav("so");
+        LOG.debug("Manager browse request. principal={}", principal);
+        return mav("manage");
     }
 
 }

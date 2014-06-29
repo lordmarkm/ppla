@@ -6,7 +6,7 @@
         </encoder>
     </appender>
 
-    <logger name="com.p2p" level="debug" />
+    <logger name="com.ppla" level="debug" />
 
     <root level="info">
        <appender-ref ref="STDOUT" />

@@ -13,6 +13,8 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 @ComponentScan(basePackages = {
     "com.baldy.commons.web.config",
     "com.baldy.commons.resourcedoc.config",
+    "com.ppla.app.config",
+    "com.ppla.core.config",
     "com.ppla.web.resource",
     "com.ppla.web.controller"
 })

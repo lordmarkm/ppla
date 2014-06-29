@@ -1,0 +1,34 @@
+<h3>Manage Products</h3>
+
+Create a new product
+<form ng-submit="saveProduct()" ng-init="product = {}">
+  <label>
+    Name
+    <input type="text" ng-model="product.name" required>
+  </label>
+  <label>
+    Description
+    <input type="text" ng-model="product.description" required>
+  </label>
+  <input type="submit" />
+</form>
+
+<div ng-if="products.length === 0">
+  No products in database
+</div>
+<table ng-table="tableParams" show-filter="true" class="table table-striped" >
+  <thead>
+    <tr>
+      <td>Name
+      <td>Description
+      <td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="product in $data">
+      <td>{{product.name}}
+      <td>{{product.description}}
+      <td><span class="btn btn-danger btn-xs" ng-click="deleteProduct(product)">Delete</span>
+    </tr>
+  </tbody>
+</table>

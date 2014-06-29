@@ -1,7 +1,9 @@
 com\ppla\app\services\PplaWorkOrderService.class
 com\ppla\app\models\PplaSalesOrder.class
-com\ppla\app\models\PplaOrderItem.class
+com\ppla\app\models\PplaProduct.class
 com\ppla\app\models\PplaWorkOrder.class
+com\ppla\app\models\PplaOrderItem.class
 com\ppla\app\services\PplaSalesOrderService.class
-com\ppla\app\config\MainConfig.class
+com\ppla\app\services\PplaProductService.class
 com\ppla\app\config\PplaPersistenceConfig.class
+com\ppla\app\config\MainConfig.class
