@@ -26,7 +26,8 @@ angular.module('ppla', [
     //Sales orders management
     .state('manage/salesorder', {
       url: '/manage/salesorder',
-      templateUrl: 'manage/salesorder.html'
+      templateUrl: 'manage/salesorder.html',
+      controller: 'SalesOrderController'
     })
 
 });

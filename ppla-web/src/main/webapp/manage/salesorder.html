@@ -1,6 +1,6 @@
 Manage Sales Orders
 
-<table class="table table-striped">
+<table ng-table="tableParams" show-filter="true" class="table table-striped" >
   <thead>
     <tr>
       <td>Tracking No.
@@ -11,6 +11,12 @@ Manage Sales Orders
     </tr>
   </thead>
   <tbody>
-    <tr ng-repeat="salesorder in salesorder"
+    <tr ng-repeat="salesorder in $data">
+      <td>{{salesorder.trackingNo}}
+      <td>{{salesorder.purchaseOrderNo}}
+      <td>{{salesorder.shipTo}}
+      <td>{{salesorder.customer.name}}
+      <td>{{salesorder.items.length}}
+    </tr>
   </tbody>
 </table>

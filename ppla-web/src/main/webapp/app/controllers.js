@@ -1,9 +1,5 @@
 angular.module('ppla.controllers', ['ngTable'])
 
-.controller('SalesOrderController', function($scope, SalesOrderService) {
-  console.debug(SalesOrderService.get());
-})
-
 .controller('ProductController', function($scope, ProductService, ngTableParams) {
 
   $scope.saveProduct = function () {
@@ -31,6 +27,7 @@ angular.module('ppla.controllers', ['ngTable'])
     }
   }, {
     total: 0,
+    counts: [], //hides pager
     getData: function($defer, params) {
       //Ajax request to backend resource
       ProductService.page(params.$params, function(response) {
