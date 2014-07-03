@@ -1,5 +1,7 @@
 package com.ppla.app.models;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 
 import com.tyrael.process.mgt.models.order.SalesOrder;
@@ -10,6 +12,16 @@ import com.tyrael.process.mgt.models.order.SalesOrder;
  *
  */
 @Entity(name = "SALES_ORDER")
-public class PplaSalesOrder extends SalesOrder<PplaOrderItem> {
+public class PplaSalesOrder extends SalesOrder<PplaOrderItem, PplaPerson> {
+
+    @Override
+    public void setItems(List<PplaOrderItem> items) {
+        super.setItems(items);
+    }
+
+    @Override
+    public List<PplaOrderItem> getItems() {
+        return super.getItems();
+    }
 
 }

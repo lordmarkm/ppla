@@ -13,7 +13,7 @@ public class PplaSalesOrderInfo {
     private String purchaseOrderNo;
     private PersonInfo customer;
     private String shipTo;
-    private List<PplaOrderItemInfo> items;
+    private List<PplaOrderItemInfo> orderItems;
 
     @Override
     public String toString() {
@@ -22,7 +22,7 @@ public class PplaSalesOrderInfo {
             .append("Purchase Order No.", purchaseOrderNo)
             .append("Customer", customer)
             .append("Ship to", shipTo)
-            .append("Items", items)
+            .append("Items", orderItems)
             .toString();
     }
 
@@ -50,11 +50,11 @@ public class PplaSalesOrderInfo {
     public void setShipTo(String shipTo) {
         this.shipTo = shipTo;
     }
-    public List<PplaOrderItemInfo> getItems() {
-        return items;
+    public List<PplaOrderItemInfo> getOrderItems() {
+        return orderItems;
     }
-    public void setItems(List<PplaOrderItemInfo> items) {
-        this.items = items;
+    public void setOrderItems(List<PplaOrderItemInfo> items) {
+        this.orderItems = items;
     }
 
 }

@@ -7,6 +7,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
 import java.security.Principal;
 import java.util.List;
 
+import org.apache.commons.lang.RandomStringUtils;
 import org.dozer.Mapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,8 +22,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.google.common.collect.Lists;
+import com.ppla.app.models.PplaOrderItem;
 import com.ppla.app.models.PplaSalesOrder;
+import com.ppla.app.services.PplaOrderItemService;
+import com.ppla.app.services.PplaPersonService;
 import com.ppla.app.services.PplaSalesOrderService;
+import com.ppla.core.dto.PplaOrderItemInfo;
 import com.ppla.core.dto.PplaSalesOrderInfo;
 import com.tyrael.commons.mapper.dto.PageInfo;
 
@@ -37,6 +42,12 @@ public class SalesOrderResource {
 
     @Autowired
     private PplaSalesOrderService salesOrders;
+
+    @Autowired
+    private PplaPersonService persons;
+
+    @Autowired
+    private PplaOrderItemService orderItems;
 
     @Autowired
     private Mapper mapper;
@@ -74,14 +85,28 @@ public class SalesOrderResource {
     
     @RequestMapping(method = POST)
     public ResponseEntity<PplaSalesOrderInfo> save(Principal principal, @RequestBody PplaSalesOrderInfo salesOrderInfo) {
+        LOG.debug("Sales order save request. salesOrder={}", salesOrderInfo);
         PplaSalesOrder salesOrder = salesOrders.findByTrackingNo(salesOrderInfo.getTrackingNo());
         if (null == salesOrder) {
             salesOrder = new PplaSalesOrder();
+            salesOrderInfo.setTrackingNo(RandomStringUtils.randomAlphanumeric(6));
         }
         mapper.map(salesOrderInfo, salesOrder);
-        salesOrder = salesOrders.save(salesOrder);
 
-        return new ResponseEntity<>(toDto(salesOrder), OK);
+        salesOrder.setCustomer(persons.save(salesOrder.getCustomer()));
+        salesOrder.setItems(null);
+        salesOrder = salesOrders.save(salesOrder);
+        salesOrders.flush();
+        
+        for (PplaOrderItemInfo info : salesOrderInfo.getOrderItems()) {
+            PplaOrderItem item = mapper.map(info, PplaOrderItem.class);
+            item.setSalesOrder(salesOrder);
+            orderItems.save(item);
+        }
+
+        PplaSalesOrderInfo newInfo = toDto(salesOrder);
+
+        return new ResponseEntity<>(newInfo, OK);
     }
 
     private PplaSalesOrderInfo toDto(PplaSalesOrder salesOrder) {

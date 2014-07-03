@@ -2,6 +2,7 @@ package com.ppla.app.services.test;
 
 import static org.junit.Assert.assertEquals;
 
+import org.dozer.Mapper;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +11,9 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.ppla.app.config.MainConfig;
 import com.ppla.app.config.PplaPersistenceConfig;
+import com.ppla.app.models.PplaPerson;
 import com.ppla.app.services.PplaSalesOrderService;
+import com.ppla.core.dto.PplaSalesOrderInfo;
 
 /**
  * @author Mark

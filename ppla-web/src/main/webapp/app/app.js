@@ -29,5 +29,10 @@ angular.module('ppla', [
       templateUrl: 'manage/salesorder.html',
       controller: 'SalesOrderController'
     })
+    .state('manage/salesorder/new', {
+      url: '/manage/salesorder/new',
+      templateUrl: 'manage/salesorder_new.html',
+      controller: 'SalesOrderController'
+    });
 
 });

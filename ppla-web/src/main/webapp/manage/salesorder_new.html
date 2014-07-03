@@ -1,0 +1,80 @@
+<h2>New Sales Order</h2>
+
+<form ng-submit="saveSalesOrder(salesorder)">
+  <div class="row">
+    <div class="col-sm-4">
+      <label>
+        PO Number 
+        <input type="text" maxlength="200" ng-model="salesorder.purchaseOrderNo" class="form-control">
+      </label>
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="col-sm-12">
+      <label>
+        Given Name
+        <input type="text" maxlength="200" ng-model="salesorder.customer.properName.givenName" class="form-control">
+      </label>
+      <label>
+        Middle Name
+        <input type="text" maxlength="200" ng-model="salesorder.customer.properName.middleName" class="form-control">
+      </label>
+      <label>
+        Surname
+        <input type="text" maxlength="200" ng-model="salesorder.customer.properName.surname" class="form-control">
+      </label>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-8">
+      <label>
+        Ship to
+        <textarea ng-model="salesorder.shipTo" class="form-control"></textarea>
+      </label>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12"><label>Products</label></div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="col-sm-4" style="padding-left: 0;">
+        <select ng-model="selectedItem" ng-options="product.name for product in products" class="form-control">
+        </select>
+      </div>
+      <div class="col-sm-2">
+        <input type="text" ng-model="selectedQuantity" class="form-control" placeholder="Quantity"/>
+      </div>
+      <div class="col-sm-4">
+        <span class="btn btn-success" ng-click="addItem(selectedItem, selectedQuantity)"><i class="glyphicon glyphicon-check"></i> Add product</span>
+      </div>
+    </div>
+  </div>
+  <div class="row" ng-if="salesorder.orderItems.length > 0">
+    <table class="table">
+      <thead>
+        <tr>
+          <td>Quantity
+          <td>Product Name
+          <td>Product Description
+        </td>
+      </thead>
+      <tbody>
+        <tr ng-repeat="item in salesorder.orderItems">
+          <td>{{item.quantity}}
+          <td>{{item.product.name}}
+          <td>{{item.product.description}}
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="row" style="margin-top: 20px;">
+    <div class="col-sm-2">
+      <input type="submit" class="form-control btn-success" value="Save" />
+    </div>
+    <div class="col-sm-2">
+      <a ui-sref="manage/salesorder" class="btn btn-danger">Cancel</a>
+    </div>
+  </div>
+</form>
