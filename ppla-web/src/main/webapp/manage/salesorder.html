@@ -21,7 +21,7 @@
         <td>{{salesorder.customer.properName.toString}}
         <td>{{salesorder.orderItems.length}}
         <td>Created
-        <td><button class="btn btn-xs btn-primary">Create work order</button>
+        <td><a ui-sref="manage/salesorder/workorders({trackingNo:salesorder.trackingNo})" class="btn btn-xs btn-primary">Create work orders</a>
       </tr>
     </tbody>
   </table>

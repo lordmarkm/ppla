@@ -1,0 +1,42 @@
+<h2>Manage Work Orders</h2>
+
+salesorder_workorders.html
+
+<dl>
+  <dt>Tracking No.
+  <dd>{{salesorder.trackingNo}}
+  <dt>Customer
+  <dd>{{salesorder.customer.properName.toString}}
+</dl>
+
+<table>
+  <thead>
+    <tr>
+      <td>Product name
+      <td>Description
+      <td>Work order
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="orderItem in orderItems">
+      <td>{{orderItem.product.name}}
+      <td>{{orderItem.product.description}}
+      <td><button class="btn btn-xs">Create work order</button>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr ng-repeat="workOrder in workOrders">
+      <td>{{workOrder.product.name}}
+      <td>{{workOrder.product.description}}
+      <td>{{workOrder.trackingNo}}
+    </tr>
+  </tbody>
+</table>
+
+<div class="row">
+  <div class="col-sm-12">
+    <div class="col-sm-4 pull-right">
+      <button class="btn btn-default">Ok</button>
+    </div>
+  </div>
+</div>

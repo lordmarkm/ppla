@@ -1,7 +1,7 @@
 angular.module('ppla.services', ['ngResource'])
 
 .factory('SalesOrderService', function($resource) {
-  return $resource('/salesorder/:id', {}, {
+  return $resource('/salesorder/:trackingNo', {}, {
     page: {method: 'GET', isArray: false}
   });
 })

@@ -78,9 +78,9 @@ public class SalesOrderResource {
     public ResponseEntity<PplaSalesOrderInfo> findOne(Principal principal, @PathVariable String trackingNo) {
         LOG.debug("Sales order request. trackingNo={}, principal={}", trackingNo, principal);
 
-        PplaSalesOrder order = salesOrders.findByTrackingNo(trackingNo);
+        PplaSalesOrderInfo order = salesOrders.assemble(trackingNo);
 
-        return new ResponseEntity<>(toDto(order), OK);
+        return new ResponseEntity<>(order, OK);
     }
     
     @RequestMapping(method = POST)

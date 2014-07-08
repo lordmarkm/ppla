@@ -6,7 +6,7 @@ angular.module('ppla', [
 
 .config(function ($stateProvider, $urlRouterProvider) {
 
-  $urlRouterProvider.otherwise('/home');
+  //$urlRouterProvider.otherwise('/home');
 
   $stateProvider
 
@@ -33,6 +33,11 @@ angular.module('ppla', [
       url: '/manage/salesorder/new',
       templateUrl: 'manage/salesorder_new.html',
       controller: 'SalesOrderController'
+    })
+    .state('manage/salesorder/workorders', {
+      url: 'manage/salesorder/{trackingNo}/workorders',
+      templateUrl: 'manage/salesorder_workorders.html',
+      controller: 'SalesOrder_WorkOrdersController'
     });
 
 });

@@ -25,6 +25,7 @@
 <script src="/app/services.js"></script>
 
 <script src="/app/controllers/SalesOrderController.js"></script>  
+<script src="/app/controllers/SalesOrder_WorkOrdersController.js"></script>  
 
 <body ng-app="ppla">
 

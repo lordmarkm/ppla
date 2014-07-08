@@ -7,12 +7,14 @@ import org.springframework.core.style.ToStringCreator;
  */
 public class PplaOrderItemInfo {
 
+    private Long id;
     private Integer quantity;
     private ProductInfo product;
 
     @Override
     public String toString() {
         return new ToStringCreator(this)
+            .append("Id", id)
             .append("Quantity", quantity)
             .append("Product", product)
             .toString();
@@ -29,6 +31,14 @@ public class PplaOrderItemInfo {
     }
     public void setProduct(ProductInfo product) {
         this.product = product;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
 }

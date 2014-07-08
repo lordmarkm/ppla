@@ -23,7 +23,7 @@ import com.tyrael.commons.data.config.PersistenceConfig;
 @Configuration
 @EnableJpaRepositories(basePackages = {
     "com.ppla.app.services"
-})
+}, repositoryImplementationPostfix = "CustomImpl")
 @PropertySource({"classpath:db.properties"})
 public class PplaPersistenceConfig extends PersistenceConfig {
 
@@ -65,6 +65,7 @@ public class PplaPersistenceConfig extends PersistenceConfig {
         entityManagerFactory.setDataSource(dataSource());
         entityManagerFactory.setPackagesToScan(new String[] {
             "com.ppla.app.models",
+            "com.ppla.app.models.process",
             "com.tyrael.process.mgt.models.product",
             "com.baldy.commons.models"
         });
