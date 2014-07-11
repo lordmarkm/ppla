@@ -1,12 +1,11 @@
 package com.ppla.app.services.process;
 
-import org.springframework.data.jpa.repository.JpaRepository;
-
 import com.ppla.app.models.process.MixingProcess;
+import com.ppla.app.servicebase.BasePplaProcessService;
 
 /**
  * @author Mark
  */
-public interface MixingProcessService extends JpaRepository<MixingProcess, Long> {
+public interface MixingProcessService extends BasePplaProcessService<MixingProcess> {
 
 }

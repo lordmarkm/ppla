@@ -5,6 +5,6 @@ import javax.persistence.Entity;
 
 @Entity(name = "MIXING_PROCESS")
 @DiscriminatorValue("MIXING")
-public class MixingProcess extends BasePplaProcess {
+public class MixingProcess extends MachineProcess {
 
 }

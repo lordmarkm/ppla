@@ -10,4 +10,8 @@ angular.module('ppla.services', ['ngResource'])
   return $resource('/product/:id', {}, {
     page: {method: 'GET', isArray: false}
   });
+})
+
+.factory('MaterialService', function($resource) {
+  return $resource('/material/:type');
 });

@@ -9,7 +9,7 @@ salesorder_workorders.html
   <dd>{{salesorder.customer.properName.toString}}
 </dl>
 
-<table>
+<table class="table">
   <thead>
     <tr>
       <td>Product name
@@ -18,14 +18,14 @@ salesorder_workorders.html
     </tr>
   </thead>
   <tbody>
-    <tr ng-repeat="orderItem in orderItems">
+    <tr ng-repeat="orderItem in salesorder.orderItems">
       <td>{{orderItem.product.name}}
       <td>{{orderItem.product.description}}
       <td><button class="btn btn-xs">Create work order</button>
     </tr>
   </tbody>
   <tbody>
-    <tr ng-repeat="workOrder in workOrders">
+    <tr ng-repeat="workOrder in salesorder.workOrders">
       <td>{{workOrder.product.name}}
       <td>{{workOrder.product.description}}
       <td>{{workOrder.trackingNo}}

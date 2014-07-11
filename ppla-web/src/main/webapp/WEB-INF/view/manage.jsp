@@ -26,6 +26,7 @@
 
 <script src="/app/controllers/SalesOrderController.js"></script>  
 <script src="/app/controllers/SalesOrder_WorkOrdersController.js"></script>  
+<script src="/app/controllers/MaterialController.js"></script>
 
 <body ng-app="ppla">
 
@@ -36,6 +37,7 @@
       <a class="navbar-brand" ui-sref="#">PPLA Films Process Mgmt</a>
     </div>
     <ul class="nav navbar-nav">
+      <li><a ui-sref="manage/material">Materials</a></li>
       <li><a ui-sref="manage/product">Products</a></li>
       <li><a ui-sref="manage/salesorder">Sales Orders</a></li>  
     </ul>

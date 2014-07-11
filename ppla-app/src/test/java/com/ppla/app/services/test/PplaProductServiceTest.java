@@ -8,16 +8,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.ppla.app.config.MainConfig;
+import com.ppla.app.config.PplaMainConfig;
 import com.ppla.app.config.PplaPersistenceConfig;
 import com.ppla.app.models.PplaProduct;
 import com.ppla.app.services.PplaProductService;
+import com.tyrael.commons.mapper.config.MapperConfig;
 
 /**
  * @author Mark
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = {MainConfig.class, PplaPersistenceConfig.class})
+@ContextConfiguration(classes = {
+    MapperConfig.class,
+    PplaMainConfig.class,
+    PplaPersistenceConfig.class
+})
 public class PplaProductServiceTest {
 
     @Autowired

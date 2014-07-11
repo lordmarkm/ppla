@@ -7,6 +7,6 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @Configuration
 @ComponentScan("com.ppla.app")
 @EnableTransactionManagement
-public class MainConfig {
+public class PplaMainConfig {
 
 }

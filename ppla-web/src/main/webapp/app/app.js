@@ -23,6 +23,13 @@ angular.module('ppla', [
       controller: 'ProductController'
     })
 
+    //Materials management view
+    .state('manage/material', {
+      url: '/manage/material',
+      templateUrl: 'manage/material.html',
+      controller: 'MaterialController'
+    })
+
     //Sales orders management
     .state('manage/salesorder', {
       url: '/manage/salesorder',
