@@ -8,6 +8,6 @@ import com.tyrael.process.mgt.models.order.OrderItem;
  * @author Mark
  */
 @Entity(name = "ORDER_ITEM")
-public class PplaOrderItem extends OrderItem<PplaSalesOrder, PplaProduct> {
+public class PplaOrderItem extends OrderItem<PplaSalesOrder, PplaProduct, PplaWorkOrder> {
 
 }

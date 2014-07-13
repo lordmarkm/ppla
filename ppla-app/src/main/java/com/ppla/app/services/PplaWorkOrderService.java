@@ -1,10 +1,7 @@
 package com.ppla.app.services;
 
-import java.util.List;
-
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.ppla.app.models.PplaSalesOrder;
 import com.ppla.app.models.PplaWorkOrder;
 import com.ppla.app.services.custom.PplaWorkOrderServiceCustom;
 
@@ -14,6 +11,6 @@ import com.ppla.app.services.custom.PplaWorkOrderServiceCustom;
 public interface PplaWorkOrderService extends JpaRepository<PplaWorkOrder, Long>,
     PplaWorkOrderServiceCustom {
 
-    List<PplaWorkOrder> findBySalesOrder(PplaSalesOrder salesOrder);
+    PplaWorkOrder findByTrackingNo(String trackingNo);
 
 }

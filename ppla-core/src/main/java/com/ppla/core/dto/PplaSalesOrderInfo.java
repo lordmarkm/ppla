@@ -13,7 +13,6 @@ public class PplaSalesOrderInfo {
     private String purchaseOrderNo;
     private PersonInfo customer;
     private String shipTo;
-    private List<PplaWorkOrderInfo> workOrders;
     private List<PplaOrderItemInfo> orderItems;
 
     @Override
@@ -23,7 +22,6 @@ public class PplaSalesOrderInfo {
             .append("Purchase Order No.", purchaseOrderNo)
             .append("Customer", customer)
             .append("Ship to", shipTo)
-            .append("Work orders", workOrders)
             .append("Items", orderItems)
             .toString();
     }
@@ -57,14 +55,6 @@ public class PplaSalesOrderInfo {
     }
     public void setOrderItems(List<PplaOrderItemInfo> items) {
         this.orderItems = items;
-    }
-
-    public List<PplaWorkOrderInfo> getWorkOrders() {
-        return workOrders;
-    }
-
-    public void setWorkOrders(List<PplaWorkOrderInfo> workOrders) {
-        this.workOrders = workOrders;
     }
 
 }

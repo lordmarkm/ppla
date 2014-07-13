@@ -5,14 +5,12 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 import java.security.Principal;
-import java.util.List;
 
 import org.apache.commons.lang.RandomStringUtils;
 import org.dozer.Mapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,7 +19,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.google.common.collect.Lists;
 import com.ppla.app.models.PplaOrderItem;
 import com.ppla.app.models.PplaSalesOrder;
 import com.ppla.app.services.PplaOrderItemService;
@@ -60,25 +57,14 @@ public class SalesOrderResource {
         LOG.debug("Sales Order query. Principal={}, page={}, count={}", principal, page, count);
 
         PageRequest pageRequest = new PageRequest(page - 1, count);
-
-        Page<PplaSalesOrder> results = salesOrders.findAll(pageRequest);
-        List<PplaSalesOrderInfo> infos = Lists.newArrayList();
-        for (PplaSalesOrder order : results) {
-            infos.add(mapper.map(order, PplaSalesOrderInfo.class));
-        }
-
-        PageInfo<PplaSalesOrderInfo> pageResponse = new PageInfo<>();
-        pageResponse.setData(infos);
-        pageResponse.setTotal(results.getTotalElements());
-
-        return new ResponseEntity<>(pageResponse, OK);
+        return new ResponseEntity<>(salesOrders.page(pageRequest), OK);
     }
 
     @RequestMapping(value = "/{trackingNo}", method = GET)
     public ResponseEntity<PplaSalesOrderInfo> findOne(Principal principal, @PathVariable String trackingNo) {
         LOG.debug("Sales order request. trackingNo={}, principal={}", trackingNo, principal);
 
-        PplaSalesOrderInfo order = salesOrders.assemble(trackingNo);
+        PplaSalesOrderInfo order = salesOrders.findInfoByTrackingNo(trackingNo);
 
         return new ResponseEntity<>(order, OK);
     }

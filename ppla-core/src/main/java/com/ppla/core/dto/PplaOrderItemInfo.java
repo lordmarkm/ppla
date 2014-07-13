@@ -10,6 +10,7 @@ public class PplaOrderItemInfo {
     private Long id;
     private Integer quantity;
     private ProductInfo product;
+    private PplaWorkOrderInfo workOrder;
 
     @Override
     public String toString() {
@@ -17,6 +18,7 @@ public class PplaOrderItemInfo {
             .append("Id", id)
             .append("Quantity", quantity)
             .append("Product", product)
+            .append("Work order", workOrder)
             .toString();
     }
 
@@ -39,6 +41,14 @@ public class PplaOrderItemInfo {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public PplaWorkOrderInfo getWorkOrder() {
+        return workOrder;
+    }
+
+    public void setWorkOrder(PplaWorkOrderInfo workOrder) {
+        this.workOrder = workOrder;
     }
 
 }

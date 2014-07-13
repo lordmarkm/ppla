@@ -6,6 +6,14 @@ angular.module('ppla.services', ['ngResource'])
   });
 })
 
+.factory('OrderItemService', function($resource) {
+  return $resource('/orderItem/:id');
+})
+
+.factory('WorkOrderService', function($resource) {
+  return $resource('/workOrder/:orderItemId/:trackingNo');
+})
+
 .factory('ProductService', function($resource) {
   return $resource('/product/:id', {}, {
     page: {method: 'GET', isArray: false}

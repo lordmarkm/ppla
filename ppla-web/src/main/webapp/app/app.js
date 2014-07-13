@@ -42,9 +42,13 @@ angular.module('ppla', [
       controller: 'SalesOrderController'
     })
     .state('manage/salesorder/workorders', {
-      url: 'manage/salesorder/{trackingNo}/workorders',
+      url: 'manage/salesorder/workorders/{trackingNo}',
       templateUrl: 'manage/salesorder_workorders.html',
       controller: 'SalesOrder_WorkOrdersController'
+    })
+    .state('manage/workorder', {
+      url: 'manage/workorder/{id}',
+      templateUrl: 'manage/orderitem_workorder.html',
+      controller: 'SalesOrder_WorkOrdersController'
     });
-
 });

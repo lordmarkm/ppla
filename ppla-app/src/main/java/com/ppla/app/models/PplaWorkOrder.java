@@ -10,6 +10,6 @@ import com.tyrael.process.mgt.models.order.WorkOrder;
  *
  */
 @Entity(name = "WORK_ORDER")
-public class PplaWorkOrder extends WorkOrder<PplaSalesOrder, PplaOrderItem> {
+public class PplaWorkOrder extends WorkOrder {
 
 }

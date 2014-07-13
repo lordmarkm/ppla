@@ -1,13 +1,10 @@
 package com.ppla.app.services.custom.impl;
 
-import java.util.List;
-
-import org.dozer.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.google.common.collect.Lists;
-import com.ppla.app.models.PplaSalesOrder;
+import com.ppla.app.models.PplaOrderItem;
 import com.ppla.app.models.PplaWorkOrder;
+import com.ppla.app.services.PplaOrderItemService;
 import com.ppla.app.services.PplaWorkOrderService;
 import com.ppla.app.services.custom.PplaWorkOrderServiceCustom;
 import com.ppla.core.dto.PplaWorkOrderInfo;
@@ -15,31 +12,47 @@ import com.ppla.core.dto.PplaWorkOrderInfo;
 /**
  * @author Mark
  */
-public class PplaWorkOrderServiceCustomImpl implements PplaWorkOrderServiceCustom {
+public class PplaWorkOrderServiceCustomImpl extends MappingService<PplaWorkOrder, PplaWorkOrderInfo>
+    implements PplaWorkOrderServiceCustom {
 
     @Autowired
     private PplaWorkOrderService workOrders;
 
     @Autowired
-    private Mapper mapper;
+    private PplaOrderItemService orderItemService;
 
-    private PplaWorkOrderInfo toDto(PplaWorkOrder pplaWorkOrder) {
-        return mapper.map(pplaWorkOrder, PplaWorkOrderInfo.class);
+    public PplaWorkOrderServiceCustomImpl() {
+        super(PplaWorkOrder.class, PplaWorkOrderInfo.class);
     }
 
     @Override
-    public List<PplaWorkOrderInfo> assembleBySalesOrder(PplaSalesOrder salesOrder) {
-        List<PplaWorkOrder> orders = workOrders.findBySalesOrder(salesOrder);
-        List<PplaWorkOrderInfo> dtos = Lists.newArrayList();
-        for (PplaWorkOrder order : orders) {
-            dtos.add(toDto(order));
-        }
-        return dtos;
+    public PplaWorkOrderInfo save(PplaWorkOrderInfo workOrderInfo) {
+        return toDto(workOrders.save(toEntity(workOrderInfo)));
     }
 
     @Override
-    public PplaWorkOrderInfo save(PplaWorkOrderInfo workOrder) {
-        // TODO Auto-generated method stub
-        return null;
+    public PplaWorkOrderInfo createNew(Long orderItemId,
+            PplaWorkOrderInfo workOrder) {
+
+        PplaWorkOrder saved = workOrders.saveAndFlush(toEntity(workOrder));
+
+        //Save order item relation
+        PplaOrderItem orderItem = orderItemService.findOne(orderItemId);
+        orderItem.setWorkOrder(saved);
+        orderItemService.save(orderItem);
+
+        return toDto(saved);
+    }
+
+    @Override
+    public PplaWorkOrderInfo attach(Long orderItemId, String trackingNo) {
+
+        PplaWorkOrder workOrder = workOrders.findByTrackingNo(trackingNo);
+        PplaOrderItem orderItem = orderItemService.findOne(orderItemId);
+
+        orderItem.setWorkOrder(workOrder);
+        orderItemService.save(orderItem);
+
+        return toDto(workOrder);
     }
 }
