@@ -1,5 +1,7 @@
 package com.ppla.web.resource;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -7,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.google.common.collect.Lists;
 import com.ppla.app.services.PplaWorkOrderService;
 import com.ppla.core.dto.PplaWorkOrderInfo;
 import static org.springframework.web.bind.annotation.RequestMethod.*;
@@ -21,6 +24,12 @@ public class WorkOrderResource {
 
     @Autowired
     private PplaWorkOrderService service;
+
+    @RequestMapping(value = "/sameproduct/{orderItemId}", method = GET)
+    public ResponseEntity<List<PplaWorkOrderInfo>> findAttachable(@PathVariable Long orderItemId) {
+        List<PplaWorkOrderInfo> sameProductList = service.findOpenWithSameProduct(orderItemId);
+        return new ResponseEntity<>(dummy, OK);
+    }
 
     @RequestMapping(value = "/new/{orderItemId}", method = POST)
     public ResponseEntity<PplaWorkOrderInfo> createNew(@PathVariable Long orderItemId,

@@ -27,6 +27,7 @@
 <script src="/app/controllers/SalesOrderController.js"></script>  
 <script src="/app/controllers/SalesOrder_WorkOrdersController.js"></script>  
 <script src="/app/controllers/MaterialController.js"></script>
+<script src="/app/controllers/OrderItem_WorkOrderController.js"></script>
 
 <body ng-app="ppla">
 

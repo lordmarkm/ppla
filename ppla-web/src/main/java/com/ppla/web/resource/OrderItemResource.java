@@ -17,7 +17,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.*;
 import static org.springframework.http.HttpStatus.*;
 
 @RestController
-@RequestMapping("orderItem")
+@RequestMapping("/orderItem")
 public class OrderItemResource {
 
     private static Logger LOG = LoggerFactory.getLogger(OrderItemResource.class);

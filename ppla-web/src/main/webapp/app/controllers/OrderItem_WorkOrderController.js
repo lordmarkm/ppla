@@ -3,16 +3,17 @@ angular.module('ppla.controllers')
 .controller('OrderItem_WorkOrderController', function($scope, $stateParams, OrderItemService, WorkOrderService) {
 
   $scope.id = $stateParams.id;
-  $scope.orderItem = OrderItemService.get($scope.id);
+  $scope.orderItem = OrderItemService.get({id: $scope.id});
+  $scope.attachables = WorkOrderService.query({action: 'sameproduct', orderItemId: $scope.id});
 
-  $scope.save = function () {
-    WorkOrderService.save({orderItemId: $scope.id, workOrder: $scope.workOrder}, function (workOrder) {
+  $scope.createNew = function () {
+    WorkOrderService.save({action: 'new', orderItemId: $scope.id, workOrder: $scope.workOrder}, function (workOrder) {
       $scope.orderItem.workOrder = workOrder;
     });
   };
 
   $scope.attach = function () {
-    WorkOrderService.put({orderItemId: $scope.id, trackingNo: $scope.trackingNo}, function (workOrder) {
+    WorkOrderService.put({action: 'attach', orderItemId: $scope.id, trackingNo: $scope.trackingNo}, function (workOrder) {
       $scope.orderItem.workOrder = workOrder;
     });
   };

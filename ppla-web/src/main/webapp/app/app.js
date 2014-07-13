@@ -49,6 +49,6 @@ angular.module('ppla', [
     .state('manage/workorder', {
       url: 'manage/workorder/{id}',
       templateUrl: 'manage/orderitem_workorder.html',
-      controller: 'SalesOrder_WorkOrdersController'
+      controller: 'OrderItem_WorkOrderController'
     });
 });

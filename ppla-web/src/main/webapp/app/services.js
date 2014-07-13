@@ -11,7 +11,7 @@ angular.module('ppla.services', ['ngResource'])
 })
 
 .factory('WorkOrderService', function($resource) {
-  return $resource('/workOrder/:orderItemId/:trackingNo');
+  return $resource('/workOrder/:action/:orderItemId/:trackingNo');
 })
 
 .factory('ProductService', function($resource) {

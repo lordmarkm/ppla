@@ -1,5 +1,7 @@
 package com.ppla.app.services.custom.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.ppla.app.models.PplaOrderItem;
@@ -54,5 +56,13 @@ public class PplaWorkOrderServiceCustomImpl extends MappingService<PplaWorkOrder
         orderItemService.save(orderItem);
 
         return toDto(workOrder);
+    }
+
+    @Override
+    public List<PplaWorkOrderInfo> findOpenWithSameProduct(Long orderItemId) {
+
+        PplaOrderItem orderItem = orderItemService.findOne(orderItemId);
+
+        return null;
     }
 }

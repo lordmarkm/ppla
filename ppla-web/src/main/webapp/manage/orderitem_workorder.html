@@ -1,3 +1,28 @@
 <h2>Manage Work Order</h2>
 
-orderitem_workorder.html
+{{orderItem}}
+
+<div ng-if="orderItem.workOrder">
+  <dl>
+    <dd>Tracking no.
+    <dt>{{orderItem.workOrder.trackingNo}}
+  </dl>
+</div>
+
+<div ng-if="!orderItem.workOrder || !orderItem.workOrder.id" class="row">
+  <form ng-submit="createNew()">
+    <div class="form-group">
+      <label for="workorder-quantity">Product</label>
+      <span id="workorder-quantity" class="form-control">{{orderItem.product.name}}</span>
+    </div>
+    <div class="form-group">
+      <label for="workorder-quantity">Quantity</label>
+      <input type="number" ng-model="workOrder.quantity" 
+        id="workorder-quantity" class="form-control"
+        min="1">
+    </div>
+    <div class="form-group">
+      <input type="submit" />
+    </div>
+  </form>
+</div>
