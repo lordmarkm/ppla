@@ -11,6 +11,6 @@ import com.ppla.app.services.custom.PplaSalesOrderServiceCustom;
 public interface PplaSalesOrderService extends PplaSalesOrderServiceCustom,
     JpaRepository<PplaSalesOrder, Long> {
 
-    public PplaSalesOrder findByTrackingNo(String trackingNo);
+    PplaSalesOrder findByTrackingNo(String trackingNo);
 
 }

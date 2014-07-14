@@ -2,6 +2,7 @@ package com.ppla.app.services.test;
 
 import static org.junit.Assert.*;
 
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,11 @@ public class PplaProductServiceTest {
 
     @Autowired
     private PplaProductService products;
+
+    @Before
+    public void init() {
+        products.deleteAll();
+    }
 
     @Test
     public void testPagination() {

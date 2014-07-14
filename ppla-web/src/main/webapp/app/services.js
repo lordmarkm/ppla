@@ -7,11 +7,14 @@ angular.module('ppla.services', ['ngResource'])
 })
 
 .factory('OrderItemService', function($resource) {
-  return $resource('/orderItem/:id');
+  return $resource('/orderItem/:action/:id');
 })
 
 .factory('WorkOrderService', function($resource) {
-  return $resource('/workOrder/:action/:orderItemId/:trackingNo');
+  return $resource('/workOrder/:action/:orderItemId/:trackingNo', {}, {
+    page: {method: 'GET', isArray: false},
+    close: {method: 'POST', isArray: false, params: {action: 'close'}}
+  });
 })
 
 .factory('ProductService', function($resource) {

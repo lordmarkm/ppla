@@ -1,7 +1,11 @@
 package com.ppla.app.services.custom.impl;
 
+import java.util.List;
+
 import org.dozer.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import com.google.common.collect.Lists;
 
 /**
  * @author Mark
@@ -28,5 +32,13 @@ public abstract class MappingService<E, D> {
 
     protected E toEntity(D dto) {
         return mapper.map(dto, entityClass);
+    }
+
+    protected List<D> toDto(Iterable<E> entities) {
+        List<D> dtos = Lists.newArrayList();
+        for (E entity : entities) {
+            dtos.add(toDto(entity));
+        }
+        return dtos;
     }
 }

@@ -27,7 +27,9 @@
 <script src="/app/controllers/SalesOrderController.js"></script>  
 <script src="/app/controllers/SalesOrder_WorkOrdersController.js"></script>  
 <script src="/app/controllers/MaterialController.js"></script>
-<script src="/app/controllers/OrderItem_WorkOrderController.js"></script>
+<script src="/app/controllers/OrderItemController.js"></script>
+<script src="/app/controllers/WorkOrderBrowseController.js"></script>
+<script src="/app/controllers/WorkOrderController.js"></script>
 
 <body ng-app="ppla">
 
@@ -40,7 +42,8 @@
     <ul class="nav navbar-nav">
       <li><a ui-sref="manage/material">Materials</a></li>
       <li><a ui-sref="manage/product">Products</a></li>
-      <li><a ui-sref="manage/salesorder">Sales Orders</a></li>  
+      <li><a ui-sref="manage/salesorder">Sales Orders</a></li>
+      <li><a ui-sref="manage/workorders">Work Orders</a></li>  
     </ul>
   </nav>
 

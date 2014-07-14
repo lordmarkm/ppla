@@ -12,4 +12,7 @@ import com.tyrael.process.mgt.models.order.WorkOrder;
 @Entity(name = "WORK_ORDER")
 public class PplaWorkOrder extends WorkOrder {
 
+    public static final String STATUS_OPEN = "OPEN";
+    public static final String STATUS_CLOSED = "CLOSED";
+
 }

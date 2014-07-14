@@ -22,9 +22,9 @@ salesorder_workorders.html
       <td>{{orderItem.product.name}}
       <td>{{orderItem.product.description}}
       <td>
-        <a ng-if="!orderItem.workOrder" ui-sref="manage/workorder({id:orderItem.id})" 
+        <a ng-if="!orderItem.workOrder" ui-sref="manage/orderitem({id:orderItem.id})" 
           class="btn btn-xs">Create work order</a>
-        <span ng-if="orderItem.workOrder">{{orderItem.workOrder.trackingNo}}</span>
+        <a ng-if="orderItem.workOrder" ui-sref="manage/orderitem({id:orderItem.id})">{{orderItem.workOrder.trackingNo}}</a>
       </td>
     </tr>
   </tbody>

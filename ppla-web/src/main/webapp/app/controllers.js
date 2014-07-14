@@ -13,11 +13,11 @@ angular.module('ppla.controllers', ['ngTable'])
     if (!confirm('Are you sure you want to delete ' + product.name + '?')) {
       return false;
     }
-    ProductService.delete({id: product.id}, function () {
+    ProductService.remove({id: product.id}, function () {
       alert('Successfully deleted ' + product.name);
       $scope.tableParams.reload();
     });
-  }
+  };
 
   $scope.tableParams = new ngTableParams({
     page: 1,
