@@ -11,7 +11,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.ppla.app.config.PplaMainConfig;
 import com.ppla.app.config.PplaPersistenceConfig;
-import com.ppla.app.models.RawMaterial;
+import com.ppla.app.models.material.RawMaterial;
 import com.ppla.app.services.RawMaterialService;
 import com.tyrael.commons.mapper.config.MapperConfig;
 

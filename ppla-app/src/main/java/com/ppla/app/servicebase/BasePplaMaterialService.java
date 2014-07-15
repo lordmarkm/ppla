@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.ppla.app.models.PplaMaterial;
+import com.ppla.app.models.material.PplaMaterial;
 
 /**
  * @author mbmartinez

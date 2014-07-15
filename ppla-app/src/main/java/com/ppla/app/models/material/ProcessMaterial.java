@@ -1,7 +1,8 @@
-package com.ppla.app.models;
+package com.ppla.app.models.material;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+
 
 /**
  * @author mbmartinez

@@ -6,7 +6,7 @@ import org.dozer.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.google.common.collect.Lists;
-import com.ppla.app.models.ProcessMaterial;
+import com.ppla.app.models.material.ProcessMaterial;
 import com.ppla.app.services.ProcessMaterialService;
 import com.ppla.app.services.custom.ProcessMaterialServiceCustom;
 import com.ppla.core.dto.material.ProcessMaterialInfo;

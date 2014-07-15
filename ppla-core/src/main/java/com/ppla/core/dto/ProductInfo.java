@@ -10,6 +10,7 @@ public class ProductInfo {
     private String id;
     private String name;
     private String description;
+    private String unitOfMeasurement;
 
     @Override
     public String toString() {
@@ -17,6 +18,7 @@ public class ProductInfo {
             .append("ID", id)
             .append("Name", name)
             .append("Description", description)
+            .append("Unit of Measurement", unitOfMeasurement)
             .toString();
     }
 
@@ -42,5 +44,13 @@ public class ProductInfo {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getUnitOfMeasurement() {
+        return unitOfMeasurement;
+    }
+
+    public void setUnitOfMeasurement(String unitOfMeasurement) {
+        this.unitOfMeasurement = unitOfMeasurement;
     }
 }

@@ -8,46 +8,63 @@
         <dl class="dl-horizontal">
           <dt>Tracking No
           <dd>{{workOrder.trackingNo}}
-        
           <dt>Quantity
           <dd>{{workOrder.quantity}}
-        
           <dt>Status
           <dd>{{workOrder.status}}
-        
-          <dt>Date and Time Created
+          <dt>Created
           <dd>{{workOrder.dateCreated|date:'yyyy-MMM-dd hh:mm a'}}
-          
-          <dt>Date and Time Completed
-          <dd>{{workOrder.dateCompleted|date:'yyyy-MMM-dd hh:mm a'}}
+          <dt>Completed
+          <dd ng-if="workOrder.dateCompleted">{{workOrder.dateCompleted|date:'yyyy-MMM-dd hh:mm a'}}
+          <dd ng-if="!workOrder.dateCompleted">Work order still open
         </dl>
       </div>
     </div>
   </div>
 </div>
 
-<h2>Order items</h2>
-<table>
-  <thead>
-    <tr>
-      <td>ID
-      <td>Product
-      <td>Quantity
-    </td>
-  </thead>
-  <tbody>
-    <tr ng-repeat="orderItem in orderItems">
-      <td>{{orderItem.id}}
-      <td>{{orderItem.product.name}}
-      <td>{{orderItem.quantity}}
-    </tr>
-  </tbody>
-</table>
+<div class="row">
+  <div class="col-sm-12">
+    <div class="panel panel-default">
+      <div class="panel-heading">Order items</div>
+      <div class="panel-body">
+        <table class="table">
+          <thead>
+            <tr>
+              <td>ID
+              <td>Product
+              <td>Quantity
+            </td>
+          </thead>
+          <tbody>
+            <tr ng-repeat="orderItem in orderItems">
+              <td>{{orderItem.id}}
+              <td>{{orderItem.product.name}}
+              <td>{{orderItem.quantity}}
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      
+      <!-- Processes -->
+      <div class="panel-heading">Processes</div>
+      <div ng-if="!processes || processes.length === 0" class="panel-body">
+        No processes attached to this work order.
+      </div>
+      <div ng-if="processes.length > 0" class="panel-body">
+      </div>
+    </div>
+  </div>
+</div>
 
 <div class="row">
-  <button class="btn btn-danger" ng-click="closeWorkOrder()" 
-    ng-disabled="workOrder.status == 'CLOSED'">Close Work Order</button>
-  <a ng-if="!params.orderItem && !params.salesOrder" ui-sref="manage/workorders" class="btn btn-default">Done</a>
-  <a ng-if="params.orderItem" ui-sref="manage/orderitem({id:params.orderItem, salesOrder:params.salesOrder})" class="btn btn-default">Back to Order Item</a>
-  <a ng-if="params.salesOrder" ui-sref="manage/salesorder/workorders({trackingNo:params.salesOrder})" class="btn btn-default">Back to Sales Order</a>
+  <div class="col-sm-12">
+    <div class="pull-right">
+      <button class="btn btn-danger" ng-click="closeWorkOrder()" 
+        ng-disabled="workOrder.status == 'CLOSED'">Close Work Order</button>
+      <a ng-if="!params.orderItem && !params.salesOrder" ui-sref="manage/workorders" class="btn btn-default">Done</a>
+      <a ng-if="params.orderItem" ui-sref="manage/orderitem({id:params.orderItem, salesOrder:params.salesOrder})" class="btn btn-default">Back to Order Item</a>
+      <a ng-if="params.salesOrder" ui-sref="manage/salesorder/workorders({trackingNo:params.salesOrder})" class="btn btn-default">Back to Sales Order</a>
+    </div>
+  </div>
 </div>

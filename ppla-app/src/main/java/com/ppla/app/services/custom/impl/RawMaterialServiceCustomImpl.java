@@ -6,7 +6,7 @@ import org.dozer.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.google.common.collect.Lists;
-import com.ppla.app.models.RawMaterial;
+import com.ppla.app.models.material.RawMaterial;
 import com.ppla.app.services.RawMaterialService;
 import com.ppla.app.services.custom.RawMaterialServiceCustom;
 import com.ppla.core.dto.material.RawMaterialInfo;
