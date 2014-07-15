@@ -1,5 +1,6 @@
 angular.module('ppla', [
   'ui.router',
+  'ui.bootstrap',
   'ppla.controllers',
   'ppla.services'
 ])
@@ -47,7 +48,7 @@ angular.module('ppla', [
       controller: 'SalesOrder_WorkOrdersController'
     })
     .state('manage/orderitem', {
-      url: '/manage/orderitem/{id}',
+      url: '/manage/orderitem/{id}?salesOrder',
       templateUrl: 'manage/orderitem.html',
       controller: 'OrderItemController'
     })
@@ -59,7 +60,7 @@ angular.module('ppla', [
       controller: 'WorkOrderBrowseController'
     })
     .state('manage/workorder', {
-      url: '/manage/workorder/{trackingNo}',
+      url: '/manage/workorder/{trackingNo}?salesOrder&orderItem',
       templateUrl: 'manage/workorder.html',
       controller: 'WorkOrderController'
     });

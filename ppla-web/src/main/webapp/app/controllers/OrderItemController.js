@@ -1,18 +1,26 @@
 angular.module('ppla.controllers')
 
-.controller('OrderItemController', function($scope, $stateParams, OrderItemService, WorkOrderService) {
+.controller('OrderItemController', function($scope, $state, $stateParams, OrderItemService, WorkOrderService) {
 
   $scope.workOrder = {};
   $scope.id = $stateParams.id;
   $scope.attachables = [];
   $scope.attached = [];
+  $scope.params = $state.params;
 
   //the order item being viewed
   $scope.orderItem = OrderItemService.get({id: $scope.id}, function (orderItem) {
     if (!orderItem.workOrder) {
       $scope.attachables = WorkOrderService.query({action: 'sameproduct', orderItemId: $scope.id});
     } else {
-      $scope.attached = OrderItemService.query({action: 'attached', workOrderTrackingNo: orderItem.workOrder.trackingNo});
+      OrderItemService.query({action: 'attached', workOrderTrackingNo: orderItem.workOrder.trackingNo}, function (attached) {
+        for (var i = 0, len = attached.length; i < len; i++) {
+          if (attached[i] && attached[i].id === parseInt($scope.id)) {
+            attached.splice(i, 1);
+          }
+        }
+        $scope.attached = attached;
+      });
     }
   });
 

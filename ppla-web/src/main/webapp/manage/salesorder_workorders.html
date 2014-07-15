@@ -1,39 +1,54 @@
-<h2>Manage Work Orders</h2>
-
-salesorder_workorders.html
-
-<dl>
-  <dt>Tracking No.
-  <dd>{{salesorder.trackingNo}}
-  <dt>Customer
-  <dd>{{salesorder.customer.properName.toString}}
-</dl>
-
-<table class="table">
-  <thead>
-    <tr>
-      <td>Product name
-      <td>Description
-      <td>Work order
-    </tr>
-  </thead>
-  <tbody>
-    <tr ng-repeat="orderItem in salesorder.orderItems">
-      <td>{{orderItem.product.name}}
-      <td>{{orderItem.product.description}}
-      <td>
-        <a ng-if="!orderItem.workOrder" ui-sref="manage/orderitem({id:orderItem.id})" 
-          class="btn btn-xs">Create work order</a>
-        <a ng-if="orderItem.workOrder" ui-sref="manage/orderitem({id:orderItem.id})">{{orderItem.workOrder.trackingNo}}</a>
-      </td>
-    </tr>
-  </tbody>
-</table>
+<h3>Manage Work Orders</h3>
 
 <div class="row">
   <div class="col-sm-12">
-    <div class="col-sm-4 pull-right">
-      <button class="btn btn-default">Ok</button>
+    <div class="panel panel-info">
+      <div class="panel-heading">Managing work orders for sales order with Tracking No. <strong>{{salesorder.trackingNo}}</strong></div>
+      <div class="panel-body">
+        <dl class="dl-horizontal">
+          <dt>Tracking No.
+          <dd>{{salesorder.trackingNo}}
+          <dt>Customer
+          <dd>{{salesorder.customer.properName.toString}}
+          <dt>Ship to
+          <dd>{{salesorder.shipTo}}
+        </dl>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-12">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <td>Product name
+          <td>Description
+          <td>Order Item
+          <td>Work order
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="orderItem in salesorder.orderItems">
+          <td>{{orderItem.product.name}}
+          <td>{{orderItem.product.description}}
+          <td><a ui-sref="manage/orderitem({id:orderItem.id, salesOrder:salesorder.trackingNo})">{{orderItem.id}}</a>
+          <td>
+            <a ng-if="!orderItem.workOrder" ui-sref="manage/orderitem({id:orderItem.id, salesOrder:salesorder.trackingNo})" 
+              class="btn btn-xs btn-primary">Create work order</a>
+            <a ng-if="orderItem.workOrder" ui-sref="manage/workorder({trackingNo:orderItem.workOrder.trackingNo, salesOrder:salesorder.trackingNo})">{{orderItem.workOrder.trackingNo}}</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-12">
+    <div class="pull-right">
+      <a ui-sref="manage/salesorder" class="btn btn-default">Back to Sales Order List</a>
     </div>
   </div>
 </div>

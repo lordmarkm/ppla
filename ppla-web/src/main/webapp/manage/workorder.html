@@ -1,21 +1,30 @@
-<h2>Work Order</h2>
+<h3>Manage Work Order</h3>
 
-<dl>
-  <dt>Tracking No
-  <dd>{{workOrder.trackingNo}}
-
-  <dt>Quantity
-  <dd>{{workOrder.quantity}}
-
-  <dt>Status
-  <dd>{{workOrder.status}}
-
-  <dt>Date and Time Created
-  <dd>{{workOrder.dateCreated|date:'yyyy-MMM-dd hh:mm a'}}
-  
-  <dt>Date and Time Completed
-  <dd>{{workOrder.dateCompleted|date:'yyyy-MMM-dd hh:mm a'}}
-</dl>
+<div class="row">
+  <div class="col-sm-12">
+    <div class="panel panel-info">
+      <div class="panel-heading">Managing work order with Tracking No. <strong>{{workOrder.trackingNo}}</strong></div>
+      <div class="panel-body">
+        <dl class="dl-horizontal">
+          <dt>Tracking No
+          <dd>{{workOrder.trackingNo}}
+        
+          <dt>Quantity
+          <dd>{{workOrder.quantity}}
+        
+          <dt>Status
+          <dd>{{workOrder.status}}
+        
+          <dt>Date and Time Created
+          <dd>{{workOrder.dateCreated|date:'yyyy-MMM-dd hh:mm a'}}
+          
+          <dt>Date and Time Completed
+          <dd>{{workOrder.dateCompleted|date:'yyyy-MMM-dd hh:mm a'}}
+        </dl>
+      </div>
+    </div>
+  </div>
+</div>
 
 <h2>Order items</h2>
 <table>
@@ -38,5 +47,7 @@
 <div class="row">
   <button class="btn btn-danger" ng-click="closeWorkOrder()" 
     ng-disabled="workOrder.status == 'CLOSED'">Close Work Order</button>
-  <a ui-sref="manage/workorders" class="btn btn-default">Done</a>
+  <a ng-if="!params.orderItem && !params.salesOrder" ui-sref="manage/workorders" class="btn btn-default">Done</a>
+  <a ng-if="params.orderItem" ui-sref="manage/orderitem({id:params.orderItem, salesOrder:params.salesOrder})" class="btn btn-default">Back to Order Item</a>
+  <a ng-if="params.salesOrder" ui-sref="manage/salesorder/workorders({trackingNo:params.salesOrder})" class="btn btn-default">Back to Sales Order</a>
 </div>

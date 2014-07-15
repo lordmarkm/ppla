@@ -1,63 +1,98 @@
-<h2>Manage Work Order</h2>
-
-{{orderItem}}<br>
-wo: {{workOrder}}<br>
-attachables: {{attachables}}<br>
-trackingNo: {{trackingNo}}
+<h3>Manage Order Item</h3>
 
 <div ng-if="orderItem.workOrder">
-  <dl>
-    <dt>Tracking no.
-    <dd>{{orderItem.workOrder.trackingNo}}
-
-    <dt>Quantity
-    <dd>{{orderItem.workOrder.quantity}}
-
-    <dt>Date created
-    <dd>{{orderItem.workOrder.dateCreated}}
-    
-    <dt>Status
-    <dd>{{orderItem.workOrder.status}}
-    
-    <dt>Attached
-    <dd>
-      <ul>
-        <li ng-repeat="orderItem in attached">
-          <a ui-sref="manage/orderitem({id:orderItem.id})">{{orderItem.id}}</a>
-        </li>
-      </ul>
-    </dd>
-  </dl>
+<div class="row">
+  <div class="col-sm-12">
+    <div class="panel panel-info">
+      <div class="panel-heading">Viewing Details for Order Item with ID <strong>{{orderItem.id}}</strong></div>
+      <div class="panel-body">
+        <dl class="dl-horizontal">
+          <dt>Product
+          <dd>{{orderItem.product.name}}
+          <dt>Product description
+          <dd>{{orderItem.product.description}}
+          <dt>Quantity
+          <dd>{{orderItem.quantity}}
+        </dl>
+        <dl class="dl-horizontal">
+          <dt>Work Order Tracker
+          <dd><a ui-sref="manage/workorder({trackingNo:orderItem.workOrder.trackingNo, orderItem:orderItem.id, salesOrder:params.salesOrder})">{{orderItem.workOrder.trackingNo}}</a>
+          <dt>Work Order Quantity
+          <dd>{{orderItem.workOrder.quantity}}
+          <dt>Date created
+          <dd>{{orderItem.workOrder.dateCreated|date:'yyyy-MMM-dd hh:mm a'}}
+          <dt>Status
+          <dd>{{orderItem.workOrder.status}}
+          <dt>Attached orders
+          <dd ng-if="attached.length > 0">
+            <ul class="list-inline">
+              <li ng-repeat="attachedOrder in attached">
+                <a ui-sref="manage/orderitem({id:attachedOrder.id})">{{attachedOrder.id}}</a>
+              </li>
+            </ul>
+          </dd>
+          <dd ng-if="attached.length === 0">
+            No other orders attached to this work order
+          </dd>
+        </dl>
+      </div>
+    </div>
+  </div>
+</div>
 </div>
 
 <div ng-if="!orderItem.workOrder" class="row">
-  <form ng-submit="createNew()" class="form">
-    <div class="form-group">
-      <label for="workorder-quantity">Product</label>
-      <span id="workorder-quantity" class="form-control">{{orderItem.product.name}}</span>
+<div class="row">
+  <div class="col-sm-12">
+    <div class="tab-container">
+      <tabset>
+        <!-- New WO tab -->
+        <tab>
+          <tab-heading class="pointer">Create new Work Order</tab-heading>
+          <form ng-submit="createNew()" class="form">
+            <div class="form-group">
+              <label for="workorder-quantity">Product</label>
+              <span id="workorder-quantity" class="form-control">{{orderItem.product.name}}</span>
+            </div>
+            <div class="form-group">
+              <label for="workorder-quantity">Quantity</label>
+              <input type="number" 
+                required
+                ng-model="workOrder.quantity" 
+                id="workorder-quantity" class="form-control"
+                min="1">
+            </div>
+            <div class="form-group">
+              <input type="submit" />
+            </div>
+          </form>
+        </tab>
+  
+        <!-- Attach WO tab -->
+        <tab>
+          <tab-heading class="pointer">Attach to existing Work Order</tab-heading>
+          <form ng-submit="attach()" class="form">
+            <div class="form-group">
+              <label>Tracking No.</label>
+              <select ng-model="workOrder.trackingNo" 
+                ng-options="workOrder.trackingNo as workOrder.trackingNo for workOrder in attachables"
+                class="form-control"></select>
+            </div>
+            <div class="form-group">
+              <input type="submit" class="form-control" />
+            </div>
+          </form>
+        </tab>
+      </tabset>
     </div>
-    <div class="form-group">
-      <label for="workorder-quantity">Quantity</label>
-      <input type="number" 
-        required
-        ng-model="workOrder.quantity" 
-        id="workorder-quantity" class="form-control"
-        min="1">
-    </div>
-    <div class="form-group">
-      <input type="submit" />
-    </div>
-  </form>
+  </div>
+</div>
+</div>
 
-  <form ng-submit="attach()" class="form">
-    <div class="form-group">
-      <label>Tracking No.</label>
-      <select ng-model="workOrder.trackingNo" 
-        ng-options="workOrder.trackingNo as workOrder.trackingNo for workOrder in attachables"
-        class="form-control"></select>
+<div class="row">
+  <div class="col-sm-12">
+    <div class="pull-right">
+      <a ng-if="params.salesOrder" ui-sref="manage/salesorder/workorders({trackingNo:params.salesOrder})" class="btn btn-default">Back to Sales Order</a>
     </div>
-    <div class="form-group">
-      <input type="submit" class="form-control" />
-    </div>
-  </form>
+  </div>
 </div>

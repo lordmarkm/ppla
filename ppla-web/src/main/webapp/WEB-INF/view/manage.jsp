@@ -6,6 +6,7 @@
 -->
 <link rel="stylesheet" href="/lib/bootstrap-3.0.3/css/bootstrap.min.css">
 <link rel="stylesheet" href="/lib/angular-ngtable/ng-table.min.css">
+<link rel="stylesheet" href="/app/app.css">
 <style>
     .navbar { border-radius:0; }
 </style>
@@ -19,6 +20,7 @@
 <script src="/lib/angular/angular-ui-router.min.js"></script>
 <script src="/lib/angular/angular-resource.min.js"></script>
 <script src="/lib/angular-ngtable/ng-table.min.js"></script>
+<script src="/lib/angular-ui/ui-bootstrap-tpls-0.11.0.min.js"></script>
 
 <script src="/app/app.js"></script>
 <script src="/app/controllers.js"></script>
@@ -32,7 +34,6 @@
 <script src="/app/controllers/WorkOrderController.js"></script>
 
 <body ng-app="ppla">
-
 
   <!-- NAVIGATION -->
   <nav class="navbar navbar-inverse" role="navigation">
