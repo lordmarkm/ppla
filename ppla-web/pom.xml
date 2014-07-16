@@ -9,13 +9,17 @@
   <artifactId>ppla-web</artifactId>
   <packaging>war</packaging>
   <name>PPLA :: Web</name>
+  
+  <!-- Default web.xml path (no security) -->
+  <properties>
+    <webXmlPath>src/main/webapp/WEB-INF/web.xml</webXmlPath>
+  </properties>
 
   <dependencies>
     <dependency>
       <groupId>ppla</groupId>
       <artifactId>ppla-app</artifactId>
     </dependency>
-
     <!-- Baldy -->
     <dependency>
       <groupId>baldy.commons</groupId>
@@ -29,6 +33,56 @@
         <groupId>org.mortbay.jetty</groupId>
         <artifactId>jetty-maven-plugin</artifactId>
       </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-war-plugin</artifactId>
+        <configuration>
+          <webXml>${webXmlPath}</webXml>
+        </configuration>
+      </plugin>
     </plugins>
   </build>
+
+  <!-- Secured profile -->
+  <profiles>
+    <profile>
+      <id>sec</id>
+      <properties>
+        <webXmlPath>src/main/webapp/WEB-INF/secure/web.xml</webXmlPath>
+      </properties>
+      <dependencies>
+        <dependency>
+          <groupId>ppla</groupId>
+          <artifactId>ppla-security</artifactId>
+          <type>war</type>
+        </dependency>
+        <dependency>
+          <groupId>ppla</groupId>
+          <artifactId>ppla-security</artifactId>
+          <classifier>classes</classifier>
+        </dependency>
+      </dependencies>
+      <build>
+        <plugins>
+          <!-- Overlays -->
+          <plugin>
+            <artifactId>maven-war-plugin</artifactId>
+            <configuration>
+              <failOnMissingWebXml>false</failOnMissingWebXml>
+              <overlays>
+                <!-- Overlay login page -->
+                <overlay>
+                  <groupId>ppla</groupId>
+                  <artifactId>ppla-security</artifactId>
+                  <includes>
+                    <include>WEB-INF/view/login.jsp</include>
+                  </includes>
+                </overlay>
+              </overlays>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
 </project>

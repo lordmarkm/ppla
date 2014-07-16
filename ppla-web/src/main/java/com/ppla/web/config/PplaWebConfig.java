@@ -5,7 +5,6 @@ import javax.annotation.PostConstruct;
 import org.dozer.DozerBeanMapper;
 import org.dozer.loader.api.BeanMappingBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
@@ -24,8 +23,10 @@ import com.ppla.core.dto.PplaSalesOrderInfo;
     "com.baldy.commons.resourcedoc.config",
     "com.ppla.app.config",
     "com.ppla.core.config",
-    "com.ppla.web.resource",
-    "com.ppla.web.controller"
+    "com.ppla.web",
+    
+    //only works with 'sec' profile
+    "com.ppla.security.config"
 })
 @PropertySource({"classpath:app.properties"})
 @EnableAspectJAutoProxy

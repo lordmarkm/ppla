@@ -67,7 +67,7 @@ public class PplaPersistenceConfig extends PersistenceConfig {
             "com.ppla.app.models",
             "com.ppla.app.models.process",
             "com.tyrael.process.mgt.models.product",
-            "com.baldy.commons.models"
+            "com.baldy.commons.security.models"
         });
         entityManagerFactory.setPersistenceProvider(new HibernatePersistence());
         entityManagerFactory.setJpaProperties(hibernateProperties());

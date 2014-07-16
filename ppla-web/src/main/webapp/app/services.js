@@ -1,5 +1,9 @@
 angular.module('ppla.services', ['ngResource'])
 
+.factory('AuthService', function($resource) {
+  return $resource('/auth');
+})
+
 .factory('SalesOrderService', function($resource) {
   return $resource('/salesorder/:trackingNo', {}, {
     page: {method: 'GET', isArray: false}

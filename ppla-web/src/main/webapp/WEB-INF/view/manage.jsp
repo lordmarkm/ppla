@@ -26,6 +26,7 @@
 <script src="/app/controllers.js"></script>
 <script src="/app/services.js"></script>
 
+<script src="/app/controllers/AuthController.js"></script>  
 <script src="/app/controllers/SalesOrderController.js"></script>  
 <script src="/app/controllers/SalesOrder_WorkOrdersController.js"></script>  
 <script src="/app/controllers/MaterialController.js"></script>
@@ -38,13 +39,23 @@
   <!-- NAVIGATION -->
   <nav class="navbar navbar-inverse" role="navigation">
     <div class="navbar-header">
-      <a class="navbar-brand" ui-sref="#">PPLA Films Process Mgmt</a>
+      <a class="navbar-brand" ui-sref="#">PPLA Films Manufacturing Execution Software</a>
     </div>
     <ul class="nav navbar-nav">
       <li><a ui-sref="manage/material">Materials</a></li>
       <li><a ui-sref="manage/product">Products</a></li>
       <li><a ui-sref="manage/salesorder">Sales Orders</a></li>
       <li><a ui-sref="manage/workorders">Work Orders</a></li>  
+    </ul>
+    <ul class="nav navbar-nav pull-right" ng-controller="AuthController">
+      <li class="dropdown" ng-if="principal.principal">
+        <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
+          {{principal.principal.username}}<span class="caret" style="margin-left: 5px;"></span>
+        </a>
+        <ul class="dropdown-menu" role="menu">
+          <li><a href="/logout">Logout</a></li>
+        </ul>
+      </li>
     </ul>
   </nav>
 

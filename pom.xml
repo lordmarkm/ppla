@@ -57,6 +57,18 @@
         <artifactId>ppla-app</artifactId>
         <version>${project.version}</version>
       </dependency>
+      <dependency>
+        <groupId>ppla</groupId>
+        <artifactId>ppla-security</artifactId>
+        <type>war</type>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>ppla</groupId>
+        <artifactId>ppla-security</artifactId>
+        <classifier>classes</classifier>
+        <version>${project.version}</version>
+      </dependency>
 
       <!-- Tyrael -->
       <dependency>
@@ -352,5 +364,6 @@
     <module>ppla-app</module>
     <module>ppla-web</module>
     <module>ppla-core</module>
+    <module>ppla-security</module>
   </modules>
 </project>

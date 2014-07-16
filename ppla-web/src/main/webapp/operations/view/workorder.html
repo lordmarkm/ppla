@@ -1,0 +1,75 @@
+<h3>Work Order Operations</h3>
+
+<div class="row">
+  <div class="col-sm-12">
+    <div class="panel panel-info">
+      <div class="panel-heading">Managing work order with Tracking No. <strong>{{workOrder.trackingNo}}</strong></div>
+      <div class="panel-body">
+        <dl class="dl-horizontal">
+          <dt>Tracking No
+          <dd>{{workOrder.trackingNo}}
+          <dt>Quantity
+          <dd>{{workOrder.quantity}}
+          <dt>Status
+          <dd>{{workOrder.status}}
+          <dt>Created
+          <dd>{{workOrder.dateCreated|date:'yyyy-MMM-dd hh:mm a'}}
+          <dt>Completed
+          <dd ng-if="workOrder.dateCompleted">{{workOrder.dateCompleted|date:'yyyy-MMM-dd hh:mm a'}}
+          <dd ng-if="!workOrder.dateCompleted">Work order still open
+        </dl>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-12">
+    <div class="panel panel-default">
+      <div class="panel-heading">Order items</div>
+      <div class="panel-body">
+        <table class="table">
+          <thead>
+            <tr>
+              <td>ID
+              <td>Product
+              <td>Quantity
+            </td>
+          </thead>
+          <tbody>
+            <tr ng-repeat="orderItem in orderItems">
+              <td>{{orderItem.id}}
+              <td>{{orderItem.product.name}}
+              <td>{{orderItem.quantity}}
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      
+      <!-- Processes -->
+      <div class="panel-heading">Processes</div>
+      <div class="panel-body">
+        <div ng-if="!processes || processes.length === 0">
+          No processes attached to this work order.
+        </div>
+        <div class="pull-right">
+        <a ui-sref="warehouse_process({trackingNo:workOrder.trackingNo, processId:-1})">
+              New Warehouse process</a>
+          <select>
+            <option><a ui-sref="warehouse_process({trackingNo:workOrder.trackingNo, processId:-1})">
+              New Warehouse process</a>
+            </option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-12">
+    <div class="pull-right">
+      <a ng-if="!params.orderItem && !params.salesOrder" ui-sref="workorders" class="btn btn-default">Done</a>
+    </div>
+  </div>
+</div>
