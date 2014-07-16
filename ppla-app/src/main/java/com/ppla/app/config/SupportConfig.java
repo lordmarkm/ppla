@@ -1,4 +1,4 @@
-package com.ppla.core.config;
+package com.ppla.app.config;
 
 import javax.annotation.PostConstruct;
 
@@ -8,7 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 
+import com.ppla.app.models.process.BasePplaProcess;
+import com.ppla.core.dto.process.BasePplaProcessInfo;
 import com.tyrael.commons.mapper.config.MapperConfig;
+
+import static org.dozer.loader.api.FieldsMappingOptions.*;
 
 /**
  * Initialize the Dozer mapper for application-wide use.
@@ -26,8 +30,8 @@ public class SupportConfig {
         mapper.addMapping(new BeanMappingBuilder() {
             @Override
             protected void configure() {
-//                mapping(Card.class, CardInfo.class)
-//                    .fields("expansion.code", "expansion", oneWay());
+                mapping(BasePplaProcess.class, BasePplaProcessInfo.class)
+                    .fields("workOrder.trackingNo", "workOrderTrackingNo", oneWay());
             }
         });
     }

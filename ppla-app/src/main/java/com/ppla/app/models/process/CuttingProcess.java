@@ -1,9 +1,13 @@
 package com.ppla.app.models.process;
 
+import java.math.BigDecimal;
 import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 
 import com.ppla.app.models.material.ProcessMaterialStack;
 
@@ -14,8 +18,11 @@ import com.ppla.app.models.material.ProcessMaterialStack;
 @DiscriminatorValue("CUTTING")
 public class CuttingProcess extends MachineProcess {
 
+    @OneToMany(cascade = CascadeType.ALL)
     private List<ProcessMaterialStack> materialsInput;
-    private int productOut;
+
+    @Column(name = "OUTPUT")
+    private BigDecimal productOut;
 
     public List<ProcessMaterialStack> getMaterialsInput() {
         return materialsInput;
@@ -23,10 +30,10 @@ public class CuttingProcess extends MachineProcess {
     public void setMaterialsInput(List<ProcessMaterialStack> materialsInput) {
         this.materialsInput = materialsInput;
     }
-    public int getProductOut() {
+    public BigDecimal getProductOut() {
         return productOut;
     }
-    public void setProductOut(int productOut) {
+    public void setProductOut(BigDecimal productOut) {
         this.productOut = productOut;
     }
 

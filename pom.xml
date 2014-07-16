@@ -99,6 +99,11 @@
         <version>${baldy-commons.version}</version>
       </dependency>
       <dependency>
+        <groupId>baldy.commons</groupId>
+        <artifactId>baldy-commons-dtos</artifactId>
+        <version>${baldy-commons.version}</version>
+      </dependency>
+      <dependency>
         <groupId>baldy.commons.security</groupId>
         <artifactId>baldy-commons-security-models</artifactId>
         <version>${baldy-commons.version}</version>

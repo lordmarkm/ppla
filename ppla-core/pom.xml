@@ -19,5 +19,9 @@
       <groupId>baldy.commons</groupId>
       <artifactId>baldy-commons-models</artifactId>
     </dependency>
+    <dependency>
+      <groupId>baldy.commons</groupId>
+      <artifactId>baldy-commons-dtos</artifactId>
+    </dependency>
   </dependencies>
 </project>
