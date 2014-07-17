@@ -5,6 +5,7 @@ import org.springframework.core.style.ToStringCreator;
 
 import com.baldy.commons.models.BaseBaldyInfo;
 import com.ppla.core.dto.PersonInfo;
+import com.ppla.core.dto.PplaUserInfo;
 
 /**
  * @author mbmartinez
@@ -13,7 +14,7 @@ public class BasePplaProcessInfo extends BaseBaldyInfo {
 
     private DateTime dateStarted;
     private DateTime dateCompleted;
-    private PersonInfo actor;
+    private PplaUserInfo actor;
     private String workOrderTrackingNo;
 
     @Override
@@ -39,10 +40,10 @@ public class BasePplaProcessInfo extends BaseBaldyInfo {
     public void setDateCompleted(DateTime dateCompleted) {
         this.dateCompleted = dateCompleted;
     }
-    public PersonInfo getActor() {
+    public PplaUserInfo getActor() {
         return actor;
     }
-    public void setActor(PersonInfo actor) {
+    public void setActor(PplaUserInfo actor) {
         this.actor = actor;
     }
 

@@ -65,7 +65,7 @@
               </tr>
             </tbody>
           </table>
-          <button ng-if="process.materialStacks.length > 0" ng-disabled="!dirty" class="btn btn-success form-control">Save</button>
+          <button ng-click="saveProcess()" ng-if="process.materialStacks.length > 0" ng-disabled="!dirty" class="btn btn-success form-control">Save</button>
         </div>
       </div>
     </div>

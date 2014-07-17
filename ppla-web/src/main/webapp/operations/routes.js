@@ -5,6 +5,11 @@ define(['/operations/app.js'], function(app) {
       url: '/',
       templateUrl: '/operations/view/home.html'
     })
+    .state('profile', {
+      url: '/profile',
+      templateUrl: '/common/view/profile.html',
+      controller: 'ProfileController'
+    })
     .state('workorders', {
       url: '/workorders',
       templateUrl: '/operations/view/workorders.html',

@@ -1,13 +1,14 @@
 define(['/operations/controllers/module.js'], function (controllers) {
   'use strict';
-  controllers.controller('WarehouseProcessController', ['$scope', '$stateParams', 'MaterialService',
-    function($scope, $stateParams, MaterialService) {
+  controllers.controller('WarehouseProcessController', ['$scope', '$stateParams', 'MaterialService', 'WarehouseProcessService',
+    function($scope, $stateParams, MaterialService, WarehouseProcessService) {
 
-    $scope.process = {
-        materialStacks : []
-    };
     $scope.trackingNo = $stateParams.trackingNo;
     $scope.dirty = false;
+    $scope.process = {
+        workOrderTrackingNo : $scope.trackingNo,
+        materialStacks : []
+    };
 
     MaterialService.get(function (inventory) {
       $scope.materials = inventory.rawMaterials;
@@ -32,6 +33,10 @@ define(['/operations/controllers/module.js'], function (controllers) {
         quantity: $scope.quantity
       });
       $scope.dirty = true;
+    };
+
+    $scope.saveProcess = function () {
+      WarehouseProcessService.save($scope.process);
     };
   }]);
 });

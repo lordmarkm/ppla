@@ -27,6 +27,12 @@ define(['angular'], function(angular) {
   })
   .factory('MaterialService', function($resource) {
     return $resource('/material/:type');
+  })
+  .factory('WarehouseProcessService', function($resource) {
+    return $resource('/warehouse');
+  })
+  .factory('PplaUserService', function($resource) {
+    return $resource('/user');
   });
 
 });

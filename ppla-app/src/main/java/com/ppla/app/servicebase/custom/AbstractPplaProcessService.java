@@ -1,12 +1,14 @@
 package com.ppla.app.servicebase.custom;
 
-import java.security.Principal;
-
+import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.ppla.app.models.PplaUser;
+import com.ppla.app.models.PplaWorkOrder;
 import com.ppla.app.models.process.BasePplaProcess;
 import com.ppla.app.servicebase.BasePplaProcessService;
-import com.ppla.app.services.PplaPersonService;
+import com.ppla.app.services.PplaUserService;
+import com.ppla.app.services.PplaWorkOrderService;
 import com.ppla.app.services.custom.impl.MappingService;
 import com.ppla.core.dto.process.BasePplaProcessInfo;
 
@@ -14,7 +16,10 @@ public abstract class AbstractPplaProcessService<E extends BasePplaProcess, D ex
     extends MappingService<E, D> {
 
     @Autowired
-    private PplaPersonService persons;
+    private PplaUserService users;
+
+    @Autowired
+    private PplaWorkOrderService workOrders;
 
     public abstract BasePplaProcessService<E> getRepo();
     
@@ -22,11 +27,17 @@ public abstract class AbstractPplaProcessService<E extends BasePplaProcess, D ex
         super(entityClass, dtoClass);
     }
 
-    protected D save(Principal principal, D processInfo) {
+    protected D save(String username, D processInfo) {
         E entity = toEntity(processInfo);
-//        entity.setActor(actor);
-//        entity.setDateStarted(dateStarted);
-//        entity.setWorkOrder(workOrder);
+        if (entity.getDateStarted() == null) {
+            PplaUser actor = users.findByUsername(username);
+            entity.setActor(actor);
+
+            PplaWorkOrder workOrder = workOrders.findByTrackingNo(processInfo.getWorkOrderTrackingNo());
+            entity.setWorkOrder(workOrder);
+
+            entity.setDateStarted(DateTime.now());
+        }
 
         E saved = getRepo().save(entity);
         return toDto(saved);

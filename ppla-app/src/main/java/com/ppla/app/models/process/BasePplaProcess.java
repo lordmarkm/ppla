@@ -6,7 +6,7 @@ import javax.persistence.InheritanceType;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.Table;
 
-import com.ppla.app.models.PplaPerson;
+import com.ppla.app.models.PplaUser;
 import com.ppla.app.models.PplaWorkOrder;
 import com.tyrael.process.mgt.models.process.Process;
 
@@ -14,6 +14,6 @@ import com.tyrael.process.mgt.models.process.Process;
 @Inheritance(strategy = InheritanceType.JOINED)
 @DiscriminatorColumn(name = "TYPE")
 @Table(name = "PROCESS")
-public abstract class BasePplaProcess extends Process<PplaPerson, PplaWorkOrder> {
+public abstract class BasePplaProcess extends Process<PplaUser, PplaWorkOrder> {
 
 }

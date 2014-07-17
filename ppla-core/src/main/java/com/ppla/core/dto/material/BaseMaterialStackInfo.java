@@ -9,7 +9,7 @@ import java.math.BigDecimal;
 public abstract class BaseMaterialStackInfo<M extends BaseMaterialInfo> {
 
     private M material;
-    private BigDecimal amount;
+    private BigDecimal quantity;
 
     public M getMaterial() {
         return material;
@@ -17,11 +17,11 @@ public abstract class BaseMaterialStackInfo<M extends BaseMaterialInfo> {
     public void setMaterial(M material) {
         this.material = material;
     }
-    public BigDecimal getAmount() {
-        return amount;
+    public BigDecimal getQuantity() {
+        return quantity;
     }
-    public void setAmount(BigDecimal amount) {
-        this.amount = amount;
+    public void setQuantity(BigDecimal quantity) {
+        this.quantity = quantity;
     }
 
 }

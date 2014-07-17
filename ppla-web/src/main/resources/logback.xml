@@ -6,9 +6,11 @@
         </encoder>
     </appender>
 
+    <!-- 
     <logger name="com.ppla" level="debug" />
+     -->
 
-    <root level="info">
+    <root level="debug">
        <appender-ref ref="STDOUT" />
     </root>
 </configuration>

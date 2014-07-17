@@ -1,8 +1,11 @@
 package com.ppla.core.dto;
 
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+
 /**
  * @author Mark
  */
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class NameInfo {
 
     private String givenName;
@@ -11,7 +14,7 @@ public class NameInfo {
 
     @Override
     public String toString() {
-        return surname + ", " + givenName + " " + middleName;
+        return surname + ", " + givenName + " " + (middleName != null ? middleName : "");
     }
 
     public String getToString() {

@@ -19,6 +19,7 @@ public class WarehouseProcessInfo extends BasePplaProcessInfo {
             .append("Started", getDateStarted())
             .append("Completed", getDateCompleted())
             .append("Actor", getActor())
+            .append("Work order", getWorkOrderTrackingNo())
             .append("Materials", materialStacks)
             .toString();
     }
