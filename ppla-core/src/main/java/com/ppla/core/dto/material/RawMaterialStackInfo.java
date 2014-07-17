@@ -11,7 +11,7 @@ public class RawMaterialStackInfo extends BaseMaterialStackInfo<RawMaterialInfo>
     public String toString() {
         return new ToStringCreator(this)
             .append("Material", getMaterial())
-            .append("Amount", getQuantity())
+            .append("Quantity", getQuantity())
             .toString();
     }
 

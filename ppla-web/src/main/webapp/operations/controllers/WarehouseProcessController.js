@@ -36,7 +36,9 @@ define(['/operations/controllers/module.js'], function (controllers) {
     };
 
     $scope.saveProcess = function () {
-      WarehouseProcessService.save($scope.process);
+      WarehouseProcessService.save($scope.process, function(process) {
+        $scope.process = process;
+      });
     };
   }]);
 });
