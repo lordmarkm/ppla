@@ -17,6 +17,7 @@ import com.ppla.app.services.process.WarehouseProcessService;
 import com.ppla.core.dto.material.MaterialBalanceStackInfo;
 import com.ppla.core.dto.material.RawMaterialStackInfo;
 import com.ppla.core.dto.process.WarehouseProcessInfo;
+import com.ppla.core.reference.MaterialSource;
 import com.tyrael.process.mgt.models.material.Material;
 
 @Service
@@ -27,22 +28,24 @@ public class MaterialBalanceServiceImpl implements MaterialBalanceService {
 
     @Override
     public List<MaterialBalanceStackInfo> computeMaterialBalance(String trackingNo) {
-        Map<Material, MaterialBalanceStackInfo> materialBalance = Maps.newHashMap();
+        Map<Long, MaterialBalanceStackInfo> materialBalance = Maps.newHashMap();
         processWarehouseProcesses(materialBalance, trackingNo);
         return Lists.newArrayList(materialBalance.values());
     }
 
-    private void processWarehouseProcesses(Map<Material, MaterialBalanceStackInfo> materialBalance,
+    private void processWarehouseProcesses(Map<Long, MaterialBalanceStackInfo> materialBalance,
         String trackingNo) {
         List<WarehouseProcessInfo> procs = warehouse.findByWorkOrder_TrackingNoInfo(trackingNo);
         for (WarehouseProcessInfo proc : procs) {
             for (RawMaterialStackInfo rawMatStack : proc.getMaterialStacks()) {
-                MaterialBalanceStackInfo currentBalance = materialBalance.get(rawMatStack.getMaterial());
+                MaterialBalanceStackInfo currentBalance = materialBalance.get(rawMatStack.getMaterial().getId());
                 if (null == currentBalance) {
                     currentBalance = new MaterialBalanceStackInfo();
                     currentBalance.setMaterial(rawMatStack.getMaterial());
                     currentBalance.setQuantityWithdrawn(rawMatStack.getQuantity());
                     currentBalance.setQuantityRemaining(rawMatStack.getQuantity());
+                    currentBalance.setSource(MaterialSource.RAW);
+                    materialBalance.put(rawMatStack.getMaterial().getId(), currentBalance);
                 } else {
                     currentBalance.setQuantityWithdrawn(currentBalance.getQuantityWithdrawn().add(rawMatStack.getQuantity()));
                     currentBalance.setQuantityRemaining(currentBalance.getQuantityRemaining().add(rawMatStack.getQuantity()));

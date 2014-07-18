@@ -4,7 +4,6 @@ import org.joda.time.DateTime;
 import org.springframework.core.style.ToStringCreator;
 
 import com.baldy.commons.models.BaseBaldyInfo;
-import com.ppla.core.dto.PersonInfo;
 import com.ppla.core.dto.PplaUserInfo;
 
 /**

@@ -48,20 +48,55 @@
 
       <!-- Material balance -->
       <div class="panel-heading">Materials</div>
+      <div class="panel-body">
+        <div class="pull-right">
+          <a  class="btn btn-default btn-xs" ui-sref="warehouse_process({trackingNo:workOrder.trackingNo, processId:-1})">
+            Withdraw materials from warehouse
+          </a>
+        </div>
+        <div ng-if="!materials || materials.length === 0">
+          No materials are available to this work order.
+        </div>
+        <div ng-if="materials && materials.length > 0">
+          <table class="table">
+            <thead>
+              <tr>
+                <td>Name
+                <td>Quantity Withdrawn
+                <td>Consumed
+                <td>Remaining
+                <td>Source
+                <td>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- MaterialBalanceStackInfo -->
+              <tr ng-repeat="materialBalanceStack in materials">
+                <td>{{materialBalanceStack.material.name}}
+                <td>{{materialBalanceStack.quantityWithdrawn}}
+                <td>{{materialBalanceStack.quantityConsumed}}
+                <td>{{materialBalanceStack.quantityRemaining}}
+                <td>{{materialBalanceStack.source}}
+                <td>
+                  <div ng-switch="materialBalanceStack.source">
+                    <a ng-switch-when="RAW" class="btn btn-primary btn-xs" 
+                      ui-sref="mixing_process({trackingNo:workOrder.trackingNo, processId:-1})">
+                      Start mixing process
+                    </a>
+                    <span ng-switch-default>Unhandled material source: {{materialBalanceStack.source}}</span>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      
       <!-- Processes -->
       <div class="panel-heading">Processes</div>
       <div class="panel-body">
         <div ng-if="!processes || processes.length === 0">
           No processes attached to this work order.
-        </div>
-        <div class="pull-right">
-        <a ui-sref="warehouse_process({trackingNo:workOrder.trackingNo, processId:-1})">
-              New Warehouse process</a>
-          <select>
-            <option><a ui-sref="warehouse_process({trackingNo:workOrder.trackingNo, processId:-1})">
-              New Warehouse process</a>
-            </option>
-          </select>
         </div>
       </div>
     </div>

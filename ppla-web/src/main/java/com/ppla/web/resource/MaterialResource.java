@@ -11,12 +11,15 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ppla.app.services.ProcessMaterialService;
 import com.ppla.app.services.RawMaterialService;
+import com.ppla.app.services.custom.MaterialBalanceService;
+import com.ppla.core.dto.material.MaterialBalanceStackInfo;
 import com.ppla.core.dto.material.MaterialInventoryInfo;
 import com.ppla.core.dto.material.ProcessMaterialInfo;
 import com.ppla.core.dto.material.RawMaterialInfo;
@@ -33,6 +36,9 @@ public class MaterialResource {
     @Autowired
     private ProcessMaterialService procMaterials;
 
+    @Autowired
+    private MaterialBalanceService materialBalanceService;
+
     @RequestMapping(method = GET)
     public ResponseEntity<MaterialInventoryInfo> findAll(Principal principal) {
         LOG.debug("Material inventory requested. user={}", principal);
@@ -45,6 +51,12 @@ public class MaterialResource {
         inventory.getProcMaterials().addAll(procs);
 
         return new ResponseEntity<>(inventory, OK);
+    }
+
+    @RequestMapping(value = "/{trackingNo}", method = GET)
+    public ResponseEntity<List<MaterialBalanceStackInfo>> getWorkOrderMaterialBalance(@PathVariable String trackingNo) {
+        LOG.debug("Computing material balance for work order. trackingNo={}", trackingNo);
+        return new ResponseEntity<>(materialBalanceService.computeMaterialBalance(trackingNo), OK);
     }
 
     @RequestMapping(value = "/raw", method = POST)

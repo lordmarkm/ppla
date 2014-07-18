@@ -13,9 +13,9 @@ public class MaterialBalanceStackInfo {
 
     private BaseMaterialInfo material;
     private MaterialSource source;
-    private BigDecimal quantityWithdrawn;
-    private BigDecimal quantityConsumed;
-    private BigDecimal quantityRemaining;
+    private BigDecimal quantityWithdrawn = BigDecimal.ZERO;
+    private BigDecimal quantityConsumed = BigDecimal.ZERO;
+    private BigDecimal quantityRemaining = BigDecimal.ZERO;
 
     @Override
     public String toString() {

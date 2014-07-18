@@ -33,6 +33,9 @@ define(['angular'], function(angular) {
   })
   .factory('PplaUserService', function($resource) {
     return $resource('/user');
+  })
+  .factory('MaterialService', function($resource) {
+    return $resource('/material/:type');
   });
 
 });
