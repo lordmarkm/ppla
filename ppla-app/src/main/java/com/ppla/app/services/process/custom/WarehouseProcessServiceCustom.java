@@ -1,5 +1,7 @@
 package com.ppla.app.services.process.custom;
 
+import java.util.List;
+
 import com.ppla.core.dto.process.WarehouseProcessInfo;
 
 /**
@@ -8,5 +10,6 @@ import com.ppla.core.dto.process.WarehouseProcessInfo;
 public interface WarehouseProcessServiceCustom {
 
     WarehouseProcessInfo save(String username, WarehouseProcessInfo process);
+    List<WarehouseProcessInfo> findByWorkOrder_TrackingNoInfo(String trackingNo);
 
 }

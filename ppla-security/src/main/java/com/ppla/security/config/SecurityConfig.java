@@ -72,7 +72,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .formLogin()
                 .loginPage("/auth/login")
                 .loginProcessingUrl("/login/authenticate")
-                //.defaultSuccessUrl("/account/dashboard", true)
+                .defaultSuccessUrl("/auth/redirect", false)
                 .failureUrl("/auth/login?msg=bad_credentials")
                 .permitAll()
                 .and()

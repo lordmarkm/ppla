@@ -1,5 +1,7 @@
 package com.ppla.app.services.process.custom.impl;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +34,11 @@ public class WarehouseProcessServiceCustomImpl extends AbstractPplaProcessServic
     public WarehouseProcessInfo save(String username, WarehouseProcessInfo process) {
         LOG.debug("About to save Warehouse Process. process={}", process);
         return super.save(username, process);
+    }
+
+    @Override
+    public List<WarehouseProcessInfo> findByWorkOrder_TrackingNoInfo(String trackingNo) {
+        return toDto(service.findByWorkOrder_TrackingNo(trackingNo));
     }
 
 }

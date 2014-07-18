@@ -3,9 +3,12 @@ package com.ppla.security.reference;
 /**
  * @author mbmartinez
  */
-public interface Roles {
+public abstract class Roles {
 
-    String ADMIN = "ADMIN"; 
-    String OPERATOR = "OPERATOR";
+    public static final String ADMIN = "ADMIN"; 
+    public static final String OPERATOR = "OPERATOR";
 
+    public static String asRole(String role) {
+        return "ROLE_" + role;
+    }
 }

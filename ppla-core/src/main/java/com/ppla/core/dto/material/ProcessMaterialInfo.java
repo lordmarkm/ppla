@@ -2,12 +2,14 @@ package com.ppla.core.dto.material;
 
 import org.springframework.core.style.ToStringCreator;
 
+import com.ppla.core.reference.MaterialSource;
+
 /**
  * @author mbmartinez
  */
 public class ProcessMaterialInfo extends BaseMaterialInfo {
 
-    private String tag;
+    private MaterialSource source;
 
     @Override
     public String toString() {
@@ -16,16 +18,17 @@ public class ProcessMaterialInfo extends BaseMaterialInfo {
             .append("Name", getName())
             .append("Description", getDescription())
             .append("Unit of measurement", getUnitOfMeasurement())
-            .append("Tag", tag)
+            .append("Source", source)
             .toString();
     }
 
-    public String getTag() {
-        return tag;
+    public MaterialSource getSource() {
+        return source;
     }
 
-    public void setTag(String tag) {
-        this.tag = tag;
+    public void setSource(MaterialSource source) {
+        this.source = source;
     }
+
 
 }

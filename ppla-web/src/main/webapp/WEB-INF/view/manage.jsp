@@ -39,7 +39,7 @@
   <!-- NAVIGATION -->
   <nav class="navbar navbar-inverse" role="navigation">
     <div class="navbar-header">
-      <a class="navbar-brand" ui-sref="#">PPLA Films Manufacturing Execution Software</a>
+      <a class="navbar-brand" href="/manage">PPLA Films Manufacturing Execution Software</a>
     </div>
     <ul class="nav navbar-nav">
       <li><a ui-sref="manage/material">Materials</a></li>
@@ -53,6 +53,7 @@
           {{principal.principal.username}}<span class="caret" style="margin-left: 5px;"></span>
         </a>
         <ul class="dropdown-menu" role="menu">
+          <li><a href="#/profile">Profile</a></li>
           <li><a href="/logout">Logout</a></li>
         </ul>
       </li>
