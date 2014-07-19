@@ -11,6 +11,11 @@
   <artifactId>ppla-app</artifactId>
   <name>PPLA :: App</name>
 
+  <properties>
+    <hibernate.hbm2ddl.auto>update</hibernate.hbm2ddl.auto>
+    <hibernate.hbm2ddl.import_files></hibernate.hbm2ddl.import_files>
+  </properties>
+
   <dependencies>
     <!-- PPLA -->
     <dependency>
@@ -43,7 +48,23 @@
     </dependency>
   </dependencies>
 
+  <profiles>
+    <profile>
+      <id>purge</id>
+      <properties>
+        <hibernate.hbm2ddl.auto>create</hibernate.hbm2ddl.auto>
+        <hibernate.hbm2ddl.import_files>/META-INF/sql/accounts.sql</hibernate.hbm2ddl.import_files>
+      </properties>
+    </profile>
+  </profiles>
+
   <build>
+    <resources>
+      <resource>
+        <directory>src/main/resources</directory>
+        <filtering>true</filtering>
+      </resource>
+    </resources>
     <plugins>
       <plugin>
         <groupId>com.mysema.maven</groupId>

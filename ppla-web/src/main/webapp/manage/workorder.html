@@ -48,10 +48,28 @@
       
       <!-- Processes -->
       <div class="panel-heading">Processes</div>
-      <div ng-if="!processes || processes.length === 0" class="panel-body">
-        No processes attached to this work order.
-      </div>
-      <div ng-if="processes.length > 0" class="panel-body">
+      <div class="panel-body">
+        <div ng-if="!processes || processes.length === 0">  
+          No processes attached to this work order.
+        </div>  
+        <table ng-if="processes.length > 0">
+          <thead>
+            <tr>
+              <td>Id
+              <td>Started
+              <td>Completed
+              <td>Actor
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="process in processes">
+              <td>{{process.id}}
+              <td>{{process.dateStarted|date}}
+              <td>{{process.dateCompleted|date}}
+              <td>{{process.actor}}
+            </tr>
+          </tbody>
+        </table>  
       </div>
     </div>
   </div>

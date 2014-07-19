@@ -5,11 +5,12 @@ import org.springframework.core.style.ToStringCreator;
 
 import com.baldy.commons.models.BaseBaldyInfo;
 import com.ppla.core.dto.PplaUserInfo;
+import com.ppla.core.reference.ProcessType;
 
 /**
  * @author mbmartinez
  */
-public class BasePplaProcessInfo extends BaseBaldyInfo {
+public abstract class BasePplaProcessInfo extends BaseBaldyInfo {
 
     private DateTime dateStarted;
     private DateTime dateCompleted;
@@ -26,6 +27,8 @@ public class BasePplaProcessInfo extends BaseBaldyInfo {
             .append("Actor", actor)
             .toString();
     }
+
+    public abstract ProcessType getType();
 
     public DateTime getDateStarted() {
         return dateStarted;
@@ -45,11 +48,9 @@ public class BasePplaProcessInfo extends BaseBaldyInfo {
     public void setActor(PplaUserInfo actor) {
         this.actor = actor;
     }
-
     public String getWorkOrderTrackingNo() {
         return workOrderTrackingNo;
     }
-
     public void setWorkOrderTrackingNo(String workOrderTrackingNo) {
         this.workOrderTrackingNo = workOrderTrackingNo;
     }

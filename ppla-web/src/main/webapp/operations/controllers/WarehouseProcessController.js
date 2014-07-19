@@ -1,7 +1,7 @@
 define(['/operations/controllers/module.js'], function (controllers) {
   'use strict';
-  controllers.controller('WarehouseProcessController', ['$scope', '$stateParams', 'MaterialService', 'WarehouseProcessService',
-    function($scope, $stateParams, MaterialService, WarehouseProcessService) {
+  controllers.controller('WarehouseProcessController', ['$state', '$scope', '$stateParams', 'MaterialService', 'WarehouseProcessService',
+    function($state, $scope, $stateParams, MaterialService, WarehouseProcessService) {
 
     $scope.trackingNo = $stateParams.trackingNo;
     $scope.dirty = false;
@@ -38,6 +38,7 @@ define(['/operations/controllers/module.js'], function (controllers) {
     $scope.saveProcess = function () {
       WarehouseProcessService.save($scope.process, function(process) {
         $scope.process = process;
+        $state.go('workorder', {trackingNo: $scope.trackingNo});
       });
     };
   }]);

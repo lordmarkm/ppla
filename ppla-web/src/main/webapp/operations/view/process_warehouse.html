@@ -7,7 +7,7 @@
       <div class="panel-body">
         <dl class="dl-horizontal">
           <dt>Tracking No
-          <dd>{{trackingNo}}
+          <dd><a ui-sref="workorder({trackingNo:trackingNo})">{{trackingNo}}</a>
           <dt>Process Type
           <dd>Warehouse
           <dt>Process Info
@@ -15,7 +15,7 @@
         </dl>
         <dl ng-if="$scope.process.id" class="dl-horizontal">
           <dt>Process ID
-          <dd>
+          <dd>{{process.id}}
         </dl>
       </div>
     </div>
@@ -47,7 +47,7 @@
         </div>
         <div class="col-sm-6">
           <div ng-if="process.materialStacks.length === 0" class="alert alert-info text-center">
-            No materials added
+            No materials to add
           </div>
           <table ng-if="process.materialStacks.length > 0" class="table table-striped">
             <thead>
@@ -69,5 +69,11 @@
         </div>
       </div>
     </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-12">
+    <a ui-sref="workorder({trackingNo:trackingNo})" class="btn btn-danger pull-right">Cancel</a>
   </div>
 </div>

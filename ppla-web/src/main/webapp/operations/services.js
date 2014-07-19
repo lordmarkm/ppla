@@ -28,6 +28,9 @@ define(['angular'], function(angular) {
   .factory('MaterialService', function($resource) {
     return $resource('/material/:type');
   })
+  .factory('ProcessService', function($resource) {
+    return $resource('/process');
+  })
   .factory('WarehouseProcessService', function($resource) {
     return $resource('/warehouse');
   })

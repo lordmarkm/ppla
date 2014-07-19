@@ -13,7 +13,7 @@
           <dt>Status
           <dd>{{workOrder.status}}
           <dt>Created
-          <dd>{{workOrder.dateCreated|date:'yyyy-MMM-dd hh:mm a'}}
+          <dd>{{parseDate(workOrder.dateCreated)}}
           <dt>Completed
           <dd ng-if="workOrder.dateCompleted">{{workOrder.dateCompleted|date:'yyyy-MMM-dd hh:mm a'}}
           <dd ng-if="!workOrder.dateCompleted">Work order still open
@@ -26,7 +26,7 @@
 <div class="row">
   <div class="col-sm-12">
     <div class="panel panel-default">
-      <div class="panel-heading">Order items</div>
+      <div class="panel-heading">Order items <span class="label label-info">{{orderItems.length}}</span></div>
       <div class="panel-body">
         <table class="table">
           <thead>
@@ -47,7 +47,7 @@
       </div>
 
       <!-- Material balance -->
-      <div class="panel-heading">Materials</div>
+      <div class="panel-heading">Materials <span class="label label-info">{{materials.length}}</span></div>
       <div class="panel-body">
         <div class="pull-right">
           <a  class="btn btn-default btn-xs" ui-sref="warehouse_process({trackingNo:workOrder.trackingNo, processId:-1})">
@@ -93,11 +93,49 @@
       </div>
       
       <!-- Processes -->
-      <div class="panel-heading">Processes</div>
+      <div class="panel-heading">Processes <span class="label label-info">{{processes.length}}</span></div>
       <div class="panel-body">
         <div ng-if="!processes || processes.length === 0">
           No processes attached to this work order.
         </div>
+        <table ng-if="processes.length > 0" class="table table-striped">
+          <thead>
+            <tr>
+              <td>Type
+              <td>Id
+              <td>Started
+              <td>Completed
+              <td>Actor
+              <td>Additional Details
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat-start="process in processes">
+              <td ng-switch="process.type">
+                <span ng-switch-when="WAREHOUSE" class="label label-default">Warehouse</span>
+              </td>
+              <td>{{process.id}}
+              <td>{{parseDate(process.dateStarted)}}
+              <td ng-if="process.dateCompleted">{{parseDate(process.dateCompleted)}}
+              <td ng-if="!process.dateCompleted">Not completed
+              <td>{{process.actor.properName.givenName}} {{process.actor.properName.surname}}
+              <td width="10%">
+                <a href="javascript:;" ng-click="processDetails[process.id] = processDetails[process.id] ? false : true">
+                  <span ng-if="!processDetails[process.id]">Expand <span class="glyphicon glyphicon-chevron-down"></span></span>
+                  <span ng-if="processDetails[process.id]">Collapse <span class="glyphicon glyphicon-chevron-up"></span></span>
+                </a>
+              </td>
+            </tr>
+            <tr ng-repeat-end ng-show="processDetails[process.id]" ng-switch="process.type">
+              <td ng-switch-when="WAREHOUSE" colspan="6">
+                <dl>
+                  <dd ng-repeat-start="matStack in process.materialStacks">{{matStack.material.name}}
+                  <dt ng-repeat-end>{{matStack.quantity}} {{matStack.material.unitOfMeasurement}}
+                </dl>
+              </td>
+            </tr>
+          </tbody>
+        </table> 
       </div>
     </div>
   </div>

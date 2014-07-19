@@ -3,6 +3,9 @@ package com.ppla.app.models;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 
+/**
+ * @author Mark
+ */
 @Entity(name = "PPLA_USER")
 public class PplaUser extends PplaPerson {
 

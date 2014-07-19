@@ -4,6 +4,7 @@ angular.module('ppla.controllers')
 
   $scope.materials = MaterialService.get();
   $scope.materialType = 'raw';
+  $scope.material = {};
 
   $scope.saveMaterial = function () {
     MaterialService.save({type: $scope.materialType}, $scope.material, function(saved) {

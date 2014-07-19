@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.core.style.ToStringCreator;
 
 import com.ppla.core.dto.material.RawMaterialStackInfo;
+import com.ppla.core.reference.ProcessType;
 
 /**
  * @author mbmartinez
@@ -12,6 +13,11 @@ import com.ppla.core.dto.material.RawMaterialStackInfo;
 public class WarehouseProcessInfo extends BasePplaProcessInfo {
 
     private List<RawMaterialStackInfo> materialStacks;
+
+    @Override
+    public ProcessType getType() {
+        return ProcessType.WAREHOUSE;
+    }
 
     @Override
     public String toString() {

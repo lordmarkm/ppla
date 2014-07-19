@@ -37,6 +37,13 @@ public class PplaPersistenceConfig extends PersistenceConfig {
         properties.put("hibernate.show_sql", env.getProperty("hibernate.show_sql"));
         properties.put("hibernate.hbm2ddl.auto", env.getProperty("hibernate.hbm2ddl.auto"));
         properties.put("javax.persistence.validation.mode", "NONE");//disable as it overrides model attrib validators
+
+        //Enabled on purge profile
+        String importFiles = env.getProperty("hibernate.hbm2ddl.import_files");
+        if (null != importFiles) {
+            properties.put("hibernate.hbm2ddl.import_files", importFiles);
+        }
+
         return properties;
     }
 

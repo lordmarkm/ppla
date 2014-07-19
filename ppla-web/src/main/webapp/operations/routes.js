@@ -24,6 +24,11 @@ define(['/operations/app.js'], function(app) {
       url: '/process/warehouse/{trackingNo}/{processId}',
       templateUrl: '/operations/view/process_warehouse.html',
       controller: 'WarehouseProcessController'
+    })
+    .state('mixing_process', {
+      url: '/process/mixing/{trackingNo}/{processId}',
+      templateUrl: '/operations/view/process_mixing.html',
+      controller: 'MixingProcessController'
     });
   });
 });

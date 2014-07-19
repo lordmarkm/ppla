@@ -1,5 +1,9 @@
 package com.ppla.app.servicebase.custom;
 
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -25,6 +29,16 @@ public abstract class AbstractPplaProcessService<E extends BasePplaProcess, D ex
     
     public AbstractPplaProcessService(Class<E> entityClass, Class<D> dtoClass) {
         super(entityClass, dtoClass);
+    }
+
+    public static List<BasePplaProcessInfo> sortByDate(List<BasePplaProcessInfo> dtos) {
+        Collections.sort(dtos, new Comparator<BasePplaProcessInfo>() {
+            @Override
+            public int compare(BasePplaProcessInfo o1, BasePplaProcessInfo o2) {
+                return o1.getDateStarted().compareTo(o2.getDateStarted());
+            }
+        });
+        return dtos;
     }
 
     protected D save(String username, D processInfo) {
