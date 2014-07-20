@@ -2,6 +2,8 @@ package com.ppla.app.services.test;
 
 import static org.junit.Assert.*;
 
+import java.math.BigDecimal;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -61,6 +63,7 @@ public class MixingProcessServiceTest {
         MixingProcess process = new MixingProcess();
         process.setActor(actor);
         process.setWorkOrder(wo);
+        process.setMaterialOutNetWt(BigDecimal.TEN);
         service.save(process);
         assertEquals(1, service.count());
     }

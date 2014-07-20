@@ -80,7 +80,7 @@
                 <td>
                   <div ng-switch="materialBalanceStack.source">
                     <a ng-switch-when="RAW" class="btn btn-primary btn-xs" 
-                      ui-sref="mixing_process({trackingNo:workOrder.trackingNo, processId:-1})">
+                      ui-sref="mixing_process({trackingNo:workOrder.trackingNo, processId:-1, initMat:materialBalanceStack.material.id})">
                       Start mixing process
                     </a>
                     <span ng-switch-default>Unhandled material source: {{materialBalanceStack.source}}</span>

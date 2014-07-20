@@ -14,9 +14,9 @@ public class BaseMaterialInfo extends BasePplaDto {
     @Override
     public String toString() {
         return new ToStringCreator(this)
-            .append("ID", getId())
-            .append("Name", getName())
-            .append("Description", getDescription())
+            .append("ID", id)
+            .append("Name", name)
+            .append("Description", description)
             .append("Unit of measurement", unitOfMeasurement)
             .toString();
     }

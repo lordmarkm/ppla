@@ -6,33 +6,33 @@ import javax.persistence.CascadeType;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
-import com.ppla.app.models.Machine;
+import com.ppla.app.models.machine.Machine;
 import com.tyrael.process.mgt.models.material.MaterialStack;
 
 /**
  * @author mbmartinez
  */
-public abstract class MachineProcess<M extends MaterialStack> extends BasePplaProcess {
+public abstract class MachineProcess<M extends Machine, S extends MaterialStack> extends BasePplaProcess {
 
     @ManyToOne
-    private Machine machine;
+    private M machine;
 
     @OneToMany(cascade = CascadeType.ALL)
-    private List<M> materialsIn;
+    private List<S> materialsIn;
 
-    public Machine getMachine() {
+    public M getMachine() {
         return machine;
     }
 
-    public void setMachine(Machine machine) {
+    public void setMachine(M machine) {
         this.machine = machine;
     }
 
-    public List<M> getMaterialsIn() {
+    public List<S> getMaterialsIn() {
         return materialsIn;
     }
 
-    public void setMaterialsIn(List<M> materialsIn) {
+    public void setMaterialsIn(List<S> materialsIn) {
         this.materialsIn = materialsIn;
     }
 

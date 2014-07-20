@@ -8,9 +8,16 @@ import java.math.BigDecimal;
  */
 public abstract class BaseMaterialStackInfo<M extends BaseMaterialInfo> {
 
-    private M material;
-    private BigDecimal quantity;
+    protected Long id;
+    protected M material;
+    protected BigDecimal quantity;
 
+    public Long getId() {
+        return id;
+    }
+    public void setId(Long id) {
+        this.id = id;
+    }
     public M getMaterial() {
         return material;
     }

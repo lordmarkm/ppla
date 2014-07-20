@@ -41,7 +41,15 @@ public abstract class AbstractPplaProcessService<E extends BasePplaProcess, D ex
         return dtos;
     }
 
-    protected D save(String username, D processInfo) {
+    public D findOneInfo(Long id) {
+        return toDto(getRepo().findOne(id));
+    }
+
+    public List<D> findByWorkOrder_TrackingNoInfo(String trackingNo) {
+        return toDto(getRepo().findByWorkOrder_TrackingNo(trackingNo));
+    }
+
+    public D save(String username, D processInfo) {
         E entity = toEntity(processInfo);
         if (entity.getDateStarted() == null) {
             PplaUser actor = users.findByUsername(username);

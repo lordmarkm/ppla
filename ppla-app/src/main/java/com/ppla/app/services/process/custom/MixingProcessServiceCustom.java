@@ -3,12 +3,12 @@ package com.ppla.app.services.process.custom;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.ppla.app.servicebase.BasePplaProcessServiceCustom;
-import com.ppla.core.dto.process.WarehouseProcessInfo;
+import com.ppla.core.dto.process.MixingProcessInfo;
 
 /**
- * @author mbmartinez
+ * @author Mark
  */
 @Transactional
-public interface WarehouseProcessServiceCustom extends BasePplaProcessServiceCustom<WarehouseProcessInfo> {
+public interface MixingProcessServiceCustom extends BasePplaProcessServiceCustom<MixingProcessInfo> {
 
 }

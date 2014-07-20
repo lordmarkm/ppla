@@ -11,9 +11,7 @@ define(['/operations/controllers/module.js'], function (controllers) {
     $scope.processDetails = {};
 
     $scope.parseDate = function(dt) {
-      var d = new Date(dt);
-      console.debug('Got date ' + d);
-      return d;
+      return new Date(dt);
     };
   }]);
 });

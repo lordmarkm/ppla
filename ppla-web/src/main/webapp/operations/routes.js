@@ -6,7 +6,7 @@ define(['/operations/app.js'], function(app) {
       templateUrl: '/operations/view/home.html'
     })
     .state('profile', {
-      url: '/profile',
+      url: '/profile?msg',
       templateUrl: '/common/view/profile.html',
       controller: 'ProfileController'
     })
@@ -26,7 +26,7 @@ define(['/operations/app.js'], function(app) {
       controller: 'WarehouseProcessController'
     })
     .state('mixing_process', {
-      url: '/process/mixing/{trackingNo}/{processId}',
+      url: '/process/mixing/{trackingNo}/{processId}?initMat',
       templateUrl: '/operations/view/process_mixing.html',
       controller: 'MixingProcessController'
     });

@@ -1,0 +1,85 @@
+<h3>Attach Mixing Process</h3>
+
+<div class="row">
+  <div class="col-sm-12">
+    <div class="panel panel-info">
+      <div class="panel-heading">Creating Mixing process for Work Order with Tracking No. <strong>{{trackingNo}}</strong></div>
+      <div class="panel-body">
+        <dl class="dl-horizontal">
+          <dt>Tracking No
+          <dd><a ui-sref="workorder({trackingNo:trackingNo})">{{trackingNo}}</a>
+          <dt>Process Type
+          <dd>Mixing
+          <dt>Process Info
+          <dd>{{process.id ? 'This is an existing process.' : 'This is a new process and will be created.'}}
+        </dl>
+        <dl ng-if="$scope.process.id" class="dl-horizontal">
+          <dt>Process ID
+          <dd>{{process.id}}
+          <dt>Operator
+          <dd>{{process.actor.properName.givenName}} {{process.actor.properName.surname}}
+        </dl>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-12">
+    <div class="panel panel-default">
+      <div class="panel-heading">Add Raw Materials {{materialIn}}</div>
+      <div class="panel-body">
+        <div class="col-sm-7">
+          <form name="rawMaterialForm">
+            <div class="form-group">
+              <div class="col-sm-12">
+                <div class="col-sm-5">
+                  <select 
+                    ng-options="materialIn.material as materialIn.material.name for materialIn in materials track by materialIn.material.id | filter:{source:'RAW'}" 
+                    ng-model="materialIn" class="form-control" required></select>
+                </div>
+                <div class="col-sm-4">
+                  <div class="input-group">
+                    <input type="number" ng-model="quantityIn" min="0.1" class="form-control" step="any" required />
+                    <span ng-if="materialIn && materialIn.unitOfMeasurement" class="input-group-addon">{{materialIn.unitOfMeasurement}}</span>
+                  </div>
+                </div>
+                <div class="col-sm-3">
+                  <button ng-click="addMaterialIn()" class="btn btn-primary">Add material in</button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="col-sm-5">
+          <div ng-if="process.materialsIn.length === 0" class="alert alert-info text-center">
+            No materials to add
+          </div>
+          <table ng-if="process.materialsIn.length > 0" class="table table-striped">
+            <thead>
+              <tr>
+                <th>Material
+                <th>Quantity
+                <th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="materialIn in process.materialsIn">
+                <td>{{materialIn.material.name}}
+                <td>{{materialIn.quantity}} {{materialIn.material.unitOfMeasurement? materialIn.material.unitOfMeasurement : ''}}
+                <td><i class="glyphicon glyphicon-remove"></i>
+              </tr>
+            </tbody>
+          </table>
+          <button ng-click="saveProcess()" ng-if="process.materialsIn.length > 0" ng-disabled="!dirty" class="btn btn-success form-control">Save</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-12">
+    <a ui-sref="workorder({trackingNo:trackingNo})" class="btn btn-danger pull-right">Cancel</a>
+  </div>
+</div>

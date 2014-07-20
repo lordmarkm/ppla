@@ -12,10 +12,10 @@ import com.ppla.core.reference.ProcessType;
  */
 public abstract class BasePplaProcessInfo extends BaseBaldyInfo {
 
-    private DateTime dateStarted;
-    private DateTime dateCompleted;
-    private PplaUserInfo actor;
-    private String workOrderTrackingNo;
+    protected DateTime dateStarted;
+    protected DateTime dateCompleted;
+    protected PplaUserInfo actor;
+    protected String workOrderTrackingNo;
 
     @Override
     public String toString() {

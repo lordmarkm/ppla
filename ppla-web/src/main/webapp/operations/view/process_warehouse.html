@@ -16,6 +16,8 @@
         <dl ng-if="$scope.process.id" class="dl-horizontal">
           <dt>Process ID
           <dd>{{process.id}}
+          <dt>Operator
+          <dd>{{process.actor.properName.givenName}} {{process.actor.properName.surname}}
         </dl>
       </div>
     </div>

@@ -9,6 +9,7 @@ import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 
+import com.ppla.app.models.machine.Cutter;
 import com.ppla.app.models.material.ProcessMaterialStack;
 
 /**
@@ -16,7 +17,7 @@ import com.ppla.app.models.material.ProcessMaterialStack;
  */
 @Entity(name = "CUTTING_PROCESS")
 @DiscriminatorValue("CUTTING")
-public class CuttingProcess extends MachineProcess {
+public class CuttingProcess extends MachineProcess<Cutter, ProcessMaterialStack> {
 
     @OneToMany(cascade = CascadeType.ALL)
     private List<ProcessMaterialStack> materialsInput;

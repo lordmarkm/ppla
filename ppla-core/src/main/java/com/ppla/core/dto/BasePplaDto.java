@@ -7,9 +7,9 @@ import org.springframework.core.style.ToStringCreator;
  */
 public class BasePplaDto {
 
-    private Long id;
-    private String name;
-    private String description;
+    protected Long id;
+    protected String name;
+    protected String description;
 
     @Override
     public String toString() {
