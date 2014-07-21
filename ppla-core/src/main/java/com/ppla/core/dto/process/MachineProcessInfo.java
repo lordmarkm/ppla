@@ -1,6 +1,6 @@
 package com.ppla.core.dto.process;
 
-import com.ppla.core.dto.material.MachineInfo;
+import com.ppla.core.dto.machine.MachineInfo;
 
 /**
  * @author Mark

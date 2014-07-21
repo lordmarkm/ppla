@@ -8,17 +8,12 @@ import org.springframework.stereotype.Service;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
-import com.ppla.app.models.PplaWorkOrder;
-import com.ppla.app.models.material.RawMaterialStack;
-import com.ppla.app.models.process.WarehouseProcess;
-import com.ppla.app.services.PplaWorkOrderService;
 import com.ppla.app.services.custom.MaterialBalanceService;
 import com.ppla.app.services.process.WarehouseProcessService;
 import com.ppla.core.dto.material.MaterialBalanceStackInfo;
 import com.ppla.core.dto.material.RawMaterialStackInfo;
 import com.ppla.core.dto.process.WarehouseProcessInfo;
 import com.ppla.core.reference.MaterialSource;
-import com.tyrael.process.mgt.models.material.Material;
 
 @Service
 public class MaterialBalanceServiceImpl implements MaterialBalanceService {
