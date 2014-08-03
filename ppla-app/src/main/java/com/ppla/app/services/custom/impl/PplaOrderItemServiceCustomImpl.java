@@ -4,11 +4,13 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+
 import com.ppla.app.models.PplaOrderItem;
 import com.ppla.app.models.QPplaOrderItem;
 import com.ppla.app.services.PplaOrderItemService;
 import com.ppla.app.services.custom.PplaOrderItemServiceCustom;
 import com.ppla.core.dto.PplaOrderItemInfo;
+import com.tyrael.commons.mapper.service.MappingService;
 
 /**
  * @author Mark
@@ -18,10 +20,6 @@ public class PplaOrderItemServiceCustomImpl extends MappingService<PplaOrderItem
 
     @Autowired
     private PplaOrderItemService service;
-
-    public PplaOrderItemServiceCustomImpl() {
-        super(PplaOrderItem.class, PplaOrderItemInfo.class);
-    }
 
     @Override
     public PplaOrderItemInfo findOneInfo(Long id) {

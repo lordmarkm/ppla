@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 
+
 import com.google.common.collect.Lists;
 import com.ppla.app.models.PplaOrderItem;
 import com.ppla.app.models.PplaWorkOrder;
@@ -17,6 +18,7 @@ import com.ppla.app.services.PplaWorkOrderService;
 import com.ppla.app.services.custom.PplaWorkOrderServiceCustom;
 import com.ppla.core.dto.PplaWorkOrderInfo;
 import com.tyrael.commons.mapper.dto.PageInfo;
+import com.tyrael.commons.mapper.service.MappingService;
 
 /**
  * @author Mark
@@ -29,10 +31,6 @@ public class PplaWorkOrderServiceCustomImpl extends MappingService<PplaWorkOrder
 
     @Autowired
     private PplaOrderItemService orderItemService;
-
-    public PplaWorkOrderServiceCustomImpl() {
-        super(PplaWorkOrder.class, PplaWorkOrderInfo.class);
-    }
 
     @Override
     public PplaWorkOrderInfo findByTrackingNoInfo(String trackingNo) {

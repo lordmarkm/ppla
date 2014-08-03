@@ -12,8 +12,4 @@ import com.ppla.core.dto.process.WarehouseProcessInfo;
 public class WarehouseProcessServiceCustomImpl extends AbstractPplaProcessService<WarehouseProcess, WarehouseProcessInfo, WarehouseProcessService> 
     implements WarehouseProcessServiceCustom {
 
-    public WarehouseProcessServiceCustomImpl() {
-        super(WarehouseProcess.class, WarehouseProcessInfo.class);
-    }
-
 }

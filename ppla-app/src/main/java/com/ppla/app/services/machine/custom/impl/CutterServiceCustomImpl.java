@@ -12,8 +12,4 @@ import com.ppla.core.dto.machine.MachineInfo;
 public class CutterServiceCustomImpl extends AbstractPplaMachineService<Cutter, MachineInfo, CutterService>
     implements CutterServiceCustom {
 
-    public CutterServiceCustomImpl() {
-        super(Cutter.class, MachineInfo.class);
-    }
-
 }

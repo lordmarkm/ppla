@@ -12,8 +12,4 @@ import com.ppla.core.dto.machine.MachineInfo;
 public class ExtruderServiceCustomImpl extends AbstractPplaMachineService<Extruder, MachineInfo, ExtruderService>
     implements ExtruderServiceCustom {
 
-    public ExtruderServiceCustomImpl() {
-        super(Extruder.class, MachineInfo.class);
-    }
-
 }

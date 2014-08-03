@@ -12,8 +12,4 @@ import com.ppla.core.dto.process.MixingProcessInfo;
 public class MixingProcessServiceCustomImpl extends AbstractPplaProcessService<MixingProcess, MixingProcessInfo, MixingProcessService> 
     implements MixingProcessServiceCustom  {
 
-    public MixingProcessServiceCustomImpl() {
-        super(MixingProcess.class, MixingProcessInfo.class);
-    }
-
 }

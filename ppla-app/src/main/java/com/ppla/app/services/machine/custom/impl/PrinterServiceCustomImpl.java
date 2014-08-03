@@ -12,8 +12,4 @@ import com.ppla.core.dto.machine.MachineInfo;
 public class PrinterServiceCustomImpl extends AbstractPplaMachineService<Printer, MachineInfo, PrinterService> 
     implements MixerServiceCustom {
 
-    public PrinterServiceCustomImpl() {
-        super(Printer.class, MachineInfo.class);
-    }
-
 }

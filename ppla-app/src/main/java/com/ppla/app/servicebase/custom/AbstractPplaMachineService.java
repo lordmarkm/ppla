@@ -4,11 +4,12 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+
 import com.ppla.app.models.machine.Machine;
 import com.ppla.app.servicebase.BasePplaMachineService;
 import com.ppla.app.servicebase.BasePplaMachineServiceCustom;
-import com.ppla.app.services.custom.impl.MappingService;
 import com.ppla.core.dto.machine.MachineInfo;
+import com.tyrael.commons.mapper.service.MappingService;
 
 /**
  * @author mbmartinez
@@ -21,10 +22,6 @@ public abstract class AbstractPplaMachineService<E extends Machine<?>, D extends
 
     @Autowired
     protected R repo;
-
-    public AbstractPplaMachineService(Class<E> entityClass, Class<D> dtoClass) {
-        super(entityClass, dtoClass);
-    }
 
     @Override
     public List<D> findAllInfo() {

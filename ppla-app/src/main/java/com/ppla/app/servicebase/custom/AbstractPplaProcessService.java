@@ -7,14 +7,15 @@ import java.util.List;
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 
+
 import com.ppla.app.models.PplaUser;
 import com.ppla.app.models.PplaWorkOrder;
 import com.ppla.app.models.process.BasePplaProcess;
 import com.ppla.app.servicebase.BasePplaProcessService;
 import com.ppla.app.services.PplaUserService;
 import com.ppla.app.services.PplaWorkOrderService;
-import com.ppla.app.services.custom.impl.MappingService;
 import com.ppla.core.dto.process.BasePplaProcessInfo;
+import com.tyrael.commons.mapper.service.MappingService;
 
 public abstract class AbstractPplaProcessService<E extends BasePplaProcess, D extends BasePplaProcessInfo, R extends BasePplaProcessService<E>>
     extends MappingService<E, D> {
@@ -27,10 +28,6 @@ public abstract class AbstractPplaProcessService<E extends BasePplaProcess, D ex
 
     @Autowired
     private PplaWorkOrderService workOrders;
-
-    public AbstractPplaProcessService(Class<E> entityClass, Class<D> dtoClass) {
-        super(entityClass, dtoClass);
-    }
 
     public static List<BasePplaProcessInfo> sortByDate(List<BasePplaProcessInfo> dtos) {
         Collections.sort(dtos, new Comparator<BasePplaProcessInfo>() {
