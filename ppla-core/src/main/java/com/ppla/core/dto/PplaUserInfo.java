@@ -8,6 +8,7 @@ import org.springframework.core.style.ToStringCreator;
 public class PplaUserInfo extends PersonInfo {
 
     private String username;
+    private String code;
 
     @Override
     public String toString() {
@@ -16,6 +17,7 @@ public class PplaUserInfo extends PersonInfo {
             .append("Name", getProperName())
             .append("Description", getDescription())
             .append("Username", username)
+            .append("Code", code)
             .toString();
         
     }
@@ -26,5 +28,13 @@ public class PplaUserInfo extends PersonInfo {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
     }
 }

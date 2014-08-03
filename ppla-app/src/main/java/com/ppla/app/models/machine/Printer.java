@@ -9,7 +9,7 @@ import com.ppla.app.models.process.PrintingProcess;
  * @author Mark
  */
 @Entity
-@DiscriminatorValue("PRINTING")
+@DiscriminatorValue("PRINTER")
 public class Printer extends Machine<PrintingProcess> {
 
 }

@@ -9,7 +9,7 @@ import com.ppla.app.models.process.ExtrusionProcess;
  * @author Mark
  */
 @Entity
-@DiscriminatorValue("EXTRUSION")
+@DiscriminatorValue("EXTRUDER")
 public class Extruder extends Machine<ExtrusionProcess> {
 
 }

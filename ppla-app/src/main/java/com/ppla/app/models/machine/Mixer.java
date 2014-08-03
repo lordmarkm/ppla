@@ -9,7 +9,7 @@ import com.ppla.app.models.process.MixingProcess;
  * @author Mark
  */
 @Entity
-@DiscriminatorValue("MIXING")
+@DiscriminatorValue("MIXER")
 public class Mixer extends Machine<MixingProcess> {
 
 }

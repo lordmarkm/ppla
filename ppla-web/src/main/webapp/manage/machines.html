@@ -1,0 +1,60 @@
+<h3>Machines</h3>
+
+<div class="row">
+  <div class="col-sm-12">
+    <div class="panel panel-success">
+      <div class="panel-heading">Add machine</div>
+      <div class="panel-body">
+        <form ng-init="machine={type:'MIXING'}" ng-submit="saveMachine()" class="form-horizontal">
+          <div class="form-group">
+            <label class="col-sm-4 control-label">Type</label>
+            <div class="col-sm-4">
+              <select ng-model="machine.type" ng-disabled="machine.id" class="form-control">
+                <option value="MIXING">Mixer</option>
+                <option value="EXTRUSION">Extruder</option>
+                <option value="PRINTING">Printer</option>
+                <option value="CUTTING">Cutter</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-4 control-label">Code</label>
+            <div class="col-sm-4">
+              <input type="text" ng-model="machine.code" required class="form-control" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-4"></label>
+            <div class="col-sm-4">
+              <input type="submit" value="Save" class="form-control" />
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-heading">Mixers</div>
+      <div class="panel-body">
+        <table class="table table-striped">
+          <tbody>
+            <tr ng-repeat="mixer in machines.mixers" ng-click="machine = mixer">
+              <td>{{mixer.code}}
+              <td>{{mixer.currentProcess ? mixer.currentProcess.workOrderTrackingNo : 'Not in use'}}
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="panel-heading">Extruders</div>
+      <div class="panel-body">
+        <table class="table table-striped">
+          <tbody>
+            <tr ng-repeat="extruder in machines.extruders" ng-click="machine = extruder">
+              <td>{{extruder.code}}
+              <td>{{extruder.currentProcess ? extruder.currentProcess.workOrderTrackingNo : 'Not in use'}}
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

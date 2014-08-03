@@ -19,6 +19,12 @@
           <dt>Operator
           <dd>{{process.actor.properName.givenName}} {{process.actor.properName.surname}}
         </dl>
+        <dl>
+          <dt>materialIn
+          <dd>{{materialIn}}
+          <dt>process
+          <dd>{{process}}
+        </dl>
       </div>
     </div>
   </div>
@@ -27,7 +33,14 @@
 <div class="row">
   <div class="col-sm-12">
     <div class="panel panel-default">
-      <div class="panel-heading">Add Raw Materials {{materialIn}}</div>
+      <div class="panel-heading">Select Machine</div>
+      <div class="panel-body">
+        <div class="col-sm-7">
+          <select ng-model="process.machine" ng-options="machine as machine.code for machine in machines">
+          </select>
+        </div>
+      </div>
+      <div class="panel-heading">Add Raw Materials</div>
       <div class="panel-body">
         <div class="col-sm-7">
           <form name="rawMaterialForm">
@@ -35,7 +48,7 @@
               <div class="col-sm-12">
                 <div class="col-sm-5">
                   <select 
-                    ng-options="materialIn.material as materialIn.material.name for materialIn in materials track by materialIn.material.id | filter:{source:'RAW'}" 
+                    ng-options="materialIn.material as materialIn.material.name for materialIn in materials | filter:{source:'RAW'}" 
                     ng-model="materialIn" class="form-control" required></select>
                 </div>
                 <div class="col-sm-4">

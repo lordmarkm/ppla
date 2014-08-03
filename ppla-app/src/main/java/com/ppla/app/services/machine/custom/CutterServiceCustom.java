@@ -6,5 +6,5 @@ import com.ppla.core.dto.machine.MachineInfo;
 /**
  * @author mbmartinez
  */
-public interface ExtruderServiceCustom extends BasePplaMachineServiceCustom<MachineInfo> {
+public interface CutterServiceCustom extends BasePplaMachineServiceCustom<MachineInfo> {
 }

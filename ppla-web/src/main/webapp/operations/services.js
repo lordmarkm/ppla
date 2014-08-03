@@ -42,6 +42,9 @@ define(['angular'], function(angular) {
   })
   .factory('MaterialService', function($resource) {
     return $resource('/material/:type');
+  })
+  .factory('MachineService', function($resource) {
+    return $resource('/machine/:type');
   });
 
 });

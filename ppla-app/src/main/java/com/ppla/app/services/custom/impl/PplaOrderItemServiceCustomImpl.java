@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.google.common.collect.Lists;
 import com.ppla.app.models.PplaOrderItem;
 import com.ppla.app.models.QPplaOrderItem;
 import com.ppla.app.services.PplaOrderItemService;

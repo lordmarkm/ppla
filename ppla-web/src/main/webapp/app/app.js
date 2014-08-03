@@ -31,6 +31,13 @@ angular.module('ppla', [
       controller: 'MaterialController'
     })
 
+    //Machines
+    .state('manage/machines', {
+      url: '/manage/machines',
+      templateUrl: 'manage/machines.html',
+      controller: 'MachineController'
+    })
+
     //Sales orders management
     .state('manage/salesorder', {
       url: '/manage/salesorder',

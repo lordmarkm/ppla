@@ -16,8 +16,11 @@ import com.ppla.app.services.PplaWorkOrderService;
 import com.ppla.app.services.custom.impl.MappingService;
 import com.ppla.core.dto.process.BasePplaProcessInfo;
 
-public abstract class AbstractPplaProcessService<E extends BasePplaProcess, D extends BasePplaProcessInfo>
+public abstract class AbstractPplaProcessService<E extends BasePplaProcess, D extends BasePplaProcessInfo, R extends BasePplaProcessService<E>>
     extends MappingService<E, D> {
+
+    @Autowired
+    protected R repo;
 
     @Autowired
     private PplaUserService users;
@@ -25,8 +28,6 @@ public abstract class AbstractPplaProcessService<E extends BasePplaProcess, D ex
     @Autowired
     private PplaWorkOrderService workOrders;
 
-    public abstract BasePplaProcessService<E> getRepo();
-    
     public AbstractPplaProcessService(Class<E> entityClass, Class<D> dtoClass) {
         super(entityClass, dtoClass);
     }
@@ -42,11 +43,11 @@ public abstract class AbstractPplaProcessService<E extends BasePplaProcess, D ex
     }
 
     public D findOneInfo(Long id) {
-        return toDto(getRepo().findOne(id));
+        return toDto(repo.findOne(id));
     }
 
     public List<D> findByWorkOrder_TrackingNoInfo(String trackingNo) {
-        return toDto(getRepo().findByWorkOrder_TrackingNo(trackingNo));
+        return toDto(repo.findByWorkOrder_TrackingNo(trackingNo));
     }
 
     public D save(String username, D processInfo) {
@@ -61,7 +62,7 @@ public abstract class AbstractPplaProcessService<E extends BasePplaProcess, D ex
             entity.setDateStarted(DateTime.now());
         }
 
-        E saved = getRepo().save(entity);
+        E saved = repo.save(entity);
         return toDto(saved);
     }
 }

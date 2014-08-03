@@ -9,7 +9,7 @@ import com.ppla.app.models.process.CuttingProcess;
  * @author Mark
  */
 @Entity
-@DiscriminatorValue("CUTTING")
+@DiscriminatorValue("CUTTER")
 public class Cutter extends Machine<CuttingProcess> {
 
 }

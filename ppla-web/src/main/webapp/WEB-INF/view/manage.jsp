@@ -33,6 +33,7 @@
 <script src="/app/controllers/OrderItemController.js"></script>
 <script src="/app/controllers/WorkOrderBrowseController.js"></script>
 <script src="/app/controllers/WorkOrderController.js"></script>
+<script src="/app/controllers/MachineController.js"></script>
 
 <body ng-app="ppla">
 
@@ -43,6 +44,7 @@
     </div>
     <ul class="nav navbar-nav">
       <li><a ui-sref="manage/material">Materials</a></li>
+      <li><a ui-sref="manage/machines">Machines</a>
       <li><a ui-sref="manage/product">Products</a></li>
       <li><a ui-sref="manage/salesorder">Sales Orders</a></li>
       <li><a ui-sref="manage/workorders">Work Orders</a></li>  

@@ -1,7 +1,7 @@
 define(['/operations/controllers/module.js'], function (controllers) {
   'use strict';
-  controllers.controller('MixingProcessController', ['$state', '$scope', '$stateParams', 'MaterialService', 'MixingProcessService',
-    function($state, $scope, $stateParams, MaterialService, MixingProcessService) {
+  controllers.controller('MixingProcessController', ['$state', '$scope', '$stateParams', 'MaterialService', 'MachineService', 'MixingProcessService',
+    function($state, $scope, $stateParams, MaterialService, MachineService, MixingProcessService) {
 
     $scope.params = $state.params;
     $scope.trackingNo = $stateParams.trackingNo;
@@ -22,6 +22,7 @@ define(['/operations/controllers/module.js'], function (controllers) {
         }
       }
     });
+    $scope.machines = MachineService.query({type:'MIXING'});
 
   }]);
 });
