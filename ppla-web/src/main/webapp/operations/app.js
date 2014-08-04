@@ -1,5 +1,6 @@
 define([
   'angular',
+  'bootstrap',
   'uiRouter',
   'ngResource',
   'ngTable',

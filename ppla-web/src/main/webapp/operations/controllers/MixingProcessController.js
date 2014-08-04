@@ -24,5 +24,8 @@ define(['/operations/controllers/module.js'], function (controllers) {
     });
     $scope.machines = MachineService.query({type:'MIXING'});
 
+    $scope.addMaterialIn = function () {
+      
+    };
   }]);
 });

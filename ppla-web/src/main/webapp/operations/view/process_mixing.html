@@ -36,33 +36,39 @@
       <div class="panel-heading">Select Machine</div>
       <div class="panel-body">
         <div class="col-sm-7">
-          <select ng-model="process.machine" ng-options="machine as machine.code for machine in machines">
-          </select>
+          <div class="form-group">
+            <div class="col-sm-12">
+              <div class="col-sm-5">
+                <select ng-model="process.machine" 
+                  ng-options="machine as machine.code for machine in machines" class="form-control">
+                </select>
+                <span ng-if="machines.length == 0">No available machines</span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
       <div class="panel-heading">Add Raw Materials</div>
       <div class="panel-body">
         <div class="col-sm-7">
-          <form name="rawMaterialForm">
-            <div class="form-group">
-              <div class="col-sm-12">
-                <div class="col-sm-5">
-                  <select 
-                    ng-options="materialIn.material as materialIn.material.name for materialIn in materials | filter:{source:'RAW'}" 
-                    ng-model="materialIn" class="form-control" required></select>
-                </div>
-                <div class="col-sm-4">
-                  <div class="input-group">
-                    <input type="number" ng-model="quantityIn" min="0.1" class="form-control" step="any" required />
-                    <span ng-if="materialIn && materialIn.unitOfMeasurement" class="input-group-addon">{{materialIn.unitOfMeasurement}}</span>
-                  </div>
-                </div>
-                <div class="col-sm-3">
-                  <button ng-click="addMaterialIn()" class="btn btn-primary">Add material in</button>
+          <div class="form-group">
+            <div class="col-sm-12">
+              <div class="col-sm-5">
+                <select 
+                  ng-options="materialIn.material as materialIn.material.name for materialIn in materials | filter:{source:'RAW'}" 
+                  ng-model="materialIn" class="form-control" required></select>
+              </div>
+              <div class="col-sm-4">
+                <div class="input-group">
+                  <input type="number" ng-model="quantityIn" min="0.1" class="form-control" step="any" required />
+                  <span ng-if="materialIn && materialIn.unitOfMeasurement" class="input-group-addon">{{materialIn.unitOfMeasurement}}</span>
                 </div>
               </div>
+              <div class="col-sm-3">
+                <button ng-click="addMaterialIn()" class="btn btn-primary">Add material in</button>
+              </div>
             </div>
-          </form>
+          </div>
         </div>
         <div class="col-sm-5">
           <div ng-if="process.materialsIn.length === 0" class="alert alert-info text-center">

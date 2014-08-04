@@ -4,9 +4,12 @@
 <!-- 
 <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
 -->
-<link rel="stylesheet" href="/lib/bootstrap-3.0.3/css/bootstrap.min.css">
+
+<link rel="stylesheet" href="/lib/bootstrap-3.2.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="/lib/angular-ngtable/ng-table.min.css">
 <link rel="stylesheet" href="/app/app.css">
+<script src="/lib/jquery/jquery.min.js"></script>
+
 <style>
     .navbar { border-radius:0; }
 </style>
@@ -21,9 +24,10 @@
       <a class="navbar-brand" href="/operations">PPLA Films Manufacturing Execution Software</a>
     </div>
     <ul class="nav navbar-nav">
-      <li><a ui-sref="workorders">Work Orders</a></li>  
+      <li><a ui-sref="workorders">Work Orders</a></li>
     </ul>
-    <ul class="nav navbar-nav navbar-right" ng-controller="AuthController">
+
+    <ul class="nav navbar-nav pull-right" ng-controller="AuthController">
       <li class="dropdown" ng-if="principal.principal">
         <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
           {{principal.principal.username}}<span class="caret" style="margin-left: 5px;"></span>
