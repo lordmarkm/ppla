@@ -1,0 +1,23 @@
+Hello mixer {{name}}
+Choose workorder step
+
+<div class="row">
+  <table ng-table="tableParams" show-filter="true" class="table table-striped" >
+    <thead>
+      <tr>
+        <td>Tracking No.
+        <td>Quantity
+        <td>Status
+        <td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="workOrder in $data">
+        <td>{{workOrder.trackingNo}}
+        <td>{{workOrder.quantity}}
+        <td>{{workOrder.status}}
+        <td><a ui-sref="workorder({trackingNo:workOrder.trackingNo})" class="btn btn-xs btn-primary">View details</a>
+      </tr>
+    </tbody>
+  </table>
+</div>
