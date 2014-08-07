@@ -8,5 +8,6 @@ define([
 
   //Mixer
   '/operations/modules/mixer/controllers/MixerController.js',
-  '/operations/modules/mixer/controllers/MixerWorkorderController.js'
+  '/operations/modules/mixer/controllers/MixerWorkorderController.js',
+  '/operations/modules/mixer/controllers/MixerMachineController.js'
 ], function () {});

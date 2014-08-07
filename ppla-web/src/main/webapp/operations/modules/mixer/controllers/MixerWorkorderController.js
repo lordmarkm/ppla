@@ -1,10 +1,7 @@
 define(['/operations/controllers/module.js'], function (controllers) {
   'use strict';
-  controllers.controller('MixerWorkorderController', ['$scope', '$stateParams', 'MachineService', 'WorkOrderService',
-    function($scope, $stateParams, MachineService, WorkOrderService) {
-
-    //Machine
-    $scope.machine = MachineService.get($stateParams.machineCode);
+  controllers.controller('MixerWorkorderController', ['$scope', '$stateParams', 'ngTableParams', 'MachineService', 'WorkOrderService',
+    function($scope, $stateParams, ngTableParams, MachineService, WorkOrderService) {
 
     //Work orders
     $scope.tableParams = new ngTableParams({

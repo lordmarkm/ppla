@@ -1,5 +1,7 @@
 package com.ppla.core.dto;
 
+import java.util.List;
+
 import org.joda.time.DateTime;
 import org.springframework.core.style.ToStringCreator;
 
@@ -13,6 +15,9 @@ public class PplaWorkOrderInfo {
     private String status;
     private DateTime dateCreated;
     private DateTime dateCompleted;
+
+    //Not saved in entity
+    List<PplaOrderItemInfo> orderItems;
 
     @Override
     public String toString() {
@@ -63,6 +68,14 @@ public class PplaWorkOrderInfo {
 
     public void setDateCompleted(DateTime dateCompleted) {
         this.dateCompleted = dateCompleted;
+    }
+
+    public void setOrderItems(List<PplaOrderItemInfo> orderItems) {
+        this.orderItems = orderItems;
+    }
+
+    public List<PplaOrderItemInfo> getOrderItems() {
+        return orderItems;
     }
 
 }

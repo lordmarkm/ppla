@@ -1,23 +1,34 @@
-Hello mixer {{name}}
-Choose workorder step
-
-<div class="row">
-  <table ng-table="tableParams" show-filter="true" class="table table-striped" >
-    <thead>
-      <tr>
-        <td>Tracking No.
-        <td>Quantity
-        <td>Status
-        <td>
-      </tr>
-    </thead>
-    <tbody>
-      <tr ng-repeat="workOrder in $data">
-        <td>{{workOrder.trackingNo}}
-        <td>{{workOrder.quantity}}
-        <td>{{workOrder.status}}
-        <td><a ui-sref="workorder({trackingNo:workOrder.trackingNo})" class="btn btn-xs btn-primary">View details</a>
-      </tr>
-    </tbody>
-  </table>
+<div class="panel panel-default">
+  <div class="panel-heading">Choos Workorder</div>
+  <div class="panel-body">
+    <div class="row">
+      <table ng-table="tableParams" show-filter="true" class="table table-striped" >
+        <thead>
+          <tr>
+            <td>Tracking No.
+            <td>Orders
+            <td>Workorder Quantity
+            <td>Status
+            <td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="workOrder in $data">
+            <td>{{workOrder.trackingNo}}
+            <td>
+              <div ng-repeat="orderItem in workOrder.orderItems">{{orderItem.product.name}} ({{orderItem.quantity}})</div>
+            </td>
+            <td>{{workOrder.quantity}}
+            <td>{{workOrder.status}}
+            <td><a class="btn btn-xs btn-success" ui-sref="mixer.machine({trackingNo:workOrder.trackingNo})">
+              Start mixing process <i class="glyphicon glyphicon-chevron-right"></i></a>
+            </td>
+            <!-- 
+            <td><a ui-sref="workorder({trackingNo:workOrder.trackingNo})" class="btn btn-xs btn-primary">View details</a>
+            -->
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>

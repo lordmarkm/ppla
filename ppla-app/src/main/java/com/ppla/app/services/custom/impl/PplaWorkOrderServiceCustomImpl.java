@@ -16,6 +16,7 @@ import com.ppla.app.models.QPplaOrderItem;
 import com.ppla.app.services.PplaOrderItemService;
 import com.ppla.app.services.PplaWorkOrderService;
 import com.ppla.app.services.custom.PplaWorkOrderServiceCustom;
+import com.ppla.core.dto.PplaOrderItemInfo;
 import com.ppla.core.dto.PplaWorkOrderInfo;
 import com.tyrael.commons.mapper.dto.PageInfo;
 import com.tyrael.commons.mapper.service.MappingService;
@@ -96,8 +97,13 @@ public class PplaWorkOrderServiceCustomImpl extends MappingService<PplaWorkOrder
     public PageInfo<PplaWorkOrderInfo> page(PageRequest pageRequest) {
         Page<PplaWorkOrder> results = workOrders.findAll(pageRequest);
         List<PplaWorkOrderInfo> infos = Lists.newArrayList();
-        for (PplaWorkOrder order : results) {
-            infos.add(toDto(order));
+        for (PplaWorkOrder wo : results) {
+            
+            PplaWorkOrderInfo woInfo = toDto(wo);
+            List<PplaOrderItemInfo> items = orderItemService.findAttachedInfo(wo.getTrackingNo());
+            woInfo.setOrderItems(items);
+
+            infos.add(woInfo);
         }
 
         PageInfo<PplaWorkOrderInfo> pageResponse = new PageInfo<>();

@@ -1,20 +1,21 @@
 <html>
 
+<head>
 <!-- CSS (load bootstrap) -->
 <!-- 
 <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
 -->
-
+<title>PPLA Films MES</title>
+<link rel="icon" type="image/x-icon" href="/images/favicon.ico">
 <link rel="stylesheet" href="/lib/bootstrap-3.2.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="/lib/angular-ngtable/ng-table.min.css">
 <link rel="stylesheet" href="/app/app.css">
 <script src="/lib/jquery/jquery.min.js"></script>
-
 <style>
     .navbar { border-radius:0; }
 </style>
-
 <script data-main="/operations/main.js" src="/lib/require/require.js"></script>
+</head>
 
 <body>
 

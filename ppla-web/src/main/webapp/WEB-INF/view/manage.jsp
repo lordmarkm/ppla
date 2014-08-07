@@ -1,5 +1,10 @@
 <html>
 
+<head>
+
+<title>PPLA Films MES</title>
+<link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+
 <!-- CSS (load bootstrap) -->
 <!-- 
 <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
@@ -34,6 +39,8 @@
 <script src="/app/controllers/WorkOrderBrowseController.js"></script>
 <script src="/app/controllers/WorkOrderController.js"></script>
 <script src="/app/controllers/MachineController.js"></script>
+
+</head>
 
 <body ng-app="ppla">
 

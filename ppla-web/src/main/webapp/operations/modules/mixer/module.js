@@ -3,17 +3,19 @@ define(['/operations/app.js'], function(app) {
   return app.config(function($stateProvider) {
     $stateProvider.state('mixer', {
       url: '/mixer',
-      templateUrl: '/operations/modules/mixer/view/home.html'
-    })
-    .state('mixer.machine', {
-      url: '/machine',
-      templateUrl: '/operations/modules/mixer/view/machine.html',
+      templateUrl: '/operations/modules/mixer/view/home.html',
+      abstract: true,
       controller: 'MixerController'
     })
     .state('mixer.workorder', {
-      url: 'workorder/{machineCode}',
+      url: '',
       templateUrl: '/operations/modules/mixer/view/workorder.html',
       controller: 'MixerWorkorderController'
+    })
+    .state('mixer.machine', {
+      url: '/machine/{trackingNo}',
+      templateUrl: '/operations/modules/mixer/view/machine.html',
+      controller: 'MixerMachineController'
     });
   });
 });

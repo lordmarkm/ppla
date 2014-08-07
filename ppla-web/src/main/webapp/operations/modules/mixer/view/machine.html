@@ -1,19 +1,25 @@
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th>Machine
-      <th>Status
-      <th>
-    </th>
-  </thead>
-  <tbody>
-    <tr ng-repeat="machine in machines">
-      <td>{{machine.code}}
-      <td>{{machine.currentProcess ? 'In use' : 'Available'}}
-      <td>
-        <a ui-sref="mixer.workorder({machineCode: machine.code})" ng-if="!machine.currentProcess" class="btn btn-primary">Start mixing process</a>
-        <button ng-if="machine.currentProcess" class="btn btn-success">End process</button>
-      </td>
-    </tr>
-  </tbody>
-</table>
+<div class="panel panel-default">
+<div class="panel-heading">Choose Machine</div>
+<div class="panel-body">
+  <div ng-if="!machines || machines.length == 0">No machines available</div>
+  <table class="table table-striped" ng-if="machines.length > 0">
+    <thead>
+      <tr>
+        <th>Machine
+        <th>Status
+        <th>
+      </th>
+    </thead>
+    <tbody>
+      <tr ng-repeat="machine in machines">
+        <td>{{machine.code}}
+        <td>{{machine.currentProcess ? 'In use' : 'Available'}}
+        <td>
+          <a ui-sref="mixer.workorder({machineCode: machine.code})" ng-if="!machine.currentProcess" class="btn btn-primary">Start mixing process</a>
+          <button ng-if="machine.currentProcess" class="btn btn-success">End process</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+</div>
