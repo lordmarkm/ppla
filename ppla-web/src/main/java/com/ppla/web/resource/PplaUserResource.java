@@ -4,6 +4,7 @@ import static org.springframework.http.HttpStatus.OK;
 import static org.springframework.web.bind.annotation.RequestMethod.*;
 
 import java.security.Principal;
+import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,10 +27,22 @@ public class PplaUserResource {
     @Autowired
     private PplaUserService service;
 
-    @RequestMapping(method = GET)
+    @RequestMapping(method = GET, params = "type")
+    public ResponseEntity<List<PplaUserInfo>> findByType(@RequestParam String type) {
+        LOG.debug("Trying to find users by type. type={}", type);
+        return new ResponseEntity<>(service.findByTypeInfo(type), OK);
+    }
+
+    @RequestMapping(method = GET, params = "username")
     public ResponseEntity<PplaUserInfo> findByUsername(@RequestParam String username) {
         LOG.debug("Trying to find User by username. username={}", username);
         return new ResponseEntity<>(service.findByUsernameInfo(username), OK);
+    }
+
+    @RequestMapping(method = GET, params = "code")
+    public ResponseEntity<PplaUserInfo> findByCode(@RequestParam String code) {
+        LOG.debug("Trying to find User by code. code={}", code);
+        return new ResponseEntity<>(service.findByCodeInfo(code), OK);
     }
 
     @RequestMapping(method = POST)

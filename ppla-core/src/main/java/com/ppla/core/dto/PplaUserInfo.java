@@ -9,6 +9,7 @@ public class PplaUserInfo extends PersonInfo {
 
     private String username;
     private String code;
+    private String type;
 
     @Override
     public String toString() {
@@ -18,6 +19,7 @@ public class PplaUserInfo extends PersonInfo {
             .append("Description", getDescription())
             .append("Username", username)
             .append("Code", code)
+            .append("Type", type)
             .toString();
         
     }
@@ -36,5 +38,13 @@ public class PplaUserInfo extends PersonInfo {
 
     public void setCode(String code) {
         this.code = code;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }

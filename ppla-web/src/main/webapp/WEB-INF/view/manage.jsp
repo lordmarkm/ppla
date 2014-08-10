@@ -39,6 +39,7 @@
 <script src="/app/controllers/WorkOrderBrowseController.js"></script>
 <script src="/app/controllers/WorkOrderController.js"></script>
 <script src="/app/controllers/MachineController.js"></script>
+<script src="/app/controllers/UserManagementController.js"></script>
 
 </head>
 

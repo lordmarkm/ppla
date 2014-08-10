@@ -20,8 +20,10 @@
             </td>
             <td>{{workOrder.quantity}}
             <td>{{workOrder.status}}
-            <td><a class="btn btn-xs btn-success" ui-sref="mixer.machine({trackingNo:workOrder.trackingNo})">
-              Start mixing process <i class="glyphicon glyphicon-chevron-right"></i></a>
+            <td>
+              <button class="btn btn-xs btn-success" ng-click="useWorkorder(workOrder)">
+                Start mixing process <i class="glyphicon glyphicon-chevron-right"></i>
+              </button>
             </td>
             <!-- 
             <td><a ui-sref="workorder({trackingNo:workOrder.trackingNo})" class="btn btn-xs btn-primary">View details</a>

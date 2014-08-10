@@ -5,8 +5,10 @@ require.config({
     'domReady': '/lib/require/domReady',
     'uiRouter': '/lib/angular/angular-ui-router.min',
     'ngResource': '/lib/angular/angular-resource.min',
-    'ngTable': '/lib/angular-ngtable/ng-table.min',
+    'ngTable': '/lib/angular-ngtable/ng-table.min', 
+    'ngQuickDate': '/lib/angular-quick-date/ng-quick-date-erx',
     'bootstrap': '/lib/bootstrap-3.2.0/js/bootstrap.min',
+    'sugar': '/lib/sugar/sugar',
     'op-controllers': '/operations/controllers/op-controllers'
   },
   shim: {
@@ -21,6 +23,12 @@ require.config({
     },
     'ngTable': {
       deps: ['angular']
+    },
+    'ngQuickDate': {
+      deps: ['angular']
+    },
+    'sugar': {
+      exports: 'sugar'
     }
   },
   deps: [

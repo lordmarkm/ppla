@@ -32,7 +32,6 @@ public class MixingProcessResource {
 
     @RequestMapping(value = "/{id}", method = GET)
     public ResponseEntity<MixingProcessInfo> findById(Principal principal, @PathVariable Long id) {
-
         LOG.debug("Finding mixing process. id={}", id);
         return new ResponseEntity<>(service.findOneInfo(id), OK);
     }
@@ -40,7 +39,6 @@ public class MixingProcessResource {
     @RequestMapping(method = POST)
     public ResponseEntity<MixingProcessInfo> save(Principal principal,
             @RequestBody MixingProcessInfo process) {
-
         LOG.debug("Saving mixing process. process={}", process);
         return new ResponseEntity<>(service.save(principal.getName(), process), OK);
     }

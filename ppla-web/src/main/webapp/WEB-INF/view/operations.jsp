@@ -6,10 +6,13 @@
 <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
 -->
 <title>PPLA Films MES</title>
-<link rel="icon" type="image/x-icon" href="/images/favicon.ico">
-<link rel="stylesheet" href="/lib/bootstrap-3.2.0/css/bootstrap.min.css">
-<link rel="stylesheet" href="/lib/angular-ngtable/ng-table.min.css">
-<link rel="stylesheet" href="/app/app.css">
+<link rel="icon" type="image/x-icon" href="/images/favicon.ico" />
+<link rel="stylesheet" href="/lib/bootstrap-3.2.0/css/bootstrap.min.css" />
+<link rel="stylesheet" href="/lib/angular-ngtable/ng-table.min.css" />
+<link rel="stylesheet" href="/lib/angular-quick-date/ng-quick-date.css" />
+<link rel="stylesheet" href="/lib/angular-quick-date/ng-quick-date-default-theme.css" />
+<link rel="stylesheet" href="/lib/font-awesome-4.1.0/css/font-awesome.min.css" />
+<link rel="stylesheet" href="/app/app.css" />
 <script src="/lib/jquery/jquery.min.js"></script>
 <style>
     .navbar { border-radius:0; }

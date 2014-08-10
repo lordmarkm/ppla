@@ -1,7 +1,7 @@
 define(['/operations/controllers/module.js'], function (controllers) {
   'use strict';
-  controllers.controller('MixerWorkorderController', ['$scope', '$stateParams', 'ngTableParams', 'MachineService', 'WorkOrderService',
-    function($scope, $stateParams, ngTableParams, MachineService, WorkOrderService) {
+  controllers.controller('MixerWorkorderController', ['$scope', '$state', 'ngTableParams', 'WorkOrderService',
+    function($scope, $state, ngTableParams, WorkOrderService) {
 
     //Work orders
     $scope.tableParams = new ngTableParams({
@@ -21,6 +21,11 @@ define(['/operations/controllers/module.js'], function (controllers) {
         });
       }
     });
+
+    $scope.useWorkorder = function (workOrder) {
+      $scope.process.workOrderTrackingNo = workOrder.trackingNo;
+      $state.go('mixer.machine');
+    };
 
   }]);
 });

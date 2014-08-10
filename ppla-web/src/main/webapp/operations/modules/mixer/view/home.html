@@ -2,6 +2,19 @@
   <div class="panel-heading">Mixer</div>
   <div class="panel-body">
     <dl class="dl-horizontal">
+      <dt><a ui-sref="mixer.workorder">Work Order</a>
+      <dd>{{process.workOrderTrackingNo}}
+      <dt><a ui-sref="mixer.machine">Machine</a>
+      <dd>{{process.machine.code}}
+      <dt><a ui-sref="mixer.materials">Materials In</a>
+      <dd>
+        <span ng-if="!process.materialsIn.length">No materials added</span>
+        <ol ng-if="process.materialsIn.length">
+          <li ng-repeat="rawMaterialStack in process.materialsIn">{{rawMaterialStack.material.name}} - {{rawMaterialStack.quantity}} {{rawMaterialStack.material.unitOfMeasurement}}</li>
+        </ol>
+      </dd>
+    </dl>
+    <dl class="dl-horizontal">
       <dt>Process
       <dd>{{process}}
     </dl>

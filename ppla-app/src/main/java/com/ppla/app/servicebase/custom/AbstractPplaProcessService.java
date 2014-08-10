@@ -51,6 +51,17 @@ public abstract class AbstractPplaProcessService<E extends BasePplaProcess, D ex
         E entity = toEntity(processInfo);
         if (entity.getDateStarted() == null) {
             PplaUser actor = users.findByUsername(username);
+
+            /**********************
+             * DELETE THIS IN PRODUCTION
+             **********************/
+            if (null == actor) {
+                actor = users.findByUsername("admin");
+            }
+            /**************************
+             * END
+             **************************/
+
             entity.setActor(actor);
 
             PplaWorkOrder workOrder = workOrders.findByTrackingNo(processInfo.getWorkOrderTrackingNo());
