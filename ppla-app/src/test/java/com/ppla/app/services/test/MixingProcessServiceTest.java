@@ -17,6 +17,7 @@ import com.ppla.app.config.PplaPersistenceConfig;
 import com.ppla.app.models.PplaUser;
 import com.ppla.app.models.PplaWorkOrder;
 import com.ppla.app.models.process.MixingProcess;
+import com.ppla.app.reference.PplaUserType;
 import com.ppla.app.services.PplaUserService;
 import com.ppla.app.services.PplaWorkOrderService;
 import com.ppla.app.services.process.MixingProcessService;
@@ -54,6 +55,7 @@ public class MixingProcessServiceTest {
     public void testConfig() {
         PplaUser actor = new PplaUser();
         actor.setUsername("a");
+        actor.setType(PplaUserType.OPERATOR);
         actor = users.save(actor);
 
         PplaWorkOrder wo = new PplaWorkOrder();

@@ -9,7 +9,7 @@ public class PplaUserInfo extends PersonInfo {
 
     private String username;
     private String code;
-    private String type;
+    private String type = "OPERATOR";
 
     @Override
     public String toString() {

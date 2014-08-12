@@ -4,11 +4,15 @@ define(['/operations/controllers/module.js'], function (controllers) {
     function($scope, $state, AuthService, PplaUserService) {
 
     $scope.params = $state.params;
-    $scope.profile = {properName: {}};
+    $scope.profile = {properName: {}, type: 'OPERATOR'};
     AuthService.get(function(principal) {
       $scope.principal = principal;
       if (principal.authenticated) {
-        $scope.profile = PplaUserService.get({username: principal.principal.username});
+        PplaUserService.get({username: principal.principal.username}, function (response) {
+          if (response.type) {
+            $scope.profile = response;
+          }
+        });
       }
     });
 
