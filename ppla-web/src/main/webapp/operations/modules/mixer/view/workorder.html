@@ -1,36 +1,65 @@
 <div class="panel panel-default">
-  <div class="panel-heading">Choos Workorder</div>
+  <div class="panel-heading">Choose Workorder</div>
   <div class="panel-body">
     <div class="row">
-      <table ng-table="tableParams" show-filter="true" class="table table-striped" >
-        <thead>
-          <tr>
-            <td>Tracking No.
-            <td>Orders
-            <td>Workorder Quantity
-            <td>Status
-            <td>
-          </tr>
-        </thead>
-        <tbody>
-          <tr ng-repeat="workOrder in $data">
-            <td>{{workOrder.trackingNo}}
-            <td>
-              <div ng-repeat="orderItem in workOrder.orderItems">{{orderItem.product.name}} ({{orderItem.quantity}})</div>
-            </td>
-            <td>{{workOrder.quantity}}
-            <td>{{workOrder.status}}
-            <td>
-              <button class="btn btn-xs btn-success" ng-click="useWorkorder(workOrder)">
-                Start mixing process <i class="glyphicon glyphicon-chevron-right"></i>
-              </button>
-            </td>
-            <!-- 
-            <td><a ui-sref="workorder({trackingNo:workOrder.trackingNo})" class="btn btn-xs btn-primary">View details</a>
-            -->
-          </tr>
-        </tbody>
-      </table>
+      <div class="col-sm-6">
+        <table ng-table="tableParams" show-filter="true" class="table table-striped" >
+          <caption><strong>Available Work Orders</strong></caption>
+          <thead>
+            <tr>
+              <td>Tracking No.
+              <td>Orders
+              <td>Workorder Quantity
+              <td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="workOrder in $data">
+              <td>{{workOrder.trackingNo}}
+              <td>
+                <div ng-repeat="orderItem in workOrder.orderItems">{{orderItem.product.name}} ({{orderItem.quantity}})</div>
+              </td>
+              <td>{{workOrder.quantity}}
+              <td ng-switch on="isAttached(workOrder)">
+                <button ng-switch-when="false" ng-click="workOrders.push(workOrder)" class="btn btn-xs btn-success">
+                  Attach <i class="glyphicon glyphicon-chevron-right"></i>
+                </button>
+                <span ng-switch-when="true" class="label label-info">
+                  Attached
+                </span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="col-sm-6">
+        <table class="table table-striped" >
+          <caption><strong>Attached Work Orders</strong></caption>
+          <thead>
+            <tr>
+              <td>Tracking No.
+              <td>Orders
+              <td>Workorder Quantity
+              <td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="workOrder in workOrders">
+              <td>{{workOrder.trackingNo}}
+              <td>
+                <div ng-repeat="orderItem in workOrder.orderItems">{{orderItem.product.name}} ({{orderItem.quantity}})</div>
+              </td>
+              <td>{{workOrder.quantity}}
+              <td>
+                <a ng-click="remove(workOrder)" href="javascript:;"><i class="glyphicon glyphicon-remove"></i></a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="text-right">
+      <button ng-click="saveWorkorders()" ng-disabled="workOrders.length < 1" class="btn btn-success">Save</button>
     </div>
   </div>
 </div>

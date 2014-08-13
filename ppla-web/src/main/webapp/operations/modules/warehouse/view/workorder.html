@@ -1,0 +1,33 @@
+<div class="panel panel-default">
+  <div class="panel-heading">Choose Workorder</div>
+  <div class="panel-body">
+    <div class="row">
+      <table ng-table="tableParams" show-filter="true" class="table table-striped" >
+        <thead>
+          <tr>
+            <td>Tracking No.
+            <td>Orders
+            <td>Workorder Quantity
+            <td>Status
+            <td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="workOrder in $data">
+            <td>{{workOrder.trackingNo}}
+            <td>
+              <div ng-repeat="orderItem in workOrder.orderItems">{{orderItem.product.name}} ({{orderItem.quantity}})</div>
+            </td>
+            <td>{{workOrder.quantity}}
+            <td>{{workOrder.status}}
+            <td>
+              <button class="btn btn-xs btn-success" ng-click="useWorkorder(workOrder)">
+                Create warehouse process <i class="glyphicon glyphicon-chevron-right"></i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

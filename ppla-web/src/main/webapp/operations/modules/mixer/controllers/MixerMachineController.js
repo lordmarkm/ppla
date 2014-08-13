@@ -7,7 +7,7 @@ define(['/operations/controllers/module.js'], function (controllers) {
 
     $scope.useMachine = function (machine) {
       $scope.process.machine = machine;
-      $state.go('mixer.materials');
+      $state.go($scope.nextState());
     };
   }]);
 });

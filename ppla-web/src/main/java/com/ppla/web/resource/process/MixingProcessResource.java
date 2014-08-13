@@ -40,6 +40,6 @@ public class MixingProcessResource {
     public ResponseEntity<MixingProcessInfo> save(Principal principal,
             @RequestBody MixingProcessInfo process) {
         LOG.debug("Saving mixing process. process={}", process);
-        return new ResponseEntity<>(service.save(principal.getName(), process), OK);
+        return new ResponseEntity<>(service.saveInfo(process), OK);
     }
 }

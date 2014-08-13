@@ -7,7 +7,8 @@ define([
   'ngQuickDate',
   'sugar',
   '/operations/controllers/op-controllers.js',
-  '/operations/services.js'
+  '/operations/services.js',
+  '/operations/filters.js'
 ], function (angular) {
   'use strict';
   return angular.module('op-app', [
@@ -16,7 +17,8 @@ define([
     'ngTable',
     'ngQuickDate',
     'app.controllers',
-    'app.services'
+    'app.services',
+    'app.filters'
   ])
   
   .config(['ngQuickDateDefaultsProvider', function (ngQuickDateDefaultsProvider) {

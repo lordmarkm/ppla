@@ -53,10 +53,10 @@ public class MaterialResource {
         return new ResponseEntity<>(inventory, OK);
     }
 
-    @RequestMapping(value = "/{trackingNo}", method = GET)
-    public ResponseEntity<List<MaterialBalanceStackInfo>> getWorkOrderMaterialBalance(@PathVariable String trackingNo) {
-        LOG.debug("Computing material balance for work order. trackingNo={}", trackingNo);
-        return new ResponseEntity<>(materialBalanceService.computeMaterialBalance(trackingNo), OK);
+    @RequestMapping(value = "/{trackingNos}", method = GET)
+    public ResponseEntity<List<MaterialBalanceStackInfo>> getWorkOrderMaterialBalance(@PathVariable String trackingNos) {
+        LOG.debug("Computing material balance for work order. trackingNos={}", trackingNos);
+        return new ResponseEntity<>(materialBalanceService.computeMaterialBalance(trackingNos), OK);
     }
 
     @RequestMapping(value = "/raw", method = POST)

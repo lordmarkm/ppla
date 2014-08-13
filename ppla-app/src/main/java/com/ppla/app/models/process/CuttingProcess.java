@@ -20,22 +20,22 @@ import com.ppla.app.models.material.ProcessMaterialStack;
 public class CuttingProcess extends MachineProcess<Cutter, ProcessMaterialStack> {
 
     @OneToMany(cascade = CascadeType.ALL)
-    private List<ProcessMaterialStack> materialsInput;
-
+    private List<ProcessMaterialStack> materialsIn;
+    
     @Column(name = "OUTPUT")
     private BigDecimal productOut;
 
-    public List<ProcessMaterialStack> getMaterialsInput() {
-        return materialsInput;
-    }
-    public void setMaterialsInput(List<ProcessMaterialStack> materialsInput) {
-        this.materialsInput = materialsInput;
-    }
     public BigDecimal getProductOut() {
         return productOut;
     }
     public void setProductOut(BigDecimal productOut) {
         this.productOut = productOut;
+    }
+    public List<ProcessMaterialStack> getMaterialsIn() {
+        return materialsIn;
+    }
+    public void setMaterialsIn(List<ProcessMaterialStack> materialsIn) {
+        this.materialsIn = materialsIn;
     }
 
 }

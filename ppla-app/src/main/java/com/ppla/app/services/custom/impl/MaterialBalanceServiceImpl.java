@@ -22,15 +22,16 @@ public class MaterialBalanceServiceImpl implements MaterialBalanceService {
     private WarehouseProcessService warehouse;
 
     @Override
-    public List<MaterialBalanceStackInfo> computeMaterialBalance(String trackingNo) {
+    public List<MaterialBalanceStackInfo> computeMaterialBalance(String trackingNos) {
         Map<Long, MaterialBalanceStackInfo> materialBalance = Maps.newHashMap();
-        processWarehouseProcesses(materialBalance, trackingNo);
+        processWarehouseProcesses(materialBalance, trackingNos);
         return Lists.newArrayList(materialBalance.values());
     }
 
     private void processWarehouseProcesses(Map<Long, MaterialBalanceStackInfo> materialBalance,
-        String trackingNo) {
-        List<WarehouseProcessInfo> procs = warehouse.findByWorkOrder_TrackingNoInfo(trackingNo);
+        String trackingNos) {
+
+        List<WarehouseProcessInfo> procs = warehouse.findByWorkOrder_TrackingNoInfo(trackingNos);
         for (WarehouseProcessInfo proc : procs) {
             for (RawMaterialStackInfo rawMatStack : proc.getMaterialStacks()) {
                 MaterialBalanceStackInfo currentBalance = materialBalance.get(rawMatStack.getMaterial().getId());

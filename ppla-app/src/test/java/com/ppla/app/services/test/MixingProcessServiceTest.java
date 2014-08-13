@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 
 import java.math.BigDecimal;
 
+import org.dozer.Mapper;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -12,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.google.common.collect.Lists;
 import com.ppla.app.config.PplaMainConfig;
 import com.ppla.app.config.PplaPersistenceConfig;
 import com.ppla.app.models.PplaUser;
@@ -21,6 +23,7 @@ import com.ppla.app.reference.PplaUserType;
 import com.ppla.app.services.PplaUserService;
 import com.ppla.app.services.PplaWorkOrderService;
 import com.ppla.app.services.process.MixingProcessService;
+import com.ppla.core.dto.process.MixingProcessInfo;
 import com.tyrael.commons.mapper.config.MapperConfig;
 
 /**
@@ -42,6 +45,9 @@ public class MixingProcessServiceTest {
 
     @Autowired
     private PplaWorkOrderService wos;
+
+    @Autowired
+    private Mapper mapper;
 
     @Before
     @After
@@ -65,9 +71,15 @@ public class MixingProcessServiceTest {
         MixingProcess process = new MixingProcess();
         process.setActor(actor);
         process.setWorkOrder(wo);
+        process.setWorkOrders(Lists.newArrayList(wo));
+        process.setRemarks("none");
         process.setMaterialOutNetWt(BigDecimal.TEN);
-        service.save(process);
+        process = service.save(process);
         assertEquals(1, service.count());
+
+        MixingProcessInfo dto = mapper.map(process, MixingProcessInfo.class);
+        assertNotNull(dto);
+        assertNotNull(mapper.map(dto, MixingProcess.class));
     }
 
 }

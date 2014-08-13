@@ -113,6 +113,7 @@
             <tr ng-repeat-start="process in processes">
               <td ng-switch="process.type">
                 <span ng-switch-when="WAREHOUSE" class="label label-default">Warehouse</span>
+                <span ng-switch-when="MIXING" class="label label-primary">Mixing</span>
               </td>
               <td>{{process.id}}
               <td>{{parseDate(process.dateStarted)}}
@@ -120,17 +121,23 @@
               <td ng-if="!process.dateCompleted">Not completed
               <td>{{process.actor.properName.givenName}} {{process.actor.properName.surname}}
               <td width="10%">
-                <a href="javascript:;" ng-click="processDetails[process.id] = processDetails[process.id] ? false : true">
-                  <span ng-if="!processDetails[process.id]">Expand <span class="glyphicon glyphicon-chevron-down"></span></span>
-                  <span ng-if="processDetails[process.id]">Collapse <span class="glyphicon glyphicon-chevron-up"></span></span>
+                <a href="javascript:;" ng-click="processDetails[process.id + process.type] = processDetails[process.id + process.type] ? false : true">
+                  <span ng-if="!processDetails[process.id + process.type]">Expand <span class="glyphicon glyphicon-chevron-down"></span></span>
+                  <span ng-if="processDetails[process.id + process.type]">Collapse <span class="glyphicon glyphicon-chevron-up"></span></span>
                 </a>
               </td>
             </tr>
-            <tr ng-repeat-end ng-show="processDetails[process.id]" ng-switch="process.type">
+            <tr ng-repeat-end ng-show="processDetails[process.id + process.type]" ng-switch="process.type">
               <td ng-switch-when="WAREHOUSE" colspan="6">
-                <dl>
-                  <dd ng-repeat-start="matStack in process.materialStacks">{{matStack.material.name}}
-                  <dt ng-repeat-end>{{matStack.quantity}} {{matStack.material.unitOfMeasurement}}
+                <dl class="dl-horizontal">
+                  <dt ng-repeat-start="matStack in process.materialStacks">{{matStack.material.name}}
+                  <dd ng-repeat-end>{{matStack.quantity}} {{matStack.material.unitOfMeasurement}}
+                </dl>
+              </td>
+              <td ng-switch-when="MIXING" colspan="6">
+                <dl class="dl-horizontal">
+                  <dt ng-repeat-start="stack in process.materialsIn">{{stack.material.name}}
+                  <dd ng-repeat-end>{{stack.quantity}}
                 </dl>
               </td>
             </tr>

@@ -51,4 +51,10 @@ public class PplaUserResource {
         profile.setUsername(principal.getName());
         return new ResponseEntity<>(service.saveInfo(profile), OK);
     }
+
+    @RequestMapping(value = "/operator", method = POST)
+    public ResponseEntity<PplaUserInfo> addOperator(Principal principal, @RequestBody PplaUserInfo operator) {
+        LOG.debug("Trying to save operator. operator={}", operator);
+        return new ResponseEntity<>(service.saveInfo(operator), OK);
+    }
 }

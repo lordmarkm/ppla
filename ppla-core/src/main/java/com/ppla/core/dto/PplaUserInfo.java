@@ -7,16 +7,16 @@ import org.springframework.core.style.ToStringCreator;
  */
 public class PplaUserInfo extends PersonInfo {
 
-    private String username;
-    private String code;
-    private String type = "OPERATOR";
+    protected String username;
+    protected String code;
+    protected String type = "OPERATOR";
 
     @Override
     public String toString() {
         return new ToStringCreator(this)
-            .append("id", getId())
-            .append("Name", getProperName())
-            .append("Description", getDescription())
+            .append("id", id)
+            .append("Name", name)
+            .append("Description", description)
             .append("Username", username)
             .append("Code", code)
             .append("Type", type)

@@ -14,7 +14,8 @@ import com.ppla.core.dto.process.BasePplaProcessInfo;
 public interface BasePplaProcessServiceCustom<D extends BasePplaProcessInfo> {
 
     D findOneInfo(Long id);
-    D save(String username, D processInfo);
+    D saveInfo(D processInfo);
+    List<D> findByWorkOrder_TrackingNoInInfo(String trackingNos);
     List<D> findByWorkOrder_TrackingNoInfo(String trackingNo);
 
 }

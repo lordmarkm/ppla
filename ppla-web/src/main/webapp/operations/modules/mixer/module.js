@@ -7,15 +7,20 @@ define(['/operations/app.js'], function(app) {
       abstract: true,
       controller: 'MixerController'
     })
-    .state('mixer.workorder', {
+    .state('mixer.identity', {
       url: '',
-      templateUrl: '/operations/modules/mixer/view/workorder.html',
-      controller: 'MixerWorkorderController'
+      templateUrl: '/operations/modules/mixer/view/identity.html',
+      controller: 'MixerIdentityController'
     })
     .state('mixer.machine', {
       url: '/machine',
       templateUrl: '/operations/modules/mixer/view/machine.html',
       controller: 'MixerMachineController'
+    })
+    .state('mixer.workorder', {
+      url: '/workorder',
+      templateUrl: '/operations/modules/mixer/view/workorder.html',
+      controller: 'MixerWorkorderController'
     })
     .state('mixer.materials', {
       url: '/materials',
@@ -26,6 +31,10 @@ define(['/operations/app.js'], function(app) {
       url: '/additional',
       templateUrl: '/operations/modules/mixer/view/additional.html',
       controller: 'MixerAdditionalController'
+    })
+    .state('mixer.confirm', {
+      url: '/confirm',
+      controller: 'MixerController'
     });
   });
 });

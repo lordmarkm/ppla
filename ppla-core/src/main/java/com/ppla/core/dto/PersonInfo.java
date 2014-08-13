@@ -7,25 +7,17 @@ import org.springframework.core.style.ToStringCreator;
  */
 public class PersonInfo {
 
-    private Long id;
-    private NameInfo properName;
-    private String description;
+    protected Long id;
+    protected NameInfo name;
+    protected String description;
     
     @Override
     public String toString() {
         return new ToStringCreator(this)
             .append("id", id)
-            .append("Name", properName)
+            .append("Name", name)
             .append("Description", description)
             .toString();
-    }
-
-    public NameInfo getProperName() {
-        return properName;
-    }
-
-    public void setProperName(NameInfo properName) {
-        this.properName = properName;
     }
 
     public String getDescription() {
@@ -42,5 +34,13 @@ public class PersonInfo {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public NameInfo getName() {
+        return name;
+    }
+
+    public void setName(NameInfo name) {
+        this.name = name;
     }
 }

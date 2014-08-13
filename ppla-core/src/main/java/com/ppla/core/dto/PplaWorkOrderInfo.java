@@ -8,7 +8,7 @@ import org.springframework.core.style.ToStringCreator;
 /**
  * @author Mark
  */
-public class PplaWorkOrderInfo {
+public class PplaWorkOrderInfo extends BasePplaDto {
 
     private Integer quantity = 0;
     private String trackingNo;

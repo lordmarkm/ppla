@@ -30,7 +30,7 @@ public class WarehouseProcessResource {
             @RequestBody WarehouseProcessInfo process) {
 
         LOG.debug("Saving warehouse process. process={}", process);
-        return new ResponseEntity<>(service.save(principal.getName(), process), OK);
+        return new ResponseEntity<>(service.saveInfo(process), OK);
 
     }
 

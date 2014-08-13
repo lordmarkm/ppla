@@ -1,7 +1,7 @@
 define(['/operations/controllers/module.js'], function (controllers) {
   'use strict';
-  controllers.controller('MixerMaterialsController', ['$scope', '$state', 'MaterialService',
-    function($scope, $state, MaterialService) {
+  controllers.controller('MixerMaterialsController', ['$scope', '$state', '$filter', 'MaterialService',
+    function($scope, $state, $filter, MaterialService) {
 
     //materials[?] = MaterialBalanceStackInfo
     //materialIn = RawMaterialStackInfo
@@ -11,9 +11,21 @@ define(['/operations/controllers/module.js'], function (controllers) {
         materialIn: undefined
     };
     $scope.materialsIn = [];
-    //Can't actually add materials if workorder doesn't exist
-    if ($scope.process.workOrderTrackingNo) {
-      $scope.materials = MaterialService.query({type: $scope.process.workOrderTrackingNo}, function (mats) {
+    //Can't actually add materials if workOrders don't exist
+    
+    var trackingNosString = '',
+      trackingNos = [], 
+      workorderCount = $scope.process.workOrders ? $scope.process.workOrders.length : 0;
+
+    if (workorderCount) {
+      var i = workorderCount;
+      while (i--) {
+        trackingNos.push($scope.process.workOrders[i].trackingNo);
+      }
+      trackingNosString = trackingNos.join(',');
+    }
+    if (trackingNosString) {
+      $scope.materials = MaterialService.query({type: trackingNosString}, function (mats) {
         for (var i = 0, len = mats.length; i < len; ++i) {
           if (mats[i].source === 'RAW') {
             $scope.toAdd.materialIn = mats[i];
@@ -80,7 +92,7 @@ define(['/operations/controllers/module.js'], function (controllers) {
 
     $scope.setMaterials = function () {
       $scope.process.materialsIn = angular.copy($scope.materialsIn);
-      $state.go('mixer.additional');
+      $state.go($scope.nextState());
     };
   }]);
 });

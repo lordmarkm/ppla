@@ -14,5 +14,6 @@ public interface BasePplaProcessService<P extends BasePplaProcess>
     extends JpaRepository<P, Long> {
 
     List<P> findByWorkOrder_TrackingNo(String trackingNo);
+    List<P> findByWorkOrder_TrackingNoIn(List<String> trackingNoList);
 
 }

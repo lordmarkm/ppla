@@ -35,7 +35,7 @@ public class MapperTest {
         process.setDateCompleted(DateTime.now());
 
         WarehouseProcessInfo dto = mapper.map(process, WarehouseProcessInfo.class);
-        assertEquals(tNum, dto.getWorkOrderTrackingNo());
+        assertEquals(tNum, dto.getWorkOrder().getTrackingNo());
         assertNotNull(dto.getDateCompleted());
     }
 }

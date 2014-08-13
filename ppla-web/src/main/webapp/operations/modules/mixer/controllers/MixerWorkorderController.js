@@ -3,6 +3,8 @@ define(['/operations/controllers/module.js'], function (controllers) {
   controllers.controller('MixerWorkorderController', ['$scope', '$state', 'ngTableParams', 'WorkOrderService',
     function($scope, $state, ngTableParams, WorkOrderService) {
 
+    $scope.workOrders = [];
+
     //Work orders
     $scope.tableParams = new ngTableParams({
       page: 1,
@@ -22,9 +24,30 @@ define(['/operations/controllers/module.js'], function (controllers) {
       }
     });
 
-    $scope.useWorkorder = function (workOrder) {
-      $scope.process.workOrderTrackingNo = workOrder.trackingNo;
-      $state.go('mixer.machine');
+    $scope.isAttached = function (toCheck) {
+      var i = $scope.workOrders.length, workOrder;
+      while (i--) {
+        workOrder = $scope.workOrders[i];
+        if (workOrder.trackingNo == toCheck.trackingNo) {
+          return true;
+        }
+      }
+      return false;
+    };
+
+    $scope.remove = function (toRemove) {
+      var i = $scope.workOrders.length, workOrder;
+      while (i--) {
+        workOrder = $scope.workOrders[i];
+        if (workOrder.trackingNo == toRemove.trackingNo) {
+          $scope.workOrders.splice(i, 1);
+        }
+      }
+    };
+
+    $scope.saveWorkorders = function () {
+      $scope.process.workOrders = $scope.workOrders;
+      $state.go($scope.nextState());
     };
 
   }]);

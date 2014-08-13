@@ -1,5 +1,6 @@
 package com.ppla.app.servicebase.custom;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -7,9 +8,6 @@ import java.util.List;
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 
-
-import com.ppla.app.models.PplaUser;
-import com.ppla.app.models.PplaWorkOrder;
 import com.ppla.app.models.process.BasePplaProcess;
 import com.ppla.app.servicebase.BasePplaProcessService;
 import com.ppla.app.services.PplaUserService;
@@ -33,7 +31,7 @@ public abstract class AbstractPplaProcessService<E extends BasePplaProcess, D ex
         Collections.sort(dtos, new Comparator<BasePplaProcessInfo>() {
             @Override
             public int compare(BasePplaProcessInfo o1, BasePplaProcessInfo o2) {
-                return o1.getDateStarted().compareTo(o2.getDateStarted());
+                return o2.getDateStarted().compareTo(o1.getDateStarted());
             }
         });
         return dtos;
@@ -43,34 +41,20 @@ public abstract class AbstractPplaProcessService<E extends BasePplaProcess, D ex
         return toDto(repo.findOne(id));
     }
 
+    public List<D> findByWorkOrder_TrackingNoInInfo(String trackingNosString) {
+        List<String> trackingNoList = Arrays.asList(trackingNosString.split(","));
+        return toDto(repo.findByWorkOrder_TrackingNoIn(trackingNoList));
+    }
+
     public List<D> findByWorkOrder_TrackingNoInfo(String trackingNo) {
         return toDto(repo.findByWorkOrder_TrackingNo(trackingNo));
     }
 
-    public D save(String username, D processInfo) {
-        E entity = toEntity(processInfo);
-        if (entity.getDateStarted() == null) {
-            PplaUser actor = users.findByUsername(username);
-
-            /**********************
-             * DELETE THIS IN PRODUCTION
-             **********************/
-            if (null == actor) {
-                actor = users.findByUsername("admin");
-            }
-            /**************************
-             * END
-             **************************/
-
-            entity.setActor(actor);
-
-            PplaWorkOrder workOrder = workOrders.findByTrackingNo(processInfo.getWorkOrderTrackingNo());
-            entity.setWorkOrder(workOrder);
-
-            entity.setDateStarted(DateTime.now());
+    public D saveInfo(D processInfo) {
+        if (processInfo.getDateStarted() == null) {
+            processInfo.setDateStarted(DateTime.now());
         }
-
-        E saved = repo.save(entity);
+        E saved = repo.save(toEntity(processInfo));
         return toDto(saved);
     }
 }

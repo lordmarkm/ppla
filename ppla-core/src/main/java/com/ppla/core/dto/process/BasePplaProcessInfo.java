@@ -5,6 +5,7 @@ import org.springframework.core.style.ToStringCreator;
 
 import com.baldy.commons.models.BaseBaldyInfo;
 import com.ppla.core.dto.PplaUserInfo;
+import com.ppla.core.dto.PplaWorkOrderInfo;
 import com.ppla.core.reference.ProcessType;
 
 /**
@@ -15,16 +16,18 @@ public abstract class BasePplaProcessInfo extends BaseBaldyInfo {
     protected DateTime dateStarted;
     protected DateTime dateCompleted;
     protected PplaUserInfo actor;
-    protected String workOrderTrackingNo;
+    protected PplaWorkOrderInfo workOrder;
+    protected String remarks;
 
     @Override
     public String toString() {
         return new ToStringCreator(this)
             .append("ID", getId())
-            .append("Work order", workOrderTrackingNo)
+            .append("Work order", workOrder)
             .append("Started", dateStarted)
             .append("Completed", dateCompleted)
             .append("Actor", actor)
+            .append("Remarks", remarks)
             .toString();
     }
 
@@ -48,11 +51,21 @@ public abstract class BasePplaProcessInfo extends BaseBaldyInfo {
     public void setActor(PplaUserInfo actor) {
         this.actor = actor;
     }
-    public String getWorkOrderTrackingNo() {
-        return workOrderTrackingNo;
+
+    public PplaWorkOrderInfo getWorkOrder() {
+        return workOrder;
     }
-    public void setWorkOrderTrackingNo(String workOrderTrackingNo) {
-        this.workOrderTrackingNo = workOrderTrackingNo;
+
+    public void setWorkOrder(PplaWorkOrderInfo workOrder) {
+        this.workOrder = workOrder;
+    }
+
+    public String getRemarks() {
+        return remarks;
+    }
+
+    public void setRemarks(String remarks) {
+        this.remarks = remarks;
     }
 
 }

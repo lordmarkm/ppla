@@ -30,8 +30,8 @@ public class SupportConfig {
         mapper.addMapping(new BeanMappingBuilder() {
             @Override
             protected void configure() {
-                mapping(BasePplaProcess.class, BasePplaProcessInfo.class)
-                    .fields("workOrder.trackingNo", "workOrderTrackingNo", oneWay());
+//                mapping(BasePplaProcess.class, BasePplaProcessInfo.class)
+//                    .fields("workOrder.trackingNo", "workOrderTrackingNo", oneWay());
             }
         });
     }
