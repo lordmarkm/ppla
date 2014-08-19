@@ -7,6 +7,8 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import com.ppla.app.models.machine.Cutter;
@@ -18,6 +20,10 @@ import com.ppla.app.models.material.ProcessMaterialStack;
 @Entity(name = "CUTTING_PROCESS")
 @DiscriminatorValue("CUTTING")
 public class CuttingProcess extends MachineProcess<Cutter, ProcessMaterialStack> {
+
+    @ManyToOne
+    @JoinColumn(name = "MACHINE_ID")
+    private Cutter machine;
 
     @OneToMany(cascade = CascadeType.ALL)
     private List<ProcessMaterialStack> materialsIn;
@@ -36,6 +42,15 @@ public class CuttingProcess extends MachineProcess<Cutter, ProcessMaterialStack>
     }
     public void setMaterialsIn(List<ProcessMaterialStack> materialsIn) {
         this.materialsIn = materialsIn;
+    }
+
+    @Override
+    public Cutter getMachine() {
+        return machine;
+    }
+    @Override
+    public void setMachine(Cutter machine) {
+        this.machine = machine;
     }
 
 }

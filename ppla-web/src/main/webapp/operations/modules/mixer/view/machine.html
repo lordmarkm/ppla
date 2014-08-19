@@ -13,10 +13,10 @@
     <tbody>
       <tr ng-repeat="machine in machines">
         <td>{{machine.code}}
-        <td>{{machine.currentProcess ? 'In use' : 'Available'}}
+        <td>{{machine.currentProcessId ? 'In use' : 'Available'}}
         <td>
-          <button ng-click="useMachine(machine)" ng-if="!machine.currentProcess" class="btn btn-primary">Start mixing process</a>
-          <button ng-if="machine.currentProcess" class="btn btn-success">End process</button>
+          <button ng-click="useMachine(machine)" ng-if="!machine.currentProcessId" class="btn btn-primary">Start mixing process</a>
+          <button ui-sref="mixerend({processId: machine.currentProcessId})" ng-if="machine.currentProcessId" class="btn btn-success">End process {{machine.currentProcessId}}</button>
         </td>
       </tr>
     </tbody>

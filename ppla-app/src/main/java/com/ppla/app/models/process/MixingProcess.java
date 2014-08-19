@@ -10,6 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import com.ppla.app.models.PplaWorkOrder;
@@ -20,6 +21,10 @@ import com.ppla.app.models.material.RawMaterialStack;
 @Entity(name = "MIXING_PROCESS")
 @DiscriminatorValue("MIXING")
 public class MixingProcess extends MachineProcess<Mixer, RawMaterialStack> {
+
+    @ManyToOne
+    @JoinColumn(name = "MACHINE_ID")
+    private Mixer machine;
 
     @OneToMany(cascade = CascadeType.ALL)
     private List<RawMaterialStack> materialsIn;
@@ -72,6 +77,14 @@ public class MixingProcess extends MachineProcess<Mixer, RawMaterialStack> {
 
     public void setMaterialsIn(List<RawMaterialStack> materialsIn) {
         this.materialsIn = materialsIn;
+    }
+
+    public Mixer getMachine() {
+        return machine;
+    }
+
+    public void setMachine(Mixer machine) {
+        this.machine = machine;
     }
 
 }

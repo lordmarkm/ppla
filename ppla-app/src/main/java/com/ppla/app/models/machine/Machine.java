@@ -16,7 +16,7 @@ import com.ppla.core.reference.ProcessType;
  * @author mbmartinez
  */
 @Entity(name = "MACHINE")
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@Inheritance(strategy = InheritanceType.JOINED)
 @DiscriminatorColumn(name = "MACHINE_TYPE")
 public abstract class Machine<P extends BasePplaProcess> extends BaseEntity {
 
@@ -28,6 +28,7 @@ public abstract class Machine<P extends BasePplaProcess> extends BaseEntity {
     protected String code;
 
     public abstract P getCurrentProcess();
+    public abstract void setCurrentProcess(P process);
 
     public ProcessType getType() {
         return type;

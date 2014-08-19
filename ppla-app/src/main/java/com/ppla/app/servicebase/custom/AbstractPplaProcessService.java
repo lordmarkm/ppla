@@ -15,7 +15,9 @@ import com.ppla.app.services.PplaWorkOrderService;
 import com.ppla.core.dto.process.BasePplaProcessInfo;
 import com.tyrael.commons.mapper.service.MappingService;
 
-public abstract class AbstractPplaProcessService<E extends BasePplaProcess, D extends BasePplaProcessInfo, R extends BasePplaProcessService<E>>
+public abstract class AbstractPplaProcessService<E extends BasePplaProcess,
+    D extends BasePplaProcessInfo,
+    R extends BasePplaProcessService<E>>
     extends MappingService<E, D> {
 
     @Autowired
@@ -50,11 +52,14 @@ public abstract class AbstractPplaProcessService<E extends BasePplaProcess, D ex
         return toDto(repo.findByWorkOrder_TrackingNo(trackingNo));
     }
 
-    public D saveInfo(D processInfo) {
+    public E save(D processInfo) {
         if (processInfo.getDateStarted() == null) {
             processInfo.setDateStarted(DateTime.now());
         }
-        E saved = repo.save(toEntity(processInfo));
-        return toDto(saved);
+        return repo.save(toEntity(processInfo));
+    }
+
+    public D saveInfo(D processInfo) {
+        return toDto(save(processInfo));
     }
 }

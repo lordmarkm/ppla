@@ -51,19 +51,15 @@ public abstract class BasePplaProcessInfo extends BaseBaldyInfo {
     public void setActor(PplaUserInfo actor) {
         this.actor = actor;
     }
-
     public PplaWorkOrderInfo getWorkOrder() {
         return workOrder;
     }
-
     public void setWorkOrder(PplaWorkOrderInfo workOrder) {
         this.workOrder = workOrder;
     }
-
     public String getRemarks() {
         return remarks;
     }
-
     public void setRemarks(String remarks) {
         this.remarks = remarks;
     }

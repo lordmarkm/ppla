@@ -6,13 +6,16 @@ define([
   '/operations/controllers/MixingProcessController.js',
   '/operations/controllers/ProfileController.js',
 
-  //Mixer
-  '/operations/modules/mixer/controllers/MixerController.js',
-  '/operations/modules/mixer/controllers/MixerWorkorderController.js',
-  '/operations/modules/mixer/controllers/MixerIdentityController.js',
-  '/operations/modules/mixer/controllers/MixerMachineController.js',
-  '/operations/modules/mixer/controllers/MixerMaterialsController.js',
-  '/operations/modules/mixer/controllers/MixerAdditionalController.js',
+  //Mixer start process
+  '/operations/modules/mixer/controllers/startprocess/MixerController.js',
+  '/operations/modules/mixer/controllers/startprocess/MixerWorkorderController.js',
+  '/operations/modules/mixer/controllers/startprocess/MixerIdentityController.js',
+  '/operations/modules/mixer/controllers/startprocess/MixerMachineController.js',
+  '/operations/modules/mixer/controllers/startprocess/MixerMaterialsController.js',
+  '/operations/modules/mixer/controllers/startprocess/MixerAdditionalController.js',
+
+  //Mixer end process
+  '/operations/modules/mixer/controllers/endprocess/MixerEndController.js',
 
   //Warehouse
   '/operations/modules/warehouse/controllers/WarehouseController.js',

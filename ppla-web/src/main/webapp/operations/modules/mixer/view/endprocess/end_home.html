@@ -1,5 +1,5 @@
 <div class="panel panel-info">
-  <div class="panel-heading">Mixer</div>
+  <div class="panel-heading">Mixer End Process</div>
   <div class="panel-body">
     <dl class="dl-horizontal">
       <dt><a ui-sref="mixer.identity">Operator</a>
@@ -10,7 +10,7 @@
       <dd>{{process.workOrders|commaJoin: 'trackingNo'}}
       <dt><a ui-sref="mixer.materials">Materials In</a>
       <dd>
-        <span ng-if="!process.materialsIn.length">No materials to be added</span>
+        <span ng-if="!process.materialsIn.length">No materials to added</span>
         <span ng-if="process.materialsIn.length">
           <span ng-repeat="rawMaterialStack in process.materialsIn">{{rawMaterialStack.material.name}} - {{rawMaterialStack.quantity}} {{rawMaterialStack.material.unitOfMeasurement}}{{$last ? '': ', '}}</span>
         </span>
@@ -23,5 +23,3 @@
     </div>
   </div>
 </div>
-
-<ui-view></ui-view>

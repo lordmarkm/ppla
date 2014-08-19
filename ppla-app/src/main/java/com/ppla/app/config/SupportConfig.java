@@ -1,5 +1,7 @@
 package com.ppla.app.config;
 
+import static org.dozer.loader.api.FieldsMappingOptions.oneWay;
+
 import javax.annotation.PostConstruct;
 
 import org.dozer.DozerBeanMapper;
@@ -8,11 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 
-import com.ppla.app.models.process.BasePplaProcess;
-import com.ppla.core.dto.process.BasePplaProcessInfo;
+import com.ppla.app.models.machine.Mixer;
+import com.ppla.core.dto.machine.MachineInfo;
 import com.tyrael.commons.mapper.config.MapperConfig;
-
-import static org.dozer.loader.api.FieldsMappingOptions.*;
 
 /**
  * Initialize the Dozer mapper for application-wide use.
@@ -30,8 +30,8 @@ public class SupportConfig {
         mapper.addMapping(new BeanMappingBuilder() {
             @Override
             protected void configure() {
-//                mapping(BasePplaProcess.class, BasePplaProcessInfo.class)
-//                    .fields("workOrder.trackingNo", "workOrderTrackingNo", oneWay());
+                mapping(Mixer.class, MachineInfo.class)
+                    .fields("currentProcess.id", "currentProcessId", oneWay());
             }
         });
     }

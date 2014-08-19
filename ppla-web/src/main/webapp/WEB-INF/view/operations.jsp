@@ -38,7 +38,7 @@
         </a>
         <ul class="dropdown-menu" role="menu">
           <li><a ui-sref="warehouse.workorder">Warehouse</a></li>
-          <li><a ui-sref="mixer.workorder">Mixer</a></li>
+          <li><a ui-sref="mixer.identity">Mixer</a></li>
         </ul>
       </li>
     </ul>
