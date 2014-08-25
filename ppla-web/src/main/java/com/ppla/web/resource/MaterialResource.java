@@ -19,10 +19,12 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ppla.app.services.ProcessMaterialService;
 import com.ppla.app.services.RawMaterialService;
 import com.ppla.app.services.custom.MaterialBalanceService;
+import com.ppla.core.dto.material.BaseMaterialInfo;
 import com.ppla.core.dto.material.MaterialBalanceStackInfo;
 import com.ppla.core.dto.material.MaterialInventoryInfo;
 import com.ppla.core.dto.material.ProcessMaterialInfo;
 import com.ppla.core.dto.material.RawMaterialInfo;
+import com.ppla.core.reference.MaterialSource;
 
 @RestController
 @RequestMapping("/material")
@@ -53,6 +55,12 @@ public class MaterialResource {
         return new ResponseEntity<>(inventory, OK);
     }
 
+    @RequestMapping(value = "/process/{source}")
+    public ResponseEntity<List<ProcessMaterialInfo>> findBySource(@PathVariable String source) {
+        LOG.debug("Finding process materials by source. source={}", source);
+        return new ResponseEntity<>(procMaterials.findBySourceInfo(source), OK);
+    }
+
     @RequestMapping(value = "/{trackingNos}", method = GET)
     public ResponseEntity<List<MaterialBalanceStackInfo>> getWorkOrderMaterialBalance(@PathVariable String trackingNos) {
         LOG.debug("Computing material balance for work order. trackingNos={}", trackingNos);
@@ -70,4 +78,5 @@ public class MaterialResource {
         LOG.debug("Process Material save request. material={}", newMaterial);
         return new ResponseEntity<>(procMaterials.save(newMaterial), OK);
     }
+
 }

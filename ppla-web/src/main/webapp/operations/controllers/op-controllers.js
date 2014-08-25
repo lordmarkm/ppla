@@ -16,6 +16,7 @@ define([
 
   //Mixer end process
   '/operations/modules/mixer/controllers/endprocess/MixerEndController.js',
+  '/operations/modules/mixer/controllers/endprocess/MixerStageExtrusionController.js',
 
   //Warehouse
   '/operations/modules/warehouse/controllers/WarehouseController.js',

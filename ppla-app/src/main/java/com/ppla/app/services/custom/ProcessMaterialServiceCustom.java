@@ -10,6 +10,7 @@ import com.ppla.core.dto.material.ProcessMaterialInfo;
 public interface ProcessMaterialServiceCustom {
 
     List<ProcessMaterialInfo> findAllNonDeleted();
+    List<ProcessMaterialInfo> findBySourceInfo(String source);
     ProcessMaterialInfo save(ProcessMaterialInfo newMaterial);
 
 }

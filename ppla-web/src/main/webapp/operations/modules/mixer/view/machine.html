@@ -16,7 +16,7 @@
         <td>{{machine.currentProcessId ? 'In use' : 'Available'}}
         <td>
           <button ng-click="useMachine(machine)" ng-if="!machine.currentProcessId" class="btn btn-primary">Start mixing process</a>
-          <button ui-sref="mixerend({processId: machine.currentProcessId})" ng-if="machine.currentProcessId" class="btn btn-success">End process {{machine.currentProcessId}}</button>
+          <button ui-sref="mixerend.materials({processId: machine.currentProcessId})" ng-if="machine.currentProcessId" class="btn btn-success">End process {{machine.currentProcessId}}</button>
         </td>
       </tr>
     </tbody>

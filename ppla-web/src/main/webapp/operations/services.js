@@ -26,7 +26,7 @@ define(['angular'], function(angular) {
     });
   })
   .factory('MaterialService', function($resource) {
-    return $resource('/material/:type');
+    return $resource('/material/:type/:source');
   })
   .factory('ProcessService', function($resource) {
     return $resource('/process');
@@ -39,9 +39,6 @@ define(['angular'], function(angular) {
   })
   .factory('PplaUserService', function($resource) {
     return $resource('/user');
-  })
-  .factory('MaterialService', function($resource) {
-    return $resource('/material/:type');
   })
   .factory('MachineService', function($resource) {
     return $resource('/machine/:type');

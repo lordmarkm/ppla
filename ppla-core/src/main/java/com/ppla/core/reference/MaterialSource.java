@@ -8,6 +8,7 @@ public enum MaterialSource {
     RAW,
     MIXING,
     EXTRUSION,
+    PRINTING,
     CUTTING
 
 }

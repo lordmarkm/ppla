@@ -10,21 +10,17 @@ import com.ppla.app.models.material.ProcessMaterial;
 import com.ppla.app.services.ProcessMaterialService;
 import com.ppla.app.services.custom.ProcessMaterialServiceCustom;
 import com.ppla.core.dto.material.ProcessMaterialInfo;
+import com.ppla.core.reference.MaterialSource;
+import com.tyrael.commons.mapper.service.MappingService;
 
 /**
  * @author mbmartinez
  */
-public class ProcessMaterialServiceCustomImpl implements ProcessMaterialServiceCustom {
-
-    @Autowired
-    private Mapper mapper;
+public class ProcessMaterialServiceCustomImpl extends MappingService<ProcessMaterial, ProcessMaterialInfo>
+    implements ProcessMaterialServiceCustom {
 
     @Autowired
     private ProcessMaterialService service;
-
-    private ProcessMaterialInfo toDto(ProcessMaterial processMaterial) {
-        return mapper.map(processMaterial, ProcessMaterialInfo.class);
-    }
 
     @Override
     public List<ProcessMaterialInfo> findAllNonDeleted() {
@@ -34,6 +30,12 @@ public class ProcessMaterialServiceCustomImpl implements ProcessMaterialServiceC
             dtos.add(toDto(p));
         }
         return dtos;
+    }
+
+    @Override
+    public List<ProcessMaterialInfo> findBySourceInfo(String source) {
+        List<ProcessMaterial> processMaterials = service.findBySourceAndDeleted(MaterialSource.valueOf(source), false);
+        return toDto(processMaterials);
     }
 
     @Override

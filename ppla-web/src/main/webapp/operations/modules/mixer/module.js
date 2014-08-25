@@ -1,8 +1,9 @@
 define([
   '/operations/app.js',
-  '/operations/modules/mixer/resolve/MixerEndProcessResolve.js'
+  '/operations/modules/mixer/resolve/MixerEndProcessResolve.js',
+  '/operations/modules/mixer/resolve/MixerStageExtrusionResolve.js'
   ], 
-  function(app, MixerEndProcessResolve) {
+  function(app, MixerEndProcessResolve, MixerStageExtrusionResolve) {
     'use strict';
     return app.config(function($stateProvider) {
       $stateProvider.state('mixer', {
@@ -47,6 +48,17 @@ define([
         templateUrl: '/operations/modules/mixer/view/endprocess/end_home.html',
         controller: 'MixerEndController',
         resolve: MixerEndProcessResolve
+      })
+      .state('mixerend.materials', {
+        url: '/materials',
+        templateUrl: '/operations/modules/mixer/view/endprocess/materials.html',
+        controller: 'MixerEndController'
+      })
+      .state('mixerend.stageextrusion', {
+        url: '/stageextrusion',
+        templateUrl: '/operations/modules/mixer/view/endprocess/stage_extrusion_processes.html',
+        controller: 'MixerStageExtrusionController',
+        resolve: MixerStageExtrusionResolve
       });
     }
   );
