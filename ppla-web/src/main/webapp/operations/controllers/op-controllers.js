@@ -6,17 +6,21 @@ define([
   '/operations/controllers/MixingProcessController.js',
   '/operations/controllers/ProfileController.js',
 
+  //Mixer common
+  '/operations/modules/mixer/controllers/MixerController.js',
+  '/operations/modules/mixer/controllers/MixerIdentityController.js',
+  '/operations/modules/mixer/controllers/MixerMachineController.js',
+
   //Mixer start process
-  '/operations/modules/mixer/controllers/startprocess/MixerController.js',
-  '/operations/modules/mixer/controllers/startprocess/MixerWorkorderController.js',
-  '/operations/modules/mixer/controllers/startprocess/MixerIdentityController.js',
-  '/operations/modules/mixer/controllers/startprocess/MixerMachineController.js',
-  '/operations/modules/mixer/controllers/startprocess/MixerMaterialsController.js',
-  '/operations/modules/mixer/controllers/startprocess/MixerAdditionalController.js',
+  '/operations/modules/mixer/controllers/start/MixerStartController.js',
+  '/operations/modules/mixer/controllers/start/MixerWorkorderController.js',
+  '/operations/modules/mixer/controllers/start/MixerMaterialsController.js',
+  '/operations/modules/mixer/controllers/start/MixerAdditionalController.js',
 
   //Mixer end process
-  '/operations/modules/mixer/controllers/endprocess/MixerEndController.js',
-  '/operations/modules/mixer/controllers/endprocess/MixerStageExtrusionController.js',
+  '/operations/modules/mixer/controllers/end/MixerEndController.js',
+  '/operations/modules/mixer/controllers/end/MixerEndMaterialsController.js',
+  '/operations/modules/mixer/controllers/end/MixerStageExtrusionController.js',
 
   //Warehouse
   '/operations/modules/warehouse/controllers/WarehouseController.js',

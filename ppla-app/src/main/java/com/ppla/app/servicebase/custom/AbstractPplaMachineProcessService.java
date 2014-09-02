@@ -43,6 +43,16 @@ public class AbstractPplaMachineProcessService
         return toDto(process);
     }
 
+    public D endMachineProcessInfo(MachineProcessInfo processInfo) {
+        E process = super.save((D) processInfo);
+        M machine = toMachine(processInfo.getMachine());
+
+        machine.setCurrentProcess(process);
+        machineRepo.save(machine);
+
+        return toDto(process);
+    }
+
     protected M toMachine(MachineInfo machineInfo) {
         return mapper.map(machineInfo, machineClass);
     }

@@ -16,6 +16,7 @@ public abstract class BasePplaProcessInfo extends BaseBaldyInfo {
     protected DateTime dateStarted;
     protected DateTime dateCompleted;
     protected PplaUserInfo actor;
+    protected PplaUserInfo endActor;
     protected PplaWorkOrderInfo workOrder;
     protected String remarks;
 
@@ -62,6 +63,12 @@ public abstract class BasePplaProcessInfo extends BaseBaldyInfo {
     }
     public void setRemarks(String remarks) {
         this.remarks = remarks;
+    }
+    public PplaUserInfo getEndActor() {
+        return endActor;
+    }
+    public void setEndActor(PplaUserInfo endActor) {
+        this.endActor = endActor;
     }
 
 }

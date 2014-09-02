@@ -59,6 +59,11 @@ public abstract class AbstractPplaProcessService<E extends BasePplaProcess,
         return repo.save(toEntity(processInfo));
     }
 
+    public E end(D processInfo) {
+        processInfo.setDateCompleted(DateTime.now());
+        return repo.save(toEntity(processInfo));
+    }
+
     public D saveInfo(D processInfo) {
         return toDto(save(processInfo));
     }

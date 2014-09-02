@@ -1,9 +1,11 @@
 define([
   '/operations/app.js',
+  '/operations/modules/mixer/resolve/MixerMachineResolve.js',
   '/operations/modules/mixer/resolve/MixerEndProcessResolve.js',
-  '/operations/modules/mixer/resolve/MixerStageExtrusionResolve.js'
+  '/operations/modules/mixer/resolve/MixerStageExtrusionResolve.js',
+  '/operations/modules/mixer/resolve/MixerOutputMaterialResolve.js'
   ], 
-  function(app, MixerEndProcessResolve, MixerStageExtrusionResolve) {
+  function(app, MixerMachineResolve, MixerEndProcessResolve, MixerStageExtrusionResolve, MixerOutputMaterialResolve) {
     'use strict';
     return app.config(function($stateProvider) {
       $stateProvider.state('mixer', {
@@ -20,43 +22,57 @@ define([
       .state('mixer.machine', {
         url: '/machine',
         templateUrl: '/operations/modules/mixer/view/machine.html',
-        controller: 'MixerMachineController'
+        controller: 'MixerMachineController',
+        resolve: MixerMachineResolve
       })
-      .state('mixer.workorder', {
+
+      //Start process flow
+      .state('mixer.start', {
+        url: '/start',
+        templateUrl: '/operations/modules/mixer/view/start/home.html',
+        abstract: true,
+        controller: 'MixerStartController'
+      })
+      .state('mixer.start.workorder', {
         url: '/workorder',
-        templateUrl: '/operations/modules/mixer/view/workorder.html',
+        templateUrl: '/operations/modules/mixer/view/start/workorder.html',
         controller: 'MixerWorkorderController'
       })
-      .state('mixer.materials', {
+      .state('mixer.start.materials', {
         url: '/materials',
-        templateUrl: '/operations/modules/mixer/view/materials.html',
+        templateUrl: '/operations/modules/mixer/view/start/materials.html',
         controller: 'MixerMaterialsController'
       })
-      .state('mixer.additional', {
+      .state('mixer.start.additional', {
         url: '/additional',
-        templateUrl: '/operations/modules/mixer/view/additional.html',
+        templateUrl: '/operations/modules/mixer/view/start/additional.html',
         controller: 'MixerAdditionalController'
       })
-      .state('mixer.confirm', {
+      .state('mixer.start.confirm', {
         url: '/confirm',
-        controller: 'MixerController'
+        controller: 'MixerStartController'
       })
   
       //End process flow
-      .state('mixerend', {
+      .state('mixer.end', {
         url: '/mixer/end/{processId}',
-        templateUrl: '/operations/modules/mixer/view/endprocess/end_home.html',
+        templateUrl: '/operations/modules/mixer/view/end/home.html',
         controller: 'MixerEndController',
         resolve: MixerEndProcessResolve
       })
-      .state('mixerend.materials', {
+      .state('mixer.end.materials', {
         url: '/materials',
-        templateUrl: '/operations/modules/mixer/view/endprocess/materials.html',
+        templateUrl: '/operations/modules/mixer/view/end/materials.html',
+        controller: 'MixerEndMaterialsController',
+        resolve: MixerOutputMaterialResolve
+      })
+      .state('mixer.end.confirm', {
+        url: '/confirm',
         controller: 'MixerEndController'
       })
-      .state('mixerend.stageextrusion', {
+      .state('mixer.end.stageextrusion', {
         url: '/stageextrusion',
-        templateUrl: '/operations/modules/mixer/view/endprocess/stage_extrusion_processes.html',
+        templateUrl: '/operations/modules/mixer/view/end/stage_extrusion_processes.html',
         controller: 'MixerStageExtrusionController',
         resolve: MixerStageExtrusionResolve
       });
