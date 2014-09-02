@@ -12,6 +12,8 @@
   <name>PPLA :: App</name>
 
   <properties>
+    <db.username>root</db.username>
+    <db.password>root</db.password>
     <hibernate.hbm2ddl.auto>update</hibernate.hbm2ddl.auto>
     <hibernate.hbm2ddl.import_files></hibernate.hbm2ddl.import_files>
   </properties>
@@ -49,6 +51,13 @@
   </dependencies>
 
   <profiles>
+    <profile>
+      <id>qa</id>
+      <properties>
+        <db.username>ppla</db.username>
+        <db.password>ppla</db.password>
+      </properties>
+    </profile>
     <profile>
       <id>purge</id>
       <properties>
