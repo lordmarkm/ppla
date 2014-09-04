@@ -22,6 +22,16 @@ define([
   '/operations/modules/mixer/controllers/end/MixerEndMaterialsController.js',
   '/operations/modules/mixer/controllers/end/MixerStageExtrusionController.js',
 
+  //Extruder common
+  '/operations/modules/extruder/controllers/ExtruderController.js',
+  '/operations/modules/extruder/controllers/ExtruderIdentityController.js',
+  '/operations/modules/extruder/controllers/ExtruderMachineController.js',
+
+  //Extruder start process
+  '/operations/modules/extruder/controllers/start/ExtruderStartController.js',
+  '/operations/modules/extruder/controllers/start/ExtruderWorkorderController.js',
+  '/operations/modules/extruder/controllers/start/ExtruderMaterialsController.js',
+
   //Warehouse
   '/operations/modules/warehouse/controllers/WarehouseController.js',
   '/operations/modules/warehouse/controllers/WarehouseWorkorderController.js',

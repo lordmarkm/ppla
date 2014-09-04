@@ -2,6 +2,7 @@ package com.ppla.app.servicebase.custom;
 
 import javax.annotation.PostConstruct;
 
+import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.GenericTypeResolver;
 
@@ -33,10 +34,11 @@ public class AbstractPplaMachineProcessService
         machineClass = (Class<M>) genericTypes[3];
     }
 
-    public D saveMachineProcessInfo(MachineProcessInfo processInfo) {
-        E process = super.save((D) processInfo);
-        M machine = toMachine(processInfo.getMachine());
+    public D startMachineProcessInfo(MachineProcessInfo processInfo) {
+        E process = super.start((D) processInfo);
 
+        //Set process as machine's current process
+        M machine = toMachine(processInfo.getMachine());
         machine.setCurrentProcess(process);
         machineRepo.save(machine);
 
@@ -44,10 +46,11 @@ public class AbstractPplaMachineProcessService
     }
 
     public D endMachineProcessInfo(MachineProcessInfo processInfo) {
-        E process = super.save((D) processInfo);
-        M machine = toMachine(processInfo.getMachine());
+        E process = super.end((D) processInfo);
 
-        machine.setCurrentProcess(process);
+        //Make machine available
+        M machine = toMachine(processInfo.getMachine());
+        machine.setCurrentProcess(null);
         machineRepo.save(machine);
 
         return toDto(process);

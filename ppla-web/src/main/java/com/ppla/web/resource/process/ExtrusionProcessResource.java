@@ -15,38 +15,49 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ppla.app.services.process.MixingProcessService;
-import com.ppla.core.dto.process.MixingProcessInfo;
+import com.ppla.app.services.process.ExtrusionProcessService;
+import com.ppla.core.dto.process.ExtrusionProcessInfo;
 
 /**
- * @author Mark
+ * @author mbmartinez
  */
 @RestController
-@RequestMapping("/mixing")
-public class MixingProcessResource {
+@RequestMapping("/extrusion")
+public class ExtrusionProcessResource {
 
     private static Logger LOG = LoggerFactory.getLogger(MixingProcessResource.class);
 
     @Autowired
-    private MixingProcessService service;
+    private ExtrusionProcessService service;
 
     @RequestMapping(value = "/{id}", method = GET)
-    public ResponseEntity<MixingProcessInfo> findById(Principal principal, @PathVariable Long id) {
+    public ResponseEntity<ExtrusionProcessInfo> findById(Principal principal, @PathVariable Long id) {
         LOG.debug("Finding mixing process. id={}", id);
         return new ResponseEntity<>(service.findOneInfo(id), OK);
     }
 
-    @RequestMapping(method = POST)
-    public ResponseEntity<MixingProcessInfo> save(Principal principal,
-            @RequestBody MixingProcessInfo process) {
+    /**
+     * Neither start nor end, merely Stage.
+     */
+    @RequestMapping(value = "/stage", method = POST)
+    public ResponseEntity<ExtrusionProcessInfo> stage(Principal principal,
+            @RequestBody ExtrusionProcessInfo process) {
         LOG.debug("Saving mixing process. process={}", process);
+        return new ResponseEntity<>(service.saveInfo(process), OK);
+    }
+
+    @RequestMapping(value = "/start", method = POST)
+    public ResponseEntity<ExtrusionProcessInfo> start(Principal principal,
+            @RequestBody ExtrusionProcessInfo process) {
+        LOG.debug("Starting mixing process. process={}", process);
         return new ResponseEntity<>(service.startInfo(process), OK);
     }
 
     @RequestMapping(value = "/end", method = POST)
-    public ResponseEntity<MixingProcessInfo> end(Principal principal,
-            @RequestBody MixingProcessInfo process) {
-        LOG.debug("Saving mixing process. process={}", process);
+    public ResponseEntity<ExtrusionProcessInfo> end(Principal principal,
+            @RequestBody ExtrusionProcessInfo process) {
+        LOG.debug("Ending mixing process. process={}", process);
         return new ResponseEntity<>(service.endInfo(process), OK);
     }
+
 }

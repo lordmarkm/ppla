@@ -29,11 +29,20 @@ public class MixingProcessServiceCustomImpl extends AbstractPplaMachineProcessSe
      * for this mixing process before saving.
      */
     @Override
-    public MixingProcessInfo saveInfo(MixingProcessInfo processInfo) {
+    public MixingProcessInfo startInfo(MixingProcessInfo processInfo) {
 
         PplaWorkOrderInfo firstWorkorder = processInfo.getWorkOrders().get(0);
         processInfo.setWorkOrder(firstWorkorder);
 
-        return super.saveMachineProcessInfo(processInfo);
+        return super.startMachineProcessInfo(processInfo);
+    }
+
+    @Override
+    public MixingProcessInfo endInfo(MixingProcessInfo processInfo) {
+
+        PplaWorkOrderInfo firstWorkorder = processInfo.getWorkOrders().get(0);
+        processInfo.setWorkOrder(firstWorkorder);
+
+        return super.endMachineProcessInfo(processInfo);
     }
 }

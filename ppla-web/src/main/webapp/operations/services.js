@@ -35,7 +35,10 @@ define(['angular'], function(angular) {
     return $resource('/warehouse');
   })
   .factory('MixingProcessService', function($resource) {
-    return $resource('/mixing/:id');
+    return $resource('/mixing/:action/:id');
+  })
+  .factory('ExtrusionProcessService', function($resource) {
+    return $resource('/extrusion/:action/:id');
   })
   .factory('PplaUserService', function($resource) {
     return $resource('/user');

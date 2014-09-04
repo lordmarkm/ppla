@@ -1,0 +1,25 @@
+<div class="panel panel-default">
+<div class="panel-heading">Choose Machine</div>
+<div class="panel-body">
+  <div ng-if="!extruders || extruders.length == 0">No machines available</div>
+  <table class="table table-striped" ng-if="extruders.length > 0">
+    <thead>
+      <tr>
+        <th>Extruder code
+        <th>Status
+        <th>
+      </th>
+    </thead>
+    <tbody>
+      <tr ng-repeat="machine in extruders">
+        <td>{{machine.code}}
+        <td>{{machine.currentProcessId ? 'In use' : 'Available'}}
+        <td>
+          <button ng-click="useMachine(machine)" ng-if="!machine.currentProcessId" class="btn btn-primary">Start extrusion process</a>
+          <button ui-sref="extruder.end.materials({processId: machine.currentProcessId})" ng-if="machine.currentProcessId" class="btn btn-success">End process {{machine.currentProcessId}}</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+</div>

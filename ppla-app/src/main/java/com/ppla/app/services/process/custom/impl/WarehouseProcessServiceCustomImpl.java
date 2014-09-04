@@ -12,4 +12,9 @@ import com.ppla.core.dto.process.WarehouseProcessInfo;
 public class WarehouseProcessServiceCustomImpl extends AbstractPplaProcessService<WarehouseProcess, WarehouseProcessInfo, WarehouseProcessService> 
     implements WarehouseProcessServiceCustom {
 
+    @Override
+    public WarehouseProcessInfo endInfo(WarehouseProcessInfo processInfo) {
+        throw new RuntimeException("End process operation not supported for warehouse processes.");
+    }
+
 }

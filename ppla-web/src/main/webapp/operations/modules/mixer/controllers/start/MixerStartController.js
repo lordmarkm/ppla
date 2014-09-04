@@ -1,7 +1,7 @@
 define(['/operations/controllers/module.js'], function (controllers) {
   'use strict';
-  controllers.controller('MixerStartController', ['$scope', 'MixingProcessService',
-    function($scope, MixingProcessService) {
+  controllers.controller('MixerStartController', ['$scope', '$state', 'MixingProcessService',
+    function($scope, $state, MixingProcessService) {
 
     //com.ppla.core.dto.process.MixingProcessInfo
     $scope.process = {
@@ -51,7 +51,7 @@ define(['/operations/controllers/module.js'], function (controllers) {
         alert('Process created');
         $scope.process = {};
         resetMeta();
-        $state.go($scope.nextState());
+        $state.go('mixer.identity');
       });
     };
   }]);

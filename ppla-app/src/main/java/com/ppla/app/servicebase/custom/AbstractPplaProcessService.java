@@ -10,8 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.ppla.app.models.process.BasePplaProcess;
 import com.ppla.app.servicebase.BasePplaProcessService;
-import com.ppla.app.services.PplaUserService;
-import com.ppla.app.services.PplaWorkOrderService;
 import com.ppla.core.dto.process.BasePplaProcessInfo;
 import com.tyrael.commons.mapper.service.MappingService;
 
@@ -22,12 +20,6 @@ public abstract class AbstractPplaProcessService<E extends BasePplaProcess,
 
     @Autowired
     protected R repo;
-
-    @Autowired
-    private PplaUserService users;
-
-    @Autowired
-    private PplaWorkOrderService workOrders;
 
     public static List<BasePplaProcessInfo> sortByDate(List<BasePplaProcessInfo> dtos) {
         Collections.sort(dtos, new Comparator<BasePplaProcessInfo>() {
@@ -53,18 +45,28 @@ public abstract class AbstractPplaProcessService<E extends BasePplaProcess,
     }
 
     public E save(D processInfo) {
-        if (processInfo.getDateStarted() == null) {
-            processInfo.setDateStarted(DateTime.now());
-        }
         return repo.save(toEntity(processInfo));
+    }
+
+    public E start(D processInfo) {
+        processInfo.setDateStarted(DateTime.now());
+        return save(processInfo);
     }
 
     public E end(D processInfo) {
         processInfo.setDateCompleted(DateTime.now());
-        return repo.save(toEntity(processInfo));
+        return save(processInfo);
     }
 
     public D saveInfo(D processInfo) {
         return toDto(save(processInfo));
+    }
+
+    public D startInfo(D processInfo) {
+        return toDto(start(processInfo));
+    }
+
+    public D endInfo(D processInfo) {
+        return toDto(end(processInfo));
     }
 }

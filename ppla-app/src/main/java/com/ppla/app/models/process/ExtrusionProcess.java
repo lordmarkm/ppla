@@ -6,6 +6,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
@@ -21,7 +22,28 @@ public class ExtrusionProcess extends MachineProcess<Extruder, ProcessMaterialSt
     private Extruder machine;
 
     @OneToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+        name = "EXTRUSION_MATERIALS_IN",
+        joinColumns = {
+            @JoinColumn(name = "MATERIAL_ID")
+        },
+        inverseJoinColumns = {
+            @JoinColumn(name = "PROCESS_ID")
+        }
+    )
     private List<ProcessMaterialStack> materialsIn;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+        name = "EXTRUSION_MATERIALS_OUT",
+        joinColumns = {
+            @JoinColumn(name = "MATERIAL_ID")
+        },
+        inverseJoinColumns = {
+            @JoinColumn(name = "PROCESS_ID")
+        }
+    )
+    private List<ProcessMaterialStack> materialsOut;
 
     public List<ProcessMaterialStack> getMaterialsIn() {
         return materialsIn;
@@ -37,6 +59,14 @@ public class ExtrusionProcess extends MachineProcess<Extruder, ProcessMaterialSt
 
     public void setMachine(Extruder machine) {
         this.machine = machine;
+    }
+
+    public List<ProcessMaterialStack> getMaterialsOut() {
+        return materialsOut;
+    }
+
+    public void setMaterialsOut(List<ProcessMaterialStack> materialsOut) {
+        this.materialsOut = materialsOut;
     }
 
 }

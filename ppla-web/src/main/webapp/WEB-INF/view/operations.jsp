@@ -39,6 +39,7 @@
         <ul class="dropdown-menu" role="menu">
           <li><a ui-sref="warehouse.workorder">Warehouse</a></li>
           <li><a ui-sref="mixer.identity">Mixer</a></li>
+          <li><a ui-sref="extruder.identity">Extruder</a></li>
         </ul>
       </li>
     </ul>
