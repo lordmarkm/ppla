@@ -10,7 +10,7 @@ import org.springframework.core.style.ToStringCreator;
 public class MachineInventoryInfo {
 
     private List<MachineInfo> mixers;
-    private List<MachineInfo> extruders;
+    private List<ExtruderInfo> extruders;
     private List<MachineInfo> printers;
     private List<MachineInfo> cutters;
 
@@ -30,10 +30,10 @@ public class MachineInventoryInfo {
     public void setMixers(List<MachineInfo> mixers) {
         this.mixers = mixers;
     }
-    public List<MachineInfo> getExtruders() {
+    public List<ExtruderInfo> getExtruders() {
         return extruders;
     }
-    public void setExtruders(List<MachineInfo> extruders) {
+    public void setExtruders(List<ExtruderInfo> extruders) {
         this.extruders = extruders;
     }
     public List<MachineInfo> getPrinters() {

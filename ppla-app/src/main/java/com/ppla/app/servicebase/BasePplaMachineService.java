@@ -1,7 +1,5 @@
 package com.ppla.app.servicebase;
 
-import org.springframework.data.jpa.repository.JpaRepository;
-
 import com.ppla.app.models.machine.Machine;
 
 /**
@@ -9,5 +7,5 @@ import com.ppla.app.models.machine.Machine;
  * @param <M>
  */
 public interface BasePplaMachineService<M extends Machine<?>>
-    extends JpaRepository<M, Long> {
+    extends BasePplaService<M, Long> {
 }

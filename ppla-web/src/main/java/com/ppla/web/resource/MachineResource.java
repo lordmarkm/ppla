@@ -21,6 +21,7 @@ import com.ppla.app.services.machine.CutterService;
 import com.ppla.app.services.machine.ExtruderService;
 import com.ppla.app.services.machine.MixerService;
 import com.ppla.app.services.machine.PrinterService;
+import com.ppla.core.dto.machine.ExtruderInfo;
 import com.ppla.core.dto.machine.MachineInfo;
 import com.ppla.core.dto.machine.MachineInventoryInfo;
 import com.ppla.core.reference.ProcessType;
@@ -55,7 +56,19 @@ public class MachineResource {
         return new ResponseEntity<>(inventory, OK);
     }
 
-    @RequestMapping(value = "{type}", method = GET)
+    @RequestMapping(value = "/EXTRUSION", method = GET)
+    public ResponseEntity<List<ExtruderInfo>> getExtruders(@PathVariable ProcessType type) {
+        LOG.debug("Machines request. type={}");
+        return new ResponseEntity<>(extruderService.findAllInfo(), OK);
+    }
+
+    @RequestMapping(value = "/EXTRUSION", method = POST)
+    public ResponseEntity<ExtruderInfo> saveMachine(Principal principal, @RequestBody ExtruderInfo machineInfo) {
+        LOG.debug("Machine save request. user={}", principal);
+        return new ResponseEntity<>(extruderService.saveInfo(machineInfo), OK);
+    }
+
+    @RequestMapping(value = "/{type}", method = GET)
     public ResponseEntity<List<MachineInfo>> getMachinesOfType(@PathVariable ProcessType type) {
         LOG.debug("Machines request. type={}");
         return new ResponseEntity<>(getService(type).findAllInfo(), OK);
@@ -70,7 +83,6 @@ public class MachineResource {
     private BasePplaMachineServiceCustom<MachineInfo> getService(ProcessType type) {
         switch (type) {
         case MIXING: return mixerService;
-        case EXTRUSION: return extruderService;
         case PRINTING: return printerService;
         case CUTTING: return cutterService;
         default:
