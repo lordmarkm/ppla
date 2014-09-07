@@ -57,27 +57,29 @@ public class MachineResource {
     }
 
     @RequestMapping(value = "/EXTRUSION", method = GET)
-    public ResponseEntity<List<ExtruderInfo>> getExtruders(@PathVariable ProcessType type) {
-        LOG.debug("Machines request. type={}");
+    public ResponseEntity<List<ExtruderInfo>> getExtruders() {
+        LOG.debug("Extruders request. type={}");
         return new ResponseEntity<>(extruderService.findAllInfo(), OK);
     }
 
     @RequestMapping(value = "/EXTRUSION", method = POST)
     public ResponseEntity<ExtruderInfo> saveMachine(Principal principal, @RequestBody ExtruderInfo machineInfo) {
-        LOG.debug("Machine save request. user={}", principal);
+        LOG.debug("Extruder save request. user={}", principal);
         return new ResponseEntity<>(extruderService.saveInfo(machineInfo), OK);
     }
 
     @RequestMapping(value = "/{type}", method = GET)
     public ResponseEntity<List<MachineInfo>> getMachinesOfType(@PathVariable ProcessType type) {
         LOG.debug("Machines request. type={}");
+
         return new ResponseEntity<>(getService(type).findAllInfo(), OK);
     }
 
-    @RequestMapping(method = POST)
-    public ResponseEntity<MachineInfo> saveMachine(Principal principal, @RequestBody MachineInfo machineInfo) {
+    @RequestMapping(value = "/{type}", method = POST)
+    public ResponseEntity<MachineInfo> saveMachine(Principal principal, @PathVariable ProcessType type,
+            @RequestBody MachineInfo machineInfo) {
         LOG.debug("Machine save request. user={}", principal);
-        return new ResponseEntity<>(getService(machineInfo.getType()).saveInfo(machineInfo), OK);
+        return new ResponseEntity<>(getService(type).saveInfo(machineInfo), OK);
     }
 
     private BasePplaMachineServiceCustom<MachineInfo> getService(ProcessType type) {

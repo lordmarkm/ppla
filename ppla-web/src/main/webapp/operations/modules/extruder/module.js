@@ -29,8 +29,8 @@ define([
         url: '/start',
         templateUrl: '/operations/modules/extruder/view/start/home.html',
         abstract: true,
-        controller: 'ExtruderStartController',
-        resolve: ExtrusionProcessResolve
+        controller: 'ExtruderStartController'
+        //resolve: ExtrusionProcessResolve
       })
       .state('extruder.start.workorder', {
         url: '/workorder',
@@ -41,6 +41,11 @@ define([
         url: '/materials',
         templateUrl: '/operations/modules/extruder/view/start/materials.html',
         controller: 'ExtruderMaterialsController'
+      })
+      .state('extruder.start.additional', {
+        url: '/additional',
+        templateUrl: '/operations/modules/extruder/view/start/additional.html',
+        controller: 'ExtruderAdditionalController'
       })
       .state('extruder.start.confirm', {
         url: '/confirm',

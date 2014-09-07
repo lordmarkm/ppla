@@ -13,7 +13,7 @@ define(['/operations/controllers/module.js'], function (controllers) {
         actor: $scope.process.endActor,
         machine: extruder,
         materialsIn: [{
-          material: $scope.process.materialsIn[0].material,
+          material: $scope.process.materialsOut[0].material,
           quantity: 0
         }]
       };

@@ -1,7 +1,6 @@
 <div class="panel panel-info">
   <div class="panel-heading">Mixer End Process - Stage Extrusion Processes</div>
   <div class="panel-body">
-    {{extrusions}}
     <form name="stageExtrusionForm" ng-submit="stageExtrusions(stageExtrusionForm.$valid)">
       <table class="table table-striped">
         <thead>
@@ -12,8 +11,15 @@
           </tr>
         </thead>
         <tbody>
-          <tr ng-repeat="extruder in extruders | filter:{currentProcess: null}">
-            <td>{{extruder.code}}</td>
+          <tr ng-repeat="extruder in extruders">
+            <td>
+              {{extruder.code}} <br />
+              <small>
+                In use? 
+                <span ng-if="extruder.currentProcessId" class="label label-warning">Yes</span>
+                <span ng-if="!extruder.currentProcessId" class="label label-success">No</span>
+              </small>
+            </td>
             <td ng-if="extrusions[extruder.code]"><input type="number" ng-model="extrusions[extruder.code].materialsIn[0].quantity" /></td>
             <td ng-if="!extrusions[extruder.code]">
               <button class="btn btn-primary btn-xs" ng-click="stageExtrusionProcess(extruder)">Stage to this machine</button>

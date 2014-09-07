@@ -7,7 +7,7 @@
       <dt>Machine
       <dd>{{process.machine.code}}
       <dt>Work Order(s)
-      <dd>{{process.workOrders|commaJoin: 'trackingNo'}}
+      <dd>{{process.workOrder.trackingNo}}
       <dt>Materials In
       <dd>
         <span ng-if="!process.materialsIn.length">No materials to added</span>

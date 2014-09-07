@@ -1,5 +1,7 @@
 package com.ppla.web.config;
 
+import java.util.List;
+
 import javax.annotation.PostConstruct;
 
 import org.dozer.DozerBeanMapper;
@@ -9,14 +11,17 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.http.converter.HttpMessageConverter;
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
 
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.datatype.joda.JodaModule;
 import com.ppla.app.models.PplaSalesOrder;
 import com.ppla.core.dto.PplaSalesOrderInfo;
 
-@EnableWebMvc
 @Configuration
 @ComponentScan(basePackages = {
     "com.baldy.commons.web.config",
@@ -24,13 +29,14 @@ import com.ppla.core.dto.PplaSalesOrderInfo;
     "com.ppla.app.config",
     "com.ppla.core.config",
     "com.ppla.web",
-    
+
     //only works with 'sec' profile
     "com.ppla.security.config"
 })
 @PropertySource({"classpath:app.properties"})
 @EnableAspectJAutoProxy
-public class PplaWebConfig extends WebMvcConfigurerAdapter {
+public class PplaWebConfig extends WebMvcConfigurationSupport {
+//extends WebMvcConfigurerAdapter {
 
     @Autowired
     private DozerBeanMapper mapper;
@@ -46,9 +52,25 @@ public class PplaWebConfig extends WebMvcConfigurerAdapter {
         });
     }
 
+    //Enable direct access to .html, .css, etc
     @Override
     public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
         configurer.enable(); 
     }
 
+    //Override fail on unknown properties
+    @Override
+    public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
+        super.addDefaultHttpMessageConverters(converters);
+        for (HttpMessageConverter converter : converters) {
+            if (converter instanceof MappingJackson2HttpMessageConverter) {
+                ((MappingJackson2HttpMessageConverter) converter)
+                    .getObjectMapper()
+                    .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
+                    .registerModule(new JodaModule())
+                        .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
+                        .configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
+            }
+        }
+    }
 }

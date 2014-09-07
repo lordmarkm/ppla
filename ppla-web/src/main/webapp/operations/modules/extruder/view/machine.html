@@ -15,7 +15,12 @@
         <td>{{machine.code}}
         <td>{{machine.currentProcessId ? 'In use' : 'Available'}}
         <td>
-          <button ng-click="useMachine(machine)" ng-if="!machine.currentProcessId" class="btn btn-primary">Start extrusion process</a>
+          <div ng-if="!machine.currentProcessId">
+            <button ng-click="useMachine(machine)" class="btn btn-primary">Start extrusion process</button>
+            <div ng-repeat="staged in machine.staged">
+              <button ng-click="startStaged(staged)" class="btn btn-success">Start staged. Id: {{staged.id}}</button>
+            </div>
+          </div>
           <button ui-sref="extruder.end.materials({processId: machine.currentProcessId})" ng-if="machine.currentProcessId" class="btn btn-success">End process {{machine.currentProcessId}}</button>
         </td>
       </tr>

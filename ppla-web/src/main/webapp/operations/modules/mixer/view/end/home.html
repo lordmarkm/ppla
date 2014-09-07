@@ -31,22 +31,29 @@
         </span>
       </dd>
     </dl>
+    <!-- Uncomment to debug
     <dl>
       <dt>processStatus()
       <dd>{{processStatus()}}
       <dt>Process
       <dd>{{process}}
     </dl>
-    <div ng-if="processStatus() != 'Complete' && processStatus() != 'Completed'" class="text-right">
-      <button ui-sref="mixer.identity" class="btn btn-default">Cancel</button>
-    </div>
-    <div ng-if="processStatus() === 'Complete'" class="text-right">
-      <button ng-click="confirmEnd()" class="btn btn-primary">End Process</button>
-      <button ui-sref="mixer.identity" class="btn btn-default">Cancel</button>
-    </div>
-    <div ng-if="processStatus() === 'Completed'" class="text-right">
-      <button ui-sref="mixer.end.stageextrusion" class="btn btn-success">Stage Extrusion Processes</button>
-      <button ui-sref="mixer.identity" class="btn btn-default">Done</button>
+    -->
+    <div ng-switch on="processStatus()">
+      <div ng-switch-when="'Complete'" class="text-right">
+        <button ng-click="confirmEnd()" class="btn btn-primary">End Process</button>
+        <button ui-sref="mixer.identity" class="btn btn-default">Cancel</button>
+      </div>
+      <div ng-switch-when="'Completed'" class="text-right">
+        <button ui-sref="mixer.end.stageextrusion" class="btn btn-success">Stage Extrusion Processes</button>
+        <button ui-sref="mixer.identity" class="btn btn-default">Done</button>
+      </div>
+      <div ng-switch-when="'Staging Extrusion'" class="text-right">
+        <button ui-sref="mixer.identity" class="btn btn-default">Done</button>
+      </div>
+      <div ng-switch-default class="text-right">
+        <button ui-sref="mixer.identity" class="btn btn-default">Cancel</button>
+      </div>
     </div>
   </div>
 </div>

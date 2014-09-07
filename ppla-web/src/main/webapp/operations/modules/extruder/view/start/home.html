@@ -1,22 +1,43 @@
 <div class="panel panel-info">
   <div class="panel-heading">Extruder</div>
   <div class="panel-body">
-    <dl class="dl-horizontal">
+    <dl class="dl-horizontal" ng-if="commonData.staged">
+      <dt>Operator
+      <dd>{{process.actor.name|name}}
+      <dt>Machine
+      <dd>{{process.machine.code}}
+      <dt>Work Order(s)
+      <dd>{{process.workOrder.trackingNo}}
+      <dt>Materials In
+      <dd>
+        <span ng-if="!process.materialsIn.length">No materials to be added</span>
+        <span ng-if="process.materialsIn.length">
+          <span ng-repeat="matStack in process.materialsIn">{{matStack.material.name}} - {{matStack.quantity}} {{matStack.material.unitOfMeasurement}}{{$last ? '': ', '}}</span>
+        </span>
+      </dd>
+      <dt><a ui-sref="extruder.start.additional">Remarks</a>
+      <dd>{{process.remarks}}
+      <dt>Status
+      <dd>{{processStatus()}}
+    </dl>
+    <dl class="dl-horizontal" ng-if="!commonData.staged">
       <dt><a ui-sref="extruder.identity">Operator</a>
       <dd>{{process.actor.name|name}}
       <dt><a ui-sref="extruder.machine">Machine</a>
       <dd>{{process.machine.code}}
-      <dt><a ui-sref="extruder.workorder">Work Order(s)</a>
-      <dd>{{process.workOrders|commaJoin: 'trackingNo'}}
-      <dt><a ui-sref="extruder.materials">Materials In</a>
+      <dt><a ui-sref="extruder.start.workorder">Work Order(s)</a>
+      <dd>{{process.workOrder.trackingNo}}
+      <dt><a ui-sref="extruder.start.materials">Materials In</a>
       <dd>
         <span ng-if="!process.materialsIn.length">No materials to be added</span>
         <span ng-if="process.materialsIn.length">
           <span ng-repeat="rawMaterialStack in process.materialsIn">{{rawMaterialStack.material.name}} - {{rawMaterialStack.quantity}} {{rawMaterialStack.material.unitOfMeasurement}}{{$last ? '': ', '}}</span>
         </span>
       </dd>
-      <dt><a ui-sref="extruder.additional">Remarks</a>
+      <dt><a ui-sref="extruder.start.additional">Remarks</a>
       <dd>{{process.remarks}}
+      <dt>Status
+      <dd>{{processStatus()}}
     </dl>
     <div ng-if="processStatus() === 'Complete'" class="text-right">
       <button ng-click="saveProcess()" class="btn btn-primary">Create Process</button>

@@ -8,9 +8,11 @@ define(['/operations/controllers/module.js'], function (controllers) {
       $scope.commonData.machine = machine;
       $state.go('extruder.start.workorder');
     };
-    $scope.startStagedExtrusion = function (process) {
-      //TODO
-    }
+    $scope.startStaged = function (process) {
+      $scope.commonData.process = process;
+      $scope.commonData.staged = true;
+      $state.go('extruder.start.additional');
+    };
 
   }]);
 });
