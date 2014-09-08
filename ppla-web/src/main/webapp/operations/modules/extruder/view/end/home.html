@@ -19,34 +19,34 @@
       <dd>{{process.remarks}}
     </dl>
     <dl class="dl-horizontal">
-      <dt><a ui-sref="mixer.identity">Ended by Operator</a>
+      <dt><a ui-sref="extruder.identity">Ended by Operator</a>
       <dd>{{process.endActor.name|name}}
       <dt>Date completed
       <dd>{{process.dateCompleted|date}}
-      <dt><a ui-sref="mixer.end.materials">Materials Out</a>
+      <dt><a ui-sref="extruder.end.materials">Materials Out</a>
       <dd>
         <span ng-if="!process.materialsOut.length">No output materials specified</span>
         <span ng-if="process.materialsOut.length">
           <span ng-repeat="processMaterialStack in process.materialsOut">{{processMaterialStack.material.name}} - {{processMaterialStack.quantity}} {{processMaterialStack.material.unitOfMeasurement}}{{$last ? '': ', '}}</span>
         </span>
       </dd>
+      <dt>Process Status
+      <dd>{{processStatus()}}
     </dl>
     <dl>
-      <dt>processStatus()
-      <dd>{{processStatus()}}
       <dt>Process
       <dd>{{process}}
     </dl>
     <div ng-if="processStatus() != 'Complete' && processStatus() != 'Completed'" class="text-right">
-      <button ui-sref="mixer.identity" class="btn btn-default">Cancel</button>
+      <button ui-sref="extruder.identity" class="btn btn-default">Cancel</button>
     </div>
     <div ng-if="processStatus() === 'Complete'" class="text-right">
       <button ng-click="confirmEnd()" class="btn btn-primary">End Process</button>
-      <button ui-sref="mixer.identity" class="btn btn-default">Cancel</button>
+      <button ui-sref="extruder.identity" class="btn btn-default">Cancel</button>
     </div>
     <div ng-if="processStatus() === 'Completed'" class="text-right">
-      <button ui-sref="mixer.end.stageextrusion" class="btn btn-success">Stage Extrusion Processes</button>
-      <button ui-sref="mixer.identity" class="btn btn-default">Done</button>
+      <button ui-sref="extruder.end.printtags" class="btn btn-success">Print Tags</button>
+      <button ui-sref="extruder.identity" class="btn btn-default">Done</button>
     </div>
   </div>
 </div>

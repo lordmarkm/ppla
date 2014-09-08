@@ -13,9 +13,12 @@ import com.google.common.collect.Lists;
 import com.ppla.app.models.PplaOrderItem;
 import com.ppla.app.models.PplaWorkOrder;
 import com.ppla.app.models.QPplaOrderItem;
+import com.ppla.app.models.process.ExtrusionProcess;
+import com.ppla.app.models.process.QExtrusionProcess;
 import com.ppla.app.services.PplaOrderItemService;
 import com.ppla.app.services.PplaWorkOrderService;
 import com.ppla.app.services.custom.PplaWorkOrderServiceCustom;
+import com.ppla.app.services.process.ExtrusionProcessService;
 import com.ppla.core.dto.PplaOrderItemInfo;
 import com.ppla.core.dto.PplaWorkOrderInfo;
 import com.tyrael.commons.mapper.dto.PageInfo;
@@ -32,6 +35,9 @@ public class PplaWorkOrderServiceCustomImpl extends MappingService<PplaWorkOrder
 
     @Autowired
     private PplaOrderItemService orderItemService;
+
+    @Autowired
+    private ExtrusionProcessService extrusionService;
 
     @Override
     public PplaWorkOrderInfo findByTrackingNoInfo(String trackingNo) {
@@ -118,6 +124,14 @@ public class PplaWorkOrderServiceCustomImpl extends MappingService<PplaWorkOrder
         workOrder.setDateCompleted(DateTime.now());
         workOrder.setStatus(PplaWorkOrder.STATUS_CLOSED);
         return toDto(workOrders.save(workOrder));
+    }
+
+    @Override
+    public PplaWorkOrderInfo findInfoByMaterialTag(String tag) {
+        ExtrusionProcess producer = extrusionService.findOne(
+            QExtrusionProcess.extrusionProcess.materialsOut.any().tag.eq(tag)
+        );
+        return toDto(producer.getWorkOrder());
     }
 
 }

@@ -1,19 +1,53 @@
 <div class="panel panel-default">
-<div class="panel-heading">Materials Produced</div>
+<div class="panel-heading">Choose Materials</div>
 <div class="panel-body">
-  <form name="outputQuantityForm" class="form form-horizontal" ng-submit="saveOutputQuantity(outputQuantityForm.$valid)">
-    <div class="form-group">
-      <label class="col-sm-2 control-label">Net weight</label>
-      <div class="col-sm-4">
-        <div class="input-group">
-          <input type="number" ng-model="mixingOutputQuantity" class="form-control" min="0.1" step="any" required />
-          <span class="input-group-addon">{{process.materialsOut[0].material.unitOfMeasurement}}</span>
+  <div ng-if="!materials || materials.length == 0">No materials available</div>
+  <div ng-if="materials.length">
+    <div class="col-sm-7">
+      <div class="form-group">
+        <div class="col-sm-12">
+          <div class="col-sm-5">
+            <select 
+              ng-options="material as material.name for material in materials track by material.id"
+              ng-model="material"
+              class="form-control" required></select>
+          </div>
+          <div class="col-sm-4">
+            <div class="input-group">
+              <input type="number"
+                ng-model="quantity" min="0.1" step="any"
+                class="form-control" />
+              <span ng-if="material && material.unitOfMeasurement" class="input-group-addon">{{material.unitOfMeasurement}}</span>
+            </div>
+          </div>
+          <div class="col-sm-3">
+            <button ng-click="add()" class="btn btn-primary">Add material output</button>
+          </div>
         </div>
       </div>
     </div>
-    <div class="text-right">
-      <input type="submit" value="Save" class="btn btn-success" />
+    <div class="col-sm-5">
+      <div ng-if="!toAdd.length" class="alert alert-info text-center">
+        No materials to add
+      </div>
+      <table ng-if="toAdd.length" class="table table-striped">
+        <thead>
+          <tr>
+            <th>Material
+            <th>Quantity
+            <th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="matStack in toAdd">
+            <td>{{matStack.material.name}}
+            <td>{{matStack.quantity}} {{matStack.material.unitOfMeasurement? matStack.material.unitOfMeasurement : ''}}
+            <td><a ng-click="remove(matStack)" href="javascript:;"><i class="glyphicon glyphicon-remove"></i></a>
+          </tr>
+        </tbody>
+      </table>
+      <button ng-click="save(true)" ng-disabled="!toAdd.length" class="btn btn-success form-control">Save</button>
     </div>
-  </form>
+  </div>
 </div>
 </div>

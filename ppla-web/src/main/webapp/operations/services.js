@@ -17,7 +17,8 @@ define(['angular'], function(angular) {
   .factory('WorkOrderService', function($resource) {
     return $resource('/workOrder/:action/:orderItemId/:trackingNo', {}, {
       page: {method: 'GET', isArray: false},
-      close: {method: 'POST', isArray: false, params: {action: 'close'}}
+      close: {method: 'POST', isArray: false, params: {action: 'close'}},
+      findByTag: {method: 'GET', isArray: false, params: {action: 'tag'}}
     });
   })
   .factory('ProductService', function($resource) {

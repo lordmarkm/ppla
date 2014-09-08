@@ -91,6 +91,11 @@
         <artifactId>tyrael-commons-mapper</artifactId>
         <version>${tyrael.version}</version>
       </dependency>
+      <dependency>
+        <groupId>tyrael-commons</groupId>
+        <artifactId>tyrael-commons-reports</artifactId>
+        <version>${tyrael.version}</version>
+      </dependency>
 
       <!-- PROJECT -->
       <dependency>

@@ -17,7 +17,9 @@ public interface PplaWorkOrderServiceCustom {
     PplaWorkOrderInfo attach(Long orderItemId, String trackingNo);
     PplaWorkOrderInfo findByTrackingNoInfo(String trackingNo);
     PplaWorkOrderInfo close(String trackingNo);
+    PplaWorkOrderInfo findInfoByMaterialTag(String tag);
     List<PplaWorkOrderInfo> findOpenWithSameProductInfo(Long orderItemId);
+
     PageInfo<PplaWorkOrderInfo> page(PageRequest pageRequest);
 
 }

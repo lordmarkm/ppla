@@ -1,9 +1,10 @@
 define([
   '/operations/app.js',
   '/operations/modules/extruder/resolve/ExtrusionProcessResolve.js',
-  '/operations/modules/extruder/resolve/ExtruderMachineResolve.js'
+  '/operations/modules/extruder/resolve/ExtruderMachineResolve.js',
+  '/operations/modules/extruder/resolve/ExtruderOutputMaterialResolve.js'
   ], 
-  function(app, ExtrusionProcessResolve, ExtruderMachineResolve) {
+  function(app, ExtrusionProcessResolve, ExtruderMachineResolve, ExtruderOutputMaterialResolve) {
     'use strict';
     return app.config(function($stateProvider) {
       $stateProvider.state('extruder', {
@@ -50,31 +51,25 @@ define([
       .state('extruder.start.confirm', {
         url: '/confirm',
         controller: 'ExtruderStartController'
-      });
-  
+      })
+
       //End process flow
-//      .state('extruder.end', {
-//        url: '/extruder/end/{processId}',
-//        templateUrl: '/operations/modules/extruder/view/end/home.html',
-//        controller: 'ExtruderEndController',
-//        resolve: ExtruderEndProcessResolve
-//      })
-//      .state('extruder.end.materials', {
-//        url: '/materials',
-//        templateUrl: '/operations/modules/extruder/view/end/materials.html',
-//        controller: 'ExtruderEndMaterialsController',
-//        resolve: ExtruderOutputMaterialResolve
-//      })
-//      .state('extruder.end.confirm', {
-//        url: '/confirm',
-//        controller: 'ExtruderEndController'
-//      })
-//      .state('extruder.end.stageextrusion', {
-//        url: '/stageextrusion',
-//        templateUrl: '/operations/modules/extruder/view/end/stage_extrusion_processes.html',
-//        controller: 'ExtruderStageExtrusionController',
-//        resolve: ExtruderStageExtrusionResolve
-//      });
+      .state('extruder.end', {
+        url: '/end/{processId}',
+        templateUrl: '/operations/modules/extruder/view/end/home.html',
+        controller: 'ExtruderEndController',
+        resolve: ExtrusionProcessResolve
+      })
+      .state('extruder.end.materials', {
+        url: '/materials',
+        templateUrl: '/operations/modules/extruder/view/end/materials.html',
+        controller: 'ExtruderEndMaterialsController',
+        resolve: ExtruderOutputMaterialResolve
+      })
+      .state('extruder.end.confirm', {
+        url: '/confirm',
+        controller: 'ExtruderEndController'
+      });
     }
   );
 });

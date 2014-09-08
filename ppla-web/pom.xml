@@ -20,6 +20,13 @@
       <groupId>ppla</groupId>
       <artifactId>ppla-app</artifactId>
     </dependency>
+
+    <!-- Tyrael -->
+    <dependency>
+      <groupId>tyrael-commons</groupId>
+      <artifactId>tyrael-commons-reports</artifactId>
+    </dependency>
+
     <!-- Baldy -->
     <dependency>
       <groupId>baldy.commons</groupId>

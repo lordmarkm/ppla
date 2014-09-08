@@ -1,17 +1,14 @@
 define(['/operations/controllers/module.js'], function (controllers) {
   'use strict';
-  controllers.controller('ExtruderStartController', ['$scope', '$state', 'ExtrusionProcessService',
-    function($scope, $state, ExtrusionProcessService) {
+  controllers.controller('PrinterStartController', ['$scope', '$state', 'PrintingProcessService',
+    function($scope, $state, PrintingProcessService) {
 
-    //com.ppla.core.dto.process.ExtrusionProcessInfo
-    //Get from commonData if staged, otherwise make a new one
-    $scope.process = $scope.commonData.process || {
+    //com.ppla.core.dto.process.PrintingProcessInfo
+    $scope.process = {
       actor: $scope.commonData.actor,
-      machine: $scope.commonData.machine
+      machine: $scope.commonData.machine,
+      workOrder: $scope.commonData.workOrder
     };
-
-    //If staged, active user is process actor
-    $scope.process.actor = $scope.commonData.actor;
 
     //for screens where there are no required fields
     $scope.meta = {

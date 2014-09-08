@@ -57,6 +57,11 @@ public class WorkOrderResource {
         return new ResponseEntity<>(sameProductList, OK);
     }
 
+    @RequestMapping(value = "/tag/{tag}", method = GET)
+    public ResponseEntity<PplaWorkOrderInfo> findByMaterialTag(@PathVariable String tag) {
+        return new ResponseEntity<>(service.findInfoByMaterialTag(tag), OK);
+    }
+
     @RequestMapping(value = "/new/{orderItemId}", method = POST)
     public ResponseEntity<PplaWorkOrderInfo> createNew(@PathVariable Long orderItemId,
             @RequestBody PplaWorkOrderInfo workOrder) {

@@ -33,6 +33,10 @@ define([
   '/operations/modules/extruder/controllers/start/ExtruderMaterialsController.js',
   '/operations/modules/extruder/controllers/start/ExtruderAdditionalController.js',
 
+  //Extruder end process
+  '/operations/modules/extruder/controllers/end/ExtruderEndController.js',
+  '/operations/modules/extruder/controllers/end/ExtruderEndMaterialsController.js',
+
   //Warehouse
   '/operations/modules/warehouse/controllers/WarehouseController.js',
   '/operations/modules/warehouse/controllers/WarehouseWorkorderController.js',
