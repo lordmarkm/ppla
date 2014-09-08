@@ -39,10 +39,6 @@ public class MixingProcessServiceCustomImpl extends AbstractPplaMachineProcessSe
 
     @Override
     public MixingProcessInfo endInfo(MixingProcessInfo processInfo) {
-
-        PplaWorkOrderInfo firstWorkorder = processInfo.getWorkOrders().get(0);
-        processInfo.setWorkOrder(firstWorkorder);
-
         return super.endMachineProcessInfo(processInfo);
     }
 }

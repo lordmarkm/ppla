@@ -36,5 +36,5 @@ angular.module('ppla.services', ['ngResource'])
 })
 
 .factory('MachineService', function($resource) {
-  return $resource('/machine');
+  return $resource('/machine/:type');
 });

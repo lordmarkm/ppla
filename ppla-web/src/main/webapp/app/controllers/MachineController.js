@@ -5,7 +5,7 @@ angular.module('ppla.controllers')
   $scope.machines = MachineService.get();
 
   $scope.saveMachine = function () {
-    MachineService.save($scope.machine, function(saved) {
+    MachineService.save({type: $scope.machine.type}, $scope.machine, function(saved) {
       alert('Machine details successfully saved.');
       if (!$scope.machine.id) {
       switch($scope.machine.type) {

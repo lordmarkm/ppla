@@ -24,29 +24,8 @@ define(['/operations/controllers/module.js'], function (controllers) {
       }
     });
 
-    $scope.isAttached = function (toCheck) {
-      var i = $scope.workOrders.length, workOrder;
-      while (i--) {
-        workOrder = $scope.workOrders[i];
-        if (workOrder.trackingNo == toCheck.trackingNo) {
-          return true;
-        }
-      }
-      return false;
-    };
-
-    $scope.remove = function (toRemove) {
-      var i = $scope.workOrders.length, workOrder;
-      while (i--) {
-        workOrder = $scope.workOrders[i];
-        if (workOrder.trackingNo == toRemove.trackingNo) {
-          $scope.workOrders.splice(i, 1);
-        }
-      }
-    };
-
-    $scope.saveWorkorders = function () {
-      $scope.process.workOrders = $scope.workOrders;
+    $scope.useWorkorder = function (workorder) {
+      $scope.process.workOrder = workorder;
       $state.go($scope.nextState());
     };
 

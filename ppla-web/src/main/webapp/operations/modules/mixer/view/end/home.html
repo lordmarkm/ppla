@@ -30,25 +30,25 @@
           <span ng-repeat="processMaterialStack in process.materialsOut">{{processMaterialStack.material.name}} - {{processMaterialStack.quantity}} {{processMaterialStack.material.unitOfMeasurement}}{{$last ? '': ', '}}</span>
         </span>
       </dd>
+      <dt>Process Status
+      <dd>{{processStatus()}}
     </dl>
     <!-- Uncomment to debug
     <dl>
-      <dt>processStatus()
-      <dd>{{processStatus()}}
       <dt>Process
       <dd>{{process}}
     </dl>
     -->
     <div ng-switch on="processStatus()">
-      <div ng-switch-when="'Complete'" class="text-right">
+      <div ng-switch-when="Complete" class="text-right">
         <button ng-click="confirmEnd()" class="btn btn-primary">End Process</button>
         <button ui-sref="mixer.identity" class="btn btn-default">Cancel</button>
       </div>
-      <div ng-switch-when="'Completed'" class="text-right">
+      <div ng-switch-when="Completed" class="text-right">
         <button ui-sref="mixer.end.stageextrusion" class="btn btn-success">Stage Extrusion Processes</button>
         <button ui-sref="mixer.identity" class="btn btn-default">Done</button>
       </div>
-      <div ng-switch-when="'Staging Extrusion'" class="text-right">
+      <div ng-switch-when="Staging Extrusion" class="text-right">
         <button ui-sref="mixer.identity" class="btn btn-default">Done</button>
       </div>
       <div ng-switch-default class="text-right">

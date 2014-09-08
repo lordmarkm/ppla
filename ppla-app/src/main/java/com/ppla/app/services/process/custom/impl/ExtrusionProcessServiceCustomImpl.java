@@ -22,4 +22,13 @@ public class ExtrusionProcessServiceCustomImpl
     
     implements ExtrusionProcessServiceCustom {
 
+    @Override
+    public ExtrusionProcessInfo startInfo(ExtrusionProcessInfo processInfo) {
+        return super.startMachineProcessInfo(processInfo);
+    }
+
+    @Override
+    public ExtrusionProcessInfo endInfo(ExtrusionProcessInfo processInfo) {
+        return super.endMachineProcessInfo(processInfo);
+    }
 }

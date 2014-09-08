@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 
+import com.ppla.app.models.machine.Extruder;
 import com.ppla.app.models.machine.Mixer;
 import com.ppla.core.dto.machine.MachineInfo;
 import com.tyrael.commons.mapper.config.MapperConfig;
@@ -31,6 +32,8 @@ public class SupportConfig {
             @Override
             protected void configure() {
                 mapping(Mixer.class, MachineInfo.class)
+                    .fields("currentProcess.id", "currentProcessId", oneWay());
+                mapping(Extruder.class, MachineInfo.class)
                     .fields("currentProcess.id", "currentProcessId", oneWay());
             }
         });

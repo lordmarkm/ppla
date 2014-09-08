@@ -61,12 +61,6 @@ public class MaterialResource {
         return new ResponseEntity<>(procMaterials.findBySourceInfo(source), OK);
     }
 
-    @RequestMapping(value = "/{trackingNos}", method = GET)
-    public ResponseEntity<List<MaterialBalanceStackInfo>> getWorkOrderMaterialBalance(@PathVariable String trackingNos) {
-        LOG.debug("Computing material balance for work order. trackingNos={}", trackingNos);
-        return new ResponseEntity<>(materialBalanceService.computeMaterialBalance(trackingNos), OK);
-    }
-
     @RequestMapping(value = "/raw", method = POST)
     public ResponseEntity<RawMaterialInfo> save(@RequestBody RawMaterialInfo newMaterial) {
         LOG.debug("Raw Material save request. material={}", newMaterial);
@@ -77,6 +71,13 @@ public class MaterialResource {
     public ResponseEntity<ProcessMaterialInfo> save(@RequestBody ProcessMaterialInfo newMaterial) {
         LOG.debug("Process Material save request. material={}", newMaterial);
         return new ResponseEntity<>(procMaterials.save(newMaterial), OK);
+    }
+
+    //TODO move to WO Material res
+    @RequestMapping(value = "/{trackingNos}", method = GET)
+    public ResponseEntity<List<MaterialBalanceStackInfo>> getWorkOrderMaterialBalance(@PathVariable String trackingNos) {
+        LOG.debug("Computing material balance for work order. trackingNos={}", trackingNos);
+        return new ResponseEntity<>(materialBalanceService.computeMaterialBalance(trackingNos), OK);
     }
 
 }
