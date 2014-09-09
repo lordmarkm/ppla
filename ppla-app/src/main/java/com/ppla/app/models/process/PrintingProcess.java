@@ -2,14 +2,13 @@ package com.ppla.app.models.process;
 
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 
-import com.ppla.app.models.machine.Mixer;
+import com.google.common.collect.Lists;
+import com.mysema.query.annotations.QueryInit;
 import com.ppla.app.models.machine.Printer;
 import com.ppla.app.models.material.ProcessMaterialStack;
 
@@ -21,15 +20,14 @@ public class PrintingProcess extends MachineProcess<Printer, ProcessMaterialStac
     @JoinColumn(name = "MACHINE_ID")
     private Printer machine;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    private List<ProcessMaterialStack> materialsIn;
+    @ManyToOne
+    @JoinColumn(name = "ROLL_IN_STACK_ID", nullable = false)
+    @QueryInit("*")
+    private ProcessMaterialStack rollIn;
 
+    @Override
     public List<ProcessMaterialStack> getMaterialsIn() {
-        return materialsIn;
-    }
-
-    public void setMaterialsIn(List<ProcessMaterialStack> materialsIn) {
-        this.materialsIn = materialsIn;
+        return Lists.newArrayList(rollIn);
     }
 
     public Printer getMachine() {
@@ -38,6 +36,14 @@ public class PrintingProcess extends MachineProcess<Printer, ProcessMaterialStac
 
     public void setMachine(Printer machine) {
         this.machine = machine;
+    }
+
+    public ProcessMaterialStack getRollIn() {
+        return rollIn;
+    }
+
+    public void setRollIn(ProcessMaterialStack rollIn) {
+        this.rollIn = rollIn;
     }
 
 }

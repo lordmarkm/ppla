@@ -8,17 +8,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 
-
 import com.google.common.collect.Lists;
 import com.ppla.app.models.PplaOrderItem;
 import com.ppla.app.models.PplaWorkOrder;
 import com.ppla.app.models.QPplaOrderItem;
-import com.ppla.app.models.process.ExtrusionProcess;
-import com.ppla.app.models.process.QExtrusionProcess;
+import com.ppla.app.models.material.ProcessMaterialStack;
 import com.ppla.app.services.PplaOrderItemService;
 import com.ppla.app.services.PplaWorkOrderService;
+import com.ppla.app.services.ProcessMaterialStackService;
 import com.ppla.app.services.custom.PplaWorkOrderServiceCustom;
-import com.ppla.app.services.process.ExtrusionProcessService;
 import com.ppla.core.dto.PplaOrderItemInfo;
 import com.ppla.core.dto.PplaWorkOrderInfo;
 import com.tyrael.commons.mapper.dto.PageInfo;
@@ -37,7 +35,7 @@ public class PplaWorkOrderServiceCustomImpl extends MappingService<PplaWorkOrder
     private PplaOrderItemService orderItemService;
 
     @Autowired
-    private ExtrusionProcessService extrusionService;
+    private ProcessMaterialStackService procMatStackService;
 
     @Override
     public PplaWorkOrderInfo findByTrackingNoInfo(String trackingNo) {
@@ -128,10 +126,12 @@ public class PplaWorkOrderServiceCustomImpl extends MappingService<PplaWorkOrder
 
     @Override
     public PplaWorkOrderInfo findInfoByMaterialTag(String tag) {
-        ExtrusionProcess producer = extrusionService.findOne(
-            QExtrusionProcess.extrusionProcess.materialsOut.any().tag.eq(tag)
-        );
-        return toDto(producer.getWorkOrder());
+        ProcessMaterialStack stack = procMatStackService.findByTag(tag);
+        if (null == stack) {
+            return null;
+        }
+        String woTrackingNo = stack.getWorkorderTrackingNo();
+        return toDto(workOrders.findByTrackingNo(woTrackingNo));
     }
 
 }

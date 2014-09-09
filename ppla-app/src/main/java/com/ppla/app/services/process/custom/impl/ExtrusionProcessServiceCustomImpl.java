@@ -38,6 +38,7 @@ public class ExtrusionProcessServiceCustomImpl
     public ExtrusionProcessInfo endInfo(ExtrusionProcessInfo processInfo) {
         for (ProcessMaterialStackInfo outputStack : processInfo.getMaterialsOut()) {
             outputStack.setTag(tagGenerator.next());
+            outputStack.setWorkorderTrackingNo(processInfo.getWorkOrder().getTrackingNo());
         }
         return super.endMachineProcessInfo(processInfo);
     }

@@ -5,24 +5,24 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
-import com.ppla.app.models.process.MixingProcess;
+import com.ppla.app.models.process.PrintingProcess;
 
 /**
  * @author Mark
  */
 @Entity
 @DiscriminatorValue("PRINTER")
-public class Printer extends Machine<MixingProcess> {
+public class Printer extends Machine<PrintingProcess> {
 
     @OneToOne
     @JoinColumn(name = "CURRENT_PROCESS")
-    protected MixingProcess currentProcess;
+    protected PrintingProcess currentProcess;
 
-    public MixingProcess getCurrentProcess() {
+    public PrintingProcess getCurrentProcess() {
         return currentProcess;
     }
 
-    public void setCurrentProcess(MixingProcess currentProcess) {
+    public void setCurrentProcess(PrintingProcess currentProcess) {
         this.currentProcess = currentProcess;
     }
 

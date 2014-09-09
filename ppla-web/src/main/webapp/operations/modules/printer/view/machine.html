@@ -1,7 +1,7 @@
 <div class="panel panel-default">
 <div class="panel-heading">Choose Machine</div>
 <div class="panel-body">
-  <div ng-if="!printers || printers.length == 0">No machines available</div>
+  <div ng-if="!printers || !printers.length">No printers available</div>
   <table class="table table-striped" ng-if="printers.length > 0">
     <thead>
       <tr>
@@ -18,7 +18,6 @@
           <div ng-if="!machine.currentProcessId">
             <button ng-click="useMachine(machine)" class="btn btn-primary">Start printing process</button>
           </div>
-          <button ui-sref="printer.end.materials({processId: machine.currentProcessId})" ng-if="machine.currentProcessId" class="btn btn-success">End process {{machine.currentProcessId}}</button>
         </td>
       </tr>
     </tbody>

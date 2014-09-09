@@ -39,7 +39,7 @@
           <tbody>
             <tr ng-repeat="mixer in machines.mixers" ng-click="machine = mixer">
               <td>{{mixer.code}}
-              <td>{{mixer.currentProcess ? mixer.currentProcess.workOrderTrackingNo : 'Not in use'}}
+              <td>{{mixer.currentProcess ? mixer.currentProcessId : 'Not in use'}}
             </tr>
           </tbody>
         </table>
@@ -50,7 +50,18 @@
           <tbody>
             <tr ng-repeat="extruder in machines.extruders" ng-click="machine = extruder">
               <td>{{extruder.code}}
-              <td>{{extruder.currentProcess ? extruder.currentProcess.workOrderTrackingNo : 'Not in use'}}
+              <td>{{extruder.currentProcess ? extruder.currentProcessId : 'Not in use'}}
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="panel-heading">Printers</div>
+      <div class="panel-body">
+        <table class="table table-striped">
+          <tbody>
+            <tr ng-repeat="printer in machines.printers" ng-click="machine = printer">
+              <td>{{printer.code}}
+              <td>{{printer.currentProcess ? printer.currentProcessId : 'Not in use'}}
             </tr>
           </tbody>
         </table>

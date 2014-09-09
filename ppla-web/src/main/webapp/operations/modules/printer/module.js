@@ -1,5 +1,6 @@
 define([
   '/operations/app.js',
+  '/operations/modules/printer/resolve/PrintingProcessResolve.js',
   '/operations/modules/printer/resolve/PrinterMachineResolve.js',
   '/operations/modules/printer/resolve/PrinterOutputMaterialResolve.js'
   ], 
@@ -17,16 +18,16 @@ define([
         templateUrl: '/operations/modules/printer/view/identity.html',
         controller: 'PrinterIdentityController'
       })
+      .state('printer.scantag', {
+        url: '/scantag',
+        templateUrl: '/operations/modules/printer/view/scantag.html',
+        controller: 'PrinterScantagController'
+      })
       .state('printer.machine', {
         url: '/machine',
         templateUrl: '/operations/modules/printer/view/machine.html',
         controller: 'PrinterMachineController',
         resolve: PrinterMachineResolve
-      })
-      .state('printer.scantag', {
-        url: '/scantag',
-        templateUrl: '/operations/modules/printer/view/scantag.html',
-        controller: 'PrinterScantagController'
       })
 
       //Start process flow

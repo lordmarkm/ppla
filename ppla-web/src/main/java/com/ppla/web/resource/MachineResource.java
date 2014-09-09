@@ -53,6 +53,7 @@ public class MachineResource {
         MachineInventoryInfo inventory = new MachineInventoryInfo();
         inventory.setMixers(mixerService.findAllInfo());
         inventory.setExtruders(extruderService.findAllInfo());
+        inventory.setPrinters(printerService.findAllInfo());
         return new ResponseEntity<>(inventory, OK);
     }
 

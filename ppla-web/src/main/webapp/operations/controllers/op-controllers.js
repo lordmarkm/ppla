@@ -6,6 +6,13 @@ define([
   '/operations/controllers/MixingProcessController.js',
   '/operations/controllers/ProfileController.js',
 
+  //Warehouse
+  '/operations/modules/warehouse/controllers/WarehouseController.js',
+  '/operations/modules/warehouse/controllers/WarehouseWorkorderController.js',
+  '/operations/modules/warehouse/controllers/WarehouseIdentityController.js',
+  '/operations/modules/warehouse/controllers/WarehouseMaterialsController.js',
+  '/operations/modules/warehouse/controllers/WarehouseAdditionalController.js',
+
   //Mixer common
   '/operations/modules/mixer/controllers/MixerController.js',
   '/operations/modules/mixer/controllers/MixerIdentityController.js',
@@ -37,10 +44,18 @@ define([
   '/operations/modules/extruder/controllers/end/ExtruderEndController.js',
   '/operations/modules/extruder/controllers/end/ExtruderEndMaterialsController.js',
 
-  //Warehouse
-  '/operations/modules/warehouse/controllers/WarehouseController.js',
-  '/operations/modules/warehouse/controllers/WarehouseWorkorderController.js',
-  '/operations/modules/warehouse/controllers/WarehouseIdentityController.js',
-  '/operations/modules/warehouse/controllers/WarehouseMaterialsController.js',
-  '/operations/modules/warehouse/controllers/WarehouseAdditionalController.js'
+  //Printer common
+  '/operations/modules/printer/controllers/PrinterController.js',
+  '/operations/modules/printer/controllers/PrinterIdentityController.js',
+  '/operations/modules/printer/controllers/PrinterMachineController.js',
+  '/operations/modules/printer/controllers/PrinterScantagController.js',
+
+  //Printer start process
+  '/operations/modules/printer/controllers/start/PrinterStartController.js',
+  '/operations/modules/printer/controllers/start/PrinterAdditionalController.js',
+
+  //Printer end process
+  '/operations/modules/printer/controllers/end/PrinterEndController.js',
+  '/operations/modules/printer/controllers/end/PrinterEndMaterialsController.js'
+
 ], function () {});

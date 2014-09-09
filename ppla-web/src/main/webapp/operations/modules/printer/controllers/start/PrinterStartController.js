@@ -1,14 +1,15 @@
 define(['/operations/controllers/module.js'], function (controllers) {
   'use strict';
-  controllers.controller('PrinterStartController', ['$scope', '$state', 'PrintingProcessService',
-    function($scope, $state, PrintingProcessService) {
+  controllers.controller('PrinterStartController', ['$scope', '$state', 'PrintingProcessService', 'WorkOrderService',
+    function($scope, $state, PrintingProcessService, WorkOrderService) {
 
     //com.ppla.core.dto.process.PrintingProcessInfo
     $scope.process = {
       actor: $scope.commonData.actor,
       machine: $scope.commonData.machine,
-      workOrder: $scope.commonData.workOrder
+      rollIn: $scope.commonData.rollIn
     };
+    $scope.process.workOrder = WorkOrderService.get({trackingNo: $scope.commonData.workorderTrackingNo});
 
     //for screens where there are no required fields
     $scope.meta = {
@@ -27,20 +28,12 @@ define(['/operations/controllers/module.js'], function (controllers) {
 
     $scope.nextState = function () {
       switch($scope.processStatus()) {
-      case state_workorder: return 'extruder.start.workorder';
-      case state_material: return 'extruder.start.materials';
-      case state_additional: return 'extruder.start.additional';
-      default: return 'extruder.start.confirm';
+      case state_additional: return 'printer.start.additional';
+      default: return 'printer.start.confirm';
       }
     };
 
     $scope.processStatus = function () {
-      if (!$scope.process.workOrder) {
-        return state_workorder;
-      }
-      if (!$scope.process.materialsIn || $scope.process.materialsIn.length < 1) {
-        return state_material;
-      }
       if (!$scope.meta.additionalsSaved) {
         return state_additional;
       }
@@ -48,11 +41,11 @@ define(['/operations/controllers/module.js'], function (controllers) {
     };
 
     $scope.saveProcess = function () {
-      ExtrusionProcessService.save({action: 'start'}, $scope.process, function(process) {
+      PrintingProcessService.save({action: 'start'}, $scope.process, function(process) {
         alert('Process started');
         $scope.process = {};
         resetMeta();
-        $state.go('extruder.identity');
+        $state.go('printer.identity');
       });
     };
   }]);

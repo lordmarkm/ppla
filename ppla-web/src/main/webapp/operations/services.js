@@ -44,11 +44,17 @@ define(['angular'], function(angular) {
   .factory('ExtrusionProcessService', function($resource) {
     return $resource('/extrusion/:action/:id');
   })
+  .factory('PrintingProcessService', function($resource) {
+    return $resource('/printing/:action/:id');
+  })
   .factory('PplaUserService', function($resource) {
     return $resource('/user');
   })
   .factory('MachineService', function($resource) {
     return $resource('/machine/:type');
+  })
+  .factory('ProcessMaterialStackService', function($resource) {
+    return $resource('/stack/:tag')
   });
 
 });

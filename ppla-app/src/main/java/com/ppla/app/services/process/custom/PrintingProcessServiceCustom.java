@@ -8,4 +8,6 @@ import com.ppla.core.dto.process.PrintingProcessInfo;
  */
 public interface PrintingProcessServiceCustom extends BasePplaProcessServiceCustom<PrintingProcessInfo> {
 
+    PrintingProcessInfo findInfoByRollTag(String tag);
+
 }

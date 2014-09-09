@@ -1,6 +1,6 @@
 define(['/operations/controllers/module.js'], function (controllers) {
   'use strict';
-  controllers.controller('ExtruderController', ['$scope',
+  controllers.controller('PrinterController', ['$scope',
     function($scope) {
 
     $scope.commonData = {};

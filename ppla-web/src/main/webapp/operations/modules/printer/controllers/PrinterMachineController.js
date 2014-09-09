@@ -6,7 +6,7 @@ define(['/operations/controllers/module.js'], function (controllers) {
     $scope.printers = printers;
     $scope.useMachine = function (machine) {
       $scope.commonData.machine = machine;
-      $state.go('printer.start.workorder');
+      $state.go('printer.start.additional');
     };
 
   }]);

@@ -15,47 +15,43 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ppla.app.services.process.ExtrusionProcessService;
-import com.ppla.core.dto.process.ExtrusionProcessInfo;
+import com.ppla.app.services.process.PrintingProcessService;
+import com.ppla.core.dto.process.PrintingProcessInfo;
 
 /**
  * @author mbmartinez
  */
 @RestController
-@RequestMapping("/extrusion")
-public class ExtrusionProcessResource {
+@RequestMapping("/printing")
+public class PrintingProcessResource {
 
     private static Logger LOG = LoggerFactory.getLogger(MixingProcessResource.class);
 
     @Autowired
-    private ExtrusionProcessService service;
+    private PrintingProcessService service;
 
     @RequestMapping(value = "/{id}", method = GET)
-    public ResponseEntity<ExtrusionProcessInfo> findById(Principal principal, @PathVariable Long id) {
-        LOG.debug("Finding extrusion process. id={}", id);
+    public ResponseEntity<PrintingProcessInfo> findById(Principal principal, @PathVariable Long id) {
+        LOG.debug("Finding printing process. id={}", id);
         return new ResponseEntity<>(service.findOneInfo(id), OK);
     }
 
-    /**
-     * Neither start nor end, merely Stage.
-     */
-    @RequestMapping(value = "/stage", method = POST)
-    public ResponseEntity<ExtrusionProcessInfo> stage(Principal principal,
-            @RequestBody ExtrusionProcessInfo process) {
-        LOG.debug("Staging printing process. process={}", process);
-        return new ResponseEntity<>(service.saveInfo(process), OK);
+    @RequestMapping(value = "/rollTag/{tag}", method = GET)
+    public ResponseEntity<PrintingProcessInfo> findByRollTag(@PathVariable String tag) {
+        LOG.debug("Finding printing process by roll tag. tag={}", tag);
+        return new ResponseEntity<>(service.findInfoByRollTag(tag), OK);
     }
 
     @RequestMapping(value = "/start", method = POST)
-    public ResponseEntity<ExtrusionProcessInfo> start(Principal principal,
-            @RequestBody ExtrusionProcessInfo process) {
+    public ResponseEntity<PrintingProcessInfo> start(Principal principal,
+            @RequestBody PrintingProcessInfo process) {
         LOG.debug("Starting printing process. process={}", process);
         return new ResponseEntity<>(service.startInfo(process), OK);
     }
 
     @RequestMapping(value = "/end", method = POST)
-    public ResponseEntity<ExtrusionProcessInfo> end(Principal principal,
-            @RequestBody ExtrusionProcessInfo process) {
+    public ResponseEntity<PrintingProcessInfo> end(Principal principal,
+            @RequestBody PrintingProcessInfo process) {
         LOG.debug("Ending printing process. process={}", process);
         return new ResponseEntity<>(service.endInfo(process), OK);
     }

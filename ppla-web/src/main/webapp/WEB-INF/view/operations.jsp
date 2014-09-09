@@ -40,6 +40,7 @@
           <li><a ui-sref="warehouse.workorder">Warehouse</a></li>
           <li><a ui-sref="mixer.identity">Mixer</a></li>
           <li><a ui-sref="extruder.identity">Extruder</a></li>
+          <li><a ui-sref="printer.identity">Printer</a>
         </ul>
       </li>
     </ul>

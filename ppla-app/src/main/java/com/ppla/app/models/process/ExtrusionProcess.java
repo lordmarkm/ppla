@@ -10,6 +10,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.mysema.query.annotations.QueryInit;
 import com.ppla.app.models.machine.Extruder;
 import com.ppla.app.models.material.ProcessMaterialStack;
 
@@ -43,6 +44,7 @@ public class ExtrusionProcess extends MachineProcess<Extruder, ProcessMaterialSt
             @JoinColumn(name = "PROCESS_ID")
         }
     )
+    @QueryInit("*")
     private List<ProcessMaterialStack> materialsOut;
 
     public List<ProcessMaterialStack> getMaterialsIn() {

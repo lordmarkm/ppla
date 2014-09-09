@@ -1,13 +1,13 @@
 define(['/operations/controllers/module.js'], function (controllers) {
   'use strict';
-  controllers.controller('ExtruderEndController', ['$scope', '$state', 'process', 'PrintingProcessService',
+  controllers.controller('PrinterEndController', ['$scope', '$state', 'process', 'PrintingProcessService',
     function($scope, $state, process, PrintingProcessService) {
 
     $scope.process = process;
 
     //Inject the operator as end actor
     if (!$scope.commonData.actor) {
-      $state.go('extruder.identity');
+      $state.go('printer.identity');
     }
     $scope.process.endActor = $scope.commonData.actor;
 
@@ -23,8 +23,6 @@ define(['/operations/controllers/module.js'], function (controllers) {
     $scope.processStatus = function () {
       if (!$scope.process.endActor) {
         return 'No end actor';
-      } else if (!$scope.process.materialsOut.length) {
-        return 'None positive material output';
       } else if ($scope.process.dateCompleted) {
         return 'Completed';
       } else {
