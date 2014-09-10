@@ -54,6 +54,7 @@ public class MachineResource {
         inventory.setMixers(mixerService.findAllInfo());
         inventory.setExtruders(extruderService.findAllInfo());
         inventory.setPrinters(printerService.findAllInfo());
+        inventory.setCutters(cutterService.findAllInfo());
         return new ResponseEntity<>(inventory, OK);
     }
 

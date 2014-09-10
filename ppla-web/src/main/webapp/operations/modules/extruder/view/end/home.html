@@ -27,7 +27,7 @@
       <dd>
         <span ng-if="!process.materialsOut.length">No output materials specified</span>
         <span ng-if="process.materialsOut.length">
-          <span ng-repeat="processMaterialStack in process.materialsOut">{{processMaterialStack.material.name}}{{processMaterialStack.tag ? '(' + processMaterialStack.tag + ')'}} - {{processMaterialStack.quantity}} {{processMaterialStack.material.unitOfMeasurement}}{{$last ? '': ', '}}</span>
+          <span ng-repeat="processMaterialStack in process.materialsOut">{{processMaterialStack.material.name}}({{processMaterialStack.tag ? processMaterialStack.tag : 'Untagged'}}) - {{processMaterialStack.quantity}} {{processMaterialStack.material.unitOfMeasurement}}{{$last ? '': ', '}}</span>
         </span>
       </dd>
       <dt>Process Status

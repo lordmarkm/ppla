@@ -1,57 +1,16 @@
 define(['/operations/controllers/module.js'], function (controllers) {
   'use strict';
-  controllers.controller('CutterEndMaterialsController', ['$scope', '$state', 'materials',
-    function($scope, $state, materials) {
+  controllers.controller('CutterEndMaterialsController', ['$scope', '$state',
+    function($scope, $state) {
 
-    //Set materials to scope from resolve
-    $scope.materials = materials;
-
-    //Initialize 'draft' materials holder
-    $scope.toAdd = [];
-
-    //Set select defaults if materials exist
-    if (materials.length) {
-      $scope.material = materials[0];
-      $scope.quantity = 1;
-    }
-
-    //Add material to draft
-    $scope.add = function (formValid) {
-      $scope.toAdd.push({material: $scope.material, quantity: $scope.quantity, tracker: generateTracker()});
-    };
-
-    //Generate element tracker (used for removing material from draft)
-    function generateTracker() {
-      var s = Math.random().toString(36).slice(2); 
-      return s.length===16 ? s : generateTracker();
-    }
-
-    //Remove material added to draft
-    $scope.remove = function (matStack) {
-      var i = $scope.toAdd.length;
-      while (i--) {
-        if ($scope.toAdd[i].tracker === matStack.tracker) {
-          $scope.toAdd.splice(i, 1);
-          break;
-        }
-      }
-    };
-
-    //angular find added material
-    $scope.findAdded = function (material) {
-      var i = $scope.toAdd.length;
-      while (i--) {
-        if ($scope.toAdd[i].tracker === material.material.tracker) {
-          return $scope.toAdd[i];
-        }
-      }
-    };
+    //Set default # of output products produced
+    $scope.quantity = 1;
 
     $scope.save = function (formValid) {
       if (!formValid) {
         return;
       }
-      $scope.process.materialsOut = $scope.toAdd;
+      $scope.process.productOut = $scope.quantity;
       $state.go('cutter.end.confirm');
     };
 

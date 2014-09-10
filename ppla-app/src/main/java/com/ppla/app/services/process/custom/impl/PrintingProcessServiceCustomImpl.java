@@ -22,7 +22,7 @@ public class PrintingProcessServiceCustomImpl extends AbstractPplaMachineProcess
     Printer,
     PrinterService>
 
-implements PrintingProcessServiceCustom  {
+    implements PrintingProcessServiceCustom {
 
     @Autowired
     private PrintingProcessService service;

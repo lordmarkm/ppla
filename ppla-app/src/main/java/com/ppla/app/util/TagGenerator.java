@@ -1,5 +1,7 @@
 package com.ppla.app.util;
 
+import java.util.Calendar;
+
 import org.apache.commons.lang.RandomStringUtils;
 import org.springframework.stereotype.Component;
 
@@ -11,7 +13,9 @@ import org.springframework.stereotype.Component;
 public class TagGenerator {
 
     public String next() {
-        return RandomStringUtils.randomNumeric(8);
+        return Calendar.getInstance().get(Calendar.YEAR) 
+                + Calendar.getInstance().get(Calendar.DAY_OF_YEAR) 
+                + RandomStringUtils.randomNumeric(6);
     }
 
 }

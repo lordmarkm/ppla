@@ -1,9 +1,11 @@
 <div class="panel panel-info">
-  <div class="panel-heading">Printing End Process</div>
+  <div class="panel-heading">Cutting End Process</div>
   <div class="panel-body">
     <dl class="dl-horizontal">
       <dt>Started by Operator
       <dd>{{process.actor.name|name}}
+      <dt>Date started
+      <dd>{{process.dateStarted|date}}
       <dt>Machine
       <dd>{{process.machine.code}}
       <dt>Work Order(s)
@@ -21,6 +23,8 @@
       <dd>{{process.endActor.name|name}}
       <dt>Date completed
       <dd>{{process.dateCompleted|date}}
+      <dt>Quantity Produced
+      <dd>{{process.productOut}}
       <dt>Process Status
       <dd>{{processStatus()}}
     </dl>
@@ -31,14 +35,14 @@
     </dl>
     -->
     <div ng-if="processStatus() != 'Complete' && processStatus() != 'Completed'" class="text-right">
-      <button ui-sref="printer.identity" class="btn btn-default">Cancel</button>
+      <button ui-sref="cutter.identity" class="btn btn-default">Cancel</button>
     </div>
     <div ng-if="processStatus() === 'Complete'" class="text-right">
       <button ng-click="confirmEnd()" class="btn btn-primary">End Process</button>
-      <button ui-sref="printer.identity" class="btn btn-default">Cancel</button>
+      <button ui-sref="cutter.identity" class="btn btn-default">Cancel</button>
     </div>
     <div ng-if="processStatus() === 'Completed'" class="text-right">
-      <button ui-sref="printer.identity" class="btn btn-default">Done</button>
+      <button ui-sref="cutter.identity" class="btn btn-default">Done</button>
     </div>
   </div>
 </div>

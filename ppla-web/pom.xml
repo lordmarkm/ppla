@@ -10,9 +10,12 @@
   <packaging>war</packaging>
   <name>PPLA :: Web</name>
 
-  <!-- Default web.xml path (no security) -->
   <properties>
+    <!-- Default web.xml path (no security) -->
     <webXmlPath>src/main/webapp/WEB-INF/web.xml</webXmlPath>
+
+    <!-- Default packaging exclude pattern (skinny war) -->
+    <packageExcludePattern>%regex[WEB-INF/lib/(?!(ppla|tyrael|baldy)).*\.jar]</packageExcludePattern>
   </properties>
 
   <dependencies>
@@ -62,13 +65,34 @@
         <artifactId>maven-war-plugin</artifactId>
         <configuration>
           <webXml>${webXmlPath}</webXml>
+          <packagingExcludes>${packageExcludePattern}</packagingExcludes>
         </configuration>
+      </plugin>
+
+      <!-- For compiling reports -->
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>jasperreports-maven-plugin</artifactId>
+        <executions>
+          <execution>
+            <phase>compile</phase>
+            <goals>
+              <goal>compile-reports</goal>
+            </goals>
+          </execution>
+        </executions>
       </plugin>
     </plugins>
   </build>
 
   <!-- Secured profile -->
   <profiles>
+    <profile>
+      <id>fatwar</id>
+      <properties>
+        <packageExcludePattern></packageExcludePattern>
+      </properties>
+    </profile>
     <profile>
       <id>sec</id>
       <properties>

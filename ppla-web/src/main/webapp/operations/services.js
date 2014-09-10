@@ -47,6 +47,9 @@ define(['angular'], function(angular) {
   .factory('PrintingProcessService', function($resource) {
     return $resource('/printing/:action/:id');
   })
+  .factory('CuttingProcessService', function($resource) {
+    return $resource('/cutting/:action/:id');
+  })
   .factory('PplaUserService', function($resource) {
     return $resource('/user');
   })

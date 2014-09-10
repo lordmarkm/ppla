@@ -1,22 +1,22 @@
 <div class="panel panel-default">
 <div class="panel-heading">Choose Machine</div>
 <div class="panel-body">
-  <div ng-if="!printers || !printers.length">No printers available</div>
-  <table class="table table-striped" ng-if="printers.length > 0">
+  <div ng-if="!cutters || !cutters.length">No cutters available</div>
+  <table class="table table-striped" ng-if="cutters.length > 0">
     <thead>
       <tr>
-        <th>Printer code
+        <th>Cutter code
         <th>Status
         <th>
       </th>
     </thead>
     <tbody>
-      <tr ng-repeat="machine in printers">
+      <tr ng-repeat="machine in cutters">
         <td>{{machine.code}}
         <td>{{machine.currentProcessId ? 'In use' : 'Available'}}
         <td>
           <div ng-if="!machine.currentProcessId">
-            <button ng-click="useMachine(machine)" class="btn btn-primary">Start printing process</button>
+            <button ng-click="useMachine(machine)" class="btn btn-primary">Start cutting process</button>
           </div>
         </td>
       </tr>

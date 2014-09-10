@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report1" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a4a38d3f-ef9f-478d-9624-7aa68ff7dc53">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report1" language="groovy" pageWidth="252" pageHeight="432" columnWidth="212" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a4a38d3f-ef9f-478d-9624-7aa68ff7dc53">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<detail>
-		<band height="125" splitType="Stretch"/>
+		<band height="392" splitType="Stretch">
+			<subreport>
+				<reportElement x="0" y="0" width="212" height="392" uuid="e5cce624-04e4-4f5c-85b9-f699ac88d219"/>
+				<subreportExpression><![CDATA["RollDetails.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
 	</detail>
 </jasperReport>

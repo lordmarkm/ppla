@@ -148,18 +148,6 @@
       </dependency>
       <dependency>
         <groupId>baldy.commons</groupId>
-        <artifactId>baldy-commons-resourcedoc</artifactId>
-        <version>${baldy-commons.version}</version>
-        <type>war</type>
-      </dependency>
-      <dependency>
-        <groupId>baldy.commons</groupId>
-        <artifactId>baldy-commons-resourcedoc</artifactId>
-        <version>${baldy-commons.version}</version>
-        <classifier>classes</classifier>
-      </dependency>
-      <dependency>
-        <groupId>baldy.commons</groupId>
         <artifactId>baldy-commons-data-mysql</artifactId>
         <version>${baldy-commons.version}</version>
       </dependency>

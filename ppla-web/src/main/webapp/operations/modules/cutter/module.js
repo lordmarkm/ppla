@@ -54,6 +54,11 @@ define([
         controller: 'CutterEndController',
         resolve: CuttingProcessResolve
       })
+      .state('cutter.end.materials', {
+        url: '/materials',
+        templateUrl: '/operations/modules/cutter/view/end/materials.html',
+        controller: 'CutterEndMaterialsController'
+      })
       .state('cutter.end.confirm', {
         url: '/confirm',
         controller: 'CutterEndController'

@@ -41,6 +41,7 @@
           <li><a ui-sref="mixer.identity">Mixer</a></li>
           <li><a ui-sref="extruder.identity">Extruder</a></li>
           <li><a ui-sref="printer.identity">Printer</a>
+          <li><a ui-sref="cutter.identity">Cutter</a>
         </ul>
       </li>
     </ul>

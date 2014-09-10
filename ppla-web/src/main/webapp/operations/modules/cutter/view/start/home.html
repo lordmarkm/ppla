@@ -1,5 +1,5 @@
 <div class="panel panel-info">
-  <div class="panel-heading">Printer</div>
+  <div class="panel-heading">Cutter</div>
   <div class="panel-body">
     <dl class="dl-horizontal">
       <dt>Operator
@@ -13,7 +13,7 @@
         <span ng-if="!process.rollIn">No materials to be added</span>
         <span ng-if="process.rollIn">{{process.rollIn.material.name}} - {{process.rollIn.quantity}} {{process.rollIn.material.unitOfMeasurement ? process.rollIn.material.unitOfMeasurement : ''}} ({{process.rollIn.tag}})</span>
       </dd>
-      <dt><a ui-sref="printer.start.additional">Remarks</a>
+      <dt><a ui-sref="cutter.start.additional">Remarks</a>
       <dd>{{process.remarks}}
       <dt>Status
       <dd>{{processStatus()}}

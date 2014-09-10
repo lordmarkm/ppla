@@ -14,7 +14,7 @@ define(['/operations/controllers/module.js'], function (controllers) {
 
     $scope.confirmEnd = function () {
       delete $scope.process.type;
-      PrintingProcessService.save({action: 'end'}, $scope.process, function (savedProcess) {
+      CuttingProcessService.save({action: 'end'}, $scope.process, function (savedProcess) {
         alert('Cutting Process completed.');
         $scope.process = savedProcess;
       });
@@ -23,6 +23,8 @@ define(['/operations/controllers/module.js'], function (controllers) {
     $scope.processStatus = function () {
       if (!$scope.process.endActor) {
         return 'No end actor';
+      } else if (!$scope.process.productOut) {
+        return 'Product output required';
       } else if ($scope.process.dateCompleted) {
         return 'Completed';
       } else {

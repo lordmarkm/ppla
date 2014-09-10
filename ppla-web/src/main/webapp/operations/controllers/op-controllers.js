@@ -55,6 +55,20 @@ define([
   '/operations/modules/printer/controllers/start/PrinterAdditionalController.js',
 
   //Printer end process
-  '/operations/modules/printer/controllers/end/PrinterEndController.js'
+  '/operations/modules/printer/controllers/end/PrinterEndController.js',
+  
+  //Cutter common
+  '/operations/modules/cutter/controllers/CutterController.js',
+  '/operations/modules/cutter/controllers/CutterIdentityController.js',
+  '/operations/modules/cutter/controllers/CutterMachineController.js',
+  '/operations/modules/cutter/controllers/CutterScantagController.js',
+
+  //Cutter start process
+  '/operations/modules/cutter/controllers/start/CutterStartController.js',
+  '/operations/modules/cutter/controllers/start/CutterAdditionalController.js',
+
+  //Cutter end process
+  '/operations/modules/cutter/controllers/end/CutterEndController.js',
+  '/operations/modules/cutter/controllers/end/CutterEndMaterialsController.js'
 
 ], function () {});

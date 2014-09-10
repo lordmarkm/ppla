@@ -3,7 +3,7 @@ define(['/operations/controllers/module.js'], function (controllers) {
   controllers.controller('CutterStartController', ['$scope', '$state', 'CuttingProcessService', 'WorkOrderService',
     function($scope, $state, CuttingProcessService, WorkOrderService) {
 
-    //com.ppla.core.dto.process.PrintingProcessInfo
+    //com.ppla.core.dto.process.CuttingProcessInfo
     $scope.process = {
       actor: $scope.commonData.actor,
       machine: $scope.commonData.machine,
@@ -41,7 +41,7 @@ define(['/operations/controllers/module.js'], function (controllers) {
     };
 
     $scope.saveProcess = function () {
-      PrintingProcessService.save({action: 'start'}, $scope.process, function(process) {
+      CuttingProcessService.save({action: 'start'}, $scope.process, function(process) {
         alert('Process started');
         $scope.process = {};
         resetMeta();
