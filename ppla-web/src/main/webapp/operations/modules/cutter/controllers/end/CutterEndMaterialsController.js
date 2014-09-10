@@ -1,6 +1,6 @@
 define(['/operations/controllers/module.js'], function (controllers) {
   'use strict';
-  controllers.controller('PrinterEndMaterialsController', ['$scope', '$state', 'materials',
+  controllers.controller('CutterEndMaterialsController', ['$scope', '$state', 'materials',
     function($scope, $state, materials) {
 
     //Set materials to scope from resolve
@@ -52,7 +52,7 @@ define(['/operations/controllers/module.js'], function (controllers) {
         return;
       }
       $scope.process.materialsOut = $scope.toAdd;
-      $state.go('printer.end.confirm');
+      $state.go('cutter.end.confirm');
     };
 
   }]);

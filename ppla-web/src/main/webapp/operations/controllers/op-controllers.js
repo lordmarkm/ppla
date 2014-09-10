@@ -55,7 +55,6 @@ define([
   '/operations/modules/printer/controllers/start/PrinterAdditionalController.js',
 
   //Printer end process
-  '/operations/modules/printer/controllers/end/PrinterEndController.js',
-  '/operations/modules/printer/controllers/end/PrinterEndMaterialsController.js'
+  '/operations/modules/printer/controllers/end/PrinterEndController.js'
 
 ], function () {});
