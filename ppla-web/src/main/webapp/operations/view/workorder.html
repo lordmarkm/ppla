@@ -49,11 +49,6 @@
       <!-- Material balance -->
       <div class="panel-heading">Materials <span class="label label-info">{{materials.length}}</span></div>
       <div class="panel-body">
-        <div class="pull-right">
-          <a  class="btn btn-default btn-xs" ui-sref="warehouse_process({trackingNo:workOrder.trackingNo, processId:-1})">
-            Withdraw materials from warehouse
-          </a>
-        </div>
         <div ng-if="!materials || materials.length === 0">
           No materials are available to this work order.
         </div>
@@ -62,11 +57,10 @@
             <thead>
               <tr>
                 <td>Name
-                <td>Quantity Withdrawn
+                <td>Quantity Withdrawn/Produced
                 <td>Consumed
                 <td>Remaining
                 <td>Source
-                <td>
               </tr>
             </thead>
             <tbody>
@@ -77,15 +71,6 @@
                 <td>{{materialBalanceStack.quantityConsumed}}
                 <td>{{materialBalanceStack.quantityRemaining}}
                 <td>{{materialBalanceStack.source}}
-                <td>
-                  <div ng-switch="materialBalanceStack.source">
-                    <a ng-switch-when="RAW" class="btn btn-primary btn-xs" 
-                      ui-sref="mixing_process({trackingNo:workOrder.trackingNo, processId:-1, initMat:materialBalanceStack.material.id})">
-                      Start mixing process
-                    </a>
-                    <span ng-switch-default>Unhandled material source: {{materialBalanceStack.source}}</span>
-                  </div>
-                </td>
               </tr>
             </tbody>
           </table>
@@ -105,8 +90,9 @@
               <td>Id
               <td>Started
               <td>Completed
-              <td>Actor
-              <td>Additional Details
+              <td>Started by
+              <td>Ended by
+              <td>Additional Details 
             </tr>
           </thead>
           <tbody>
@@ -114,12 +100,16 @@
               <td ng-switch="process.type">
                 <span ng-switch-when="WAREHOUSE" class="label label-default">Warehouse</span>
                 <span ng-switch-when="MIXING" class="label label-primary">Mixing</span>
+                <span ng-switch-when="EXTRUSION" class="label label-success">Extrusion</span>
+                <span ng-switch-when="PRINTING" class="label label-info">Printing</span>
+                <span ng-switch-when="CUTTING" class="label label-warning">Cutting</span>
               </td>
               <td>{{process.id}}
-              <td>{{parseDate(process.dateStarted)}}
-              <td ng-if="process.dateCompleted">{{parseDate(process.dateCompleted)}}
+              <td>{{process.dateStarted|date: 'MMM-dd-yy hh:mm a'}}
+              <td ng-if="process.dateCompleted">{{process.dateCompleted|date: 'MMM-dd-yy hh:mm a'}}
               <td ng-if="!process.dateCompleted">Not completed
-              <td>{{process.actor.properName.givenName}} {{process.actor.properName.surname}}
+              <td>{{process.actor.name|name}}
+              <td>{{process.endActor.name|name}}
               <td width="10%">
                 <a href="javascript:;" ng-click="processDetails[process.id + process.type] = processDetails[process.id + process.type] ? false : true">
                   <span ng-if="!processDetails[process.id + process.type]">Expand <span class="glyphicon glyphicon-chevron-down"></span></span>
@@ -138,6 +128,38 @@
                 <dl class="dl-horizontal">
                   <dt ng-repeat-start="stack in process.materialsIn">{{stack.material.name}}
                   <dd ng-repeat-end>{{stack.quantity}}
+                </dl>
+                <dl class="dl-horizontal">
+                  <dt ng-repeat-start="stack in process.materialsOut">{{stack.material.name}}
+                  <dd ng-repeat-end>{{stack.quantity}}
+                </dl>
+              </td>
+              <td ng-switch-when="EXTRUSION" colspan="6">
+                <dl class="dl-horizontal">
+                  <dt ng-repeat-start="stack in process.materialsIn">{{stack.material.name}}
+                  <dd ng-repeat-end>{{stack.quantity}}
+                </dl>
+                <dl class="dl-horizontal">
+                  <dt ng-repeat-start="stack in process.materialsOut">{{stack.material.name}}
+                  <dd ng-repeat-end>{{stack.quantity}} ({{stack.tag}})
+                </dl>
+              </td>
+              <td ng-switch-when="PRINTING" colspan="6">
+                <dl class="dl-horizontal">
+                  <dt>Material
+                  <dd>{{process.rollIn.material.name}}
+                  <dt>Tag
+                  <dd>{{process.rollIn.tag}}
+                </dl>
+              </td>
+              <td ng-switch-when="CUTTING" colspan="6">
+                <dl class="dl-horizontal">
+                  <dt>Material
+                  <dd>{{process.rollIn.material.name}}
+                  <dt>Tag
+                  <dd>{{process.rollIn.tag}}
+                  <dt>Product produced
+                  <dd>{{process.productOut}}
                 </dl>
               </td>
             </tr>

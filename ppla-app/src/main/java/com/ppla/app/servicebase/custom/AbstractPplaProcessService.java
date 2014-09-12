@@ -6,6 +6,8 @@ import java.util.Comparator;
 import java.util.List;
 
 import org.joda.time.DateTime;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.ppla.app.models.process.BasePplaProcess;
@@ -17,6 +19,8 @@ public abstract class AbstractPplaProcessService<E extends BasePplaProcess,
     D extends BasePplaProcessInfo,
     R extends BasePplaProcessService<E>>
     extends MappingService<E, D> {
+
+    private static Logger LOG = LoggerFactory.getLogger(AbstractPplaProcessService.class);
 
     @Autowired
     protected R repo;
@@ -32,7 +36,9 @@ public abstract class AbstractPplaProcessService<E extends BasePplaProcess,
     }
 
     public D findOneInfo(Long id) {
-        return toDto(repo.findOne(id));
+        E process = repo.findOne(id);
+        LOG.debug("Process start date={}", process.getDateStarted());
+        return toDto(process);
     }
 
     public List<D> findByWorkOrder_TrackingNoInInfo(String trackingNosString) {

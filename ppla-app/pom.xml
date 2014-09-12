@@ -63,8 +63,7 @@
       <properties>
         <hibernate.hbm2ddl.auto>create</hibernate.hbm2ddl.auto>
         <hibernate.hbm2ddl.import_files>
-          /META-INF/sql/accounts.sql
-          /META-INF/sql/material.sql
+          /META-INF/sql/accounts.sql,/META-INF/sql/material.sql
         </hibernate.hbm2ddl.import_files>
       </properties>
     </profile>

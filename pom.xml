@@ -31,6 +31,7 @@
     <commons.lang.version>2.3</commons.lang.version>
     <joda.version>2.2</joda.version>
     <guava.version>15.0</guava.version>
+    <jasperreports.version>5.5.0</jasperreports.version>
     <servlet.version>3.1.0</servlet.version>
     <freemarker.version>2.3.20</freemarker.version>
     <dozer.version>5.4.0</dozer.version>
@@ -238,6 +239,13 @@
         <groupId>com.google.guava</groupId>
         <artifactId>guava</artifactId>
         <version>${guava.version}</version>
+      </dependency>
+
+      <!-- JASPER -->
+      <dependency>
+        <groupId>net.sf.jasperreports</groupId>
+        <artifactId>jasperreports</artifactId>
+        <version>${jasperreports.version}</version>
       </dependency>
 
       <!-- JODA -->

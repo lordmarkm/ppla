@@ -10,8 +10,5 @@ define(['/operations/controllers/module.js'], function (controllers) {
     $scope.processes = ProcessService.query({trackingNo: $scope.trackingNo});
     $scope.processDetails = {};
 
-    $scope.parseDate = function(dt) {
-      return new Date(dt);
-    };
   }]);
 });
