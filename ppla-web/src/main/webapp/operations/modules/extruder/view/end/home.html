@@ -45,7 +45,7 @@
       <button ui-sref="extruder.identity" class="btn btn-default">Cancel</button>
     </div>
     <div ng-if="processStatus() === 'Completed'" class="text-right">
-      <button ui-sref="extruder.end.printtags" class="btn btn-success">Print Tags</button>
+      <button ng-click="printTags()" class="btn btn-success">Print Tags</button>
       <button ui-sref="extruder.identity" class="btn btn-default">Done</button>
     </div>
   </div>

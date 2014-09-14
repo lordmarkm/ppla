@@ -1,8 +1,9 @@
 define(['/operations/controllers/module.js'], function (controllers) {
   'use strict';
-  controllers.controller('ExtruderEndController', ['$scope', '$state', 'process', 'ExtrusionProcessService',
-    function($scope, $state, process, ExtrusionProcessService) {
+  controllers.controller('ExtruderEndController', ['$scope', '$state', '$window', 'process', 'ExtrusionProcessService',
+    function($scope, $state, $window, process, ExtrusionProcessService) {
 
+    var print_url = '/extrusion/printtag/';
     $scope.process = process;
 
     //Inject the operator as end actor
@@ -29,6 +30,13 @@ define(['/operations/controllers/module.js'], function (controllers) {
         return 'Completed';
       } else {
         return 'Complete';
+      }
+    };
+
+    $scope.printTags = function () {
+      if ($scope.process.materialsOut.length) {
+        console.debug('Printing tag.');
+        $window.open(print_url + $scope.process.materialsOut[0].tag);
       }
     };
   }]);

@@ -22,8 +22,7 @@ define(['/operations/controllers/module.js'], function (controllers) {
 
     //Generate element tracker (used for removing material from draft)
     function generateTracker() {
-      var s = Math.random().toString(36).slice(2); 
-      return s.length===16 ? s : generateTracker();
+      return (Math.random() + 1).toString(36).substring(7);
     }
 
     //Remove material added to draft
