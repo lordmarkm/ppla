@@ -38,7 +38,7 @@ public class PplaWorkOrderServiceCustomImpl extends MappingService<PplaWorkOrder
     private ProcessMaterialStackService procMatStackService;
 
     @Override
-    public PplaWorkOrderInfo findByTrackingNoInfo(String trackingNo) {
+    public PplaWorkOrderInfo findInfoByTrackingNo(String trackingNo) {
         return toDto(workOrders.findByTrackingNo(trackingNo));
     }
 

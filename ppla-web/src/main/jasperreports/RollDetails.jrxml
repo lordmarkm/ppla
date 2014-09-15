@@ -1,26 +1,99 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ProfessionalFees" pageWidth="232" pageHeight="258" orientation="Landscape" whenNoDataType="AllSectionsNoDetail" columnWidth="232" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="e9fb2a11-7c1e-448d-bda4-26ebe31614b4">
-	<property name="ireport.zoom" value="1.0"/>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="RollDetails" pageWidth="212" pageHeight="392" orientation="Landscape" whenNoDataType="AllSectionsNoDetail" columnWidth="212" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="e9fb2a11-7c1e-448d-bda4-26ebe31614b4">
+	<property name="ireport.zoom" value="1.5"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.y" value="59"/>
 	<field name="tag" class="java.lang.String"/>
 	<field name="workorderTrackingNo" class="java.lang.String"/>
+	<field name="product" class="java.lang.String"/>
+	<field name="actor" class="java.lang.String"/>
+	<field name="dateStarted" class="java.lang.String"/>
+	<field name="endActor" class="java.lang.String"/>
+	<field name="dateCompleted" class="java.lang.String"/>
+	<field name="remarks" class="java.lang.String"/>
+	<field name="productDescription" class="java.lang.String"/>
 	<detail>
-		<band height="258">
+		<band height="392">
+			<rectangle>
+				<reportElement x="0" y="0" width="212" height="392" uuid="c123ffb8-446a-4442-bc9d-2d463799b759"/>
+			</rectangle>
 			<componentElement>
-				<reportElement x="16" y="13" width="200" height="50" uuid="bc223ce4-931c-4058-a8bd-113b519a0965"/>
+				<reportElement x="74" y="31" width="67" height="50" uuid="bc223ce4-931c-4058-a8bd-113b519a0965"/>
 				<jr:Code128 xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" textPosition="bottom">
 					<jr:codeExpression><![CDATA[$F{tag}]]></jr:codeExpression>
 				</jr:Code128>
 			</componentElement>
-			<textField>
-				<reportElement x="117" y="63" width="100" height="20" uuid="e69774ba-484c-4273-82e9-54e68d404352"/>
+			<textField isBlankWhenNull="true">
+				<reportElement x="107" y="93" width="100" height="20" uuid="e69774ba-484c-4273-82e9-54e68d404352"/>
 				<textFieldExpression><![CDATA[$F{workorderTrackingNo}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="16" y="63" width="100" height="20" uuid="a97b6701-6a9f-40dd-a6a5-33c5518df211"/>
-				<text><![CDATA[Work order]]></text>
+				<reportElement x="6" y="93" width="100" height="20" uuid="a97b6701-6a9f-40dd-a6a5-33c5518df211"/>
+				<text><![CDATA[Work order #]]></text>
 			</staticText>
+			<staticText>
+				<reportElement x="6" y="113" width="100" height="20" uuid="d5a0e6e1-743c-40d2-9d16-f2ebfd78a9cd"/>
+				<text><![CDATA[Product]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="107" y="113" width="100" height="20" uuid="e66e3b2d-e6ab-4a8a-83f2-d5562d1eff68"/>
+				<textFieldExpression><![CDATA[$F{product}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="6" y="133" width="100" height="20" uuid="a8a1fd6c-8eb0-4842-9f2a-d392b97ae73c"/>
+				<text><![CDATA[Description]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="107" y="133" width="100" height="20" uuid="87ce581b-ba49-4592-93a6-fa8e237b3104"/>
+				<textFieldExpression><![CDATA[$F{productDescription}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="6" y="153" width="201" height="20" uuid="b8d98091-def3-4027-b579-7a350c1c2513"/>
+				<text><![CDATA[Source process (extrusion)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="6" y="173" width="100" height="20" uuid="9d5146ad-c06f-44f2-bb60-9c2f5543cf71"/>
+				<text><![CDATA[Start Operator]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="107" y="173" width="100" height="20" uuid="153dbd66-18e5-4112-ac03-6f5c4ef0765a"/>
+				<textFieldExpression><![CDATA[$F{actor}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="6" y="193" width="100" height="20" uuid="20332645-14f4-4db9-85a1-b80175e45290"/>
+				<text><![CDATA[Time start]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="107" y="193" width="100" height="20" uuid="5e88ccad-2a56-4535-a3af-8a4da294e175"/>
+				<textFieldExpression><![CDATA[$F{dateStarted}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="107" y="233" width="100" height="20" uuid="8af68d1a-017f-4002-9b38-38904344c0cf"/>
+				<textFieldExpression><![CDATA[$F{dateCompleted}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="6" y="213" width="100" height="20" uuid="75927463-d9fc-4ea6-bfce-3cf6e4afbfbd"/>
+				<text><![CDATA[End Operator]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="107" y="213" width="100" height="20" uuid="ac57534b-5d48-4902-8d05-b565d3b96c49"/>
+				<textFieldExpression><![CDATA[$F{endActor}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="6" y="233" width="100" height="20" uuid="f88ee964-5277-45d2-af8f-76ee532f56f0"/>
+				<text><![CDATA[Time end]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="6" y="253" width="100" height="20" uuid="4825dd83-8a35-4569-931c-0265d649b421"/>
+				<text><![CDATA[Remarks]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="107" y="253" width="100" height="128" uuid="01551768-169c-47c7-a54a-af6d590bba50"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{remarks}]]></textFieldExpression>
+			</textField>
 		</band>
 	</detail>
 </jasperReport>

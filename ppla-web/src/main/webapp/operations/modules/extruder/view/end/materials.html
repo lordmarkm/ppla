@@ -15,13 +15,13 @@
           <div class="col-sm-4">
             <div class="input-group">
               <input type="number"
-                ng-model="quantity" min="0.1" step="any"
+                ng-model="propertyHolder.qty" min="0.1" step="any"
                 class="form-control" />
               <span ng-if="material && material.unitOfMeasurement" class="input-group-addon">{{material.unitOfMeasurement}}</span>
             </div>
           </div>
           <div class="col-sm-3">
-            <button ng-click="add()" class="btn btn-primary">Add material output</button>
+            <button ng-click="add()" class="btn btn-primary">Add material output {{qty}}</button>
           </div>
         </div>
       </div>

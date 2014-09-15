@@ -35,8 +35,14 @@ define(['/operations/controllers/module.js'], function (controllers) {
 
     $scope.printTags = function () {
       if ($scope.process.materialsOut.length) {
-        console.debug('Printing tag.');
-        $window.open(print_url + $scope.process.materialsOut[0].tag);
+        var tagstr = '', i = $scope.process.materialsOut.length;
+        while (i--) {
+          tagstr += $scope.process.materialsOut[i].tag;
+          if (i != 0) {
+            tagstr += ',';
+          }
+        }
+        $window.open(print_url + $scope.process.id + '/' + tagstr);
       }
     };
   }]);

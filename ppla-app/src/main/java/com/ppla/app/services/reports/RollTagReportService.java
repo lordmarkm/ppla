@@ -6,6 +6,6 @@ import com.ppla.core.dto.report.RollTagReportInfo;
 
 public interface RollTagReportService {
 
-    List<RollTagReportInfo> findByTags(String tags);
+    List<RollTagReportInfo> printTags(Long extrusionProcessId, String tags);
 
 }

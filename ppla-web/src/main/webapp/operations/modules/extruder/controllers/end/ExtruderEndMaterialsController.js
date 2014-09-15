@@ -5,6 +5,9 @@ define(['/operations/controllers/module.js'], function (controllers) {
 
     //Set materials to scope from resolve
     $scope.materials = materials;
+    $scope.propertyHolder = {
+        qty : 1
+    };
 
     //Initialize 'draft' materials holder
     $scope.toAdd = [];
@@ -12,12 +15,12 @@ define(['/operations/controllers/module.js'], function (controllers) {
     //Set select defaults if materials exist
     if (materials.length) {
       $scope.material = materials[0];
-      $scope.quantity = 1;
     }
 
     //Add material to draft
     $scope.add = function (formValid) {
-      $scope.toAdd.push({material: $scope.material, quantity: $scope.quantity, tracker: generateTracker()});
+      console.debug('Adding stuff. qty=' + $scope.propertyHolder.qty);
+      $scope.toAdd.push({material: $scope.material, quantity: $scope.propertyHolder.qty, tracker: generateTracker()});
     };
 
     //Generate element tracker (used for removing material from draft)

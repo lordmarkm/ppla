@@ -48,7 +48,7 @@ public class WorkOrderResource {
     @RequestMapping(value = "/{trackingNo}", method = GET)
     public ResponseEntity<PplaWorkOrderInfo> findOne(Principal principal, @PathVariable String trackingNo) {
         LOG.debug("Work order request. user={}, trackingNo={}", principal, trackingNo);
-        return new ResponseEntity<>(service.findByTrackingNoInfo(trackingNo), OK);
+        return new ResponseEntity<>(service.findInfoByTrackingNo(trackingNo), OK);
     }
 
     @RequestMapping(value = "/sameproduct/{orderItemId}", method = GET)

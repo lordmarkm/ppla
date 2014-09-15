@@ -6,6 +6,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 import java.security.Principal;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -73,20 +74,20 @@ public class ExtrusionProcessResource {
         return new ResponseEntity<>(service.endInfo(process), OK);
     }
 
-    @RequestMapping(value = "/printtag/{tags}", method = GET)
-    public ResponseEntity<byte[]> printTag(@PathVariable String tags) {
+    @RequestMapping(value = "/printtag/{extrusionProcessId}/{tags}", method = GET)
+    public ResponseEntity<byte[]> printTag(@PathVariable Long extrusionProcessId, @PathVariable String tags) {
         LOG.debug("About to print tag slip. tags={}", tags);
 
         String template = "tag";
         String filename = tags;
 
-        List<RollTagReportInfo> rolls = rollTagReportService.findByTags(tags);
-
+        List<RollTagReportInfo> rolls = rollTagReportService.printTags(extrusionProcessId, tags);
+        LOG.debug("Found rolls. size={}", rolls.size());
         Map<String, Object> params = Maps.newHashMap();
         params.put("rolls", rolls);
 
         ResponseEntity<byte[]> pdf = exportToPdfResponseEntity(template, filename,
-                params, rolls);
+                params, Collections.singletonList(rolls.get(0)));
 
         return pdf;
     }
