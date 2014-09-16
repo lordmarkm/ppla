@@ -23,6 +23,15 @@ public class PplaUser extends PplaPerson {
     @Enumerated(EnumType.STRING)
     private PplaUserType type;
 
+    /**
+     * Fluff
+     */
+    @Column(name = "TITLE")
+    private String title;
+
+    @Column(name = "REPORTS_TO")
+    private String reportsTo;
+
     public String getUsername() {
         return username;
     }
@@ -45,6 +54,22 @@ public class PplaUser extends PplaPerson {
 
     public void setType(PplaUserType type) {
         this.type = type;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getReportsTo() {
+        return reportsTo;
+    }
+
+    public void setReportsTo(String reportsTo) {
+        this.reportsTo = reportsTo;
     }
 
 }

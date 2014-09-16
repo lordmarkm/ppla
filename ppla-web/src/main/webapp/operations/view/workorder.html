@@ -13,7 +13,7 @@
           <dt>Status
           <dd>{{workOrder.status}}
           <dt>Created
-          <dd>{{parseDate(workOrder.dateCreated)}}
+          <dd>{{workOrder.dateCreated|date: 'MMM-dd-yy hh:mm a'}}
           <dt>Completed
           <dd ng-if="workOrder.dateCompleted">{{workOrder.dateCompleted|date:'yyyy-MMM-dd hh:mm a'}}
           <dd ng-if="!workOrder.dateCompleted">Work order still open
@@ -33,7 +33,8 @@
             <tr>
               <td>ID
               <td>Product
-              <td>Quantity
+              <td>Quantity Required
+              <td>Quantity Produced
             </td>
           </thead>
           <tbody>
@@ -41,6 +42,7 @@
               <td>{{orderItem.id}}
               <td>{{orderItem.product.name}}
               <td>{{orderItem.quantity}}
+              <td>{{produced || 0}}
             </tr>
           </tbody>
         </table>
@@ -70,13 +72,20 @@
                 <td>{{materialBalanceStack.quantityWithdrawn}}
                 <td>{{materialBalanceStack.quantityConsumed}}
                 <td>{{materialBalanceStack.quantityRemaining}}
-                <td>{{materialBalanceStack.source}}
+                <td ng-switch="materialBalanceStack.source">
+                  <span ng-switch-when="RAW" class="label label-default">Raw</span>
+                  <span ng-switch-when="MIXING" class="label label-primary">Mixing</span>
+                  <span ng-switch-when="EXTRUSION" class="label label-success">Extrusion</span>
+                  <span ng-switch-when="PRINTING" class="label label-info">Printing</span>
+                  <span ng-switch-when="CUTTING" class="label label-warning">Cutting</span>
+                  <span ng-switch-default>{{materialBalanceStack.source}}</span>
+                </td>
               </tr>
             </tbody>
           </table>
         </div>
       </div>
-      
+
       <!-- Processes -->
       <div class="panel-heading">Processes <span class="label label-info">{{processes.length}}</span></div>
       <div class="panel-body">

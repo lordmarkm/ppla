@@ -3,6 +3,8 @@ package com.ppla.app.services.custom.impl;
 import java.util.List;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,6 +29,8 @@ import static java.math.BigDecimal.ONE;
 @Service
 public class MaterialBalanceServiceImpl implements MaterialBalanceService {
 
+    private static final Logger LOG = LoggerFactory.getLogger(MaterialBalanceServiceImpl.class);
+
     @Autowired
     private WarehouseProcessService warehouse;
 
@@ -41,21 +45,14 @@ public class MaterialBalanceServiceImpl implements MaterialBalanceService {
 
     @Override
     public List<MaterialBalanceStackInfo> computeMaterialBalance(String trackingNos) {
-        //Do raw & process separately in case of id overlap
-        Map<Long, MaterialBalanceStackInfo> rawMaterialBalance = Maps.newHashMap();
-        processWarehouseProcesses(rawMaterialBalance, trackingNos);
-
-        Map<Long, MaterialBalanceStackInfo> procMaterialBalance = Maps.newHashMap();
-        processMixingProcesses(procMaterialBalance, trackingNos);
-        processExtrusionProcesses(procMaterialBalance, trackingNos);
+        Map<Long, MaterialBalanceStackInfo> materialBalance = Maps.newHashMap();
+        processWarehouseProcesses(materialBalance, trackingNos);
+        processMixingProcesses(materialBalance, trackingNos);
+        processExtrusionProcesses(materialBalance, trackingNos);
         //Printing doesn't really use up materials, so it's not here
-        processCuttingProcesses(procMaterialBalance, trackingNos);
+        processCuttingProcesses(materialBalance, trackingNos);
 
-        List<MaterialBalanceStackInfo> mats = Lists.newArrayList();
-        mats.addAll(rawMaterialBalance.values());
-        mats.addAll(procMaterialBalance.values());
-
-        return mats;
+        return Lists.newArrayList(materialBalance.values());
     }
 
     private void processWarehouseProcesses(Map<Long, MaterialBalanceStackInfo> materialBalance, String trackingNos) {
@@ -65,6 +62,7 @@ public class MaterialBalanceServiceImpl implements MaterialBalanceService {
             for (RawMaterialStackInfo rawMatStack : proc.getMaterialStacks()) {
                 MaterialBalanceStackInfo currentBalance = materialBalance.get(rawMatStack.getMaterial().getId());
                 if (null == currentBalance) {
+                    LOG.debug("Creating new material balance stack for material={}, source=Warehouse (raw)", rawMatStack.getMaterial().getName());
                     currentBalance = new MaterialBalanceStackInfo();
                     currentBalance.setMaterial(rawMatStack.getMaterial());
                     currentBalance.setQuantityWithdrawn(rawMatStack.getQuantity());
@@ -83,9 +81,19 @@ public class MaterialBalanceServiceImpl implements MaterialBalanceService {
 
         List<MixingProcessInfo> procs = mixing.findByWorkOrder_TrackingNoInfo(trackingNos);
         for (MixingProcessInfo proc : procs) {
+            //Mixing process in
+            for (RawMaterialStackInfo matStack : proc.getMaterialsIn()) {
+                MaterialBalanceStackInfo currentBalance = materialBalance.get(matStack.getMaterial().getId());
+                Preconditions.checkNotNull(currentBalance,  "Material was consumed by Cutting process but never produced. mat=" + currentBalance.getMaterial().getName());
+                currentBalance.setQuantityConsumed(currentBalance.getQuantityConsumed().add(matStack.getQuantity()));
+                currentBalance.setQuantityRemaining(currentBalance.getQuantityRemaining().subtract(matStack.getQuantity()));
+            }
+
+            //Mixing process out
             for (ProcessMaterialStackInfo matStack : proc.getMaterialsOut()) {
                 MaterialBalanceStackInfo currentBalance = materialBalance.get(matStack.getMaterial().getId());
                 if (null == currentBalance) {
+                    LOG.debug("Creating new material balance stack for material={}, source=Mixing", matStack.getMaterial().getName());
                     currentBalance = new MaterialBalanceStackInfo();
                     currentBalance.setMaterial(matStack.getMaterial());
                     currentBalance.setQuantityWithdrawn(matStack.getQuantity());
@@ -103,9 +111,19 @@ public class MaterialBalanceServiceImpl implements MaterialBalanceService {
     private void processExtrusionProcesses(Map<Long, MaterialBalanceStackInfo> materialBalance, String trackingNos) {
         List<ExtrusionProcessInfo> procs = extrusion.findByWorkOrder_TrackingNoInfo(trackingNos);
         for (ExtrusionProcessInfo proc : procs) {
+            //Extrusion process in
+            for (ProcessMaterialStackInfo matStack : proc.getMaterialsIn()) {
+                MaterialBalanceStackInfo currentBalance = materialBalance.get(matStack.getMaterial().getId());
+                Preconditions.checkNotNull(currentBalance,  "Material was consumed by Cutting process but never produced. mat=" + currentBalance.getMaterial().getName());
+                currentBalance.setQuantityConsumed(currentBalance.getQuantityConsumed().add(matStack.getQuantity()));
+                currentBalance.setQuantityRemaining(currentBalance.getQuantityRemaining().subtract(matStack.getQuantity()));
+            }
+
+            //Extrusion process out
             for (ProcessMaterialStackInfo matStack : proc.getMaterialsOut()) {
                 MaterialBalanceStackInfo currentBalance = materialBalance.get(matStack.getMaterial().getId());
                 if (null == currentBalance) {
+                    LOG.debug("Creating new material balance stack for material={}, source=Extrusion", matStack.getMaterial().getName());
                     currentBalance = new MaterialBalanceStackInfo();
                     currentBalance.setMaterial(matStack.getMaterial());
                     currentBalance.setQuantityWithdrawn(matStack.getQuantity());
@@ -129,6 +147,7 @@ public class MaterialBalanceServiceImpl implements MaterialBalanceService {
             MaterialBalanceStackInfo mbsInfo = materialBalance.get(rollIn.getMaterial().getId());
             Preconditions.checkNotNull(mbsInfo, "Material was consumed by Cutting process but never produced. mat=" + rollIn.getMaterial().getName());
             mbsInfo.setQuantityConsumed(mbsInfo.getQuantityConsumed().add(ONE));
+            mbsInfo.setQuantityRemaining(mbsInfo.getQuantityRemaining().subtract(ONE));
         }
     }
 

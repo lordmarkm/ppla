@@ -25,12 +25,13 @@
   <!-- NAVIGATION -->
   <nav class="navbar navbar-inverse" role="navigation">
     <div class="navbar-header">
-      <a class="navbar-brand" href="/operations">PPLA Films Manufacturing Execution Software</a>
+      <a class="navbar-brand" href="/auth/redirect">PPLA Films Manufacturing Execution Software</a>
     </div>
     <ul class="nav navbar-nav">
       <li><a ui-sref="workorders">Work Orders</a></li>
     </ul>
 
+    <!-- 
     <ul class="nav navbar-nav pull-right">
       <li class="dropdown">
         <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
@@ -45,13 +46,17 @@
         </ul>
       </li>
     </ul>
+    -->
     <ul class="nav navbar-nav pull-right" ng-controller="AuthController">
       <li class="dropdown" ng-if="principal.principal">
         <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
           {{principal.principal.username}}<span class="caret" style="margin-left: 5px;"></span>
         </a>
         <ul class="dropdown-menu" role="menu">
+          <!-- 
           <li><a href="#/profile">Profile</a></li>
+          -->
+          <li><a href="/auth/redirect">Home</a></li>
           <li><a href="/logout">Logout</a></li>
         </ul>
       </li>

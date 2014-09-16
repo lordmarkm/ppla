@@ -9,7 +9,7 @@ angular.module('ppla')
   })
   .state('users.list', {
     url: '',
-    templateUrl: '/manage/modules/users/view/list.html'
+    templateUrl: '/manage/modules/users/view/list_ngtable.html'
   })
   .state('users.edit', {
     url: '/edit',

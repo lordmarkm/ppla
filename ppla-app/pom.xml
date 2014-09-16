@@ -16,6 +16,7 @@
     <db.password>root</db.password>
     <hibernate.hbm2ddl.auto>update</hibernate.hbm2ddl.auto>
     <hibernate.hbm2ddl.import_files></hibernate.hbm2ddl.import_files>
+    <reload.csv>false</reload.csv>
   </properties>
 
   <dependencies>
@@ -43,6 +44,12 @@
       <artifactId>baldy-commons-test</artifactId>
     </dependency>
 
+    <dependency>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-csv</artifactId>
+      <version>1.0</version>
+    </dependency>
+
     <!-- LOGGING -->
     <dependency>
       <groupId>ch.qos.logback</groupId>
@@ -65,6 +72,7 @@
         <hibernate.hbm2ddl.import_files>
           /META-INF/sql/accounts.sql,/META-INF/sql/material.sql
         </hibernate.hbm2ddl.import_files>
+        <reload.csv>true</reload.csv>
       </properties>
     </profile>
   </profiles>

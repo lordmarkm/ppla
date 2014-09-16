@@ -18,10 +18,12 @@
       <dt>Status
       <dd>{{processStatus()}}
     </dl>
+    <!-- 
     <dl>
       <dt>Process
       <dd>{{process}}
     </dl>
+     -->
     <div ng-if="processStatus() === 'Complete'" class="text-right">
       <button ng-click="saveProcess()" class="btn btn-primary">Create Process</button>
     </div>

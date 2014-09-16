@@ -26,12 +26,14 @@
                   <input type="password" name="password" class="form-control" />
                 </div>
               </div>
+              <!--
               <div class="form-group">
                 <label class="col-sm-4 control-label">Remember me</label>
                 <div class="col-sm-8">
                   <div class="checkbox"><input type='checkbox' name='remember-me' /></div>
                 </div>
               </div>
+              -->
               <div class="form-group">
                 <div class="col-sm-4"></div>
                 <div class="col-sm-8">

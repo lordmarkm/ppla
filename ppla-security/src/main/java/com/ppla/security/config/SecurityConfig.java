@@ -60,7 +60,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
             .authorizeUrls()
                 .antMatchers("/manage**").hasRole(ADMIN)
-                .antMatchers("/operator**").hasRole(OPERATOR)
+                .antMatchers("/operations**").hasAnyAuthority(OPERATOR, WAREHOUSE, MIXER, EXTRUDER, PRINTER, CUTTER)
                 .antMatchers("/**").permitAll()
                 .and()
             .logout()
@@ -72,12 +72,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .formLogin()
                 .loginPage("/auth/login")
                 .loginProcessingUrl("/login/authenticate")
-                .defaultSuccessUrl("/auth/redirect", false)
+                .defaultSuccessUrl("/auth/redirect", true)
                 .failureUrl("/auth/login?msg=bad_credentials")
-                .permitAll()
-                .and()
-            .rememberMe()
-                .key(env.getProperty("remember.me.key"));
+                .permitAll();
+//                .and()
+//            .rememberMe()
+//                .key(env.getProperty("remember.me.key"));
     }
 
     @Override

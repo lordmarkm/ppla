@@ -1,0 +1,71 @@
+ID,Code,Department,First name,Surname,Title,Reports_To
+1,P0001,Administration,Prince,Ang,Owner / Managing Director,
+2,P0002,Administration,Tian Lun ,Ang,,
+3,P0003,Management,Gay ,Zamora,"HR, Accounting & FInance",Prince Ang
+4,P0004,Management,Richard ,Mangao,"Sales, Production",Prince Ang
+5,P0005,Management,Crisanta ,Denilla,Logistics,Prince Ang
+6,P1005,Cutting,Fe ,Costo,,Roberto Baltazar
+7,P1006,Cutting,Aquilla ,Cerna,,Roberto Baltazar
+8,P1007,Cutting,Ofalen,Lansangan,,Roberto Baltazar
+9,P1008,Cutting,Lorena ,Luico,,Roberto Baltazar
+10,P1009,Cutting,Cherry Lou,Pascual,,Roberto Baltazar
+11,P1010,Cutting,Leonardo ,Ticmon,,Roberto Baltazar
+12,P1011,Cutting,Maida ,Valbuena,,Roberto Baltazar
+13,P1012,Cutting,Marilou ,Tudio,,Harley Valbuena
+14,P1013,Cutting,Ethel ,Sauler,,Harley Valbuena
+15,P1014,Cutting,Pinky ,Ogana,,Harley Valbuena
+16,P1015,Cutting,Janette ,Marcos,,Harley Valbuena
+17,P1016,Cutting,Rosemarie ,Isidoro,,Harley Valbuena
+18,P1017,Cutting,Jennifer ,Costa,,Harley Valbuena
+19,P1018,Cutting,Christina ,Calleja,,Harley Valbuena
+20,P1019,Cutting,Rosemarie ,Cadayona,,Harley Valbuena
+21,P1020,Cutting,Salvacion ,Caramoan,,Normelita Santos
+22,P1021,Cutting,Leoniel ,Maming,,Normelita Santos
+23,P1022,Cutting,Analiza ,Dela Cruz,,Normelita Santos
+24,P1023,Cutting,Analiza ,Manois,,Normelita Santos
+25,P1024,Cutting,Jocelyn ,Naval,,Normelita Santos
+26,P1025,Cutting,Iza ,Ramirez,,Normelita Santos
+27,P1026,Cutting,Janice ,Rayos,,Normelita Santos
+28,P1027,Cutting,Rocelle ,Cabrera,,Loreto Gaspar
+29,P1028,Cutting,Emily ,Fernandez,,Loreto Gaspar
+30,P1029,Cutting,Villa ,Gaspar,,Loreto Gaspar
+31,P1030,Cutting,Fedalyn,Murillo,,Loreto Gaspar
+32,P1031,Cutting,Miriam ,Naval,,Loreto Gaspar
+33,P1032,Cutting,Sabrina Mae ,Reyes,,Loreto Gaspar
+34,P1033,Cutting,Ma. Marietta ,Sepida,,Loreto Gaspar
+35,P1034,Cutting,Honeylyn ,Layug,,Loreto Gaspar
+36,P1035,Engineering,Gerry ,Gonzales,Senior Technician,Richard Mangao
+37,P1036,Engineering,Ariel ,Trajano,Technician,Richard Mangao
+38,P1037,Extrusion,Jorge ,Carreon,,Roberto Baltazar
+39,P1038,Extrusion,Jerome ,Ortega,,Roberto Baltazar
+40,P1039,Extrusion,Clint ,Geraldez,,Roberto Baltazar
+41,P1040,Extrusion,Erwin ,Naval,,Harley Valbuena
+42,P1041,Extrusion,Junrel ,Calijan,,Harley Valbuena
+43,P1042,Extrusion,Roldan ,Escueta,,Normelita Santos
+44,P1043,Extrusion,Adonis ,Birao,,Normelita Santos
+45,P1044,Extrusion,Jayrome ,Rarogal,,Loreto Gaspar
+46,P1045,Extrusion,Valeriano ,Dalmacio,,Loreto Gaspar
+47,P1046,Logistics,Nhey ,Arnado,Logistics,Crisanta Denilla
+48,P1047,Logistics,Regan ,Canlas,Delivery Personnel,Crisanta Denilla
+49,P1048,Logistics,Reynold ,Cruz,Delivery Personnel,Crisanta Denilla
+50,P1049,Logistics,Julie ,Rosas,Logistics,Crisanta Denilla
+51,P1050,Logistics,Jovy ,De Guzman,Logistics Officer,Crisanta Denilla
+52,P1051,Logistics,Mark ,Arca,Driver,Crisanta Denilla
+53,P1052,Logistics,June ,Ocampo,Delivery Personnel,Crisanta Denilla
+54,P1053,Logistics,Normel ,De Castro,Driver,Crisanta Denilla
+55,P1054,Logistics,Romel ,Baltazar,Driver,Crisanta Denilla
+56,P1055,Logistics,Erwin ,Montojo,Delivery Personnel,Crisanta Denilla
+57,P1056,Mixing,William ,Dela Cruz,,Roberto Baltazar
+58,P1057,Mixing,Emmanuel ,Baretto,,Loreto Gaspar
+59,P1001,Operations,Roberto ,Baltazar,Shift A Supervisor,Richard Mangao
+60,P1002,Operations,Harley ,Valbuena,Shift D Supervisor,Richard Mangao
+61,P1003,Operations,Normelita ,Santos,Shift C Supervisor,Richard Mangao
+62,P1004,Operations,Loreto ,Gaspar,Shift B Supervisor,Richard Mangao
+63,P1058,Packaging,Elmer ,Areglo,,Roberto Baltazar
+64,P1059,Packaging,Daniel ,Martin,,Harley Valbuena
+65,P1060,Packaging,Edwin ,Formento,,Normelita Santos
+66,P1061,Packaging,John ,Carpio,,Loreto Gaspar
+67,P1062,Printing,Allan ,Francisco,,Roberto Baltazar
+68,P1063,Printing,Aldrin ,Alcaide,,Harley Valbuena
+69,P1064,Printing,Gilbert ,Castaneda,,Normelita Santos
+70,P1065,Printing,Arnold ,Serafica,,Loreto Gaspar

@@ -11,9 +11,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 
+import com.ppla.app.models.PplaWorkOrder;
 import com.ppla.app.models.machine.Extruder;
 import com.ppla.app.models.machine.Mixer;
 import com.ppla.app.models.machine.Printer;
+import com.ppla.core.dto.PplaWorkOrderInfo;
 import com.ppla.core.dto.machine.MachineInfo;
 import com.ppla.core.dto.process.BasePplaProcessInfo;
 import com.tyrael.commons.mapper.config.MapperConfig;
@@ -36,13 +38,15 @@ public class SupportConfig {
         mapper.addMapping(new BeanMappingBuilder() {
             @Override
             protected void configure() {
+                mapping(PplaWorkOrder.class, PplaWorkOrderInfo.class)
+                    .fields("dateCreated", "dateCreated", copyByReference())
+                    .fields("dateCompleted", "dateCompleted", copyByReference());
                 mapping(Mixer.class, MachineInfo.class)
                     .fields("currentProcess.id", "currentProcessId", oneWay());
                 mapping(Extruder.class, MachineInfo.class)
                     .fields("currentProcess.id", "currentProcessId", oneWay());
                 mapping(Printer.class, MachineInfo.class)
                     .fields("currentProcess.id", "currentProcessId", oneWay());
-
                 mapping(Process.class, BasePplaProcessInfo.class)
                     .fields("dateStarted", "dateStarted", copyByReference())
                     .fields("dateCompleted", "dateCompleted", copyByReference());

@@ -1,7 +1,9 @@
 angular.module('ppla.services', ['ngResource'])
 
 .factory('PplaUserService', function($resource) {
-  return $resource('/user/:action');
+  return $resource('/user/:action', {}, {
+    page: {method: 'GET', isArray: false}
+  });
 })
 
 .factory('AuthService', function($resource) {
