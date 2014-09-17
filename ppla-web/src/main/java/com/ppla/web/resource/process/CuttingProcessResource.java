@@ -32,27 +32,27 @@ public class CuttingProcessResource {
 
     @RequestMapping(value = "/{id}", method = GET)
     public ResponseEntity<CuttingProcessInfo> findById(Principal principal, @PathVariable Long id) {
-        LOG.debug("Finding printing process. id={}", id);
+        LOG.debug("Finding cutting process. id={}", id);
         return new ResponseEntity<>(service.findOneInfo(id), OK);
     }
 
     @RequestMapping(value = "/rollTag/{tag}", method = GET)
     public ResponseEntity<CuttingProcessInfo> findByRollTag(@PathVariable String tag) {
-        LOG.debug("Finding printing process by roll tag. tag={}", tag);
+        LOG.debug("Finding cutting process by roll tag. tag={}", tag);
         return new ResponseEntity<>(service.findInfoByRollTag(tag), OK);
     }
 
     @RequestMapping(value = "/start", method = POST)
     public ResponseEntity<CuttingProcessInfo> start(Principal principal,
             @RequestBody CuttingProcessInfo process) {
-        LOG.debug("Starting printing process. process={}", process);
+        LOG.debug("Starting cutting process. process={}", process);
         return new ResponseEntity<>(service.startInfo(process), OK);
     }
 
     @RequestMapping(value = "/end", method = POST)
     public ResponseEntity<CuttingProcessInfo> end(Principal principal,
             @RequestBody CuttingProcessInfo process) {
-        LOG.debug("Ending printing process. process={}", process);
+        LOG.debug("Ending cutting process. process={}", process);
         return new ResponseEntity<>(service.endInfo(process), OK);
     }
 

@@ -4,6 +4,14 @@ define(['/operations/controllers/module.js'], function (controllers) {
     function($scope, $state, $stateParams, extruders, WorkOrderService) {
 
     $scope.extruders = extruders;
+
+    //Assemble list of staged processes
+    $scope.staged = [];
+    var i = extruders.length;
+    while (i--) {
+      $scope.staged = $scope.staged.concat(extruders[i].staged);
+    }
+
     $scope.useMachine = function (machine) {
       $scope.commonData.machine = machine;
       $state.go('extruder.start.workorder');

@@ -49,7 +49,7 @@ define(['/operations/controllers/module.js'], function (controllers) {
     };
 
     $scope.namePlusMax = function (stack) {
-      return stack.material.name + ' (' + $scope.max(stack) + ')';
+      return stack.material.name + ' (' + $scope.max(stack) + ' ' + stack.material.unitOfMeasurement + ')';
     };
 
     $scope.addMaterialIn = function () {

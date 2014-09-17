@@ -7,6 +7,10 @@
       <tr>
         <th>Extruder code
         <th>Status
+        <th>Started
+        <th>Operator
+        <th>Materials
+        <th>Process summary
         <th>
       </th>
     </thead>
@@ -14,17 +18,62 @@
       <tr ng-repeat="machine in extruders">
         <td>{{machine.code}}
         <td>{{machine.currentProcessId ? 'In use' : 'Available'}}
+        <td>{{machine.process.dateStarted | date: 'MMM-dd-yy hh:mm a'}}
+        <td>{{machine.process.actor.name | name}}
+        <td>
+          <ol style="padding: 0;">
+            <li ng-repeat="stack in machine.process.materialsIn">
+              {{stack.material.name}} - {{stack.quantity}} {{stack.material.unitOfMeasurement}}
+            </li>
+          </ol>
+        </td>
+        <td>{{machine.currentProcessId}}
         <td>
           <div ng-if="!machine.currentProcessId">
-            <button ng-click="useMachine(machine)" class="btn btn-primary">Start extrusion process</button>
-            <div ng-repeat="staged in machine.staged">
-              <button ng-click="startStaged(staged)" class="btn btn-success">Start staged. Id: {{staged.id}}</button>
-            </div>
+            <button ng-click="useMachine(machine)" class="btn btn-primary">Start process</button>
           </div>
-          <button ui-sref="extruder.end.materials({processId: machine.currentProcessId})" ng-if="machine.currentProcessId" class="btn btn-success">End process {{machine.currentProcessId}}</button>
+          <button ui-sref="extruder.end.materials({processId: machine.currentProcessId})" ng-if="machine.currentProcessId" class="btn btn-success">End process</button>
         </td>
       </tr>
     </tbody>
   </table>
+</div>
+</div>
+
+<div ng-if="staged.length">
+<div class="panel panel-default">
+<div class="panel-heading">Start staged process</div>
+<div class="panel-body">
+  <table class="table table-striped" ng-if="extruders.length > 0">
+    <thead>
+      <tr>
+        <th>Extruder code
+        <th>Stager
+        <th>Materials
+        <th>
+      </th>
+    </thead>
+    <tbody>
+      <tr ng-repeat="stagedProc in staged">
+        <td>{{stagedProc.machine.code}}
+        <td>{{stagedProc.actor.name | name}}
+        <td>
+          <ol style="padding: 0;">
+            <li ng-repeat="stack in stagedProc.materialsIn">
+              {{stack.material.name}} - {{stack.quantity}} {{stack.material.unitOfMeasurement}}
+            </li>
+          </ol>
+        </td>
+        <td>{{stagedProc.id}}
+        <td ng-if="stagedProc.machine.currentProcessId">
+          Machine is in use
+        </td>
+        <td ng-if="!stagedProc.machine.currentProcessId">
+          <button ng-click="startStaged(stagedProc)" class="btn btn-success">Start staged process</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 </div>
 </div>

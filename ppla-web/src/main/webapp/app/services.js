@@ -37,6 +37,10 @@ angular.module('ppla.services', ['ngResource'])
   return $resource('/material/:type');
 })
 
+.factory('ProcessService', function($resource) {
+  return $resource('/process');
+})
+
 .factory('MachineService', function($resource) {
   return $resource('/machine/:type');
 });

@@ -18,10 +18,10 @@
         <td>{{salesorder.trackingNo}}
         <td>{{salesorder.purchaseOrderNo}}
         <td>{{salesorder.shipTo}}
-        <td>{{salesorder.customer.properName.surname}}
+        <td>{{salesorder.customer.name | name}}
         <td>{{salesorder.orderItems.length}}
         <td>Created
-        <td><a ui-sref="manage/salesorder/workorders({trackingNo:salesorder.trackingNo})" class="btn btn-xs btn-primary">Create work orders</a>
+        <td><a ui-sref="manage/salesorder/workorders({trackingNo:salesorder.trackingNo})" class="btn btn-xs btn-primary">View Details</a>
       </tr>
     </tbody>
   </table>

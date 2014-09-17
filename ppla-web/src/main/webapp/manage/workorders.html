@@ -5,7 +5,10 @@
     <thead>
       <tr>
         <td>Tracking No.
+        <td>Product
         <td>Quantity
+        <td>Created
+        <td>Completed
         <td>Status
         <td>
       </tr>
@@ -13,7 +16,10 @@
     <tbody>
       <tr ng-repeat="workOrder in $data">
         <td>{{workOrder.trackingNo}}
+        <td>{{workOrder.orderItems[0].product.name || 'No product specified'}}
         <td>{{workOrder.quantity}}
+        <td>{{workOrder.dateCreated|date: 'MMM-dd-yy hh:mm a'}}
+        <td>{{workOrder.dateCompleted|date: 'MMM-dd-yy hh:mm a'}}
         <td>{{workOrder.status}}
         <td><a ui-sref="manage/workorder({trackingNo:workOrder.trackingNo})" class="btn btn-xs btn-primary">View details</a>
       </tr>

@@ -1,7 +1,12 @@
 define(['/operations/controllers/module.js'], function (controllers) {
   'use strict';
-  controllers.controller('WarehouseMaterialsController', ['$scope', '$state', 'MaterialService',
-    function($scope, $state, MaterialService) {
+  controllers.controller('WarehouseMaterialsController', ['$scope', '$state', 'WoMaterialService', 'MaterialService',
+    function($scope, $state, WoMaterialService, MaterialService) {
+
+    //Display available material balance
+    if ($scope.process.workOrder) {
+      $scope.materialsOnHand = WoMaterialService.query({trackingNos: $scope.process.workOrder.trackingNo, source: 'RAW'});
+    }
 
     //materials[?] = RawMaterialInfo
     //materialIn = RawMaterialStackInfo

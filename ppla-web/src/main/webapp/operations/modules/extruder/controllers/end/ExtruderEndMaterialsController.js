@@ -19,7 +19,6 @@ define(['/operations/controllers/module.js'], function (controllers) {
 
     //Add material to draft
     $scope.add = function (formValid) {
-      console.debug('Adding stuff. qty=' + $scope.propertyHolder.qty);
       $scope.toAdd.push({material: $scope.material, quantity: $scope.propertyHolder.qty, tracker: generateTracker()});
     };
 

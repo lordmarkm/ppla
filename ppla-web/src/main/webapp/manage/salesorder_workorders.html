@@ -9,7 +9,7 @@
           <dt>Tracking No.
           <dd>{{salesorder.trackingNo}}
           <dt>Customer
-          <dd>{{salesorder.customer.properName.surname}}, {{salesorder.customer.properName.givenName}}
+          <dd>{{salesorder.customer.name | name}}
           <dt>Ship to
           <dd>{{salesorder.shipTo}}
         </dl>
@@ -25,7 +25,8 @@
         <tr>
           <td>Product name
           <td>Description
-          <td>Order Item
+          <td>Invoice quantity
+          <td>Order item details
           <td>Work order
         </tr>
       </thead>
@@ -33,7 +34,8 @@
         <tr ng-repeat="orderItem in salesorder.orderItems">
           <td>{{orderItem.product.name}}
           <td>{{orderItem.product.description}}
-          <td><a ui-sref="manage/orderitem({id:orderItem.id, salesOrder:salesorder.trackingNo})">{{orderItem.id}}</a>
+          <td>{{orderItem.quantity}}
+          <td><span ui-sref="manage/orderitem({id:orderItem.id, salesOrder:salesorder.trackingNo})" class="btn btn-xs btn-primary">View details</span>
           <td>
             <a ng-if="!orderItem.workOrder" ui-sref="manage/orderitem({id:orderItem.id, salesOrder:salesorder.trackingNo})" 
               class="btn btn-xs btn-primary">Create work order</a>

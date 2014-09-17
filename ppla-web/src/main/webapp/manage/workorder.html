@@ -13,7 +13,7 @@
           <dt>Status
           <dd>{{workOrder.status}}
           <dt>Created
-          <dd>{{workOrder.dateCreated|date:'yyyy-MMM-dd hh:mm a'}}
+          <dd>{{workOrder.dateCreated|date: 'MMM-dd-yy hh:mm a'}}
           <dt>Completed
           <dd ng-if="workOrder.dateCompleted">{{workOrder.dateCompleted|date:'yyyy-MMM-dd hh:mm a'}}
           <dd ng-if="!workOrder.dateCompleted">Work order still open
@@ -26,14 +26,15 @@
 <div class="row">
   <div class="col-sm-12">
     <div class="panel panel-default">
-      <div class="panel-heading">Order items</div>
+      <div class="panel-heading">Order items <span class="label label-info">{{orderItems.length}}</span></div>
       <div class="panel-body">
         <table class="table">
           <thead>
             <tr>
               <td>ID
               <td>Product
-              <td>Quantity
+              <td>Quantity Required
+              <td>Quantity Produced
             </td>
           </thead>
           <tbody>
@@ -41,35 +42,139 @@
               <td>{{orderItem.id}}
               <td>{{orderItem.product.name}}
               <td>{{orderItem.quantity}}
+              <td>{{produced || 0}}
             </tr>
           </tbody>
         </table>
       </div>
-      
-      <!-- Processes -->
-      <div class="panel-heading">Processes</div>
+
+      <!-- Material balance -->
+      <div class="panel-heading">Materials <span class="label label-info">{{materials.length}}</span></div>
       <div class="panel-body">
-        <div ng-if="!processes || processes.length === 0">  
+        <div ng-if="!materials || materials.length === 0">
+          No materials are available to this work order.
+        </div>
+        <div ng-if="materials && materials.length > 0">
+          <table class="table">
+            <thead>
+              <tr>
+                <td>Name
+                <td>Quantity Withdrawn/Produced
+                <td>Consumed
+                <td>Remaining
+                <td>Source
+              </tr>
+            </thead>
+            <tbody>
+              <!-- MaterialBalanceStackInfo -->
+              <tr ng-repeat="materialBalanceStack in materials">
+                <td>{{materialBalanceStack.material.name}}
+                <td>{{materialBalanceStack.quantityWithdrawn}}
+                <td>{{materialBalanceStack.quantityConsumed}}
+                <td>{{materialBalanceStack.quantityRemaining}}
+                <td ng-switch="materialBalanceStack.source">
+                  <span ng-switch-when="RAW" class="label label-default">Raw</span>
+                  <span ng-switch-when="MIXING" class="label label-primary">Mixing</span>
+                  <span ng-switch-when="EXTRUSION" class="label label-success">Extrusion</span>
+                  <span ng-switch-when="PRINTING" class="label label-info">Printing</span>
+                  <span ng-switch-when="CUTTING" class="label label-warning">Cutting</span>
+                  <span ng-switch-default>{{materialBalanceStack.source}}</span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Processes -->
+      <div class="panel-heading">Processes <span class="label label-info">{{processes.length}}</span></div>
+      <div class="panel-body">
+        <div ng-if="!processes || processes.length === 0">
           No processes attached to this work order.
-        </div>  
-        <table ng-if="processes.length > 0">
+        </div>
+        <table ng-if="processes.length > 0" class="table table-striped">
           <thead>
             <tr>
+              <td>Type
               <td>Id
               <td>Started
               <td>Completed
-              <td>Actor
+              <td>Started by
+              <td>Ended by
+              <td>Additional Details 
             </tr>
           </thead>
           <tbody>
-            <tr ng-repeat="process in processes">
+            <tr ng-repeat-start="process in processes">
+              <td ng-switch="process.type">
+                <span ng-switch-when="WAREHOUSE" class="label label-default">Warehouse</span>
+                <span ng-switch-when="MIXING" class="label label-primary">Mixing</span>
+                <span ng-switch-when="EXTRUSION" ng-if="process.dateStarted" class="label label-success">Extrusion</span>
+                <span ng-switch-when="EXTRUSION" ng-if="!process.dateStarted" class="label label-success">Extrusion (staged)</span>
+                <span ng-switch-when="PRINTING" class="label label-info">Printing</span>
+                <span ng-switch-when="CUTTING" class="label label-warning">Cutting</span>
+              </td>
               <td>{{process.id}}
-              <td>{{process.dateStarted|date}}
-              <td>{{process.dateCompleted|date}}
-              <td>{{process.actor}}
+              <td>{{process.dateStarted|date: 'MMM-dd-yy hh:mm a'}}
+              <td ng-if="process.dateCompleted">{{process.dateCompleted|date: 'MMM-dd-yy hh:mm a'}}
+              <td ng-if="!process.dateCompleted"><span ng-if="process.type != 'WAREHOUSE'">Not completed</span>
+              <td>{{process.actor.name|name}}
+              <td>{{process.endActor.name|name}}
+              <td width="10%">
+                <a href="javascript:;" ng-click="processDetails[process.id + process.type] = processDetails[process.id + process.type] ? false : true">
+                  <span ng-if="!processDetails[process.id + process.type]">Expand <span class="glyphicon glyphicon-chevron-down"></span></span>
+                  <span ng-if="processDetails[process.id + process.type]">Collapse <span class="glyphicon glyphicon-chevron-up"></span></span>
+                </a>
+              </td>
+            </tr>
+            <tr ng-repeat-end ng-show="processDetails[process.id + process.type]" ng-switch="process.type">
+              <td ng-switch-when="WAREHOUSE" colspan="6">
+                <dl class="dl-horizontal">
+                  <dt ng-repeat-start="matStack in process.materialStacks">{{matStack.material.name}}
+                  <dd ng-repeat-end>{{matStack.quantity}} {{matStack.material.unitOfMeasurement}}
+                </dl>
+              </td>
+              <td ng-switch-when="MIXING" colspan="6">
+                <dl class="dl-horizontal">
+                  <dt ng-repeat-start="stack in process.materialsIn">{{stack.material.name}}
+                  <dd ng-repeat-end>{{stack.quantity}}
+                </dl>
+                <dl class="dl-horizontal">
+                  <dt ng-repeat-start="stack in process.materialsOut">{{stack.material.name}}
+                  <dd ng-repeat-end>{{stack.quantity}}
+                </dl>
+              </td>
+              <td ng-switch-when="EXTRUSION" colspan="6">
+                <dl class="dl-horizontal">
+                  <dt ng-repeat-start="stack in process.materialsIn">{{stack.material.name}}
+                  <dd ng-repeat-end>{{stack.quantity}}
+                </dl>
+                <dl class="dl-horizontal">
+                  <dt ng-repeat-start="stack in process.materialsOut">{{stack.material.name}}
+                  <dd ng-repeat-end>{{stack.quantity}} ({{stack.tag}})
+                </dl>
+              </td>
+              <td ng-switch-when="PRINTING" colspan="6">
+                <dl class="dl-horizontal">
+                  <dt>Material
+                  <dd>{{process.rollIn.material.name}}
+                  <dt>Tag
+                  <dd>{{process.rollIn.tag}}
+                </dl>
+              </td>
+              <td ng-switch-when="CUTTING" colspan="6">
+                <dl class="dl-horizontal">
+                  <dt>Material
+                  <dd>{{process.rollIn.material.name}}
+                  <dt>Tag
+                  <dd>{{process.rollIn.tag}}
+                  <dt>Product produced
+                  <dd>{{process.productOut}}
+                </dl>
+              </td>
             </tr>
           </tbody>
-        </table>  
+        </table>
       </div>
     </div>
   </div>
@@ -78,7 +183,7 @@
 <div class="row">
   <div class="col-sm-12">
     <div class="pull-right">
-      <button class="btn btn-danger" ng-click="closeWorkOrder()" 
+      <button class="btn btn-success" ng-click="closeWorkOrder()" 
         ng-disabled="workOrder.status == 'CLOSED'">Close Work Order</button>
       <a ng-if="!params.orderItem && !params.salesOrder" ui-sref="manage/workorders" class="btn btn-default">Done</a>
       <a ng-if="params.orderItem" ui-sref="manage/orderitem({id:params.orderItem, salesOrder:params.salesOrder})" class="btn btn-default">Back to Order Item</a>

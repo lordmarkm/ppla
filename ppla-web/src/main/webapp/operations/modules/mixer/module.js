@@ -55,7 +55,7 @@ define([
   
       //End process flow
       .state('mixer.end', {
-        url: '/mixer/end/{processId}',
+        url: '/end/{processId}',
         templateUrl: '/operations/modules/mixer/view/end/home.html',
         controller: 'MixerEndController',
         resolve: MixerEndProcessResolve

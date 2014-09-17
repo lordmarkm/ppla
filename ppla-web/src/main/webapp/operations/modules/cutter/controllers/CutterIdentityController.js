@@ -1,7 +1,7 @@
 define(['/operations/controllers/module.js'], function (controllers) {
   'use strict';
   controllers.controller('CutterIdentityController', ['$scope', '$state', '$filter', 'PplaUserService',
-    function($scope, $state, PplaUserService) {
+    function($scope, $state, $filter, PplaUserService) {
 
     $scope.status = 'Enter user code';
     $scope.tryGetOperator = function () {

@@ -371,5 +371,6 @@
     <module>ppla-web</module>
     <module>ppla-core</module>
     <module>ppla-security</module>
+    <module>ppla-quickbooks</module>
   </modules>
 </project>

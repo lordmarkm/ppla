@@ -10,6 +10,7 @@ define(['/operations/controllers/module.js'], function (controllers) {
 
     $scope.setAdditionalDetails = function () {
       $scope.process.dateStarted = $scope.additionalInfo.dateStarted;
+      $scope.process.remarks = $scope.additionalInfo.remarks;
       $state.go($scope.nextState());
     };
   }]);

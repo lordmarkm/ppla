@@ -1,4 +1,7 @@
-define(['/operations/app.js'], function(app) {
+define([
+    '/operations/app.js'
+  ], function(app) {
+
   'use strict';
   return app.config(function($stateProvider) {
     $stateProvider.state('warehouse', {
@@ -7,15 +10,15 @@ define(['/operations/app.js'], function(app) {
       abstract: true,
       controller: 'WarehouseController'
     })
-    .state('warehouse.workorder', {
-      url: '',
-      templateUrl: '/operations/modules/warehouse/view/workorder.html',
-      controller: 'WarehouseWorkorderController'
-    })
     .state('warehouse.identity', {
-      url: '/identity',
+      url: '',
       templateUrl: '/operations/modules/warehouse/view/identity.html',
       controller: 'WarehouseIdentityController'
+    })
+    .state('warehouse.workorder', {
+      url: '/workorder',
+      templateUrl: '/operations/modules/warehouse/view/workorder.html',
+      controller: 'WarehouseWorkorderController'
     })
     .state('warehouse.materials', {
       url: '/materials',

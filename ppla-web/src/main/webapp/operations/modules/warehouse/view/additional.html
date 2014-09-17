@@ -2,10 +2,18 @@
 <div class="panel-heading">Additional Information</div>
 <div class="panel-body">
   <form ng-submit="setAdditionalDetails()" class="form form-horizontal">
+    <!-- 
     <div class="form-group">
       <label class="col-sm-2 control-label">Withdrawal date</label>
       <div class="col-sm-4">
         <quick-datepicker ng-model="additionalInfo.dateStarted"></quick-datepicker>
+      </div>
+    </div>
+    -->
+    <div class="form-group">
+      <label class="col-sm-2 control-label">Remarks</label>
+      <div class="col-sm-4">
+        <input type="text" ng-model="additionalInfo.remarks" class="form-control"/>
       </div>
     </div>
     <div class="text-right">

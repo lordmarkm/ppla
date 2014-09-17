@@ -1,7 +1,7 @@
 define(['/operations/controllers/module.js'], function (controllers) {
   'use strict';
-  controllers.controller('MixerMaterialsController', ['$scope', '$state', '$filter', 'MaterialService',
-    function($scope, $state, $filter, MaterialService) {
+  controllers.controller('MixerMaterialsController', ['$scope', '$state', '$filter', 'WoMaterialService',
+    function($scope, $state, $filter, WoMaterialService) {
 
     //materials[?] = MaterialBalanceStackInfo
     //materialIn = RawMaterialStackInfo
@@ -25,7 +25,7 @@ define(['/operations/controllers/module.js'], function (controllers) {
       trackingNosString = trackingNos.join(',');
     }
     if (trackingNosString) {
-      $scope.materials = MaterialService.query({type: trackingNosString}, function (mats) {
+      $scope.materials = WoMaterialService.query({trackingNos: trackingNosString, source: 'RAW'}, function (mats) {
         for (var i = 0, len = mats.length; i < len; ++i) {
           if (mats[i].source === 'RAW') {
             $scope.toAdd.materialIn = mats[i];
@@ -60,7 +60,7 @@ define(['/operations/controllers/module.js'], function (controllers) {
     };
 
     $scope.namePlusMax = function (stack) {
-      return stack.material.name + ' (' + $scope.max(stack) + ')';
+      return stack.material.name + ' (' + $scope.max(stack) + ' ' + stack.material.unitOfMeasurement + ')';
     };
 
     $scope.addMaterialIn = function () {

@@ -7,6 +7,10 @@
       <tr>
         <th>Mixer code
         <th>Status
+        <th>Started
+        <th>Operator
+        <th>Materials
+        <th>Process summary
         <th>
       </th>
     </thead>
@@ -14,9 +18,19 @@
       <tr ng-repeat="machine in mixers">
         <td>{{machine.code}}
         <td>{{machine.currentProcessId ? 'In use' : 'Available'}}
+        <td>{{machine.process.dateStarted | date: 'MMM-dd-yy hh:mm a'}}
+        <td>{{machine.process.actor.name | name}}
+        <td>
+          <ol style="padding: 0;">
+            <li ng-repeat="stack in machine.process.materialsIn">
+              {{stack.material.name}} - {{stack.quantity}} {{stack.material.unitOfMeasurement}}
+            </li>
+          </ol>
+        </td>
+        <td>{{machine.currentProcessId}}
         <td>
           <button ng-click="useMachine(machine)" ng-if="!machine.currentProcessId" class="btn btn-primary">Start mixing process</a>
-          <button ui-sref="mixer.end.materials({processId: machine.currentProcessId})" ng-if="machine.currentProcessId" class="btn btn-success">End process {{machine.currentProcessId}}</button>
+          <button ui-sref="mixer.end.materials({processId: machine.currentProcessId})" ng-if="machine.currentProcessId" class="btn btn-success">End process</button>
         </td>
       </tr>
     </tbody>

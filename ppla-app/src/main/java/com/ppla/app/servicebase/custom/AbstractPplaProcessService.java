@@ -29,6 +29,11 @@ public abstract class AbstractPplaProcessService<E extends BasePplaProcess,
         Collections.sort(dtos, new Comparator<BasePplaProcessInfo>() {
             @Override
             public int compare(BasePplaProcessInfo o1, BasePplaProcessInfo o2) {
+                if (null == o1.getDateStarted()) {
+                    return 1;
+                } else if (null == o2.getDateStarted()) {
+                    return -1;
+                }
                 return o2.getDateStarted().compareTo(o1.getDateStarted());
             }
         });

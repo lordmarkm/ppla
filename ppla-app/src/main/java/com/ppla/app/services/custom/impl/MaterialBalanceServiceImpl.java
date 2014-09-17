@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.google.common.base.Preconditions;
+import com.google.common.base.Predicate;
+import com.google.common.collect.Collections2;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.ppla.app.services.custom.MaterialBalanceService;
@@ -84,7 +86,7 @@ public class MaterialBalanceServiceImpl implements MaterialBalanceService {
             //Mixing process in
             for (RawMaterialStackInfo matStack : proc.getMaterialsIn()) {
                 MaterialBalanceStackInfo currentBalance = materialBalance.get(matStack.getMaterial().getId());
-                Preconditions.checkNotNull(currentBalance,  "Material was consumed by Cutting process but never produced. mat=" + currentBalance.getMaterial().getName());
+                Preconditions.checkNotNull(currentBalance,  "Material was consumed by Mixing process but never produced. mat=" + currentBalance.getMaterial().getName());
                 currentBalance.setQuantityConsumed(currentBalance.getQuantityConsumed().add(matStack.getQuantity()));
                 currentBalance.setQuantityRemaining(currentBalance.getQuantityRemaining().subtract(matStack.getQuantity()));
             }
@@ -152,15 +154,28 @@ public class MaterialBalanceServiceImpl implements MaterialBalanceService {
     }
 
     @Override
-    public List<MaterialBalanceStackInfo> computeMaterialBalance(String trackingNos, MaterialSource source) {
+    public List<MaterialBalanceStackInfo> computeMaterialBalance(String trackingNos, final MaterialSource source) {
         Map<Long, MaterialBalanceStackInfo> map = Maps.newHashMap();
         switch(source) {
-        case MIXING:
+        case RAW:
+            processWarehouseProcesses(map, trackingNos);
             processMixingProcesses(map, trackingNos);
+            break;
+        case MIXING:
+            processWarehouseProcesses(map, trackingNos);
+            processMixingProcesses(map, trackingNos);
+            processExtrusionProcesses(map, trackingNos);
             break;
         default:
             throw new IllegalArgumentException("Unsupported material source: " + source);
         }
-        return Lists.newArrayList(map.values());
+
+        LOG.debug("Filtering stacks. source={}", source);
+        return Lists.newArrayList(Collections2.filter(map.values(), new Predicate<MaterialBalanceStackInfo>() {
+            @Override
+            public boolean apply(MaterialBalanceStackInfo input) {
+                return input.getSource() == source;
+            }
+        }));
     }
 }

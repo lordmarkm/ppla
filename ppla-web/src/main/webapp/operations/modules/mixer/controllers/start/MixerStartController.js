@@ -47,7 +47,6 @@ define(['/operations/controllers/module.js'], function (controllers) {
 
     $scope.saveProcess = function () {
       MixingProcessService.save($scope.process, function(process) {
-        console.debug('Got save response: ' + JSON.stringify(process));
         alert('Process created');
         $scope.process = {};
         resetMeta();

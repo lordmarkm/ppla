@@ -1,7 +1,7 @@
 define(['/operations/controllers/module.js'], function (controllers) {
   'use strict';
-  controllers.controller('WarehouseController', ['$scope', 'WarehouseProcessService',
-    function($scope, WarehouseProcessService) {
+  controllers.controller('WarehouseController', ['$scope', '$state', 'WarehouseProcessService',
+    function($scope, $state, WarehouseProcessService) {
 
     $scope.process = {};
 
@@ -21,11 +21,11 @@ define(['/operations/controllers/module.js'], function (controllers) {
     };
 
     $scope.processStatus = function () {
-      if (!$scope.process.workOrder || !$scope.process.workOrder.trackingNo) {
-        return state_workorder;
-      }
       if (!$scope.process.actor || !$scope.process.actor.id) {
         return state_actor;
+      }
+      if (!$scope.process.workOrder || !$scope.process.workOrder.trackingNo) {
+        return state_workorder;
       }
       if (!$scope.process.materialStacks || $scope.process.materialStacks.length < 1) {
         return state_material;
@@ -38,7 +38,6 @@ define(['/operations/controllers/module.js'], function (controllers) {
 
     $scope.saveProcess = function () {
       WarehouseProcessService.save($scope.process, function(process) {
-        console.debug('Got save response: ' + JSON.stringify(process));
         alert('Process created');
         $scope.process = {};
         $state.go($scope.nextState());

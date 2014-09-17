@@ -13,14 +13,15 @@
         <tbody>
           <tr ng-repeat="extruder in extruders">
             <td>
-              {{extruder.code}} <br />
-              <small>
-                In use? 
-                <span ng-if="extruder.currentProcessId" class="label label-warning">Yes</span>
-                <span ng-if="!extruder.currentProcessId" class="label label-success">No</span>
-              </small>
+              {{extruder.code}}
+              <small class="label label-warning" ng-if="extruder.currentProcessId">In use</small>
             </td>
-            <td ng-if="extrusions[extruder.code]"><input type="number" ng-model="extrusions[extruder.code].materialsIn[0].quantity" /></td>
+            <td ng-if="extrusions[extruder.code]">
+              <div class="input-group">
+                <input type="number" ng-model="extrusions[extruder.code].materialsIn[0].quantity" class="form-control" />
+                <span ng-if="process.materialsOut[0] && process.materialsOut[0].material.unitOfMeasurement" class="input-group-addon">{{process.materialsOut[0].material.unitOfMeasurement}}</span>
+              </div>
+            </td>
             <td ng-if="!extrusions[extruder.code]">
               <button class="btn btn-primary btn-xs" ng-click="stageExtrusionProcess(extruder)">Stage to this machine</button>
             </td>

@@ -12,7 +12,9 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 
 import com.ppla.app.models.PplaWorkOrder;
+import com.ppla.app.models.machine.Cutter;
 import com.ppla.app.models.machine.Extruder;
+import com.ppla.app.models.machine.Machine;
 import com.ppla.app.models.machine.Mixer;
 import com.ppla.app.models.machine.Printer;
 import com.ppla.core.dto.PplaWorkOrderInfo;
@@ -41,12 +43,16 @@ public class SupportConfig {
                 mapping(PplaWorkOrder.class, PplaWorkOrderInfo.class)
                     .fields("dateCreated", "dateCreated", copyByReference())
                     .fields("dateCompleted", "dateCompleted", copyByReference());
-                mapping(Mixer.class, MachineInfo.class)
+                mapping(Machine.class, MachineInfo.class)
                     .fields("currentProcess.id", "currentProcessId", oneWay());
-                mapping(Extruder.class, MachineInfo.class)
-                    .fields("currentProcess.id", "currentProcessId", oneWay());
-                mapping(Printer.class, MachineInfo.class)
-                    .fields("currentProcess.id", "currentProcessId", oneWay());
+//                mapping(Mixer.class, MachineInfo.class)
+//                    .fields("currentProcess.id", "currentProcessId", oneWay());
+//                mapping(Extruder.class, MachineInfo.class)
+//                    .fields("currentProcess.id", "currentProcessId", oneWay());
+//                mapping(Printer.class, MachineInfo.class)
+//                    .fields("currentProcess.id", "currentProcessId", oneWay());
+//                mapping(Cutter.class, MachineInfo.class)
+//                    .fields("currentProcess.id", "currentProcessId", oneWay());
                 mapping(Process.class, BasePplaProcessInfo.class)
                     .fields("dateStarted", "dateStarted", copyByReference())
                     .fields("dateCompleted", "dateCompleted", copyByReference());

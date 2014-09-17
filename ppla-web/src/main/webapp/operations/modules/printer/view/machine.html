@@ -7,6 +7,10 @@
       <tr>
         <th>Printer code
         <th>Status
+        <th>Started
+        <th>Operator
+        <th>Roll tag
+        <th>Process summary
         <th>
       </th>
     </thead>
@@ -14,6 +18,10 @@
       <tr ng-repeat="machine in printers">
         <td>{{machine.code}}
         <td>{{machine.currentProcessId ? 'In use' : 'Available'}}
+        <td>{{machine.process.dateStarted | date: 'MMM-dd-yy hh:mm a'}}
+        <td>{{machine.process.actor.name | name}}
+        <td>{{machine.process.rollIn.tag}}
+        <td>{{machine.process.id}}
         <td>
           <div ng-if="!machine.currentProcessId">
             <button ng-click="useMachine(machine)" class="btn btn-primary">Start printing process</button>

@@ -7,7 +7,15 @@ define([
   function(app, CuttingProcessResolve, CutterMachineResolve, CutterOutputMaterialResolve) {
     'use strict';
     return app.config(function($stateProvider) {
-      $stateProvider.state('cutter', {
+      $stateProvider.state('cutter_summary', {
+        url: '/cutter/summary/{processId}',
+        templateUrl: '/operations/modules/cutter/view/summary.html',
+        controller: 'CutterSummaryController',
+        resolve: CuttingProcessResolve
+      })
+
+      //flow control
+      .state('cutter', {
         url: '/cutter',
         templateUrl: '/operations/modules/cutter/view/home.html',
         abstract: true,

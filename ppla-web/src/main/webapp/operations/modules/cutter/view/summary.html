@@ -19,7 +19,7 @@
       <dd>{{process.remarks}}
     </dl>
     <dl class="dl-horizontal">
-      <dt><a ui-sref="cutter.identity">Ended by Operator</a>
+      <dt>Ended by Operator
       <dd>{{process.endActor.name|name}}
       <dt>Date completed
       <dd>{{process.dateCompleted|date}}
@@ -34,15 +34,8 @@
       <dd>{{process}}
     </dl>
     -->
-    <div ng-if="processStatus() != 'Complete' && processStatus() != 'Completed'" class="text-right">
-      <button ui-sref="cutter.identity" class="btn btn-default">Cancel</button>
-    </div>
-    <div ng-if="processStatus() === 'Complete'" class="text-right">
-      <button ng-click="confirmEnd()" class="btn btn-primary">End Process</button>
-      <button ui-sref="cutter.identity" class="btn btn-default">Cancel</button>
-    </div>
-    <div ng-if="processStatus() === 'Completed'" class="text-right">
-      <button ui-sref="cutter.identity" class="btn btn-default">Done</button>
+    <div class="text-right">
+      <button ng-click="close()" class="btn btn-default">Done</button>
     </div>
   </div>
 </div>

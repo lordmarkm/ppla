@@ -62,6 +62,7 @@ define([
   '/operations/modules/cutter/controllers/CutterIdentityController.js',
   '/operations/modules/cutter/controllers/CutterMachineController.js',
   '/operations/modules/cutter/controllers/CutterScantagController.js',
+  '/operations/modules/cutter/controllers/CutterSummaryController.js',
 
   //Cutter start process
   '/operations/modules/cutter/controllers/start/CutterStartController.js',

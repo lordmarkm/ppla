@@ -15,8 +15,12 @@
           <span ng-repeat="rawMaterialStack in process.materialStacks">{{rawMaterialStack.material.name}} - {{rawMaterialStack.quantity}} {{rawMaterialStack.material.unitOfMeasurement}}{{$last ? '': ', '}}</span>
         </span>
       </dd>
+      <!-- 
       <dt><a ui-sref="warehouse.additional">Withdrawal Date</a>
       <dd>{{process.dateStarted|date: 'MMM-dd-yyyy hh:mm'}}
+      -->
+      <dt><a ui-sref="warehouse.additional">Remarks</a>
+      <dd>{{process.remarks}}
     </dl>
     <div ng-if="processStatus() === 'Complete'" class="text-right">
       <button ng-click="saveProcess()" class="btn btn-primary">Create Process</button>

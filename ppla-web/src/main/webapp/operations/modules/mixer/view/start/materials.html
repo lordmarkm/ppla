@@ -8,7 +8,7 @@
         <div class="col-sm-12">
           <div class="col-sm-5">
             <select 
-              ng-options="materialIn as namePlusMax(materialIn) for materialIn in materials track by materialIn.material.id | filter:{source:'RAW'}" 
+              ng-options="materialIn as namePlusMax(materialIn) for materialIn in materials track by materialIn.material.id | filter:{ source:'RAW' }" 
               ng-model="toAdd.materialIn"
               class="form-control" required></select>
           </div>
@@ -17,7 +17,7 @@
               <input type="number"
                 ng-model="toAdd.quantity" min="0.1" step="any"
                 class="form-control" />
-              <span ng-if="materialIn && materialIn.unitOfMeasurement" class="input-group-addon">{{materialIn.unitOfMeasurement}}</span>
+              <span ng-if="toAdd.materialIn && toAdd.materialIn.material.unitOfMeasurement" class="input-group-addon">{{toAdd.materialIn.material.unitOfMeasurement}}</span>
             </div>
           </div>
           <div class="col-sm-3">

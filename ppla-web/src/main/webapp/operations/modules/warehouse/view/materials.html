@@ -51,3 +51,28 @@
   </div>
 </div>
 </div>
+
+<div class="panel panel-default">
+<div class="panel-heading">Materials on Hand</div>
+<div class="panel-body">
+  <table class="table">
+    <thead>
+      <tr>
+        <td>Material
+        <td>Withdrawn
+        <td>Consumed
+      </td>
+    </thead>
+    <tbody>
+      <tr ng-if="!materialsOnHand || !materialsOnHand.length">
+        <td colspan="3">No materials on hand</td>
+      </tr>
+      <tr ng-repeat="stack in materialsOnHand">
+        <td>{{stack.material.name}}
+        <td>{{stack.quantityWithdrawn}}
+        <td>{{stack.quantityConsumed}}
+      </tr>
+    </tbody>
+  </table>
+</div>
+</div>

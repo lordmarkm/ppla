@@ -49,12 +49,18 @@
         <!-- New WO tab -->
         <tab>
           <tab-heading class="pointer">Create new Work Order</tab-heading>
-          <div class="col-sm-4" style="margin-top: 20px;">
+          <div class="col-sm-8" style="margin-top: 20px;">
             <form ng-submit="createNew()" class="form-horizontal">
               <div class="form-group">
                 <label class="col-sm-4 control-label">Product</label>
                 <div class="col-sm-8">
-                  <span id="workorder-quantity" class="form-control">{{orderItem.product.name}}</span>
+                  <p class="form-control-static">{{orderItem.product.name}}</p>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-4 control-label">Invoice Quantity</label>
+                <div class="col-sm-8">
+                  <p class="form-control-static">{{orderItem.quantity}}</p>
                 </div>
               </div>
               <div class="form-group">

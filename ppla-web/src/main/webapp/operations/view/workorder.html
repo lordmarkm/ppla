@@ -109,14 +109,15 @@
               <td ng-switch="process.type">
                 <span ng-switch-when="WAREHOUSE" class="label label-default">Warehouse</span>
                 <span ng-switch-when="MIXING" class="label label-primary">Mixing</span>
-                <span ng-switch-when="EXTRUSION" class="label label-success">Extrusion</span>
+                <span ng-switch-when="EXTRUSION" ng-if="process.dateStarted" class="label label-success">Extrusion</span>
+                <span ng-switch-when="EXTRUSION" ng-if="!process.dateStarted" class="label label-success">Extrusion (staged)</span>
                 <span ng-switch-when="PRINTING" class="label label-info">Printing</span>
                 <span ng-switch-when="CUTTING" class="label label-warning">Cutting</span>
               </td>
               <td>{{process.id}}
               <td>{{process.dateStarted|date: 'MMM-dd-yy hh:mm a'}}
               <td ng-if="process.dateCompleted">{{process.dateCompleted|date: 'MMM-dd-yy hh:mm a'}}
-              <td ng-if="!process.dateCompleted">Not completed
+              <td ng-if="!process.dateCompleted"><span ng-if="process.type != 'WAREHOUSE'">Not completed</span>
               <td>{{process.actor.name|name}}
               <td>{{process.endActor.name|name}}
               <td width="10%">
@@ -173,7 +174,7 @@
               </td>
             </tr>
           </tbody>
-        </table> 
+        </table>
       </div>
     </div>
   </div>

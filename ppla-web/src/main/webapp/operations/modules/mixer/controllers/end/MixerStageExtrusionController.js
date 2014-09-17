@@ -20,9 +20,34 @@ define(['/operations/controllers/module.js'], function (controllers) {
       $scope.extrusions[extruder.code] = stagedProcess;
     };
 
+    function validateWeights() {
+      var totalWeight = 0, extrusion;
+      for (var i in $scope.extrusions) {
+        extrusion = $scope.extrusions[i];
+        if (extrusion.id) {
+          continue;
+        }
+        totalWeight += extrusion.materialsIn[0].quantity;
+      }
+      if (totalWeight > $scope.process.materialsOut[0].quantity) {
+        return false;
+      }
+      return true;
+    }
+
+    function sendStageRequest(i) {
+      ExtrusionProcessService.save({action: 'stage'}, $scope.extrusions[i], function (response) {
+        $scope.extrusions[i].id = response.id;
+      });
+    }
+
     $scope.stageExtrusions = function (valid) {
       if (!valid) {
-        console.debug('Staging failed, some input is invalid.');
+        alert('Staging failed, some input is invalid.');
+        return;
+      }
+      if (!validateWeights()) {
+        alert('Staged extrusion total exceeds total mixing output.');
         return;
       }
 
@@ -32,9 +57,7 @@ define(['/operations/controllers/module.js'], function (controllers) {
         if (extrusion.id) {
           continue;
         }
-        ExtrusionProcessService.save({action: 'stage'}, $scope.extrusions[i], function (response) {
-          $scope.extrusions[i].id = response.id;
-        });
+        sendStageRequest(i);
         stagedExtrusionCount++;
       }
       if (stagedExtrusionCount > 0) {
