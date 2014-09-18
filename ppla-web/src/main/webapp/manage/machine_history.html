@@ -1,0 +1,74 @@
+<div ng-if="!machine" class="panel panel-danger">
+  <div class="panel-heading">
+    <h3 class="panel-title">Machine not found</h3>
+  </div>
+</div>
+
+<div ng-if="machine" class="panel panel-default">
+  <div class="panel-heading">Machine Details</div>
+  <div class="panel-body">
+    <dl class="dl-horizontal">
+      <dt>Type
+      <dd>{{machine.type}}
+      <dt>Code
+      <dd>{{machine.code}}
+      <dt>Status
+      <dd>{{machine.currentProcessId ? 'In use' : 'Available'}}
+    </dl>
+  </div>
+</div>
+
+<div ng-if="currentProcess" class="panel panel-default">
+  <div class="panel-heading">Current process</div>
+  <div class="panel-body">
+    <dl class="dl-horizontal">
+      <dt>Started
+      <dd>{{currentProcess.dateStarted | date: 'MMM-dd-yy hh:mm a'}}
+      <dt>Operator
+      <dd>{{currentProcess.actor.name | name}}
+      <dt>Process summary
+      <dd>{{currentProcess.id}}
+      <dt>Work order
+      <dd><a ui-sref="manage/workorder({trackingNo: currentProcess.workOrder.trackingNo})" target="_blank">{{currentProcess.workOrder.trackingNo}}</a>
+      <dt>Remarks
+      <dd>{{currentProcess.remarks}}
+    </dl>
+  </div>
+</div>
+
+<div ng-if="machine" class="panel panel-default">
+  <div class="panel-heading">Process history</div>
+  <div class="panel-body">
+    <table ng-table="tableParams" show-filter="true" class="table table-striped">
+      <thead>
+        <tr>
+          <th>Id
+          <th>Work order
+          <th>Date started
+          <th>Started by
+          <th>Date completed
+          <th>Completed by
+          <th>Remarks
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-if="!$data.length">
+          <td>No data</td>
+        </tr>
+        <tr ng-repeat="process in $data">
+          <td>{{process.id}}
+          <td><a ui-sref="manage/workorder({trackingNo: process.workOrder.trackingNo})" target="_blank">{{process.workOrder.trackingNo}}</a>
+          <td>{{process.dateStarted | date: 'MMM-dd-yy hh:mm a'}}
+          <td>{{process.actor.name | name}}
+          <td>{{process.dateCompleted | date: 'MMM-dd-yy hh:mm a'}}
+          <td>{{process.endActor.name | name}}
+          <td>{{process.remarks}}
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="text-right">
+  <button class="btn btn-default" ui-sref="manage/machines">Back to machines</button>
+</div>

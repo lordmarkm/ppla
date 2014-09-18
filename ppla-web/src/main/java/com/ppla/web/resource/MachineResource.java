@@ -47,6 +47,15 @@ public class MachineResource {
     @Autowired
     private CutterService cutterService;
 
+    @RequestMapping(value = "/{type}/{id}", method = GET)
+    public ResponseEntity<MachineInfo> findOne(@PathVariable ProcessType type, @PathVariable Long id) {
+        return new ResponseEntity<>(getService(type).findOneInfo(id), OK);
+    }
+    @RequestMapping(value = "/EXTRUSION/{id}", method = GET)
+    public ResponseEntity<ExtruderInfo> findOneExtruder(@PathVariable Long id) {
+        return new ResponseEntity<>(extruderService.findOneInfo(id), OK);
+    }
+
     @RequestMapping(method = GET)
     public ResponseEntity<MachineInventoryInfo> getMachineInventory(Principal principal) {
         LOG.debug("Inventory request. user={}", principal);

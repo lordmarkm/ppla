@@ -4,19 +4,22 @@ import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.GenericTypeResolver;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 
 import com.ppla.app.models.machine.Machine;
 import com.ppla.app.models.process.MachineProcess;
+import com.ppla.app.servicebase.BasePplaMachineProcessService;
 import com.ppla.app.servicebase.BasePplaMachineService;
-import com.ppla.app.servicebase.BasePplaProcessService;
 import com.ppla.core.dto.machine.MachineInfo;
 import com.ppla.core.dto.process.BasePplaProcessInfo;
 import com.ppla.core.dto.process.MachineProcessInfo;
+import com.tyrael.commons.mapper.dto.PageInfo;
 
 public class AbstractPplaMachineProcessService
     <E extends MachineProcess<M, ?>,
     D extends BasePplaProcessInfo,
-    R extends BasePplaProcessService<E>,
+    R extends BasePplaMachineProcessService<E>,
     M extends Machine<E>,
     MR extends BasePplaMachineService<M>> 
     
@@ -24,6 +27,9 @@ public class AbstractPplaMachineProcessService
 
     @Autowired
     protected MR machineRepo;
+
+    @Autowired
+    protected R machineProcessRepo;
 
     private Class<M> machineClass;
 
@@ -57,5 +63,15 @@ public class AbstractPplaMachineProcessService
 
     protected M toMachine(MachineInfo machineInfo) {
         return mapper.map(machineInfo, machineClass);
+    }
+
+    public PageInfo<D> pageInfoByMachineId(Long machineId, PageRequest page) {
+        Page<E> entities = machineProcessRepo.findByMachine_Id(machineId, page);
+
+        PageInfo<D> results = new PageInfo<>();
+        results.setData(toDto(entities.getContent()));
+        results.setTotal(entities.getTotalElements());
+
+        return results;
     }
 }

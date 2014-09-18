@@ -40,6 +40,7 @@
 <script src="/app/controllers/WorkOrderBrowseController.js"></script>
 <script src="/app/controllers/WorkOrderController.js"></script>
 <script src="/app/controllers/MachineController.js"></script>
+<script src="/app/controllers/MachineHistoryController.js"></script>
 
 <script src="/manage/modules/users/module.js"></script>
 <script src="/manage/modules/users/controllers/UserManagementController.js"></script>

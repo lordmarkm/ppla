@@ -20,55 +20,60 @@ angular.module('ppla', [
 
     //Products management view
     .state('manage/product', {
-      url: '/manage/product',
+      url: '/product',
       templateUrl: '/manage/product.html',
       controller: 'ProductController'
     })
 
     //Materials management view
     .state('manage/material', {
-      url: '/manage/material',
+      url: '/material',
       templateUrl: '/manage/material.html',
       controller: 'MaterialController'
     })
 
     //Machines
     .state('manage/machines', {
-      url: '/manage/machines',
+      url: '/machines',
       templateUrl: '/manage/machines.html',
       controller: 'MachineController'
+    })
+    .state('machines_history', {
+      url: '/machine/history/{type}/{machineId}',
+      templateUrl: '/manage/machine_history.html',
+      controller: 'MachineHistoryController'
     })
 
     //Sales orders management
     .state('manage/salesorder', {
-      url: '/manage/salesorder',
+      url: '/salesorder',
       templateUrl: '/manage/salesorder.html',
       controller: 'SalesOrderController'
     })
     .state('manage/salesorder/new', {
-      url: '/manage/salesorder/new',
+      url: '/salesorder/new',
       templateUrl: '/manage/salesorder_new.html',
       controller: 'SalesOrderController'
     })
     .state('manage/salesorder/workorders', {
-      url: '/manage/salesorder/workorders/{trackingNo}',
+      url: '/salesorder/workorders/{trackingNo}',
       templateUrl: '/manage/salesorder_workorders.html',
       controller: 'SalesOrder_WorkOrdersController'
     })
     .state('manage/orderitem', {
-      url: '/manage/orderitem/{id}?salesOrder',
+      url: '/orderitem/{id}?salesOrder',
       templateUrl: '/manage/orderitem.html',
       controller: 'OrderItemController'
     })
 
     //Work orders
     .state('manage/workorders', {
-      url: '/manage/workorders',
+      url: '/workorders',
       templateUrl: '/manage/workorders.html',
       controller: 'WorkOrderBrowseController'
     })
     .state('manage/workorder', {
-      url: '/manage/workorder/{trackingNo}?salesOrder&orderItem',
+      url: '/workorder/{trackingNo}?salesOrder&orderItem',
       templateUrl: '/manage/workorder.html',
       controller: 'WorkOrderController'
     });

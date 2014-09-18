@@ -42,5 +42,25 @@ angular.module('ppla.services', ['ngResource'])
 })
 
 .factory('MachineService', function($resource) {
-  return $resource('/machine/:type');
+  return $resource('/machine/:type/:id');
+})
+.factory('MixingProcessService', function($resource) {
+  return $resource('/mixing/:action/:id', {}, {
+    page: {method: 'GET', isArray: false}
+  });
+})
+.factory('ExtrusionProcessService', function($resource) {
+  return $resource('/extrusion/:action/:id', {}, {
+    page: {method: 'GET', isArray: false}
+  });
+})
+.factory('PrintingProcessService', function($resource) {
+  return $resource('/printing/:action/:id', {}, {
+    page: {method: 'GET', isArray: false}
+  });
+})
+.factory('CuttingProcessService', function($resource) {
+  return $resource('/cutting/:action/:id', {}, {
+    page: {method: 'GET', isArray: false}
+  });
 });

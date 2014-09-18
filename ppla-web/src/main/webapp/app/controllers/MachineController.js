@@ -1,8 +1,29 @@
 angular.module('ppla.controllers')
 
-.controller('MachineController', function($scope, MachineService) {
+.controller('MachineController', function($scope, MachineService,
+    MixingProcessService, ExtrusionProcessService, PrintingProcessService, CuttingProcessService) {
 
-  $scope.machines = MachineService.get();
+  $scope.machines = MachineService.get(function(machines) {
+    var i = machines.mixers.length;
+    while (i--) {
+      machines.mixers[i].process = machines.mixers[i].currentProcessId ? MixingProcessService.get({id: machines.mixers[i].currentProcessId}) : {};
+    }
+
+    i = machines.extruders.length;
+    while (i--) {
+      machines.extruders[i].process = machines.extruders[i].currentProcessId ? ExtrusionProcessService.get({id: machines.extruders[i].currentProcessId}) : {};
+    }
+
+    i = machines.printers.length;
+    while (i--) {
+      machines.printers[i].process = machines.printers[i].currentProcessId ? PrintingProcessService.get({id: machines.printers[i].currentProcessId}) : {};
+    }
+
+    i = machines.cutters.length;
+    while (i--) {
+      machines.cutters[i].process = machines.cutters[i].currentProcessId ? CuttingProcessService.get({id: machines.cutters[i].currentProcessId}) : {};
+    }
+  });
 
   $scope.saveMachine = function () {
     MachineService.save({type: $scope.machine.type}, $scope.machine, function(saved) {

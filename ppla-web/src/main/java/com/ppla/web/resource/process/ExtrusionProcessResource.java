@@ -13,10 +13,12 @@ import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.google.common.collect.Maps;
@@ -24,7 +26,9 @@ import com.ppla.app.services.ProcessMaterialStackService;
 import com.ppla.app.services.process.ExtrusionProcessService;
 import com.ppla.app.services.reports.RollTagReportService;
 import com.ppla.core.dto.process.ExtrusionProcessInfo;
+import com.ppla.core.dto.process.MixingProcessInfo;
 import com.ppla.core.dto.report.RollTagReportInfo;
+import com.tyrael.commons.mapper.dto.PageInfo;
 
 /**
  * @author mbmartinez
@@ -43,6 +47,19 @@ public class ExtrusionProcessResource {
 
     @Autowired
     private RollTagReportService rollTagReportService;
+
+    @RequestMapping(method = GET)
+    public ResponseEntity<PageInfo<ExtrusionProcessInfo>> findByMachine(Principal principal,
+            @RequestParam int page,
+            @RequestParam int count,
+            @RequestParam Long machineId) {
+
+        LOG.debug("User query. Principal={}, page={}, count={}, machineId={}", principal, page, count, machineId);
+
+        PageRequest pageRequest = new PageRequest(page - 1, count);
+
+        return new ResponseEntity<>(service.pageInfoByMachineId(machineId, pageRequest), OK);
+    }
 
     @RequestMapping(value = "/{id}", method = GET)
     public ResponseEntity<ExtrusionProcessInfo> findById(Principal principal, @PathVariable Long id) {
