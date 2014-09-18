@@ -5,7 +5,13 @@
     <artifactId>ppla</artifactId>
     <version>1.0</version>
   </parent>
-  <groupId>ppla-quickbooks</groupId>
   <artifactId>ppla-quickbooks</artifactId>
   <name>PPLA :: Quickbooks Integration</name>
+  
+  <dependencies>
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-context</artifactId>
+    </dependency>
+  </dependencies>
 </project>

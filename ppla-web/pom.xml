@@ -23,7 +23,11 @@
       <groupId>ppla</groupId>
       <artifactId>ppla-app</artifactId>
     </dependency>
-
+    <dependency>
+      <groupId>ppla</groupId>
+      <artifactId>ppla-quickbooks</artifactId>
+      <version>1.0</version>
+    </dependency>
     <!-- Tyrael -->
     <dependency>
       <groupId>tyrael-commons</groupId>
