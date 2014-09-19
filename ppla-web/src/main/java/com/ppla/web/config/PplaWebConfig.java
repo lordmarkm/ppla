@@ -33,7 +33,7 @@ import com.ppla.core.dto.PplaSalesOrderInfo;
     "com.ppla.web",
 
     //QB listener
-    "com.cantero.quickbooks.ws",
+    "com.ppla.quickbooks.ws.endpoint",
 
     //only works with 'sec' profile
     "com.ppla.security.config"
@@ -59,6 +59,7 @@ public class PplaWebConfig extends WebMvcConfigurationSupport {
 
     @Bean
     public SimpleJaxWsServiceExporter simpleJaxWsServiceExporter() {
+        //http://localhost:8081/ItemQueryRqSoapImpl
         SimpleJaxWsServiceExporter sjse = new SimpleJaxWsServiceExporter();
         sjse.setBaseAddress("http://localhost:8081/");
         return sjse;
@@ -74,7 +75,7 @@ public class PplaWebConfig extends WebMvcConfigurationSupport {
     @Override
     public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
         super.addDefaultHttpMessageConverters(converters);
-        for (HttpMessageConverter converter : converters) {
+        for (HttpMessageConverter<?> converter : converters) {
             if (converter instanceof MappingJackson2HttpMessageConverter) {
                 ((MappingJackson2HttpMessageConverter) converter)
                     .getObjectMapper()

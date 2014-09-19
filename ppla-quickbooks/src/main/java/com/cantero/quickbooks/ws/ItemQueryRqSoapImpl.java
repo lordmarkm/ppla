@@ -4,13 +4,10 @@ import java.util.ArrayList;
 
 import javax.jws.WebService;
 
-import org.springframework.stereotype.Component;
-
 /*
  * http://developer.intuit.com/qbsdk-current/doc/pdf/qbwc_proguide.pdf
  */
 @WebService(endpointInterface = "com.cantero.quickbooks.ws.QBWebConnectorSvcSoap")
-@Component
 public class ItemQueryRqSoapImpl implements QBWebConnectorSvcSoap {
 
 
