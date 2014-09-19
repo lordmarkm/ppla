@@ -1,0 +1,36 @@
+<QBXML>
+  <QBXMLMsgsRs>
+    <ItemQueryRs requestID="SXRlbVF1ZXJ5fDEyMA=="
+      statusCode="0" statusSeverity="Info" statusMessage="Status OK">
+      <ItemInventoryRet>
+        <ListID>80000001-1411007811</ListID>
+        <TimeCreated>2014-09-18T10:36:51+08:00</TimeCreated>
+        <TimeModified>2014-09-18T10:36:51+08:00</TimeModified>
+        <EditSequence>1411007811</EditSequence>
+        <Name>Arcane Dust</Name>
+        <FullName>Arcane Dust</FullName>
+        <IsActive>true</IsActive>
+        <Sublevel>0</Sublevel>
+        <SalesDesc>Crafted from blues</SalesDesc>
+        <SalesPrice>72.00</SalesPrice>
+        <IncomeAccountRef>
+          <ListID>8000001B-1411007811</ListID>
+          <FullName>Sales Income</FullName>
+        </IncomeAccountRef>
+        <PurchaseDesc>Crafted from blues</PurchaseDesc>
+        <PurchaseCost>0.00</PurchaseCost>
+        <COGSAccountRef>
+          <ListID>8000001D-1411007811</ListID>
+          <FullName>Cost of Goods Sold</FullName>
+        </COGSAccountRef>
+        <AssetAccountRef>
+          <ListID>8000001C-1411007811</ListID>
+          <FullName>Inventory Asset</FullName>
+        </AssetAccountRef>
+        <ReorderPoint>0</ReorderPoint>
+        <AverageCost>0.00</AverageCost>
+        <QuantityOnOrder>0</QuantityOnOrder>
+      </ItemInventoryRet>
+    </ItemQueryRs>
+  </QBXMLMsgsRs>
+</QBXML>
