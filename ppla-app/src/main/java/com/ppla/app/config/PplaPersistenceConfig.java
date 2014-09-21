@@ -74,7 +74,10 @@ public class PplaPersistenceConfig extends PersistenceConfig {
             "com.ppla.app.models",
             "com.ppla.app.models.process",
             "com.tyrael.process.mgt.models.product",
-            "com.baldy.commons.security.models"
+            "com.baldy.commons.security.models",
+
+            //is there any way to put this in the quickbooks module instead?
+            "com.ppla.quickbooks.entity"
         });
         entityManagerFactory.setPersistenceProvider(new HibernatePersistence());
         entityManagerFactory.setJpaProperties(hibernateProperties());

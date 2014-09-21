@@ -1,3 +1,6 @@
+
+17:37:12.153 [pool-2-thread-1] DEBUG c.p.q.w.e.PplaQuickbooksWsEndpoint
+- response=<?xml version="1.0" ?>
 <QBXML>
   <QBXMLMsgsRs>
     <ItemQueryRs requestID="SXRlbVF1ZXJ5fDEyMA=="
@@ -97,15 +100,13 @@
         <FullName>Reusable parts</FullName>
         <IsActive>true</IsActive>
         <Sublevel>0</Sublevel>
-        <SalesDesc>From whites, seriously why are these even in the g
-        </SalesDesc>
+        <SalesDesc>From whites, seriously why are these even in the g</SalesDesc>
         <SalesPrice>0.00</SalesPrice>
         <IncomeAccountRef>
           <ListID>8000001B-1411007811</ListID>
           <FullName>Sales Income</FullName>
         </IncomeAccountRef>
-        <PurchaseDesc>From whites, seriously why are these even in the g
-        </PurchaseDesc>
+        <PurchaseDesc>From whites, seriously why are these even in the g</PurchaseDesc>
         <PurchaseCost>0.00</PurchaseCost>
         <COGSAccountRef>
           <ListID>8000001D-1411007811</ListID>

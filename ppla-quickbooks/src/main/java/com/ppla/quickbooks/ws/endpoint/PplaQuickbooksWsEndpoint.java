@@ -4,19 +4,25 @@ import javax.jws.WebService;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import com.cantero.quickbooks.ws.ArrayOfString;
 import com.cantero.quickbooks.ws.ItemQueryRqSoapImpl;
+import com.ppla.quickbooks.unmarshaller.QBXmlProcessor;
 
 /*
  * http://developer.intuit.com/qbsdk-current/doc/pdf/qbwc_proguide.pdf
  */
 @WebService(endpointInterface = "com.cantero.quickbooks.ws.QBWebConnectorSvcSoap")
-@Component
+@Service
 public class PplaQuickbooksWsEndpoint extends ItemQueryRqSoapImpl {
 
     private static Logger LOG = LoggerFactory.getLogger(PplaQuickbooksWsEndpoint.class);
+
+    @Autowired
+    private QBXmlProcessor unmarshaller;
 
     @Override
     public ArrayOfString authenticate(String strUserName, String strPassword) {
@@ -65,6 +71,13 @@ public class PplaQuickbooksWsEndpoint extends ItemQueryRqSoapImpl {
         LOG.debug("response={}", response);
         LOG.debug("hresult={}", hresult);
         LOG.debug("message={}", message);
+        if (response != null && response.length() > 0) {
+            try {
+            unmarshaller.unmarshall(response);
+            } catch (Exception e) {
+                LOG.error("Exception", e);
+            }
+        }
         // TODO Auto-generated method stub
         return 100;
     }
@@ -81,9 +94,8 @@ public class PplaQuickbooksWsEndpoint extends ItemQueryRqSoapImpl {
         LOG.debug("qbXMLMajorVers={}", qbXMLMajorVers);
         LOG.debug("qbXMLMinorVers={}", qbXMLMinorVers);
 
-        //Example qbXML to Query for an Item
-        //http://www.consolibyte.com/wiki/doku.php/quickbooks_qbxml_itemquery
-        String query = "<?xml version=\"1.0\" encoding=\"utf-8\"?><?qbxml version=\"7.0\"?><QBXML><QBXMLMsgsRq onError=\"stopOnError\"><ItemQueryRq requestID=\"SXRlbVF1ZXJ5fDEyMA==\"><OwnerID>0</OwnerID></ItemQueryRq></QBXMLMsgsRq></QBXML>";
+        String query = unmarshaller.marshallInventoryRequest();
+        LOG.debug("About to send request. request={}", query);
         return query;
     }
 

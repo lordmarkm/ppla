@@ -1,8 +1,16 @@
 package com.ppla.app.util;
 
+import static com.ppla.app.reference.PplaUserType.ADMIN;
+import static com.ppla.app.reference.PplaUserType.CUTTER;
+import static com.ppla.app.reference.PplaUserType.EXTRUDER;
+import static com.ppla.app.reference.PplaUserType.MANAGER;
+import static com.ppla.app.reference.PplaUserType.MIXER;
+import static com.ppla.app.reference.PplaUserType.OPERATOR;
+import static com.ppla.app.reference.PplaUserType.OTHER;
+import static com.ppla.app.reference.PplaUserType.PRINTER;
+import static com.ppla.app.reference.PplaUserType.WAREHOUSE;
 import static com.ppla.app.util.PplaConstants.RELOAD_CSV;
 
-import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
@@ -24,7 +32,6 @@ import com.baldy.commons.models.proper.Name;
 import com.ppla.app.models.PplaUser;
 import com.ppla.app.reference.PplaUserType;
 import com.ppla.app.services.PplaUserService;
-import static com.ppla.app.reference.PplaUserType.*;
 
 /**
  * Loads data from orgchart.csv

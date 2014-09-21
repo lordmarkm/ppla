@@ -35,6 +35,7 @@
     <servlet.version>3.1.0</servlet.version>
     <freemarker.version>2.3.20</freemarker.version>
     <dozer.version>5.4.0</dozer.version>
+    <cxf.version>3.0.1</cxf.version>
 
     <!-- LOGGING -->
     <logback.version>1.0.9</logback.version>
@@ -293,6 +294,23 @@
         <groupId>ch.qos.logback</groupId>
         <artifactId>logback-classic</artifactId>
         <version>${logback.version}</version>
+      </dependency>
+
+      <!-- CXF webservices -->
+      <dependency>
+        <groupId>org.apache.cxf</groupId>
+        <artifactId>cxf-rt-frontend-jaxws</artifactId>
+        <version>${cxf.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.cxf</groupId>
+        <artifactId>cxf-rt-transports-http</artifactId>
+        <version>${cxf.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.cxf</groupId>
+        <artifactId>cxf-rt-transports-http-jetty</artifactId>
+        <version>${cxf.version}</version>
       </dependency>
 
       <!-- COMMONS -->

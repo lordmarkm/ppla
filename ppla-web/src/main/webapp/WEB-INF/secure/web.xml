@@ -61,12 +61,25 @@
 
   <!-- File locking fix -->
   <servlet>
-      <!-- Override init parameter to avoid nasty -->
-      <!-- file locking issue on windows.         -->
-      <servlet-name>default</servlet-name>
-      <init-param>
-          <param-name>useFileMappedBuffer</param-name>
-          <param-value>false</param-value>
-      </init-param>
+    <!-- Override init parameter to avoid nasty -->
+    <!-- file locking issue on windows. -->
+    <servlet-name>default</servlet-name>
+    <init-param>
+      <param-name>useFileMappedBuffer</param-name>
+      <param-value>false</param-value>
+    </init-param>
   </servlet>
+
+  <!-- CXF servlet for quickbooks -->
+  <servlet>
+    <description>Apache CXF Endpoint</description>
+    <display-name>cxf</display-name>
+    <servlet-name>cxf</servlet-name>
+    <servlet-class>org.apache.cxf.transport.servlet.CXFServlet</servlet-class>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>cxf</servlet-name>
+    <url-pattern>/webservices/*</url-pattern>
+  </servlet-mapping>
 </web-app>

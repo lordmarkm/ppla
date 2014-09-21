@@ -7,14 +7,12 @@ import javax.annotation.PostConstruct;
 import org.dozer.DozerBeanMapper;
 import org.dozer.loader.api.BeanMappingBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
-import org.springframework.remoting.jaxws.SimpleJaxWsServiceExporter;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
 
@@ -33,7 +31,7 @@ import com.ppla.core.dto.PplaSalesOrderInfo;
     "com.ppla.web",
 
     //QB listener
-    "com.ppla.quickbooks.ws.endpoint",
+    "com.ppla.quickbooks.config",
 
     //only works with 'sec' profile
     "com.ppla.security.config"
@@ -55,14 +53,6 @@ public class PplaWebConfig extends WebMvcConfigurationSupport {
                     .fields("orderItems", "items");
             }
         });
-    }
-
-    @Bean
-    public SimpleJaxWsServiceExporter simpleJaxWsServiceExporter() {
-        //http://localhost:8081/ItemQueryRqSoapImpl
-        SimpleJaxWsServiceExporter sjse = new SimpleJaxWsServiceExporter();
-        sjse.setBaseAddress("http://localhost:8081/");
-        return sjse;
     }
 
     //Enable direct access to .html, .css, etc

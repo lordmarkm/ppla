@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?qbxml version="7.0"?>
+<QBXML>
+  <QBXMLMsgsRq onError="stopOnError">
+    <ItemQueryRq requestID="SXRlbVF1ZXJ5fDEyMA==">
+      <OwnerID>0</OwnerID>
+    </ItemQueryRq>
+  </QBXMLMsgsRq>
+</QBXML>
+
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<QBXML>
+  <QBXMLMsgsRq onError="stopOnError">
+    <ItemQueryRq requestID="SXRlbVF1ZXJ5fDEyMA==">
+      <FromModifiedDate>
+        2014-09-18T10:36:51+08:00
+      </FromModifiedDate>
+      <OwnerID>0</OwnerID>
+    </ItemQueryRq>
+  </QBXMLMsgsRq>
+</QBXML>

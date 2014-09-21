@@ -1,0 +1,53 @@
+<SalesOrderQueryRs requestID="12345" statusCode="0"
+  statusSeverity="Info" statusMessage="Status OK">
+  <SalesOrderRet>
+    <TxnID>1-1411133545</TxnID>
+    <TimeCreated>2014-09-19T21:32:25+08:00</TimeCreated>
+    <TimeModified>2014-09-19T21:32:25+08:00</TimeModified>
+    <EditSequence>1411133545</EditSequence>
+    <TxnNumber>1</TxnNumber>
+    <CustomerRef>
+      <ListID>80000002-1411133490</ListID>
+      <FullName>John Dy</FullName>
+    </CustomerRef>
+    <TemplateRef>
+      <ListID>8000000B-1411007646</ListID>
+      <FullName>Sales Order with Rep</FullName>
+    </TemplateRef>
+    <TxnDate>2014-09-19</TxnDate>
+    <RefNumber>1</RefNumber>
+    <BillAddress>
+      <Addr1>John Dy</Addr1>
+    </BillAddress>
+    <BillAddressBlock>
+      <Addr1>John Dy</Addr1>
+    </BillAddressBlock>
+    <DueDate>2014-09-19</DueDate>
+    <ShipDate>2014-09-19</ShipDate>
+    <Subtotal>72.00</Subtotal>
+    <SalesTaxPercentage>0.00</SalesTaxPercentage>
+    <SalesTaxTotal>0.00</SalesTaxTotal>
+    <TotalAmount>72.00</TotalAmount>
+    <IsManuallyClosed>false</IsManuallyClosed>
+    <IsFullyInvoiced>false</IsFullyInvoiced>
+    <IsToBePrinted>true</IsToBePrinted>
+    <IsToBeEmailed>false</IsToBeEmailed>
+    <SalesOrderLineRet>
+      <TxnLineID>3-1411133545</TxnLineID>
+      <ItemRef>
+        <ListID>80000001-1411007811</ListID>
+        <FullName>Arcane Dust</FullName>
+      </ItemRef>
+      <Desc>Crafted from blues</Desc>
+      <Quantity>1</Quantity>
+      <Rate>72.00</Rate>
+      <Amount>72.00</Amount>
+      <SalesTaxCodeRef>
+        <ListID>80000002-1411007646</ListID>
+        <FullName>Non</FullName>
+      </SalesTaxCodeRef>
+      <Invoiced>0</Invoiced>
+      <IsManuallyClosed>false</IsManuallyClosed>
+    </SalesOrderLineRet>
+  </SalesOrderRet>
+</SalesOrderQueryRs>

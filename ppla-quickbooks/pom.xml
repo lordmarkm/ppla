@@ -20,10 +20,18 @@
       <artifactId>ppla-app</artifactId>
     </dependency>
 
+    <!-- QB webconnector webservice jars -->
     <dependency>
-      <groupId>com.sun.xml.bind</groupId>
-      <artifactId>jaxb-impl</artifactId>
-      <version>2.2.7</version>
+      <groupId>org.apache.cxf</groupId>
+      <artifactId>cxf-rt-frontend-jaxws</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.cxf</groupId>
+      <artifactId>cxf-rt-transports-http</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.cxf</groupId>
+      <artifactId>cxf-rt-transports-http-jetty</artifactId>
     </dependency>
 
   </dependencies>
@@ -46,6 +54,26 @@
           <packageName>com.ppla.quickbooks.entity.generated</packageName> <!-- The name of your generated source package -->
           <schemaDirectory>src/main/schema</schemaDirectory>
         </configuration>
+      </plugin>
+      <plugin>
+        <groupId>com.mysema.maven</groupId>
+        <artifactId>maven-apt-plugin</artifactId>
+        <version>1.0.2</version>
+        <executions>
+          <execution>
+            <phase>generate-sources</phase>
+            <goals>
+              <goal>process</goal>
+            </goals>
+            <configuration>
+              <outputDirectory>target/generated-sources/java</outputDirectory>
+              <processor>com.mysema.query.apt.jpa.JPAAnnotationProcessor</processor>
+              <includes>
+                <include>com.ppla.quicknooks.entity</include>
+              </includes>
+            </configuration>
+          </execution>
+        </executions>
       </plugin>
     </plugins>
   </build>
