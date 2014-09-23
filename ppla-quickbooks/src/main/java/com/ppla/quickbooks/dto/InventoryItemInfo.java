@@ -3,6 +3,7 @@ package com.ppla.quickbooks.dto;
 import java.math.BigDecimal;
 
 import org.joda.time.DateTime;
+import org.springframework.core.style.ToStringCreator;
 
 import com.ppla.core.dto.BasePplaDto;
 import com.ppla.quickbooks.reference.PplaInventoryType;
@@ -19,6 +20,17 @@ public class InventoryItemInfo extends BasePplaDto {
     private DateTime timeModified;
     private String editSequence;
 
+    @Override
+    public String toString() {
+        return new ToStringCreator(this)
+            .append("type", type)
+            .append("uom", unitOfMeasurement)
+            .append("qty", quantityOnHand)
+            .append("listId", listId)
+            .append("modified (qb)", timeModified)
+            .append("editSequence", editSequence)
+            .toString();
+    }
     public PplaInventoryType getType() {
         return type;
     }

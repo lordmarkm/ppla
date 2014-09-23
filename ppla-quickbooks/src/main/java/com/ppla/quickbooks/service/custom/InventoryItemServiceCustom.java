@@ -12,5 +12,6 @@ public interface InventoryItemServiceCustom {
 
     String getLastModifiedDate();
     PageInfo<InventoryItemInfo> pageInfo(PageRequest pageRequest);
+    InventoryItemInfo saveInfo(InventoryItemInfo item);
 
 }

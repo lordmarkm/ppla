@@ -20,4 +20,7 @@ angular.module('ppla.controllers')
     }
   });
 
+  $scope.save = function (item) {
+    InventoryService.save(item);
+  };
 });

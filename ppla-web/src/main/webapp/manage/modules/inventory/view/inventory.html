@@ -15,7 +15,18 @@
       <td>{{item.description}}
       <td>{{item.quantityOnHand}}
       <td>{{item.unitOfMeasurement}}
+      <!-- 
       <td>{{item.type}}
+      -->
+      <td>
+        <select ng-model="item.type" ng-change="save(item)" class="form-control input-sm">
+          <option value="UNCLASSIFIED">Unclassified</option>
+          <option value="RAW_MATERIAL">Raw material</option>
+          <option value="MIXING_OUTPUT">Mixing output</option>
+          <option value="EXTRUSION_OUTPUT">Extrusion output</option>
+          <option value="PRODUCT">Product</option>
+        </select>
+      </td>
       <td>{{item.timeModified|date: 'MMM-dd-yyyy hh:mm a'}}
     </tr>
     <tr ng-if="!$data.length">
