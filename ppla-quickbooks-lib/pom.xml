@@ -1,0 +1,33 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>ppla</groupId>
+    <artifactId>ppla</artifactId>
+    <version>1.0</version>
+  </parent>
+  <artifactId>ppla-quickbooks-lib</artifactId>
+  <name>PPLA :: Quickbooks XML Library</name>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>jaxb2-maven-plugin</artifactId>
+        <version>1.6</version>
+        <executions>
+          <execution>
+            <id>xjc</id>
+            <goals>
+              <goal>xjc</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <packageName>com.ppla.quickbooks.entity.generated</packageName> <!-- The name of your generated source package -->
+          <schemaDirectory>src/main/schema</schemaDirectory>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+</project>

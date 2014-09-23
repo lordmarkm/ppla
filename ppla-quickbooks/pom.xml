@@ -19,6 +19,10 @@
       <groupId>ppla</groupId>
       <artifactId>ppla-app</artifactId>
     </dependency>
+    <dependency>
+      <groupId>ppla</groupId>
+      <artifactId>ppla-quickbooks-lib</artifactId>
+    </dependency>
 
     <!-- QB webconnector webservice jars -->
     <dependency>
@@ -38,23 +42,6 @@
 
   <build>
     <plugins>
-      <plugin>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>jaxb2-maven-plugin</artifactId>
-        <version>1.6</version>
-        <executions>
-          <execution>
-            <id>xjc</id>
-            <goals>
-              <goal>xjc</goal>
-            </goals>
-          </execution>
-        </executions>
-        <configuration>
-          <packageName>com.ppla.quickbooks.entity.generated</packageName> <!-- The name of your generated source package -->
-          <schemaDirectory>src/main/schema</schemaDirectory>
-        </configuration>
-      </plugin>
       <plugin>
         <groupId>com.mysema.maven</groupId>
         <artifactId>maven-apt-plugin</artifactId>
