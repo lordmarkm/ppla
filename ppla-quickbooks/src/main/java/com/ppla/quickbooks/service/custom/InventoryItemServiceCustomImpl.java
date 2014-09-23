@@ -133,7 +133,8 @@ public class InventoryItemServiceCustomImpl extends MappingService<InventoryItem
             productService.save(product);
             break;
         case UNCLASSIFIED:
-            LOG.debug("Changing from unclassified. No clear or disable necessary.");
+            LOG.debug("Changing to unclassified. No create or enable necessary.");
+            break;
         default:
             throw new IllegalArgumentException("Unrecognized item type. type=" + type);
         }
@@ -168,6 +169,7 @@ public class InventoryItemServiceCustomImpl extends MappingService<InventoryItem
             break;
         case UNCLASSIFIED:
             LOG.debug("Changing from unclassified. No clear or disable necessary.");
+            break;
         default:
             throw new IllegalArgumentException("Unrecognized item type. type=" + oldItem.getType());
         }
