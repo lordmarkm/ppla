@@ -16,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.ppla.quickbooks.entity.generated.ItemQueryRqType;
+import com.ppla.quickbooks.entity.generated.ItemQueryRsType;
 import com.ppla.quickbooks.entity.generated.ModifiedDateRangeFilter;
 import com.ppla.quickbooks.entity.generated.QBXML;
 import com.ppla.quickbooks.entity.generated.QBXMLMsgsRq;
@@ -30,6 +31,9 @@ public class QBXmlProcessor {
 
     @Autowired
     private InventoryItemService itemService;
+
+    @Autowired
+    private ItemQueryResponseProcessor itemProcessor;
 
     @PostConstruct
     public void initJaxbContext() throws JAXBException {
@@ -102,9 +106,12 @@ public class QBXmlProcessor {
         LOG.debug("RS collection length={}", rsCollection.size());
     }
 
-    private void processResponseCollection(List<Object> rsCollection) {
+    public void processResponseCollection(List<Object> rsCollection) {
         for (Object o : rsCollection) {
-            LOG.debug("collection member class={}", o.getClass().getName());
+            LOG.debug("Processing response collection. class={}", o.getClass().getName());
+            if (o instanceof ItemQueryRsType) {
+                itemProcessor.processItemQueryResponse((ItemQueryRsType) o);
+            }
         }
     }
 

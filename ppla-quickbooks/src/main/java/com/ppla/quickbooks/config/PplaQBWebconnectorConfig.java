@@ -20,7 +20,7 @@ import com.ppla.quickbooks.ws.endpoint.PplaQuickbooksWsEndpoint;
  */
 @Configuration
 @ComponentScan("com.ppla.quickbooks")
-@ImportResource({"classpath:META-INF/cxf/cxf.xml", "classpath:META-INF/cxf/cxf-servlet.xml"})
+@ImportResource({"classpath:META-INF/cxf/cxf.xml"})
 @EnableJpaRepositories(basePackages = {
     "com.ppla.quickbooks.service"
 }, repositoryImplementationPostfix = "CustomImpl")
@@ -40,6 +40,10 @@ public class PplaQBWebconnectorConfig {
         EndpointImpl endpt = new EndpointImpl(cxfBus, service);
         endpt.setAddress("/PplaQbService");
         endpt.publish();
+
+        //Trying to set this to null because of permgen exception
+        cxfBus = null;
+
         return endpt;
     }
 

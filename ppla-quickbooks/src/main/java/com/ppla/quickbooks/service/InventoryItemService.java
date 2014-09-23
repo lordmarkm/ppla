@@ -9,4 +9,6 @@ import com.ppla.quickbooks.service.custom.InventoryItemServiceCustom;
  */
 public interface InventoryItemService extends BasePplaService<InventoryItem, Long>, InventoryItemServiceCustom {
 
+    InventoryItem findByListId(String listID);
+
 }
