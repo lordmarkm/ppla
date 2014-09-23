@@ -1,5 +1,7 @@
 package com.ppla.quickbooks.entity;
 
+import java.math.BigDecimal;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -24,6 +26,9 @@ public class InventoryItem extends BaseBaldyEntity {
 
     @Column(name = "UOM")
     private String unitOfMeasurement;
+
+    @Column(name = "QTY")
+    private BigDecimal quantityOnHand;
 
     @NaturalId
     @Column(name = "LIST_ID")
@@ -74,5 +79,13 @@ public class InventoryItem extends BaseBaldyEntity {
 
     public void setEditSequence(String editSequence) {
         this.editSequence = editSequence;
+    }
+
+    public BigDecimal getQuantityOnHand() {
+        return quantityOnHand;
+    }
+
+    public void setQuantityOnHand(BigDecimal quantityOnHand) {
+        this.quantityOnHand = quantityOnHand;
     }
 }

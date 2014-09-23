@@ -44,6 +44,8 @@
 
 <script src="/manage/modules/users/module.js"></script>
 <script src="/manage/modules/users/controllers/UserManagementController.js"></script>
+<script src="/manage/modules/inventory/module.js"></script>
+<script src="/manage/modules/inventory/controllers/InventoryController.js"></script>
 
 </head>
 
@@ -68,6 +70,7 @@
           <li><a ui-sref="manage/material">Materials</a></li>
           <li><a ui-sref="manage/machines">Machines</a>
           <li><a ui-sref="manage/product">Products</a></li>
+          <li><a ui-sref="inventory">Inventory</a></li>
         </ul>
       </li>
     </ul>

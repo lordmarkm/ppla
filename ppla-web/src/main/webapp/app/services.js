@@ -6,6 +6,12 @@ angular.module('ppla.services', ['ngResource'])
   });
 })
 
+.factory('InventoryService', function($resource) {
+  return $resource('/inventory', {}, {
+    page: {method: 'GET', isArray: false}
+  });
+})
+
 .factory('AuthService', function($resource) {
   return $resource('/auth');
 })

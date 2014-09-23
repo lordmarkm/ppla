@@ -1,0 +1,25 @@
+<table ng-table="tableParams" show-filter="true" class="table table-striped">
+  <thead>
+    <tr>
+      <th style="text-align: left;">Name
+      <th style="text-align: left;">Description
+      <th style="text-align: left;">Quantity on hand
+      <th style="text-align: left;">Unit of measure
+      <th style="text-align: left;">PPLA MES type
+      <th style="text-align: left;">Quickbooks modified date
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="item in $data">
+      <td>{{item.name}}
+      <td>{{item.description}}
+      <td>{{item.quantityOnHand}}
+      <td>{{item.unitOfMeasurement}}
+      <td>{{item.type}}
+      <td>{{item.timeModified|date: 'MMM-dd-yyyy hh:mm a'}}
+    </tr>
+    <tr ng-if="!$data.length">
+      <td colspan="6">No items available</td>
+    </tr>
+  </tbody>
+</table>

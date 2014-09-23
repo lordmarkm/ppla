@@ -1,6 +1,6 @@
 package com.ppla.quickbooks.config;
 
-import static org.dozer.loader.api.FieldsMappingOptions.customConverter;
+import static org.dozer.loader.api.FieldsMappingOptions.*;
 
 import javax.annotation.PostConstruct;
 
@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 
 import com.ppla.quickbooks.converter.DateTimeConverter;
+import com.ppla.quickbooks.dto.InventoryItemInfo;
 import com.ppla.quickbooks.entity.InventoryItem;
 import com.ppla.quickbooks.entity.generated.ItemInventoryRet;
 
@@ -26,6 +27,8 @@ public class QuickbooksWebconnectorSupportConfig {
             protected void configure() {
                 mapping(ItemInventoryRet.class, InventoryItem.class)
                     .fields("timeModified", "timeModified", customConverter(DateTimeConverter.class));
+                mapping(InventoryItem.class, InventoryItemInfo.class)
+                    .fields("timeModified", "timeModified", copyByReference());
             }
         });
     }

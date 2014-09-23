@@ -1,18 +1,24 @@
 package com.ppla.quickbooks.dto;
 
+import java.math.BigDecimal;
+
 import org.joda.time.DateTime;
 
+import com.ppla.core.dto.BasePplaDto;
 import com.ppla.quickbooks.reference.PplaInventoryType;
 
 /**
  * @author Mark
  */
-public class InventoryItemInfo {
+public class InventoryItemInfo extends BasePplaDto {
+
     private PplaInventoryType type;
     private String unitOfMeasurement;
+    private BigDecimal quantityOnHand;
     private String listId;
     private DateTime timeModified;
     private String editSequence;
+
     public PplaInventoryType getType() {
         return type;
     }
@@ -42,5 +48,11 @@ public class InventoryItemInfo {
     }
     public void setEditSequence(String editSequence) {
         this.editSequence = editSequence;
+    }
+    public BigDecimal getQuantityOnHand() {
+        return quantityOnHand;
+    }
+    public void setQuantityOnHand(BigDecimal quantityOnHand) {
+        this.quantityOnHand = quantityOnHand;
     }
 }

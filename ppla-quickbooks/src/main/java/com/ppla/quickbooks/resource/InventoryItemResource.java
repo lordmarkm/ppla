@@ -19,7 +19,7 @@ import com.ppla.quickbooks.service.InventoryItemService;
 import com.tyrael.commons.mapper.dto.PageInfo;
 
 @RestController
-@RequestMapping("/inventoryitem")
+@RequestMapping("/inventory")
 public class InventoryItemResource {
 
     private static Logger LOG = LoggerFactory.getLogger(InventoryItemResource.class);
@@ -29,8 +29,8 @@ public class InventoryItemResource {
 
     @RequestMapping(method = RequestMethod.GET)
     public ResponseEntity<PageInfo<InventoryItemInfo>> query(Principal principal,
-            @RequestParam int page,
-            @RequestParam int count) {
+            @RequestParam("page") int page,
+            @RequestParam("count") int count) {
         LOG.debug("InventoryItemInfo browse query. Principal={}, page={}, count={}", principal, page, count);
         PageRequest pageRequest = new PageRequest(page - 1, count);
         return new ResponseEntity<>(service.pageInfo(pageRequest), OK);
