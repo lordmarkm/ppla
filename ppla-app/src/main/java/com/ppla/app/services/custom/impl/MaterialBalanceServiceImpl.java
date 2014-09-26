@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.google.common.base.Preconditions;
 import com.google.common.base.Predicate;
+import com.google.common.base.Splitter;
 import com.google.common.collect.Collections2;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
@@ -45,6 +46,10 @@ public class MaterialBalanceServiceImpl implements MaterialBalanceService {
     @Autowired
     private CuttingProcessService cutting;
 
+    private static final Splitter tiago = Splitter.on(',')
+        .trimResults()
+        .omitEmptyStrings();
+
     @Override
     public List<MaterialBalanceStackInfo> computeMaterialBalance(String trackingNos) {
         Map<Long, MaterialBalanceStackInfo> materialBalance = Maps.newHashMap();
@@ -57,9 +62,12 @@ public class MaterialBalanceServiceImpl implements MaterialBalanceService {
         return Lists.newArrayList(materialBalance.values());
     }
 
-    private void processWarehouseProcesses(Map<Long, MaterialBalanceStackInfo> materialBalance, String trackingNos) {
-
-        List<WarehouseProcessInfo> procs = warehouse.findByWorkOrder_TrackingNoInfo(trackingNos);
+    private void processWarehouseProcesses(Map<Long, MaterialBalanceStackInfo> materialBalance, String trackingNosString) {
+        Iterable<String> trackingNos = tiago.split(trackingNosString);
+        List<WarehouseProcessInfo> procs = Lists.newArrayList();
+        for (String trackingNo : trackingNos) {
+            procs.addAll(warehouse.findByWorkOrder_TrackingNoInfo(trackingNo));
+        }
         for (WarehouseProcessInfo proc : procs) {
             for (RawMaterialStackInfo rawMatStack : proc.getMaterialStacks()) {
                 MaterialBalanceStackInfo currentBalance = materialBalance.get(rawMatStack.getMaterial().getId());
@@ -79,9 +87,12 @@ public class MaterialBalanceServiceImpl implements MaterialBalanceService {
         }
     }
 
-    private void processMixingProcesses(Map<Long, MaterialBalanceStackInfo> materialBalance, String trackingNos) {
-
-        List<MixingProcessInfo> procs = mixing.findByWorkOrder_TrackingNoInfo(trackingNos);
+    private void processMixingProcesses(Map<Long, MaterialBalanceStackInfo> materialBalance, String trackingNosString) {
+        Iterable<String> trackingNos = tiago.split(trackingNosString);
+        List<MixingProcessInfo> procs = Lists.newArrayList();
+        for (String trackingNo : trackingNos) {
+            procs.addAll(mixing.findByWorkOrder_TrackingNoInfo(trackingNo));
+        }
         for (MixingProcessInfo proc : procs) {
             //Mixing process in
             for (RawMaterialStackInfo matStack : proc.getMaterialsIn()) {
@@ -110,8 +121,12 @@ public class MaterialBalanceServiceImpl implements MaterialBalanceService {
         }
     }
 
-    private void processExtrusionProcesses(Map<Long, MaterialBalanceStackInfo> materialBalance, String trackingNos) {
-        List<ExtrusionProcessInfo> procs = extrusion.findByWorkOrder_TrackingNoInfo(trackingNos);
+    private void processExtrusionProcesses(Map<Long, MaterialBalanceStackInfo> materialBalance, String trackingNosString) {
+        Iterable<String> trackingNos = tiago.split(trackingNosString);
+        List<ExtrusionProcessInfo> procs = Lists.newArrayList();
+        for (String trackingNo : trackingNos) {
+            procs.addAll(extrusion.findByWorkOrder_TrackingNoInfo(trackingNo));
+        }
         for (ExtrusionProcessInfo proc : procs) {
             //Extrusion process in
             for (ProcessMaterialStackInfo matStack : proc.getMaterialsIn()) {
@@ -140,9 +155,13 @@ public class MaterialBalanceServiceImpl implements MaterialBalanceService {
         }
     }
 
-    private void processCuttingProcesses(Map<Long, MaterialBalanceStackInfo> materialBalance, String trackingNos) {
+    private void processCuttingProcesses(Map<Long, MaterialBalanceStackInfo> materialBalance, String trackingNosString) {
         //Subtract the materials used by cutting processes
-        List<CuttingProcessInfo> procs = cutting.findByWorkOrder_TrackingNoInfo(trackingNos);
+        Iterable<String> trackingNos = tiago.split(trackingNosString);
+        List<CuttingProcessInfo> procs = Lists.newArrayList();
+        for (String trackingNo : trackingNos) {
+            procs.addAll(cutting.findByWorkOrder_TrackingNoInfo(trackingNo));
+        }
         for (CuttingProcessInfo proc : procs) {
             ProcessMaterialStackInfo rollIn = proc.getRollIn();
 
