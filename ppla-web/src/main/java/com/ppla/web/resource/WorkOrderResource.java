@@ -37,12 +37,14 @@ public class WorkOrderResource {
     @RequestMapping(method = GET)
     public ResponseEntity<PageInfo<PplaWorkOrderInfo>> findAll(Principal principal,
             @RequestParam int page,
-            @RequestParam int count) {
+            @RequestParam int count,
+            @RequestParam(required = false) Boolean closed) {
 
-        LOG.debug("Work Order browse query. Principal={}, page={}, count={}", principal, page, count);
+        LOG.debug("Work Order browse query. Principal={}, page={}, count={}, includeClosed={}",
+                principal, page, count, closed);
 
         PageRequest pageRequest = new PageRequest(page - 1, count);
-        return new ResponseEntity<>(service.page(pageRequest), OK);
+        return new ResponseEntity<>(service.page(pageRequest, closed), OK);
     }
 
     @RequestMapping(value = "/{trackingNo}", method = GET)

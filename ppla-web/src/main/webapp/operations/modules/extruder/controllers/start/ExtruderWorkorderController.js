@@ -11,7 +11,8 @@ define(['/operations/controllers/module.js'], function (controllers) {
       count: 5,
       sorting: {
         trackingNo: 'asc'
-      }
+      },
+      closed: false
     }, {
       total: 0,
       counts: [], //hides pager

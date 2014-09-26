@@ -21,5 +21,6 @@ public interface PplaWorkOrderServiceCustom {
     List<PplaWorkOrderInfo> findOpenWithSameProductInfo(Long orderItemId);
 
     PageInfo<PplaWorkOrderInfo> page(PageRequest pageRequest);
+    PageInfo<PplaWorkOrderInfo> page(PageRequest pageRequest, Boolean includeClosed);
 
 }

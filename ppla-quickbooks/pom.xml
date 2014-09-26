@@ -38,6 +38,11 @@
       <artifactId>cxf-rt-transports-http-jetty</artifactId>
     </dependency>
 
+    <dependency>
+      <groupId>baldy.commons</groupId>
+      <artifactId>baldy-commons-test</artifactId>
+      <scope>test</scope>
+    </dependency>
   </dependencies>
 
   <build>

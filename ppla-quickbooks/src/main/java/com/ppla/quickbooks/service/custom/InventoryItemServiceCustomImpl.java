@@ -22,6 +22,7 @@ import com.ppla.quickbooks.dto.InventoryItemInfo;
 import com.ppla.quickbooks.entity.InventoryItem;
 import com.ppla.quickbooks.reference.PplaInventoryType;
 import com.ppla.quickbooks.service.InventoryItemService;
+import com.ppla.quickbooks.util.QBDateAdapter;
 import com.tyrael.commons.mapper.dto.PageInfo;
 import com.tyrael.commons.mapper.service.MappingService;
 
@@ -33,7 +34,7 @@ public class InventoryItemServiceCustomImpl extends MappingService<InventoryItem
 
     private static Logger LOG = LoggerFactory.getLogger(InventoryItemServiceCustomImpl.class);
 
-    private static final String longTimeAgo = "1987-03-04T00:00:00+08:00";
+    private static final String longTimeAgo = "2012-09-19T16:57:59+08:00";
 
     @Autowired
     private InventoryItemService service;
@@ -47,6 +48,9 @@ public class InventoryItemServiceCustomImpl extends MappingService<InventoryItem
     @Autowired
     private PplaProductService productService;
 
+    @Autowired
+    private QBDateAdapter qbDateAdapter;
+
     @Override
     public String getLastModifiedDate() {
         String lastModifiedDate = null;
@@ -57,7 +61,7 @@ public class InventoryItemServiceCustomImpl extends MappingService<InventoryItem
             lastModifiedDate = longTimeAgo;
         } else {
             InventoryItem lastModifiedItem = itemz.get(0);
-            lastModifiedDate = ObjectUtils.toString(lastModifiedItem.getTimeModified());
+            lastModifiedDate = qbDateAdapter.format(lastModifiedItem.getTimeModified());
         }
 
         return lastModifiedDate;
@@ -112,6 +116,7 @@ public class InventoryItemServiceCustomImpl extends MappingService<InventoryItem
             ProcessMaterial procMat = procMaterialService.findByInventoryItemListId(listId);
             if (null != procMat) {
                 mapper.map(item, procMat);
+                procMat.setSource(determineProcessMaterialSource(type));
                 procMat.setDeleted(false);
             } else {
                 procMat = mapper.map(item, ProcessMaterial.class);

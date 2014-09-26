@@ -9,6 +9,8 @@ import org.dozer.loader.api.BeanMappingBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 
+import com.ppla.app.models.PplaProduct;
+import com.ppla.app.models.material.PplaMaterial;
 import com.ppla.quickbooks.converter.DateTimeConverter;
 import com.ppla.quickbooks.dto.InventoryItemInfo;
 import com.ppla.quickbooks.entity.InventoryItem;
@@ -29,6 +31,12 @@ public class QuickbooksWebconnectorSupportConfig {
                     .fields("timeModified", "timeModified", customConverter(DateTimeConverter.class));
                 mapping(InventoryItem.class, InventoryItemInfo.class)
                     .fields("timeModified", "timeModified", copyByReference());
+
+                //Prevent id from being overriden
+                mapping(InventoryItem.class, PplaProduct.class)
+                    .exclude("id");
+                mapping(InventoryItem.class, PplaMaterial.class)
+                    .exclude("id");
             }
         });
     }

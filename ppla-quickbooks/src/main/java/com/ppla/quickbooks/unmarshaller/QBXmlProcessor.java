@@ -79,8 +79,8 @@ public class QBXmlProcessor {
 
     private ItemQueryRqType createItemQuery() {
         ItemQueryRqType itemQuery = new ItemQueryRqType();
-        //itemQuery.setFromModifiedDate(itemService.getLastModifiedDate());
-        itemQuery.setFromModifiedDate("2014-09-19T16:57:59+08:00");
+        itemQuery.setFromModifiedDate(itemService.getLastModifiedDate());
+        //itemQuery.setFromModifiedDate("2014-09-19T16:57:59+08:00");
         itemQuery.setRequestID("SXRlbVF1ZXJ5fDEyMA==");
         itemQuery.getOwnerID().add("0");
 

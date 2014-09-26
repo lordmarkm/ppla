@@ -67,9 +67,13 @@
         </a>
         <ul class="dropdown-menu" role="menu">
           <li><a ui-sref="users.list">Users</a></li>
+          <!-- 
           <li><a ui-sref="manage/material">Materials</a></li>
+          -->
           <li><a ui-sref="manage/machines">Machines</a>
+          <!-- 
           <li><a ui-sref="manage/product">Products</a></li>
+          -->
           <li><a ui-sref="inventory">Inventory</a></li>
         </ul>
       </li>

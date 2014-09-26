@@ -1,7 +1,5 @@
 <div class="panel panel-info">
-  <div class="panel-heading">Warehouse Process <br />
-    <small ng-style="processStatus() === 'Complete' ? {color: 'green'} : {color: 'red'}">{{processStatus()}}</small>
-  </div>
+  <div class="panel-heading">Warehouse Process</div>
   <div class="panel-body">
     <dl class="dl-horizontal">
       <dt><a ui-sref="warehouse.workorder">Work Order</a>
@@ -21,6 +19,8 @@
       -->
       <dt><a ui-sref="warehouse.additional">Remarks</a>
       <dd>{{process.remarks}}
+      <dt>Status
+      <dd>{{processStatus()}}
     </dl>
     <div ng-if="processStatus() === 'Complete'" class="text-right">
       <button ng-click="saveProcess()" class="btn btn-primary">Create Process</button>

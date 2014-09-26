@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.apache.commons.lang.RandomStringUtils;
 import org.joda.time.DateTime;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -27,6 +29,8 @@ import com.tyrael.commons.mapper.service.MappingService;
  */
 public class PplaWorkOrderServiceCustomImpl extends MappingService<PplaWorkOrder, PplaWorkOrderInfo>
     implements PplaWorkOrderServiceCustom {
+
+    private static Logger LOG = LoggerFactory.getLogger(PplaWorkOrderServiceCustomImpl.class);
 
     @Autowired
     private PplaWorkOrderService workOrders;
@@ -99,7 +103,19 @@ public class PplaWorkOrderServiceCustomImpl extends MappingService<PplaWorkOrder
 
     @Override
     public PageInfo<PplaWorkOrderInfo> page(PageRequest pageRequest) {
-        Page<PplaWorkOrder> results = workOrders.findAll(pageRequest);
+        return page(pageRequest, true);
+    }
+
+    @Override
+    public PageInfo<PplaWorkOrderInfo> page(PageRequest pageRequest, Boolean includeClosed) {
+        Page<PplaWorkOrder> results = null;
+        if (includeClosed != null && !includeClosed) {
+            LOG.debug("Ignoring closed work orders.");
+            results = workOrders.findByStatus(PplaWorkOrder.STATUS_OPEN, pageRequest);
+        } else {
+            results = workOrders.findAll(pageRequest);
+        }
+
         List<PplaWorkOrderInfo> infos = Lists.newArrayList();
         for (PplaWorkOrder wo : results) {
             
