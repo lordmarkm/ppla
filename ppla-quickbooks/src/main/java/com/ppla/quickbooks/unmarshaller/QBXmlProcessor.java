@@ -17,10 +17,10 @@ import org.springframework.stereotype.Component;
 
 import com.ppla.quickbooks.entity.generated.ItemQueryRqType;
 import com.ppla.quickbooks.entity.generated.ItemQueryRsType;
-import com.ppla.quickbooks.entity.generated.ModifiedDateRangeFilter;
 import com.ppla.quickbooks.entity.generated.QBXML;
 import com.ppla.quickbooks.entity.generated.QBXMLMsgsRq;
 import com.ppla.quickbooks.entity.generated.SalesOrderQueryRqType;
+import com.ppla.quickbooks.entity.generated.SalesOrderQueryRsType;
 import com.ppla.quickbooks.service.InventoryItemService;
 
 @Component
@@ -35,14 +35,23 @@ public class QBXmlProcessor {
     @Autowired
     private ItemQueryResponseProcessor itemProcessor;
 
+    @Autowired
+    private ItemQueryRequestComposer itemQueryRequestComposer;
+
+    @Autowired
+    private SalesOrderQueryResponseProcessor salesOrderProcessor;
+
+    @Autowired
+    private SalesOrderQueryComposer salesOrderQueryComposer;
+
     @PostConstruct
     public void initJaxbContext() throws JAXBException {
         jc = JAXBContext.newInstance(QBXML.class);
     }
 
     public String marshallInventoryRequest() {
-        ItemQueryRqType itemQuery = createItemQuery();
-        SalesOrderQueryRqType salesOrderQuery = createSalesOrderQuery();
+        ItemQueryRqType itemQuery = itemQueryRequestComposer.createItemQuery();
+        SalesOrderQueryRqType salesOrderQuery = salesOrderQueryComposer.createSalesOrderQuery();
         
         QBXMLMsgsRq rq = new QBXMLMsgsRq();
         rq.setOnError("stopOnError");
@@ -63,30 +72,6 @@ public class QBXmlProcessor {
             LOG.error("Error marshalling request.", e);
             return "";
         }
-    }
-
-    private SalesOrderQueryRqType createSalesOrderQuery() {
-        ModifiedDateRangeFilter soDateFilter = new ModifiedDateRangeFilter();
-        soDateFilter.setFromModifiedDate("2014-09-19T16:57:59+08:00");
-        SalesOrderQueryRqType salesOrderQuery = new SalesOrderQueryRqType();
-        salesOrderQuery.getOwnerID().add("0");
-        salesOrderQuery.setRequestID("12345");
-        salesOrderQuery.setModifiedDateRangeFilter(soDateFilter);
-        salesOrderQuery.setIncludeLineItems("true");
-
-        return salesOrderQuery;
-    }
-
-    private ItemQueryRqType createItemQuery() {
-        ItemQueryRqType itemQuery = new ItemQueryRqType();
-        itemQuery.setFromModifiedDate(itemService.getLastModifiedDate());
-        //itemQuery.setFromModifiedDate("2014-09-19T16:57:59+08:00");
-        itemQuery.setRequestID("SXRlbVF1ZXJ5fDEyMA==");
-        itemQuery.getOwnerID().add("0");
-
-        LOG.debug("Querying from last modified date={}", itemQuery.getFromModifiedDate());
-
-        return itemQuery;
     }
 
     public void unmarshall(String xml) {
@@ -111,6 +96,10 @@ public class QBXmlProcessor {
             LOG.debug("Processing response collection. class={}", o.getClass().getName());
             if (o instanceof ItemQueryRsType) {
                 itemProcessor.processItemQueryResponse((ItemQueryRsType) o);
+            } else if (o instanceof SalesOrderQueryRsType) {
+            	salesOrderProcessor.processSalesOrderQueryResponse((SalesOrderQueryRsType) o);
+            } else {
+            	LOG.warn("Unhandled response class. class={}", o.getClass());
             }
         }
     }

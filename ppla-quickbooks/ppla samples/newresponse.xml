@@ -1,0 +1,213 @@
+<QBXML>
+	<QBXMLMsgsRs>
+		<ItemQueryRs requestID="SXRlbVF1ZXJ5fDEyMA==" statusCode="0"
+			statusSeverity="Info" statusMessage="Status OK">
+			<ItemInventoryRet>
+				<ListID>80000001-1412509223</ListID>
+				<TimeCreated>2014-10-05T19:40:23+08:00</TimeCreated>
+				<TimeModified>2014-10-05T23:49:15+08:00</TimeModified>
+				<EditSequence>1412509223</EditSequence>
+				<Name>Arcane dust</Name>
+				<FullName>Arcane dust</FullName>
+				<IsActive>true</IsActive>
+				<Sublevel>0</Sublevel>
+				<SalesDesc>crafter from blues</SalesDesc>
+				<SalesPrice>0.00</SalesPrice>
+				<IncomeAccountRef>
+					<ListID>80000019-1412509222</ListID>
+					<FullName>Sales Income</FullName>
+				</IncomeAccountRef>
+				<PurchaseDesc>crafter from blues</PurchaseDesc>
+				<PurchaseCost>12.00</PurchaseCost>
+				<COGSAccountRef>
+					<ListID>8000001B-1412509222</ListID>
+					<FullName>Cost of Goods Sold</FullName>
+				</COGSAccountRef>
+				<AssetAccountRef>
+					<ListID>8000001A-1412509222</ListID>
+					<FullName>Inventory Asset</FullName>
+				</AssetAccountRef>
+				<ReorderPoint>0</ReorderPoint>
+				<QuantityOnHand>0</QuantityOnHand>
+				<AverageCost>12.00</AverageCost>
+				<QuantityOnOrder>0</QuantityOnOrder>
+				<QuantityOnSalesOrder>52</QuantityOnSalesOrder>
+			</ItemInventoryRet>
+		</ItemQueryRs>
+		<SalesOrderQueryRs requestID="12345" statusCode="0"
+			statusSeverity="Info" statusMessage="Status OK">
+			<SalesOrderRet>
+				<TxnID>1-1412509284</TxnID>
+				<TimeCreated>2014-10-05T19:41:24+08:00</TimeCreated>
+				<TimeModified>2014-10-05T23:51:14+08:00</TimeModified>
+				<EditSequence>1412524274</EditSequence>
+				<TxnNumber>1</TxnNumber>
+				<CustomerRef>
+					<ListID>80000001-1412509274</ListID>
+					<FullName>John Dy</FullName>
+				</CustomerRef>
+				<TemplateRef>
+					<ListID>8000000B-1412509141</ListID>
+					<FullName>Sales Order with Rep</FullName>
+				</TemplateRef>
+				<TxnDate>2014-10-05</TxnDate>
+				<RefNumber>1</RefNumber>
+				<BillAddress>
+					<Addr1>John Dy</Addr1>
+				</BillAddress>
+				<BillAddressBlock>
+					<Addr1>John Dy</Addr1>
+				</BillAddressBlock>
+				<ShipAddress>
+					<Addr1>Far far away nigga</Addr1>
+				</ShipAddress>
+				<ShipAddressBlock>
+					<Addr1>Far far away nigga</Addr1>
+				</ShipAddressBlock>
+				<DueDate>2014-10-05</DueDate>
+				<ShipDate>2014-10-05</ShipDate>
+				<Subtotal>0.00</Subtotal>
+				<SalesTaxPercentage>0.00</SalesTaxPercentage>
+				<SalesTaxTotal>0.00</SalesTaxTotal>
+				<TotalAmount>0.00</TotalAmount>
+				<IsManuallyClosed>false</IsManuallyClosed>
+				<IsFullyInvoiced>false</IsFullyInvoiced>
+				<IsToBePrinted>true</IsToBePrinted>
+				<IsToBeEmailed>false</IsToBeEmailed>
+				<SalesOrderLineRet>
+					<TxnLineID>3-1412509284</TxnLineID>
+					<ItemRef>
+						<ListID>80000001-1412509223</ListID>
+						<FullName>Arcane dust</FullName>
+					</ItemRef>
+					<Desc>crafter from blues</Desc>
+					<Quantity>15</Quantity>
+					<Rate>0.00</Rate>
+					<Amount>0.00</Amount>
+					<SalesTaxCodeRef>
+						<ListID>80000002-1412509142</ListID>
+						<FullName>Non</FullName>
+					</SalesTaxCodeRef>
+					<Invoiced>0</Invoiced>
+					<IsManuallyClosed>false</IsManuallyClosed>
+				</SalesOrderLineRet>
+				<SalesOrderLineRet>
+					<TxnLineID>4-1412509284</TxnLineID>
+					<ItemRef>
+						<ListID>80000001-1412509223</ListID>
+						<FullName>Arcane dust</FullName>
+					</ItemRef>
+					<Desc>crafter from blues</Desc>
+					<Quantity>12</Quantity>
+					<Rate>0.00</Rate>
+					<Amount>0.00</Amount>
+					<SalesTaxCodeRef>
+						<ListID>80000002-1412509142</ListID>
+						<FullName>Non</FullName>
+					</SalesTaxCodeRef>
+					<Invoiced>0</Invoiced>
+					<IsManuallyClosed>false</IsManuallyClosed>
+				</SalesOrderLineRet>
+			</SalesOrderRet>
+			<SalesOrderRet>
+				<TxnID>5-1412524155</TxnID>
+				<TimeCreated>2014-10-05T23:49:15+08:00</TimeCreated>
+				<TimeModified>2014-10-05T23:49:15+08:00</TimeModified>
+				<EditSequence>1412524155</EditSequence>
+				<TxnNumber>2</TxnNumber>
+				<CustomerRef>
+					<ListID>80000002-1412524137</ListID>
+					<FullName>Juan dela croz</FullName>
+				</CustomerRef>
+				<TemplateRef>
+					<ListID>8000000B-1412509141</ListID>
+					<FullName>Sales Order with Rep</FullName>
+				</TemplateRef>
+				<TxnDate>2014-10-05</TxnDate>
+				<RefNumber>2</RefNumber>
+				<BillAddress>
+					<Addr1>Juan dela croz</Addr1>
+				</BillAddress>
+				<BillAddressBlock>
+					<Addr1>Juan dela croz</Addr1>
+				</BillAddressBlock>
+				<DueDate>2014-10-05</DueDate>
+				<ShipDate>2014-10-05</ShipDate>
+				<Subtotal>0.00</Subtotal>
+				<SalesTaxPercentage>0.00</SalesTaxPercentage>
+				<SalesTaxTotal>0.00</SalesTaxTotal>
+				<TotalAmount>0.00</TotalAmount>
+				<IsManuallyClosed>false</IsManuallyClosed>
+				<IsFullyInvoiced>false</IsFullyInvoiced>
+				<IsToBePrinted>true</IsToBePrinted>
+				<IsToBeEmailed>false</IsToBeEmailed>
+				<SalesOrderLineRet>
+					<TxnLineID>7-1412524155</TxnLineID>
+					<ItemRef>
+						<ListID>80000001-1412509223</ListID>
+						<FullName>Arcane dust</FullName>
+					</ItemRef>
+					<Desc>crafter from blues</Desc>
+					<Quantity>12</Quantity>
+					<Rate>0.00</Rate>
+					<Amount>0.00</Amount>
+					<SalesTaxCodeRef>
+						<ListID>80000002-1412509142</ListID>
+						<FullName>Non</FullName>
+					</SalesTaxCodeRef>
+					<Invoiced>0</Invoiced>
+					<IsManuallyClosed>false</IsManuallyClosed>
+				</SalesOrderLineRet>
+				<SalesOrderLineRet>
+					<TxnLineID>8-1412524155</TxnLineID>
+					<ItemRef>
+						<ListID>80000001-1412509223</ListID>
+						<FullName>Arcane dust</FullName>
+					</ItemRef>
+					<Desc>crafter from blues</Desc>
+					<Quantity>11</Quantity>
+					<Rate>0.00</Rate>
+					<Amount>0.00</Amount>
+					<SalesTaxCodeRef>
+						<ListID>80000002-1412509142</ListID>
+						<FullName>Non</FullName>
+					</SalesTaxCodeRef>
+					<Invoiced>0</Invoiced>
+					<IsManuallyClosed>false</IsManuallyClosed>
+				</SalesOrderLineRet>
+				<SalesOrderLineRet>
+					<TxnLineID>9-1412524155</TxnLineID>
+					<ItemRef>
+						<ListID>80000001-1412509223</ListID>
+						<FullName>Arcane dust</FullName>
+					</ItemRef>
+					<Desc>crafter from blues</Desc>
+					<Rate>0.00</Rate>
+					<Amount>0.00</Amount>
+					<SalesTaxCodeRef>
+						<ListID>80000002-1412509142</ListID>
+						<FullName>Non</FullName>
+					</SalesTaxCodeRef>
+					<Invoiced>0</Invoiced>
+					<IsManuallyClosed>false</IsManuallyClosed>
+				</SalesOrderLineRet>
+				<SalesOrderLineRet>
+					<TxnLineID>A-1412524155</TxnLineID>
+					<ItemRef>
+						<ListID>80000001-1412509223</ListID>
+						<FullName>Arcane dust</FullName>
+					</ItemRef>
+					<Desc>crafter from blues</Desc>
+					<Rate>0.00</Rate>
+					<Amount>0.00</Amount>
+					<SalesTaxCodeRef>
+						<ListID>80000002-1412509142</ListID>
+						<FullName>Non</FullName>
+					</SalesTaxCodeRef>
+					<Invoiced>0</Invoiced>
+					<IsManuallyClosed>false</IsManuallyClosed>
+				</SalesOrderLineRet>
+			</SalesOrderRet>
+		</SalesOrderQueryRs>
+	</QBXMLMsgsRs>
+</QBXML>

@@ -2,6 +2,7 @@ package com.ppla.app.services.test;
 
 import static org.junit.Assert.*;
 
+import java.math.BigInteger;
 import java.util.List;
 
 import org.apache.commons.lang.RandomStringUtils;
@@ -72,6 +73,8 @@ public class PplaOrderItemServiceTest {
         PplaSalesOrder so = new PplaSalesOrder();
         so.setCustomer(customer);
         so.setTrackingNo(RandomStringUtils.random(5));
+        so.setEditSequence("123");
+        so.setTxnNumber(BigInteger.TEN);
         salesOrders.save(so);
 
         PplaProduct product = new PplaProduct();
@@ -82,6 +85,7 @@ public class PplaOrderItemServiceTest {
         PplaOrderItem orderItem = new PplaOrderItem();
         orderItem.setProduct(product);
         orderItem.setSalesOrder(so);
+        orderItem.setTxnLineId("123");
         return orderItem;
     }
 

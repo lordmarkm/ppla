@@ -9,4 +9,6 @@ import com.ppla.app.models.PplaPerson;
  */
 public interface PplaPersonService extends JpaRepository<PplaPerson, Long> {
 
+    PplaPerson findByListId(String listID);
+
 }

@@ -2,7 +2,6 @@ package com.ppla.quickbooks.service.custom;
 
 import java.util.List;
 
-import org.apache.commons.lang3.ObjectUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -91,6 +90,13 @@ public class InventoryItemServiceCustomImpl extends MappingService<InventoryItem
         createOrEnablePplaClass(item);
 
         return toDto(item);
+    }
+
+    @Override
+    public InventoryItem createInstanceAs(InventoryItem item, PplaInventoryType type) {
+        item.setType(type);
+        createOrEnablePplaClass(item);
+        return item;
     }
 
     private void createOrEnablePplaClass(InventoryItem item) {
@@ -188,4 +194,5 @@ public class InventoryItemServiceCustomImpl extends MappingService<InventoryItem
             throw new IllegalArgumentException("Unsupported process material inventory type: " + type);
         }
     }
+
 }

@@ -13,5 +13,6 @@ public interface PplaOrderItemService extends BasePplaService<PplaOrderItem, Lon
 
     List<PplaOrderItem> findByProduct(PplaProduct product);
     List<PplaOrderItem> findByWorkOrder(PplaWorkOrder workorder);
+    PplaOrderItem findByTxnLineId(String txnLineId);
 
 }
