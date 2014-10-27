@@ -12,7 +12,7 @@
   <name>PPLA :: App</name>
 
   <properties>
-    <db.username>root</db.username>
+    <db.username>postgres</db.username>
     <db.password>root</db.password>
     <hibernate.hbm2ddl.auto>update</hibernate.hbm2ddl.auto>
     <hibernate.hbm2ddl.import_files></hibernate.hbm2ddl.import_files>
@@ -59,6 +59,13 @@
 
   <profiles>
     <profile>
+      <id>prod</id>
+      <properties>
+        <db.username>postgres</db.username>
+        <db.password>root</db.password>
+      </properties>
+    </profile>
+    <profile>
       <id>qa</id>
       <properties>
         <db.username>ppla</db.username>
@@ -68,9 +75,9 @@
     <profile>
       <id>purge</id>
       <properties>
-        <hibernate.hbm2ddl.auto>create</hibernate.hbm2ddl.auto>
+        <hibernate.hbm2ddl.auto>update</hibernate.hbm2ddl.auto>
         <hibernate.hbm2ddl.import_files>
-          /META-INF/sql/accounts.sql,/META-INF/sql/material.sql
+          /META-INF/sql/accounts.sql
         </hibernate.hbm2ddl.import_files>
         <reload.csv>true</reload.csv>
       </properties>

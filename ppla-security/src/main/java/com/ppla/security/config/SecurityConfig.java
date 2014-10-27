@@ -61,6 +61,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .authorizeUrls()
                 .antMatchers("/manage**").hasRole(ADMIN)
                 .antMatchers("/operations**").hasAnyAuthority(OPERATOR, WAREHOUSE, MIXER, EXTRUDER, PRINTER, CUTTER)
+                .antMatchers("/webservices**").permitAll()
 //              .antMatchers("/**").permitAll()
                 .antMatchers("/**").authenticated()
                 .and()
