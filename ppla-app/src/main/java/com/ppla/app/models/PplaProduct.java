@@ -3,7 +3,7 @@ package com.ppla.app.models;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 
-import com.tyrael.process.mgt.models.product.Product;
+import com.tyrael.commons.models.Product;
 
 /**
  * @author Mark
