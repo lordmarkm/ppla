@@ -9,10 +9,10 @@ angular.module('ppla')
   })
   .state('users.list', {
     url: '',
-    templateUrl: 'manage/modules/users/view/list_ngtable.html'
+    templateUrl: 'modules/users/view/list_ngtable.html'
   })
   .state('users.edit', {
     url: '/edit',
-    templateUrl: 'manage/modules/users/view/edit.html'
+    templateUrl: 'modules/users/view/edit.html'
   });
 });

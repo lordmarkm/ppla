@@ -35,46 +35,46 @@ angular.module('ppla', [
     //Machines
     .state('manage/machines', {
       url: '/machines',
-      templateUrl: 'manage/machines.html',
+      templateUrl: 'machines.html',
       controller: 'MachineController'
     })
     .state('machines_history', {
       url: '/machine/history/{type}/{machineId}',
-      templateUrl: 'manage/machine_history.html',
+      templateUrl: 'machine_history.html',
       controller: 'MachineHistoryController'
     })
 
     //Sales orders management
     .state('manage/salesorder', {
       url: '/salesorder',
-      templateUrl: 'manage/salesorder.html',
+      templateUrl: 'salesorder.html',
       controller: 'SalesOrderController'
     })
     .state('manage/salesorder/new', {
       url: '/salesorder/new',
-      templateUrl: 'manage/salesorder_new.html',
+      templateUrl: 'salesorder_new.html',
       controller: 'SalesOrderController'
     })
     .state('manage/salesorder/workorders', {
       url: '/salesorder/workorders/{trackingNo}',
-      templateUrl: 'manage/salesorder_workorders.html',
+      templateUrl: 'salesorder_workorders.html',
       controller: 'SalesOrder_WorkOrdersController'
     })
     .state('manage/orderitem', {
       url: '/orderitem/{id}?salesOrder',
-      templateUrl: 'manage/orderitem.html',
+      templateUrl: 'orderitem.html',
       controller: 'OrderItemController'
     })
 
     //Work orders
     .state('manage/workorders', {
       url: '/workorders',
-      templateUrl: 'manage/workorders.html',
+      templateUrl: 'workorders.html',
       controller: 'WorkOrderBrowseController'
     })
     .state('manage/workorder', {
       url: '/workorder/{trackingNo}?salesOrder&orderItem',
-      templateUrl: 'manage/workorder.html',
+      templateUrl: 'workorder.html',
       controller: 'WorkOrderController'
     });
 });

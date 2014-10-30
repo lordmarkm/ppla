@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
 -->
 <title>PPLA Films MES</title>
-<link rel="icon" type="image/x-icon" href="/images/favicon.ico" />
+<link rel="icon" type="image/x-icon" href="<@spring.url '/images/favicon.ico' />" />
 <link rel="stylesheet" href="<@spring.url '/lib/bootstrap-3.2.0/css/bootstrap.min.css' />" />
 <link rel="stylesheet" href="<@spring.url '/lib/angular-ngtable/ng-table.min.css' />" />
 <link rel="stylesheet" href="<@spring.url '/lib/angular-quick-date/ng-quick-date.css' />" />
