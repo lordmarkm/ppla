@@ -1,11 +1,12 @@
 package com.ppla.app.services.test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import java.math.BigInteger;
 import java.util.List;
 
 import org.apache.commons.lang.RandomStringUtils;
+import org.joda.time.DateTime;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -22,7 +23,6 @@ import com.ppla.app.models.PplaProduct;
 import com.ppla.app.models.PplaSalesOrder;
 import com.ppla.app.models.PplaWorkOrder;
 import com.ppla.app.models.QPplaOrderItem;
-import com.ppla.app.models.QPplaSalesOrder;
 import com.ppla.app.services.PplaOrderItemService;
 import com.ppla.app.services.PplaPersonService;
 import com.ppla.app.services.PplaProductService;
@@ -75,6 +75,7 @@ public class PplaOrderItemServiceTest {
         so.setTrackingNo(RandomStringUtils.random(5));
         so.setEditSequence("123");
         so.setTxnNumber(BigInteger.TEN);
+        so.setTimeModified(DateTime.now());
         salesOrders.save(so);
 
         PplaProduct product = new PplaProduct();

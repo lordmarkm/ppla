@@ -24,7 +24,7 @@ import com.ppla.app.models.PplaUser;
 import com.ppla.app.services.process.MixingProcessService;
 import com.ppla.core.dto.PplaUserInfo;
 import com.ppla.core.dto.process.MixingProcessInfo;
-import com.tyrael.commons.mapper.dto.PageInfo;
+import com.tyrael.commons.dto.PageInfo;
 
 /**
  * @author Mark

@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ppla.app.services.process.PrintingProcessService;
 import com.ppla.core.dto.process.ExtrusionProcessInfo;
 import com.ppla.core.dto.process.PrintingProcessInfo;
-import com.tyrael.commons.mapper.dto.PageInfo;
+import com.tyrael.commons.dto.PageInfo;
 
 /**
  * @author mbmartinez

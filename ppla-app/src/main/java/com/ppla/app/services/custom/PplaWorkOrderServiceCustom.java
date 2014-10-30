@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.data.domain.PageRequest;
 
 import com.ppla.core.dto.PplaWorkOrderInfo;
-import com.tyrael.commons.mapper.dto.PageInfo;
+import com.tyrael.commons.dto.PageInfo;
 
 /**
  * @author Mark

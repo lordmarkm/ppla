@@ -1,6 +1,12 @@
 package com.ppla.security.config;
 
-import javax.annotation.Resource;
+import static com.ppla.security.reference.Roles.ADMIN;
+import static com.ppla.security.reference.Roles.CUTTER;
+import static com.ppla.security.reference.Roles.EXTRUDER;
+import static com.ppla.security.reference.Roles.MIXER;
+import static com.ppla.security.reference.Roles.OPERATOR;
+import static com.ppla.security.reference.Roles.PRINTER;
+import static com.ppla.security.reference.Roles.WAREHOUSE;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -19,8 +25,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.baldy.commons.security.services.BaldyCommonsSecurityServicesMarker;
 import com.baldy.commons.security.services.BaseBaldyUserDetailsService;
-
-import static com.ppla.security.reference.Roles.*;
 
 /**
  * Do not autoformat this class.
@@ -82,7 +86,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Override
-    protected void registerAuthentication(AuthenticationManagerBuilder  builder) throws Exception {
+    protected void registerAuthentication(AuthenticationManagerBuilder builder) throws Exception {
         builder.userDetailsService(userDetailsService);
     }
 }

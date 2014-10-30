@@ -1,3 +1,5 @@
+<#import "/spring.ftl" as spring />
+
 <html>
 
 <head>
@@ -7,17 +9,17 @@
 -->
 <title>PPLA Films MES</title>
 <link rel="icon" type="image/x-icon" href="/images/favicon.ico" />
-<link rel="stylesheet" href="/lib/bootstrap-3.2.0/css/bootstrap.min.css" />
-<link rel="stylesheet" href="/lib/angular-ngtable/ng-table.min.css" />
-<link rel="stylesheet" href="/lib/angular-quick-date/ng-quick-date.css" />
-<link rel="stylesheet" href="/lib/angular-quick-date/ng-quick-date-default-theme.css" />
-<link rel="stylesheet" href="/lib/font-awesome-4.1.0/css/font-awesome.min.css" />
-<link rel="stylesheet" href="/app/app.css" />
-<script src="/lib/jquery/jquery.min.js"></script>
+<link rel="stylesheet" href="<@spring.url '/lib/bootstrap-3.2.0/css/bootstrap.min.css' />" />
+<link rel="stylesheet" href="<@spring.url '/lib/angular-ngtable/ng-table.min.css' />" />
+<link rel="stylesheet" href="<@spring.url '/lib/angular-quick-date/ng-quick-date.css' />" />
+<link rel="stylesheet" href="<@spring.url '/lib/angular-quick-date/ng-quick-date-default-theme.css' />" />
+<link rel="stylesheet" href="<@spring.url '/lib/font-awesome-4.1.0/css/font-awesome.min.css' />" />
+<link rel="stylesheet" href="<@spring.url '/app/app.css' />" />
+<script src="<@spring.url '/lib/jquery/jquery.min.js' />"></script>
 <style>
     .navbar { border-radius:0; }
 </style>
-<script data-main="/operations/main.js" src="/lib/require/require.js"></script>
+<script data-main="<@spring.url '/operations/main.js' />" src="<@spring.url '/lib/require/require.js' />"></script>
 </head>
 
 <body>
@@ -25,7 +27,7 @@
   <!-- NAVIGATION -->
   <nav class="navbar navbar-inverse" role="navigation">
     <div class="navbar-header">
-      <a class="navbar-brand" href="/auth/redirect">PPLA Films Manufacturing Execution Software</a>
+      <a class="navbar-brand" href="<@spring.url '/auth/redirect' />">PPLA Films Manufacturing Execution Software</a>
     </div>
     <ul class="nav navbar-nav">
       <li><a ui-sref="workorders">Work Orders</a></li>
@@ -56,8 +58,8 @@
           <!-- 
           <li><a href="#/profile">Profile</a></li>
           -->
-          <li><a href="/auth/redirect">Home</a></li>
-          <li><a href="/logout">Logout</a></li>
+          <li><a href="<@spring.url '/auth/redirect' />">Home</a></li>
+          <li><a href="<@spring.url '/logout' />">Logout</a></li>
         </ul>
       </li>
     </ul>

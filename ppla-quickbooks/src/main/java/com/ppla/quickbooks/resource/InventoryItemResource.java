@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.baldy.commons.web.controller.GenericController;
 import com.ppla.quickbooks.dto.InventoryItemInfo;
 import com.ppla.quickbooks.service.InventoryItemService;
-import com.tyrael.commons.mapper.dto.PageInfo;
+import com.tyrael.commons.dto.PageInfo;
 
 @RestController
 @RequestMapping("/inventory")

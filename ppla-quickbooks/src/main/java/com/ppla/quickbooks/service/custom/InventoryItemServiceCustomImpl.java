@@ -22,7 +22,7 @@ import com.ppla.quickbooks.entity.InventoryItem;
 import com.ppla.quickbooks.reference.PplaInventoryType;
 import com.ppla.quickbooks.service.InventoryItemService;
 import com.ppla.quickbooks.util.QBDateAdapter;
-import com.tyrael.commons.mapper.dto.PageInfo;
+import com.tyrael.commons.dto.PageInfo;
 import com.tyrael.commons.mapper.service.MappingService;
 
 /**

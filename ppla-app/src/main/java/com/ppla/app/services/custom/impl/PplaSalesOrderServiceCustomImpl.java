@@ -12,7 +12,7 @@ import com.ppla.app.models.PplaSalesOrder;
 import com.ppla.app.services.PplaSalesOrderService;
 import com.ppla.app.services.custom.PplaSalesOrderServiceCustom;
 import com.ppla.core.dto.PplaSalesOrderInfo;
-import com.tyrael.commons.mapper.dto.PageInfo;
+import com.tyrael.commons.dto.PageInfo;
 
 /**
  * @author Mark

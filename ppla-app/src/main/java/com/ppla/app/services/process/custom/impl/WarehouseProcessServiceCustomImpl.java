@@ -7,7 +7,7 @@ import com.ppla.app.servicebase.custom.AbstractPplaProcessService;
 import com.ppla.app.services.process.WarehouseProcessService;
 import com.ppla.app.services.process.custom.WarehouseProcessServiceCustom;
 import com.ppla.core.dto.process.WarehouseProcessInfo;
-import com.tyrael.commons.mapper.dto.PageInfo;
+import com.tyrael.commons.dto.PageInfo;
 
 /**
  * @author mbmartinez

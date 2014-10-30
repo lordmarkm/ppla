@@ -5,7 +5,7 @@ import org.springframework.data.domain.PageRequest;
 import com.ppla.quickbooks.dto.InventoryItemInfo;
 import com.ppla.quickbooks.entity.InventoryItem;
 import com.ppla.quickbooks.reference.PplaInventoryType;
-import com.tyrael.commons.mapper.dto.PageInfo;
+import com.tyrael.commons.dto.PageInfo;
 
 /**
  * @author Mark

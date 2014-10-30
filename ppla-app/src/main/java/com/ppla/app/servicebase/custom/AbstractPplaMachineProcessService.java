@@ -14,7 +14,7 @@ import com.ppla.app.servicebase.BasePplaMachineService;
 import com.ppla.core.dto.machine.MachineInfo;
 import com.ppla.core.dto.process.BasePplaProcessInfo;
 import com.ppla.core.dto.process.MachineProcessInfo;
-import com.tyrael.commons.mapper.dto.PageInfo;
+import com.tyrael.commons.dto.PageInfo;
 
 public class AbstractPplaMachineProcessService
     <E extends MachineProcess<M, ?>,

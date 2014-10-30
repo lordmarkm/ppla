@@ -28,7 +28,7 @@ import com.ppla.app.services.reports.RollTagReportService;
 import com.ppla.core.dto.process.ExtrusionProcessInfo;
 import com.ppla.core.dto.process.MixingProcessInfo;
 import com.ppla.core.dto.report.RollTagReportInfo;
-import com.tyrael.commons.mapper.dto.PageInfo;
+import com.tyrael.commons.dto.PageInfo;
 
 /**
  * @author mbmartinez

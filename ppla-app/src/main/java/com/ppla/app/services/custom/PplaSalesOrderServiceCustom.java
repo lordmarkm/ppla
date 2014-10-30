@@ -3,7 +3,7 @@ package com.ppla.app.services.custom;
 import org.springframework.data.domain.Pageable;
 
 import com.ppla.core.dto.PplaSalesOrderInfo;
-import com.tyrael.commons.mapper.dto.PageInfo;
+import com.tyrael.commons.dto.PageInfo;
 
 /**
  * @author Mark

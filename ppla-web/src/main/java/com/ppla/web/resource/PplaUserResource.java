@@ -23,7 +23,7 @@ import com.google.common.collect.Lists;
 import com.ppla.app.models.PplaUser;
 import com.ppla.app.services.PplaUserService;
 import com.ppla.core.dto.PplaUserInfo;
-import com.tyrael.commons.mapper.dto.PageInfo;
+import com.tyrael.commons.dto.PageInfo;
 
 @RestController
 @RequestMapping("/user")

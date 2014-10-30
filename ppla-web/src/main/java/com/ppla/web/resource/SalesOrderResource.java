@@ -26,7 +26,7 @@ import com.ppla.app.services.PplaPersonService;
 import com.ppla.app.services.PplaSalesOrderService;
 import com.ppla.core.dto.PplaOrderItemInfo;
 import com.ppla.core.dto.PplaSalesOrderInfo;
-import com.tyrael.commons.mapper.dto.PageInfo;
+import com.tyrael.commons.dto.PageInfo;
 
 /**
  * @author Mark
