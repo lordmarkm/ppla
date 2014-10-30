@@ -1,4 +1,4 @@
-define(['/operations/controllers/module.js'], function (controllers) {
+define(['controllers/module.js'], function (controllers) {
   'use strict';
   controllers.controller('AuthController', ['$scope', '$state', 'AuthService', 'PplaUserService',
     function($scope, $state, AuthService, PplaUserService) {

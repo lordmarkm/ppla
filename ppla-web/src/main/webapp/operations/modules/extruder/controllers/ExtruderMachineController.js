@@ -1,4 +1,4 @@
-define(['/operations/controllers/module.js'], function (controllers) {
+define(['controllers/module.js'], function (controllers) {
   'use strict';
   controllers.controller('ExtruderMachineController', ['$scope', '$state', '$stateParams', 'extruders', 'WorkOrderService',
     function($scope, $state, $stateParams, extruders, WorkOrderService) {

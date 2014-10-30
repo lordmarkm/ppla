@@ -1,4 +1,4 @@
-define(['/operations/controllers/module.js'], function (controllers) {
+define(['controllers/module.js'], function (controllers) {
   'use strict';
   controllers.controller('PrinterStartController', ['$scope', '$state', 'PrintingProcessService', 'WorkOrderService',
     function($scope, $state, PrintingProcessService, WorkOrderService) {

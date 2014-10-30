@@ -1,4 +1,4 @@
-define(['/operations/controllers/module.js'], function (controllers) {
+define(['controllers/module.js'], function (controllers) {
   'use strict';
   controllers.controller('MixerMachineController', ['$scope', '$state', '$stateParams', 'mixers', 'WorkOrderService',
     function($scope, $state, $stateParams, mixers, WorkOrderService) {

@@ -1,4 +1,4 @@
-define(['/operations/controllers/module.js'], function (controllers) {
+define(['controllers/module.js'], function (controllers) {
   'use strict';
   controllers.controller('CutterScantagController', ['$scope', '$state', 'ProcessMaterialStackService', 'CuttingProcessService',
     function($scope, $state, ProcessMaterialStackService, CuttingProcessService) {

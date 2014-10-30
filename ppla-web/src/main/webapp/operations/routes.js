@@ -1,33 +1,33 @@
-define(['/operations/app.js'], function(app) {
+define(['app.js'], function(app) {
   'use strict';
   return app.config(function($stateProvider) {
     $stateProvider.state('home', {
       url: '/',
-      templateUrl: '/operations/view/home.html'
+      templateUrl: 'view/home.html'
     })
     .state('profile', {
       url: '/profile?msg',
-      templateUrl: '/common/view/profile.html',
+      templateUrl: 'view/profile.html',
       controller: 'ProfileController'
     })
     .state('workorders', {
       url: '/workorders',
-      templateUrl: '/operations/view/workorders.html',
+      templateUrl: 'view/workorders.html',
       controller: 'WorkOrderBrowseController'
     })
     .state('workorder', {
       url: '/workorder/{trackingNo}',
-      templateUrl: '/operations/view/workorder.html',
+      templateUrl: 'view/workorder.html',
       controller: 'WorkOrderController'
     })
     .state('warehouse_process', {
       url: '/process/warehouse/{trackingNo}/{processId}',
-      templateUrl: '/operations/view/process_warehouse.html',
+      templateUrl: 'view/process_warehouse.html',
       controller: 'WarehouseProcessController'
     })
     .state('mixing_process', {
       url: '/process/mixing/{trackingNo}/{processId}?initMat',
-      templateUrl: '/operations/view/process_mixing.html',
+      templateUrl: 'view/process_mixing.html',
       controller: 'MixingProcessController'
     });
   });

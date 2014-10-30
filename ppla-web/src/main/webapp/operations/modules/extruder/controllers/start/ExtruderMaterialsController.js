@@ -1,4 +1,4 @@
-define(['/operations/controllers/module.js'], function (controllers) {
+define(['controllers/module.js'], function (controllers) {
   'use strict';
   controllers.controller('ExtruderMaterialsController', ['$scope', '$state', '$filter', 'WoMaterialService',
     function($scope, $state, $filter, WoMaterialService) {
