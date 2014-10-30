@@ -1,7 +1,9 @@
 package com.ppla.web.resource;
 
 import static org.springframework.http.HttpStatus.OK;
-import static org.springframework.web.bind.annotation.RequestMethod.*;
+import static org.springframework.web.bind.annotation.RequestMethod.DELETE;
+import static org.springframework.web.bind.annotation.RequestMethod.GET;
+import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 import java.security.Principal;
 import java.util.List;
@@ -23,7 +25,7 @@ import com.google.common.collect.Lists;
 import com.ppla.app.models.PplaProduct;
 import com.ppla.app.services.PplaProductService;
 import com.ppla.core.dto.ProductInfo;
-import com.tyrael.commons.dto.PageInfo;
+import com.tyrael.commons.mapper.dto.PageInfo;
 import com.tyrael.commons.models.Product;
 
 @RestController
