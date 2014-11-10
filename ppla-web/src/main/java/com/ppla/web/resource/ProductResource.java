@@ -25,7 +25,7 @@ import com.google.common.collect.Lists;
 import com.ppla.app.models.PplaProduct;
 import com.ppla.app.services.PplaProductService;
 import com.ppla.core.dto.ProductInfo;
-import com.tyrael.commons.mapper.dto.PageInfo;
+import com.tyrael.commons.dto.PageInfo;
 import com.tyrael.commons.models.Product;
 
 @RestController

@@ -6,9 +6,9 @@ define([
   'ngTable',
   'ngQuickDate',
   'sugar',
-  'controllers/op-controllers.js',
-  'services.js',
-  'filters.js'
+  '/operations/controllers/op-controllers.js',
+  '/operations/services.js',
+  '/operations/filters.js'
 ], function (angular) {
   'use strict';
   return angular.module('op-app', [

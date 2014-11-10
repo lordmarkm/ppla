@@ -2,11 +2,14 @@ package com.ppla.quickbooks.unmarshaller;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import com.ppla.quickbooks.entity.generated.SalesOrderLineRet;
 import com.ppla.quickbooks.entity.generated.SalesOrderQueryRsType;
 import com.ppla.quickbooks.entity.generated.SalesOrderRet;
 
-public class SalesorderQueryResponseProcessor {
+@Service
+public class SalesorderQueryResponseProcessorz {
 
     public void processSalesOrderQueryResponse(SalesOrderQueryRsType salesOrderQueryRsType) {
         List<SalesOrderRet> salesOrders = salesOrderQueryRsType.getSalesOrderRet();

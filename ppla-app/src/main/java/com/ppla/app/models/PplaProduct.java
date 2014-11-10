@@ -11,19 +11,8 @@ import com.tyrael.commons.models.Product;
 @Entity(name = "PRODUCT")
 public class PplaProduct extends Product {
 
-    @Column(name = "DELETED")
-    private Boolean deleted = false;
-
     @Column(name = "LIST_ID")
     private String inventoryItemListId;
-
-    public Boolean getDeleted() {
-        return deleted;
-    }
-
-    public void setDeleted(Boolean deleted) {
-        this.deleted = deleted;
-    }
 
     public String getInventoryItemListId() {
         return inventoryItemListId;

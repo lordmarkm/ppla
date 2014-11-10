@@ -1,4 +1,4 @@
-define(['controllers/module.js', 'ngTable'], function (controllers) {
+define(['/operations/controllers/module.js', 'ngTable'], function (controllers) {
   'use strict';
   controllers.controller('WorkOrderBrowseController', ['$scope', 'ngTableParams', 'WorkOrderService',
     function($scope, ngTableParams, WorkOrderService) {

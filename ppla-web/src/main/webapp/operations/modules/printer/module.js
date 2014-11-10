@@ -1,31 +1,31 @@
 define([
-  'app.js',
-  'modules/printer/resolve/PrintingProcessResolve.js',
-  'modules/printer/resolve/PrinterMachineResolve.js',
-  'modules/printer/resolve/PrinterOutputMaterialResolve.js'
+  '/operations/app.js',
+  '/operations/modules/printer/resolve/PrintingProcessResolve.js',
+  '/operations/modules/printer/resolve/PrinterMachineResolve.js',
+  '/operations/modules/printer/resolve/PrinterOutputMaterialResolve.js'
   ], 
   function(app, PrintingProcessResolve, PrinterMachineResolve, PrinterOutputMaterialResolve) {
     'use strict';
     return app.config(function($stateProvider) {
       $stateProvider.state('printer', {
         url: '/printer',
-        templateUrl: 'modules/printer/view/home.html',
+        templateUrl: '/operations/modules/printer/view/home.html',
         abstract: true,
         controller: 'PrinterController'
       })
       .state('printer.identity', {
         url: '',
-        templateUrl: 'modules/printer/view/identity.html',
+        templateUrl: '/operations/modules/printer/view/identity.html',
         controller: 'PrinterIdentityController'
       })
       .state('printer.scantag', {
         url: '/scantag',
-        templateUrl: 'modules/printer/view/scantag.html',
+        templateUrl: '/operations/modules/printer/view/scantag.html',
         controller: 'PrinterScantagController'
       })
       .state('printer.machine', {
         url: '/machine',
-        templateUrl: 'modules/printer/view/machine.html',
+        templateUrl: '/operations/modules/printer/view/machine.html',
         controller: 'PrinterMachineController',
         resolve: PrinterMachineResolve
       })
@@ -33,13 +33,13 @@ define([
       //Start process flow
       .state('printer.start', {
         url: '/start',
-        templateUrl: 'modules/printer/view/start/home.html',
+        templateUrl: '/operations/modules/printer/view/start/home.html',
         abstract: true,
         controller: 'PrinterStartController'
       })
       .state('printer.start.additional', {
         url: '/additional',
-        templateUrl: 'modules/printer/view/start/additional.html',
+        templateUrl: '/operations/modules/printer/view/start/additional.html',
         controller: 'PrinterAdditionalController'
       })
       .state('printer.start.confirm', {
@@ -50,7 +50,7 @@ define([
       //End process flow
       .state('printer.end', {
         url: '/end/{processId}',
-        templateUrl: 'modules/printer/view/end/home.html',
+        templateUrl: '/operations/modules/printer/view/end/home.html',
         controller: 'PrinterEndController',
         resolve: PrintingProcessResolve
       })

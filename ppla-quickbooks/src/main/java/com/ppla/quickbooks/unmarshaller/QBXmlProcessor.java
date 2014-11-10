@@ -39,7 +39,7 @@ public class QBXmlProcessor {
     private ItemQueryRequestComposer itemQueryRequestComposer;
 
     @Autowired
-    private SalesOrderQueryResponseProcessor salesOrderProcessor;
+    private SalesorderQueryResponseProcessorz salesOrderProcessor;
 
     @Autowired
     private SalesOrderQueryComposer salesOrderQueryComposer;

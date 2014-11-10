@@ -8,13 +8,22 @@
   </parent>
 
   <artifactId>ppla-security</artifactId>
-  <packaging>war</packaging>
   <name>PPLA :: Security</name>
 
   <dependencies>
     <dependency>
+      <groupId>org.springframework.security</groupId>
+      <artifactId>spring-security-config</artifactId>
+    </dependency>
+    <dependency>
       <groupId>baldy.commons.security</groupId>
       <artifactId>baldy-commons-security-services</artifactId>
+      <exclusions>
+        <exclusion>
+          <groupId>org.springframework.security</groupId>
+          <artifactId>spring-security-javaconfig</artifactId>
+        </exclusion>
+      </exclusions>
     </dependency>
     <dependency>
       <groupId>baldy.commons</groupId>

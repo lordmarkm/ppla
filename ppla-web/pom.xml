@@ -11,9 +11,6 @@
   <name>PPLA :: Web</name>
 
   <properties>
-    <!-- Default web.xml path (no security) -->
-    <webXmlPath>src/main/webapp/WEB-INF/web.xml</webXmlPath>
-
     <!-- Default packaging exclude pattern (skinny war) -->
     <packageExcludePattern>%regex[WEB-INF/lib/(?!(ppla|tyrael|baldy)).*\.jar]</packageExcludePattern>
   </properties>
@@ -26,8 +23,13 @@
     <dependency>
       <groupId>ppla</groupId>
       <artifactId>ppla-quickbooks</artifactId>
-      <version>1.0</version>
+      <version>${project.version}</version>
     </dependency>
+    <dependency>
+      <groupId>ppla</groupId>
+      <artifactId>ppla-security</artifactId>
+    </dependency>
+
     <!-- Tyrael -->
     <dependency>
       <groupId>tyrael-commons</groupId>
@@ -70,7 +72,7 @@
     </dependency>
 
 
-    <!-- Not sure if weneed these here to satisfy jasper plugin dependencies? -->
+    <!-- Not sure if we need these here to satisfy jasper plugin dependencies? -->
     <dependency>
       <groupId>net.sf.jasperreports</groupId>
       <artifactId>jasperreports</artifactId>
@@ -88,12 +90,14 @@
       <plugin>
         <groupId>org.mortbay.jetty</groupId>
         <artifactId>jetty-maven-plugin</artifactId>
+        <configuration>
+          <jvmArgs>-Xmx2024m -Xms2024m</jvmArgs>
+        </configuration>
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-war-plugin</artifactId>
         <configuration>
-          <webXml>${webXmlPath}</webXml>
           <packagingExcludes>${packageExcludePattern}</packagingExcludes>
         </configuration>
       </plugin>
@@ -131,52 +135,12 @@
     </plugins>
   </build>
 
-  <!-- Secured profile -->
   <profiles>
     <profile>
       <id>fatwar</id>
       <properties>
         <packageExcludePattern></packageExcludePattern>
       </properties>
-    </profile>
-    <profile>
-      <id>sec</id>
-      <properties>
-        <webXmlPath>src/main/webapp/WEB-INF/secure/web.xml</webXmlPath>
-      </properties>
-      <dependencies>
-        <dependency>
-          <groupId>ppla</groupId>
-          <artifactId>ppla-security</artifactId>
-          <type>war</type>
-        </dependency>
-        <dependency>
-          <groupId>ppla</groupId>
-          <artifactId>ppla-security</artifactId>
-          <classifier>classes</classifier>
-        </dependency>
-      </dependencies>
-      <build>
-        <plugins>
-          <!-- Overlays -->
-          <plugin>
-            <artifactId>maven-war-plugin</artifactId>
-            <configuration>
-              <failOnMissingWebXml>false</failOnMissingWebXml>
-              <overlays>
-                <!-- Overlay login page -->
-                <overlay>
-                  <groupId>ppla</groupId>
-                  <artifactId>ppla-security</artifactId>
-                  <includes>
-                    <include>WEB-INF/view/login.jsp</include>
-                  </includes>
-                </overlay>
-              </overlays>
-            </configuration>
-          </plugin>
-        </plugins>
-      </build>
     </profile>
   </profiles>
 </project>

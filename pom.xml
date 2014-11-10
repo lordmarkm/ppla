@@ -11,12 +11,12 @@
 
   <properties>
     <project.version>1.0</project.version>
-    <tyrael.version>1.0</tyrael.version>
-    <baldy-commons.version>2.0</baldy-commons.version>
+    <tyrael.version>1.1</tyrael.version>
+    <baldy-commons.version>3.0</baldy-commons.version>
 
     <maven.jetty.version>8.1.14.v20131031</maven.jetty.version>
     <spring.version>4.0.2.RELEASE</spring.version>
-    <spring.security.version>3.1.3.RELEASE</spring.security.version>
+    <spring.security.version>3.2.5.RELEASE</spring.security.version>
     <spring.data.jpa.version>1.5.1.RELEASE</spring.data.jpa.version>
 
     <hibernate.version>4.1.9.Final</hibernate.version>
@@ -62,13 +62,6 @@
       <dependency>
         <groupId>ppla</groupId>
         <artifactId>ppla-security</artifactId>
-        <type>war</type>
-        <version>${project.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>ppla</groupId>
-        <artifactId>ppla-security</artifactId>
-        <classifier>classes</classifier>
         <version>${project.version}</version>
       </dependency>
       <dependency>
