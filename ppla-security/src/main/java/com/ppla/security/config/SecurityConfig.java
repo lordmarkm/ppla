@@ -65,10 +65,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
             .csrf().disable()
             .authorizeRequests()
+                //Webapp urls
                 .antMatchers("/manage**").hasRole(ADMIN)
                 .antMatchers("/operations**").hasAnyAuthority(OPERATOR, WAREHOUSE, MIXER, EXTRUDER, PRINTER, CUTTER)
 //              .antMatchers("/**").permitAll()
-                .antMatchers("/**").authenticated()
+                .antMatchers("/").authenticated()
+
+                //QB endpt
+                .antMatchers("/webservices**").permitAll()
                 .and()
             .logout()
                 .deleteCookies("JSESSIONID")

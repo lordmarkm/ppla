@@ -1,7 +1,5 @@
 package com.ppla.quickbooks.converter;
 
-import java.util.Calendar;
-
 import org.dozer.CustomConverter;
 import org.dozer.MappingException;
 import org.joda.time.DateTime;

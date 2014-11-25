@@ -38,7 +38,7 @@ public class SalesOrderQueryComposer {
         PageRequest page = new PageRequest(0, 1, Direction.DESC, "timeModified");
         Page<PplaSalesOrder> results = service.findAll(page);
 
-        if (results.getSize() > 0) {
+        if (results.getContent().size() > 0) {
             PplaSalesOrder latestEdited = results.getContent().get(0);
             return dateAdapter.format(latestEdited.getTimeModified());
         }
