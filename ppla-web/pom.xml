@@ -13,6 +13,7 @@
   <properties>
     <!-- Default packaging exclude pattern (skinny war) -->
     <packageExcludePattern>%regex[WEB-INF/lib/(?!(ppla|tyrael|baldy)).*\.jar]</packageExcludePattern>
+    <logfile>C:/Users/pilabaldeh/Desktop/ppla.log</logfile>
   </properties>
 
   <dependencies>
@@ -86,6 +87,12 @@
   </dependencies>
 
   <build>
+    <resources>
+      <resource>
+        <directory>src/main/resources</directory>
+        <filtering>true</filtering>
+      </resource>
+    </resources>
     <plugins>
       <plugin>
         <groupId>org.mortbay.jetty</groupId>
@@ -140,6 +147,12 @@
       <id>fatwar</id>
       <properties>
         <packageExcludePattern></packageExcludePattern>
+      </properties>
+    </profile>
+    <profile>
+      <id>prod</id>
+      <properties>
+        <logfile>C:/Users/PPLA_Admin/Desktop/PPLA MES/ppla_mes.log</logfile>
       </properties>
     </profile>
   </profiles>

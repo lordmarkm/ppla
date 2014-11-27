@@ -12,8 +12,11 @@
   <name>PPLA :: App</name>
 
   <properties>
-    <db.username>root</db.username>
+    <db.username>postgres</db.username>
     <db.password>root</db.password>
+    <db.dialect>org.hibernate.dialect.MySQL5Dialect</db.dialect>
+    <db.url>jdbc:mysql://localhost:3306/ppla</db.url>
+    <db.driverClass>com.mysql.jdbc.Driver</db.driverClass>
     <hibernate.hbm2ddl.auto>update</hibernate.hbm2ddl.auto>
     <hibernate.hbm2ddl.import_files></hibernate.hbm2ddl.import_files>
     <reload.csv>false</reload.csv>
@@ -25,6 +28,7 @@
       <groupId>ppla</groupId>
       <artifactId>ppla-core</artifactId>
     </dependency>
+
     <!-- Tyrael -->
     <dependency>
       <groupId>tyrael-process-mgmt</groupId>
@@ -59,6 +63,16 @@
 
   <profiles>
     <profile>
+      <id>prod</id>
+      <properties>
+        <db.username>postgres</db.username>
+        <db.password>root</db.password>
+        <db.dialect>org.hibernate.dialect.PostgreSQLDialect</db.dialect>
+        <db.url>jdbc:postgresql://localhost:5432/ppla</db.url>
+        <db.driverClass>org.postgresql.Driver</db.driverClass>
+      </properties>
+    </profile>
+    <profile>
       <id>qa</id>
       <properties>
         <db.username>ppla</db.username>
@@ -68,9 +82,9 @@
     <profile>
       <id>purge</id>
       <properties>
-        <hibernate.hbm2ddl.auto>create</hibernate.hbm2ddl.auto>
+        <hibernate.hbm2ddl.auto>update</hibernate.hbm2ddl.auto>
         <hibernate.hbm2ddl.import_files>
-          /META-INF/sql/accounts.sql,/META-INF/sql/material.sql
+          /META-INF/sql/accounts.sql
         </hibernate.hbm2ddl.import_files>
         <reload.csv>true</reload.csv>
       </properties>
