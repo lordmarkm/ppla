@@ -59,6 +59,13 @@
 
   <profiles>
     <profile>
+      <id>prod</id>
+      <properties>
+        <db.username>postgres</db.username>
+        <db.password>root</db.password>
+      </properties>
+    </profile>
+    <profile>
       <id>qa</id>
       <properties>
         <db.username>ppla</db.username>
