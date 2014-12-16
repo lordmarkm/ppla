@@ -33,6 +33,7 @@ import com.ppla.quickbooks.service.InventoryItemService;
 public class SalesorderQueryResponseProcessorz {
 
     private static final Logger LOG = LoggerFactory.getLogger(SalesorderQueryResponseProcessorz.class);
+    private static final String TRUE = "true";
 
     @Autowired
     private PplaPersonService personService;
@@ -57,6 +58,12 @@ public class SalesorderQueryResponseProcessorz {
         PplaSalesOrder existing = soService.findByTxnNumber(salesOrderRet.getTxnNumber());
         if (null != existing) {
             LOG.warn("Ignoring already existing sales order. txn#={}", existing.getTxnNumber());
+            return;
+        }
+
+        if (TRUE.equalsIgnoreCase(salesOrderRet.getIsManuallyClosed())
+                || TRUE.equalsIgnoreCase(salesOrderRet.getIsFullyInvoiced())) {
+            LOG.debug("Ignoring closed sales order.");
             return;
         }
 
