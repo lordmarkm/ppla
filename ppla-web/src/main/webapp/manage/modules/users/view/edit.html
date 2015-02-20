@@ -31,8 +31,12 @@
   </div>
   <div class="form-group">
     <label class="control-label col-sm-2">Type</label>
-    <div class="col-sm-4 form-control-static">
-      {{user.type}}
+    <div class="col-sm-4">
+      <select class="form-control"
+        ng-model="user.type"
+        ng-init="userTypes=['ADMIN','MANAGER','OPERATOR','WAREHOUSE','MIXER','EXTRUDER','PRINTER','CUTTER','OTHER']"
+        ng-options="userType as userType for userType in userTypes">
+      </select>
     </div>
   </div>
   <div class="text-right">

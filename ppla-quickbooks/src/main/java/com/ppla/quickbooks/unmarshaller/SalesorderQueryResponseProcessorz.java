@@ -56,22 +56,26 @@ public class SalesorderQueryResponseProcessorz {
 
     private void processSalesOrder(SalesOrderRet salesOrderRet) {
         PplaSalesOrder existing = soService.findByTxnNumber(salesOrderRet.getTxnNumber());
+        PplaSalesOrder so;
+
         if (null != existing) {
-            LOG.warn("Ignoring already existing sales order. txn#={}", existing.getTxnNumber());
-            return;
+            LOG.warn("Updating existing sales order. txn#={}", existing.getTxnNumber());
+            so = existing;
+        } else {
+            //Ignore new sales orders that are already closed
+            if (TRUE.equalsIgnoreCase(salesOrderRet.getIsManuallyClosed())
+                    || TRUE.equalsIgnoreCase(salesOrderRet.getIsFullyInvoiced())) {
+                LOG.debug("Ignoring closed sales order.");
+                return;
+            }
+
+            so = new PplaSalesOrder();
+            so.setDateCreated(DateTime.now());
+            so.setTrackingNo(RandomStringUtils.randomAlphanumeric(5));
+            so.setTxnNumber(salesOrderRet.getTxnNumber());
         }
 
-        if (TRUE.equalsIgnoreCase(salesOrderRet.getIsManuallyClosed())
-                || TRUE.equalsIgnoreCase(salesOrderRet.getIsFullyInvoiced())) {
-            LOG.debug("Ignoring closed sales order.");
-            return;
-        }
-
-        PplaSalesOrder so = new PplaSalesOrder();
-        so.setDateCreated(DateTime.now());
         so.setEditSequence(salesOrderRet.getEditSequence());
-        so.setTrackingNo(RandomStringUtils.randomAlphanumeric(5));
-        so.setTxnNumber(salesOrderRet.getTxnNumber());
         so.setTimeModified(DateTime.now());
 
         //Shipping address

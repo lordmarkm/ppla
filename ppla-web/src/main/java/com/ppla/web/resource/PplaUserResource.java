@@ -1,8 +1,7 @@
 package com.ppla.web.resource;
 
 import static org.springframework.http.HttpStatus.OK;
-import static org.springframework.web.bind.annotation.RequestMethod.GET;
-import static org.springframework.web.bind.annotation.RequestMethod.POST;
+import static org.springframework.web.bind.annotation.RequestMethod.*;
 
 import java.security.Principal;
 import java.util.List;
@@ -46,7 +45,7 @@ public class PplaUserResource {
 
         PageRequest pageRequest = new PageRequest(page - 1, count);
 
-        Page<PplaUser> results = service.findAll(pageRequest);
+        Page<PplaUser> results = service.findByDeleted(pageRequest, false);
         List<PplaUserInfo> userInfos = Lists.newArrayList();
 
         for (PplaUser user : results) {
@@ -89,5 +88,12 @@ public class PplaUserResource {
     public ResponseEntity<PplaUserInfo> addOperator(Principal principal, @RequestBody PplaUserInfo operator) {
         LOG.debug("Trying to save operator. operator={}", operator);
         return new ResponseEntity<>(service.saveInfo(operator), OK);
+    }
+
+    @RequestMapping(method = DELETE)
+    public ResponseEntity<String> deleteUser(@RequestParam String code) {
+        LOG.debug("Trying to delete user. code={}", code);
+        service.delete(code);
+        return new ResponseEntity<>("Ok", OK);
     }
 }

@@ -21,11 +21,13 @@
       <groupId>ppla</groupId>
       <artifactId>ppla-app</artifactId>
     </dependency>
+    <!-- 
     <dependency>
       <groupId>ppla</groupId>
       <artifactId>ppla-quickbooks</artifactId>
       <version>${project.version}</version>
     </dependency>
+     -->
     <dependency>
       <groupId>ppla</groupId>
       <artifactId>ppla-security</artifactId>

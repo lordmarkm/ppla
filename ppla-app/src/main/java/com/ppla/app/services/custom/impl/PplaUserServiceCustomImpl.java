@@ -3,7 +3,7 @@ package com.ppla.app.services.custom.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
+import org.springframework.transaction.annotation.Transactional;
 
 import com.ppla.app.models.PplaUser;
 import com.ppla.app.reference.PplaUserType;
@@ -26,7 +26,7 @@ public class PplaUserServiceCustomImpl extends MappingService<PplaUser, PplaUser
 
     @Override
     public PplaUserInfo findByCodeInfo(String code) {
-        PplaUser user = service.findByCode(code);
+        PplaUser user = service.findByCodeAndDeleted(code, false);
         return null == user ? null : toDto(user);
     }
 
@@ -39,6 +39,13 @@ public class PplaUserServiceCustomImpl extends MappingService<PplaUser, PplaUser
     @Override
     public PplaUserInfo saveInfo(PplaUserInfo profile) {
         return toDto(service.save(toEntity(profile)));
+    }
+
+    @Override
+    @Transactional
+    public void delete(String code) {
+        PplaUser user = service.findByCode(code);
+        user.setDeleted(true);
     }
 
 }

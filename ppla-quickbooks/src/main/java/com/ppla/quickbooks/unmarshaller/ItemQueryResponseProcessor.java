@@ -50,6 +50,9 @@ public class ItemQueryResponseProcessor {
             mapper.map(item, inventoryItem);
         } else {
             inventoryItem = mapper.map(item, InventoryItem.class);
+            if (null == inventoryItem.getUnitOfMeasurement()) {
+                inventoryItem.setUnitOfMeasurement("Kg");
+            }
         }
         LOG.debug("Saving inventory item. List id={}", item.getListID());
         service.save(inventoryItem);

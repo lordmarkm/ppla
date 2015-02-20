@@ -14,7 +14,10 @@
       <td filter="{ 'code': 'P0001' }">{{user.code}}
       <td>{{user.name|name}}
       <td>{{user.type}}
-      <td><span ng-click="editUser(user)" class="btn btn-default">Edit</span>
+      <td>
+        <span ng-click="editUser(user)" class="btn btn-default">Edit</span>
+        <span ng-click="deleteUser(user)" class="btn btn-danger">Delete</span>
+      </td>
     </tr>
     <tr ng-if="!$data.length">
       <td colspan="4">No users available</td>

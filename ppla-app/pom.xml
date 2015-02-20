@@ -12,7 +12,7 @@
   <name>PPLA :: App</name>
 
   <properties>
-    <db.username>postgres</db.username>
+    <db.username>root</db.username>
     <db.password>root</db.password>
     <db.dialect>org.hibernate.dialect.MySQL5Dialect</db.dialect>
     <db.url>jdbc:mysql://localhost:3306/ppla</db.url>
@@ -82,9 +82,9 @@
     <profile>
       <id>purge</id>
       <properties>
-        <hibernate.hbm2ddl.auto>update</hibernate.hbm2ddl.auto>
+        <hibernate.hbm2ddl.auto>create</hibernate.hbm2ddl.auto>
         <hibernate.hbm2ddl.import_files>
-          /META-INF/sql/accounts.sql
+          /META-INF/sql/psql_accounts.sql,/META-INF/sql/material.sql
         </hibernate.hbm2ddl.import_files>
         <reload.csv>true</reload.csv>
       </properties>

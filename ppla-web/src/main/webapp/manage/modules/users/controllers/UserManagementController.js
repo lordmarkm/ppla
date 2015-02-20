@@ -2,6 +2,8 @@ angular.module('ppla.controllers')
 
 .controller('UserManagementController', function($scope, $state, ngTableParams, PplaUserService) {
 
+  $scope.user = {type: 'OPERATOR'};
+
   $scope.tableParams = new ngTableParams({
     page: 1,
     count: 5,
@@ -20,6 +22,10 @@ angular.module('ppla.controllers')
     }
   });
 
+  function reloadTable() {
+    $scope.tableParams.page(1);
+  }
+
   $scope.createNew = function () {
     $scope.user = {type: 'OPERATOR'};
     $state.go('users.edit');
@@ -30,10 +36,22 @@ angular.module('ppla.controllers')
     $state.go('users.edit');
   };
   
+  $scope.deleteUser = function (user) {
+    if(!confirm('This will permanently delete this user.')) {
+      return false;
+    }
+    PplaUserService.remove({code: user.code}, function () {
+      reloadTable();
+    });
+  };
+
   $scope.saveUser = function () {
+    console.debug('Trying to save user. user=' + JSON.stringify($scope.user));
     PplaUserService.save({action: 'operator'}, $scope.user, function (response) {
       $scope.tableParams.reload();
       $state.go('users.list');
+    }, function (e) {
+      alert("Error saving user. Please check that username and code are unique.");
     });
   };
 });

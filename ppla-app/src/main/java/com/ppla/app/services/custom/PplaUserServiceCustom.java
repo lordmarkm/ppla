@@ -17,5 +17,6 @@ public interface PplaUserServiceCustom {
     List<PplaUserInfo> findByTypeInfo(String type);
 
     PplaUserInfo saveInfo(PplaUserInfo profile);
+    void delete(String code);
 
 }
