@@ -12,5 +12,6 @@ public interface BasePplaMachineServiceCustom<D extends MachineInfo> {
     List<D> findAllInfo();
     D findOneInfo(Long id);
     D saveInfo(D machineInfo);
+    void softDelete(Long id);
 
 }

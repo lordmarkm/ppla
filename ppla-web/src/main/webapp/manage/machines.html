@@ -35,6 +35,7 @@
                 <th>Operator
                 <th>Materials
                 <th>Process summary
+                <th>
               </tr>
             </thead>
             <tbody>
@@ -52,6 +53,9 @@
                   </ol>
                 </td>
                 <td>{{machine.currentProcessId}}
+                <td>
+                  <button class="btn btn-default" ng-click="deleteMachine(machine)">Delete</button>
+                <td>
               </tr>
             </tbody>
           </table>
@@ -66,11 +70,12 @@
                 <tr>
                   <th>Extruder code
                   <th>Status
-                <th>Process History
+                  <th>Process History
                   <th>Current process started
                   <th>Operator
                   <th>Materials
                   <th>Process summary
+                  <th>
                 </tr>
               </thead>
               <tbody>
@@ -88,6 +93,9 @@
                     </ol>
                   </td>
                   <td>{{machine.currentProcessId}}
+                  <td>
+                    <button class="btn btn-default" ng-click="deleteMachine(machine)">Delete</button>
+                  <td>
                 </tr>
               </tbody>
           </table>
@@ -107,6 +115,7 @@
                 <th>Operator
                 <th>Roll tag
                 <th>Process summary
+                <th>
               </tr>
             </thead>
             <tbody>
@@ -118,6 +127,9 @@
                 <td>{{machine.process.actor.name | name}}
                 <td>{{machine.process.rollIn.tag}}
                 <td>{{machine.process.id}}
+                <td>
+                  <button class="btn btn-default" ng-click="deleteMachine(machine)">Delete</button>
+                <td>
               </tr>
             </tbody>
           </table>
@@ -137,6 +149,7 @@
                 <th>Operator
                 <th>Roll tag
                 <th>Process summary
+                <th>
               </tr>
             </thead>
             <tbody>
@@ -148,6 +161,9 @@
                 <td>{{machine.process.actor.name | name}}
                 <td>{{machine.process.rollIn.tag}}
                 <td><a ui-sref="cutter_summary({processId:machine.process.id})" target="_blank">{{machine.process.id}}</a>
+                <td>
+                  <button class="btn btn-default" ng-click="deleteMachine(machine)">Delete</button>
+                <td>
               </tr>
             </tbody>
           </table>

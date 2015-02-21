@@ -1,5 +1,7 @@
 package com.ppla.app.servicebase;
 
+import java.util.List;
+
 import com.ppla.app.models.machine.Machine;
 
 /**
@@ -8,4 +10,7 @@ import com.ppla.app.models.machine.Machine;
  */
 public interface BasePplaMachineService<M extends Machine<?>>
     extends BasePplaService<M, Long> {
+
+    List<M> findByDeleted(boolean deleted);
+
 }

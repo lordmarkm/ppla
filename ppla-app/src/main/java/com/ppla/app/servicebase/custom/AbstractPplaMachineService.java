@@ -25,7 +25,7 @@ public abstract class AbstractPplaMachineService<E extends Machine<?>, D extends
 
     @Override
     public List<D> findAllInfo() {
-        return toDto(repo.findAll());
+        return toDto(repo.findByDeleted(false));
     }
 
     @Override
@@ -36,6 +36,13 @@ public abstract class AbstractPplaMachineService<E extends Machine<?>, D extends
     @Override
     public D saveInfo(D info) {
         return toDto(repo.save(toEntity(info)));
+    }
+
+    @Override
+    public void softDelete(Long id) {
+        E machine = repo.findOne(id);
+        machine.setDeleted(true);
+        repo.save(machine);
     }
 
 }

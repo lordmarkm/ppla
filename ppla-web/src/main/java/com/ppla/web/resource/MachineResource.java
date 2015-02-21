@@ -1,8 +1,7 @@
 package com.ppla.web.resource;
 
 import static org.springframework.http.HttpStatus.OK;
-import static org.springframework.web.bind.annotation.RequestMethod.GET;
-import static org.springframework.web.bind.annotation.RequestMethod.POST;
+import static org.springframework.web.bind.annotation.RequestMethod.*;
 
 import java.security.Principal;
 import java.util.List;
@@ -14,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ppla.app.servicebase.BasePplaMachineServiceCustom;
@@ -91,6 +91,19 @@ public class MachineResource {
             @RequestBody MachineInfo machineInfo) {
         LOG.debug("Machine save request. user={}", principal);
         return new ResponseEntity<>(getService(type).saveInfo(machineInfo), OK);
+    }
+
+    @RequestMapping(value = "/{type}/{id}", method = DELETE)
+    public ResponseEntity<String> deleteMachine(@PathVariable ProcessType type, @PathVariable Long id) {
+        LOG.debug("Trying to delete machine with id={}", id);
+        switch(type) {
+        case EXTRUSION:
+            extruderService.softDelete(id);
+            break;
+        default:
+            getService(type).softDelete(id);
+        }
+        return new ResponseEntity<>("Ok", OK);
     }
 
     private BasePplaMachineServiceCustom<MachineInfo> getService(ProcessType type) {
