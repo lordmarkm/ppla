@@ -26,7 +26,6 @@ import com.ppla.app.services.ProcessMaterialStackService;
 import com.ppla.app.services.process.ExtrusionProcessService;
 import com.ppla.app.services.reports.RollTagReportService;
 import com.ppla.core.dto.process.ExtrusionProcessInfo;
-import com.ppla.core.dto.process.MixingProcessInfo;
 import com.ppla.core.dto.report.RollTagReportInfo;
 import com.tyrael.commons.dto.PageInfo;
 
@@ -89,6 +88,13 @@ public class ExtrusionProcessResource {
             @RequestBody ExtrusionProcessInfo process) {
         LOG.debug("Ending extrusion process. process={}", process);
         return new ResponseEntity<>(service.endInfo(process), OK);
+    }
+
+    @RequestMapping(value = "/unload", method = POST)
+    public ResponseEntity<ExtrusionProcessInfo> unload(Principal principal,
+            @RequestBody ExtrusionProcessInfo process) {
+        LOG.debug("Ending extrusion process. process={}", process);
+        return new ResponseEntity<>(service.unloadInfo(process), OK);
     }
 
     @RequestMapping(value = "/printtag/{extrusionProcessId}/{tags}", method = GET)

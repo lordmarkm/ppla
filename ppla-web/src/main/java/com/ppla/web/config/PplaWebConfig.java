@@ -2,11 +2,6 @@ package com.ppla.web.config;
 
 import java.util.List;
 
-import javax.annotation.PostConstruct;
-
-import org.dozer.DozerBeanMapper;
-import org.dozer.loader.api.BeanMappingBuilder;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
@@ -19,8 +14,6 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupp
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.joda.JodaModule;
-import com.ppla.app.models.PplaSalesOrder;
-import com.ppla.core.dto.PplaSalesOrderInfo;
 
 @Configuration
 @ComponentScan(basePackages = {
@@ -40,20 +33,6 @@ import com.ppla.core.dto.PplaSalesOrderInfo;
 @EnableAspectJAutoProxy
 public class PplaWebConfig extends WebMvcConfigurationSupport {
 //extends WebMvcConfigurerAdapter {
-
-    @Autowired
-    private DozerBeanMapper mapper;
-
-    @PostConstruct
-    public void init() {
-        mapper.addMapping(new BeanMappingBuilder() {
-            @Override
-            protected void configure() {
-                mapping(PplaSalesOrderInfo.class, PplaSalesOrder.class)
-                    .fields("orderItems", "items");
-            }
-        });
-    }
 
     //Enable direct access to .html, .css, etc
     @Override

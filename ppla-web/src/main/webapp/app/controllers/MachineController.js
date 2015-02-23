@@ -53,6 +53,10 @@ angular.module('ppla.controllers')
   };
 
   $scope.deleteMachine = function (machine) {
+    if (machine.currentProcessId) {
+      alert('End current process first.');
+      return false;
+    }
     if (!confirm('This will permanently delete this machine. Continue?')) {
       return false;
     }

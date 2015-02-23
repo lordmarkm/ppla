@@ -6,6 +6,7 @@
       <tr>
         <td>Tracking No.
         <td>PO No.
+        <td>Created
         <td>Ship to
         <td>Customer
         <td>Items
@@ -17,10 +18,11 @@
       <tr ng-repeat="salesorder in $data">
         <td>{{salesorder.trackingNo}}
         <td>{{salesorder.purchaseOrderNo}}
+        <td>{{salesorder.dateCreated|date: 'MMM-dd-yy hh:mm a'}}
         <td>{{salesorder.shipTo}}
         <td>{{salesorder.customer.name | name}}
         <td>{{salesorder.orderItems.length}}
-        <td>Created
+        <td>{{salesorder.dateCompleted ? 'Closed' : 'Created'}}
         <td><a ui-sref="manage/salesorder/workorders({trackingNo:salesorder.trackingNo})" class="btn btn-xs btn-primary">View Details</a>
       </tr>
     </tbody>

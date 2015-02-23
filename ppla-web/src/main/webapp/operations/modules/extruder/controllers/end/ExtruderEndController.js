@@ -21,6 +21,14 @@ define(['/operations/controllers/module.js'], function (controllers) {
       });
     };
 
+    $scope.confirmUnload = function () {
+      delete $scope.process.type;
+      ExtrusionProcessService.save({action: 'unload'}, $scope.process, function (savedProcess) {
+        alert('Roll unloaded.');
+        $scope.process = savedProcess;
+      });
+    };
+
     $scope.processStatus = function () {
       if (!$scope.process.endActor) {
         return 'No end actor';

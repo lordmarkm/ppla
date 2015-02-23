@@ -11,8 +11,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 
+import com.ppla.app.models.PplaSalesOrder;
 import com.ppla.app.models.PplaWorkOrder;
 import com.ppla.app.models.machine.Machine;
+import com.ppla.core.dto.PplaSalesOrderInfo;
 import com.ppla.core.dto.PplaWorkOrderInfo;
 import com.ppla.core.dto.machine.MachineInfo;
 import com.ppla.core.dto.process.BasePplaProcessInfo;
@@ -35,19 +37,14 @@ public class SupportConfig {
         mapper.addMapping(new BeanMappingBuilder() {
             @Override
             protected void configure() {
+                mapping(PplaSalesOrder.class, PplaSalesOrderInfo.class)
+                    .fields("dateCreated", "dateCreated", copyByReference())
+                    .fields("items", "orderItems");
                 mapping(PplaWorkOrder.class, PplaWorkOrderInfo.class)
                     .fields("dateCreated", "dateCreated", copyByReference())
                     .fields("dateCompleted", "dateCompleted", copyByReference());
                 mapping(Machine.class, MachineInfo.class)
                     .fields("currentProcess.id", "currentProcessId", oneWay());
-//                mapping(Mixer.class, MachineInfo.class)
-//                    .fields("currentProcess.id", "currentProcessId", oneWay());
-//                mapping(Extruder.class, MachineInfo.class)
-//                    .fields("currentProcess.id", "currentProcessId", oneWay());
-//                mapping(Printer.class, MachineInfo.class)
-//                    .fields("currentProcess.id", "currentProcessId", oneWay());
-//                mapping(Cutter.class, MachineInfo.class)
-//                    .fields("currentProcess.id", "currentProcessId", oneWay());
                 mapping(Process.class, BasePplaProcessInfo.class)
                     .fields("dateStarted", "dateStarted", copyByReference())
                     .fields("dateCompleted", "dateCompleted", copyByReference());

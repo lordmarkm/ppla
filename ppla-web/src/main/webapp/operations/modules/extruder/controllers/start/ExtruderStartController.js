@@ -41,9 +41,9 @@ define(['/operations/controllers/module.js'], function (controllers) {
       if (!$scope.process.workOrder) {
         return state_workorder;
       }
-      if (!$scope.process.materialsIn || $scope.process.materialsIn.length < 1) {
-        return state_material;
-      }
+      //if (!$scope.process.materialsIn || $scope.process.materialsIn.length < 1) {
+      //  return state_material;
+      //}
       if (!$scope.meta.additionalsSaved) {
         return state_additional;
       }

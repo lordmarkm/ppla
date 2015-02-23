@@ -11,4 +11,6 @@ import com.ppla.core.dto.process.ExtrusionProcessInfo;
 @Transactional
 public interface ExtrusionProcessServiceCustom extends BasePplaProcessServiceCustom<ExtrusionProcessInfo> {
 
+    ExtrusionProcessInfo unloadInfo(ExtrusionProcessInfo processInfo);
+
 }

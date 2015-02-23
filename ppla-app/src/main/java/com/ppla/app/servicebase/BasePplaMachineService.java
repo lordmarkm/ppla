@@ -2,6 +2,8 @@ package com.ppla.app.servicebase;
 
 import java.util.List;
 
+import org.springframework.data.domain.Sort;
+
 import com.ppla.app.models.machine.Machine;
 
 /**
@@ -11,6 +13,6 @@ import com.ppla.app.models.machine.Machine;
 public interface BasePplaMachineService<M extends Machine<?>>
     extends BasePplaService<M, Long> {
 
-    List<M> findByDeleted(boolean deleted);
+    List<M> findByDeleted(boolean deleted, Sort sort);
 
 }

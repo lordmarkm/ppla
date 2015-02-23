@@ -2,6 +2,7 @@ package com.ppla.core.dto;
 
 import java.util.List;
 
+import org.joda.time.DateTime;
 import org.springframework.core.style.ToStringCreator;
 
 /**
@@ -14,6 +15,7 @@ public class PplaSalesOrderInfo {
     private PersonInfo customer;
     private String shipTo;
     private List<PplaOrderItemInfo> orderItems;
+    private DateTime dateCreated;
 
     @Override
     public String toString() {
@@ -23,6 +25,7 @@ public class PplaSalesOrderInfo {
             .append("Customer", customer)
             .append("Ship to", shipTo)
             .append("Items", orderItems)
+            .append("Date created", dateCreated)
             .toString();
     }
 
@@ -55,6 +58,14 @@ public class PplaSalesOrderInfo {
     }
     public void setOrderItems(List<PplaOrderItemInfo> items) {
         this.orderItems = items;
+    }
+
+    public DateTime getDateCreated() {
+        return dateCreated;
+    }
+
+    public void setDateCreated(DateTime dateCreated) {
+        this.dateCreated = dateCreated;
     }
 
 }

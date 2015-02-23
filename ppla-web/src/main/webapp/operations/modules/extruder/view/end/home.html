@@ -44,6 +44,7 @@
     </div>
     <div ng-if="processStatus() === 'Complete'" class="text-right">
       <button ng-click="confirmEnd()" class="btn btn-primary">End Process</button>
+      <button ng-click="confirmUnload()" class="btn btn-primary">Unload roll</button>
       <button ui-sref="extruder.identity" class="btn btn-default">Cancel</button>
     </div>
     <div ng-if="processStatus() === 'Completed'" class="text-right">

@@ -3,7 +3,8 @@ package com.ppla.app.servicebase.custom;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
 
 import com.ppla.app.models.machine.Machine;
 import com.ppla.app.servicebase.BasePplaMachineService;
@@ -25,7 +26,8 @@ public abstract class AbstractPplaMachineService<E extends Machine<?>, D extends
 
     @Override
     public List<D> findAllInfo() {
-        return toDto(repo.findByDeleted(false));
+        Sort sort = new Sort(Direction.ASC, "code");
+        return toDto(repo.findByDeleted(false, sort));
     }
 
     @Override

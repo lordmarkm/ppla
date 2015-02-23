@@ -1,5 +1,7 @@
 package com.ppla.app.services.process.custom.impl;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.ppla.app.models.machine.Extruder;
@@ -26,6 +28,8 @@ public class ExtrusionProcessServiceCustomImpl
     
     implements ExtrusionProcessServiceCustom {
 
+    private static Logger LOG = LoggerFactory.getLogger(ExtrusionProcessServiceCustomImpl.class);
+
     @Autowired
     private TagGenerator tagGenerator;
 
@@ -42,4 +46,26 @@ public class ExtrusionProcessServiceCustomImpl
         }
         return super.endMachineProcessInfo(processInfo);
     }
+
+    @Override
+    public ExtrusionProcessInfo unloadInfo(ExtrusionProcessInfo processInfo) {
+        for (ProcessMaterialStackInfo outputStack : processInfo.getMaterialsOut()) {
+            outputStack.setTag(tagGenerator.next());
+            outputStack.setWorkorderTrackingNo(processInfo.getWorkOrder().getTrackingNo());
+        }
+        ExtrusionProcessInfo oldProcess = super.endMachineProcessInfo(processInfo);
+
+        ExtrusionProcessInfo newProcess = new ExtrusionProcessInfo();
+        newProcess.setActor(oldProcess.getEndActor());
+        newProcess.setDateStarted(oldProcess.getDateCompleted());
+        newProcess.setMachine(oldProcess.getMachine());
+        newProcess.setRemarks(oldProcess.getRemarks());
+        newProcess.setWorkOrder(oldProcess.getWorkOrder());
+
+        LOG.debug("Starting new extrusion process. process={}", newProcess);
+        startInfo(newProcess);
+
+        return oldProcess;
+    }
+
 }
