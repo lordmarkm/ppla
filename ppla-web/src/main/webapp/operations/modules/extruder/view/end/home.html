@@ -1,3 +1,5 @@
+<script src="/lib/barcode-jquery/jquery-barcode.min.js"></script>
+
 <div class="panel panel-info">
   <div class="panel-heading">Extrusion End Process</div>
   <div class="panel-body">
@@ -32,6 +34,8 @@
       </dd>
       <dt>Process Status
       <dd>{{processStatus()}}
+      <dt>Code
+      <dd><div id="scannable-code">No output code generated</div></dd>
     </dl>
     <!-- 
     <dl>
@@ -45,10 +49,11 @@
     <div ng-if="processStatus() === 'Complete'" class="text-right">
       <button ng-click="confirmEnd()" class="btn btn-primary">End Process</button>
       <button ng-click="confirmUnload()" class="btn btn-primary">Unload roll</button>
+      <button ng-click="makeBarcode()" class="btn">Make barcode</button>
       <button ui-sref="extruder.identity" class="btn btn-default">Cancel</button>
     </div>
     <div ng-if="processStatus() === 'Completed'" class="text-right">
-      <button ng-click="printTags()" class="btn btn-success">Print Tags</button>
+      <button ng-click="directPrintTags()" class="btn btn-success">Print Tags</button>
       <button ui-sref="extruder.identity" class="btn btn-default">Done</button>
     </div>
   </div>

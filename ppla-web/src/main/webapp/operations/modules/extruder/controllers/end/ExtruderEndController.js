@@ -16,7 +16,11 @@ define(['/operations/controllers/module.js'], function (controllers) {
     $scope.confirmEnd = function () {
       delete $scope.process.type;
       ExtrusionProcessService.save({action: 'end'}, $scope.process, function (savedProcess) {
-        alert('Extrusion Process completed.');
+        var code = savedProcess.materialsOut[0].tag;
+        alert('Extrusion Process completed. Output roll code=' + code);
+        $scope.process = savedProcess;
+
+        angular.element('#scannable-code').barcode(code, "ean13", {barWidth:2, barHeight:100});
         $scope.process = savedProcess;
       });
     };
@@ -24,7 +28,10 @@ define(['/operations/controllers/module.js'], function (controllers) {
     $scope.confirmUnload = function () {
       delete $scope.process.type;
       ExtrusionProcessService.save({action: 'unload'}, $scope.process, function (savedProcess) {
-        alert('Roll unloaded.');
+        var code = savedProcess.materialsOut[0].tag;
+        alert('Roll unloaded. Output roll code=' + code);
+
+        angular.element('#scannable-code').barcode(code, "ean13", {barWidth:2, barHeight:100});
         $scope.process = savedProcess;
       });
     };
@@ -41,6 +48,11 @@ define(['/operations/controllers/module.js'], function (controllers) {
       }
     };
 
+    $scope.makeBarcode = function () {
+      console.debug('Making barcode');
+      angular.element('#scannable-code').barcode('1234512345123', "ean13");
+    };
+
     $scope.printTags = function () {
       if ($scope.process.materialsOut.length) {
         var tagstr = '', i = $scope.process.materialsOut.length;
@@ -53,5 +65,10 @@ define(['/operations/controllers/module.js'], function (controllers) {
         $window.open(print_url + $scope.process.id + '/' + tagstr);
       }
     };
+
+    $scope.directPrintTags = function () {
+      $window.print();
+    };
+
   }]);
 });
