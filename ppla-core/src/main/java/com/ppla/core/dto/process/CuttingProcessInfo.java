@@ -12,6 +12,7 @@ public class CuttingProcessInfo extends MachineProcessInfo {
 
     private ProcessMaterialStackInfo rollIn;
     private BigDecimal productOut;
+    private Boolean paused = false;
 
     @Override
     public ProcessType getType() {
@@ -32,6 +33,14 @@ public class CuttingProcessInfo extends MachineProcessInfo {
 
     public void setProductOut(BigDecimal productOut) {
         this.productOut = productOut;
+    }
+
+    public Boolean getPaused() {
+        return paused;
+    }
+
+    public void setPaused(Boolean paused) {
+        this.paused = paused;
     }
 
 }

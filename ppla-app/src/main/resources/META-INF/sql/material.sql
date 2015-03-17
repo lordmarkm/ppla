@@ -1,3 +1,3 @@
-insert into material(dtype,id,name,uom,deleted,list_id,source) values('RAW',1,'Raw material','Kg','f','00000000-000000001','RAW');
-insert into material(dtype,id,name,uom,deleted,list_id,source) values('PROCESS',2,'Mixing output','Kg','f','00000000-000000002','MIXING');
-insert into material(dtype,id,name,uom,deleted,list_id,source) values('PROCESS',3,'Extrusion output','Kg','f','00000000-000000003','EXTRUSION');
+insert into material(dtype,id,name,uom,deleted,list_id,source) values('RAW',1,'Raw material','Kg',0,'00000000-000000001','RAW');
+insert into material(dtype,id,name,uom,deleted,list_id,source) values('PROCESS',2,'Mixing output','Kg',0,'00000000-000000002','MIXING');
+insert into material(dtype,id,name,uom,deleted,list_id,source) values('PROCESS',3,'Extrusion output','Kg',0,'00000000-000000003','EXTRUSION');

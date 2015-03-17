@@ -48,11 +48,6 @@ define(['/operations/controllers/module.js'], function (controllers) {
       }
     };
 
-    $scope.makeBarcode = function () {
-      console.debug('Making barcode');
-      angular.element('#scannable-code').barcode('1234512345123', "ean13");
-    };
-
     $scope.printTags = function () {
       if ($scope.process.materialsOut.length) {
         var tagstr = '', i = $scope.process.materialsOut.length;

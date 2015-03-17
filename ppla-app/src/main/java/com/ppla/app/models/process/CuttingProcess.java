@@ -33,6 +33,9 @@ public class CuttingProcess extends MachineProcess<Cutter, ProcessMaterialStack>
     @Column(name = "OUTPUT")
     private BigDecimal productOut;
 
+    @Column(name = "PAUSED")
+    private Boolean paused = false;
+
     @Override
     public List<ProcessMaterialStack> getMaterialsIn() {
         return Lists.newArrayList(rollIn);
@@ -57,6 +60,14 @@ public class CuttingProcess extends MachineProcess<Cutter, ProcessMaterialStack>
     }
     public void setRollIn(ProcessMaterialStack rollIn) {
         this.rollIn = rollIn;
+    }
+
+    public Boolean getPaused() {
+        return paused;
+    }
+
+    public void setPaused(Boolean paused) {
+        this.paused = paused;
     }
 
 }

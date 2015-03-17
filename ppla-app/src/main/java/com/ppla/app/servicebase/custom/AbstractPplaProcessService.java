@@ -6,14 +6,21 @@ import java.util.Comparator;
 import java.util.List;
 
 import org.joda.time.DateTime;
+import org.joda.time.Period;
+import org.joda.time.format.PeriodFormat;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.google.common.collect.Lists;
+import com.ppla.app.models.PplaOrderItem;
 import com.ppla.app.models.process.BasePplaProcess;
 import com.ppla.app.servicebase.BasePplaProcessService;
+import com.ppla.app.services.PplaOrderItemService;
+import com.ppla.core.dto.PplaOrderItemInfo;
 import com.ppla.core.dto.process.BasePplaProcessInfo;
 import com.tyrael.commons.mapper.service.MappingService;
+import com.tyrael.process.mgt.models.order.OrderItem;
 
 public abstract class AbstractPplaProcessService<E extends BasePplaProcess,
     D extends BasePplaProcessInfo,
@@ -24,6 +31,9 @@ public abstract class AbstractPplaProcessService<E extends BasePplaProcess,
 
     @Autowired
     protected R repo;
+
+    @Autowired
+    private PplaOrderItemService orderItemService;
 
     public static List<BasePplaProcessInfo> sortByDate(List<BasePplaProcessInfo> dtos) {
         Collections.sort(dtos, new Comparator<BasePplaProcessInfo>() {
@@ -43,7 +53,17 @@ public abstract class AbstractPplaProcessService<E extends BasePplaProcess,
     public D findOneInfo(Long id) {
         E process = repo.findOne(id);
         LOG.debug("Process start date={}", process.getDateStarted());
-        return toDto(process);
+        D dto = toDto(process);
+
+        List<PplaOrderItem> orderItems = orderItemService.findByWorkOrder(process.getWorkOrder());
+        List<PplaOrderItemInfo> orderItemInfos = Lists.newArrayList();
+
+        for (PplaOrderItem order : orderItems) {
+            orderItemInfos.add(mapper.map(order, PplaOrderItemInfo.class));
+        }
+        dto.getWorkOrder().setOrderItems(orderItemInfos);
+
+        return dto;
     }
 
     public List<D> findByWorkOrder_TrackingNoInInfo(String trackingNosString) {
@@ -66,6 +86,10 @@ public abstract class AbstractPplaProcessService<E extends BasePplaProcess,
 
     public E end(D processInfo) {
         processInfo.setDateCompleted(DateTime.now());
+        if (null != processInfo.getDateStarted()) {
+            Period difference = new Period(processInfo.getDateStarted(), processInfo.getDateCompleted());
+            processInfo.setTurnaroundTime(PeriodFormat.getDefault().print(difference));
+        }
         return save(processInfo);
     }
 

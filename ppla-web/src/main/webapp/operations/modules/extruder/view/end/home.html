@@ -8,8 +8,11 @@
       <dd>{{process.actor.name|name}}
       <dt>Machine
       <dd>{{process.machine.code}}
+      <dt>Product(s)
+      <dd><span ng-repeat="orderItem in process.workOrder.orderItems">{{orderItem.product.description}}{{$last ? '' : ', '}}</span>
       <dt>Work Order(s)
       <dd>{{process.workOrder.trackingNo}}
+      <!-- 
       <dt>Materials In
       <dd>
         <span ng-if="!process.materialsIn.length">No materials to added</span>
@@ -17,6 +20,7 @@
           <span ng-repeat="rawMaterialStack in process.materialsIn">{{rawMaterialStack.material.name}} - {{rawMaterialStack.quantity}} {{rawMaterialStack.material.unitOfMeasurement}}{{$last ? '': ', '}}</span>
         </span>
       </dd>
+      -->
       <dt>Remarks
       <dd>{{process.remarks}}
     </dl>
@@ -25,6 +29,8 @@
       <dd>{{process.endActor.name|name}}
       <dt>Date completed
       <dd>{{process.dateCompleted|date}}
+      <dt>Process duration
+      <dd>{{process.turnaroundTime}}
       <dt><a ui-sref="extruder.end.materials">Materials Out</a>
       <dd>
         <span ng-if="!process.materialsOut.length">No output materials specified</span>
@@ -49,7 +55,9 @@
     <div ng-if="processStatus() === 'Complete'" class="text-right">
       <button ng-click="confirmEnd()" class="btn btn-primary">End Process</button>
       <button ng-click="confirmUnload()" class="btn btn-primary">Unload roll</button>
+      <!-- 
       <button ng-click="makeBarcode()" class="btn">Make barcode</button>
+      -->
       <button ui-sref="extruder.identity" class="btn btn-default">Cancel</button>
     </div>
     <div ng-if="processStatus() === 'Completed'" class="text-right">

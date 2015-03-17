@@ -23,6 +23,7 @@
       <dd>{{process.endActor.name|name}}
       <dt>Date completed
       <dd>{{process.dateCompleted|date}}
+      <!--
       <dt><a ui-sref="mixer.end.materials">Materials Out</a>
       <dd>
         <span ng-if="!process.materialsOut.length || !process.materialsOut[0].quantity">No output materials specified</span>
@@ -30,6 +31,7 @@
           <span ng-repeat="processMaterialStack in process.materialsOut">{{processMaterialStack.material.name}} - {{processMaterialStack.quantity}} {{processMaterialStack.material.unitOfMeasurement}}{{$last ? '': ', '}}</span>
         </span>
       </dd>
+      -->
       <dt>Process Status
       <dd>{{processStatus()}}
     </dl>

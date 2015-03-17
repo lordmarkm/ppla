@@ -8,6 +8,7 @@
       <dd>{{process.machine.code}}
       <dt>Work Order(s)
       <dd>{{process.workOrder.trackingNo}}
+      <!-- 
       <dt>Materials In
       <dd>
         <span ng-if="!process.materialsIn.length">No materials to be added</span>
@@ -15,6 +16,7 @@
           <span ng-repeat="matStack in process.materialsIn">{{matStack.material.name}} - {{matStack.quantity}} {{matStack.material.unitOfMeasurement}}{{$last ? '': ', '}}</span>
         </span>
       </dd>
+       -->
       <dt><a ui-sref="extruder.start.additional">Remarks</a>
       <dd>{{process.remarks}}
       <dt>Status

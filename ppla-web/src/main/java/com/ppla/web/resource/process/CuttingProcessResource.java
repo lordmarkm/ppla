@@ -5,6 +5,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 import java.security.Principal;
+import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -47,6 +48,12 @@ public class CuttingProcessResource {
         return new ResponseEntity<>(service.pageInfoByMachineId(machineId, pageRequest), OK);
     }
 
+    @RequestMapping(value = "/paused", method = GET)
+    public ResponseEntity<List<CuttingProcessInfo>> findPaused(Principal principal) {
+        LOG.debug("Finding paused cutting processes.");
+        return new ResponseEntity<>(service.findPaused(), OK);
+    }
+
     @RequestMapping(value = "/{id}", method = GET)
     public ResponseEntity<CuttingProcessInfo> findById(Principal principal, @PathVariable Long id) {
         LOG.debug("Finding cutting process. id={}", id);
@@ -73,4 +80,10 @@ public class CuttingProcessResource {
         return new ResponseEntity<>(service.endInfo(process), OK);
     }
 
+    @RequestMapping(value = "/pause", method = POST)
+    public ResponseEntity<CuttingProcessInfo> pause(Principal principal,
+            @RequestBody CuttingProcessInfo process) {
+        LOG.debug("Pausing cutting process. process={}", process);
+        return new ResponseEntity<>(service.pauseInfo(process), OK);
+    }
 }

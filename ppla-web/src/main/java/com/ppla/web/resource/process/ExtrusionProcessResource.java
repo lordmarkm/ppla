@@ -10,6 +10,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
+import org.joda.time.DateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -72,6 +73,7 @@ public class ExtrusionProcessResource {
     @RequestMapping(value = "/stage", method = POST)
     public ResponseEntity<ExtrusionProcessInfo> stage(Principal principal,
             @RequestBody ExtrusionProcessInfo process) {
+        process.setDateStaged(DateTime.now());
         LOG.debug("Staging extrusion process. process={}", process);
         return new ResponseEntity<>(service.saveInfo(process), OK);
     }

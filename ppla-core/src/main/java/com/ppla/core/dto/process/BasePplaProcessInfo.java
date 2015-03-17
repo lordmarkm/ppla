@@ -15,6 +15,7 @@ public abstract class BasePplaProcessInfo extends BaseBaldyInfo {
 
     protected DateTime dateStarted;
     protected DateTime dateCompleted;
+    protected String turnaroundTime;
     protected PplaUserInfo actor;
     protected PplaUserInfo endActor;
     protected PplaWorkOrderInfo workOrder;
@@ -27,6 +28,7 @@ public abstract class BasePplaProcessInfo extends BaseBaldyInfo {
             .append("Work order", workOrder)
             .append("Started", dateStarted)
             .append("Completed", dateCompleted)
+            .append("Turnaround time", turnaroundTime)
             .append("Actor", actor)
             .append("Remarks", remarks)
             .toString();
@@ -69,6 +71,14 @@ public abstract class BasePplaProcessInfo extends BaseBaldyInfo {
     }
     public void setEndActor(PplaUserInfo endActor) {
         this.endActor = endActor;
+    }
+
+    public String getTurnaroundTime() {
+        return turnaroundTime;
+    }
+
+    public void setTurnaroundTime(String turnaroundTime) {
+        this.turnaroundTime = turnaroundTime;
     }
 
 }

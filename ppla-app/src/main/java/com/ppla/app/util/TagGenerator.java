@@ -13,9 +13,22 @@ import org.springframework.stereotype.Component;
 public class TagGenerator {
 
     public String next() {
-        return "" + Calendar.getInstance().get(Calendar.YEAR) 
+        String code = "" + Calendar.getInstance().get(Calendar.YEAR) 
                 + StringUtils.leftPad("" + Calendar.getInstance().get(Calendar.DAY_OF_YEAR), 3, "0")
-                + RandomStringUtils.randomNumeric(6);
+                + RandomStringUtils.randomNumeric(5);
+        return code + checkSum(code);
+    }
+
+    private int checkSum(String code){
+        int val=0;
+        for(int i=0;i<code.length();i++){
+            val+=((int)Integer.parseInt(code.charAt(i)+""))*((i%2==0)?1:3);
+        }
+
+        int checksum_digit = 10 - (val % 10);
+        if (checksum_digit == 10) checksum_digit = 0;
+
+        return checksum_digit;
     }
 
     public static void main(String[] args) {

@@ -1,5 +1,7 @@
 package com.ppla.app.services.process.custom.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.ppla.app.models.machine.Cutter;
@@ -43,6 +45,26 @@ public class CuttingProcessServiceCustomImpl extends AbstractPplaMachineProcessS
             QCuttingProcess.cuttingProcess.rollIn.tag.eq(tag)
         );
         return toDto(process);
+    }
+
+    @Override
+    public CuttingProcessInfo pauseInfo(CuttingProcessInfo processInfo) {
+        //Make machine available
+        Cutter machine = toMachine(processInfo.getMachine());
+        machine.setCurrentProcess(null);
+        machineRepo.save(machine);
+
+        processInfo.setPaused(true);
+        return saveInfo(processInfo);
+    }
+
+    @Override
+    public List<CuttingProcessInfo> findPaused() {
+        List<CuttingProcess> pausedProcesses = (List<CuttingProcess>) service.findAll(
+            QCuttingProcess.cuttingProcess.paused.isTrue(),
+            QCuttingProcess.cuttingProcess.dateStarted.asc()
+        );
+        return toDto(pausedProcesses);
     }
 
 }

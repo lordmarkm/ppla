@@ -16,6 +16,7 @@ import com.ppla.app.models.PplaWorkOrder;
 import com.ppla.app.models.QPplaOrderItem;
 import com.ppla.app.models.material.ProcessMaterialStack;
 import com.ppla.app.services.PplaOrderItemService;
+import com.ppla.app.services.PplaWorkOrderSequenceService;
 import com.ppla.app.services.PplaWorkOrderService;
 import com.ppla.app.services.ProcessMaterialStackService;
 import com.ppla.app.services.custom.PplaWorkOrderServiceCustom;
@@ -41,6 +42,9 @@ public class PplaWorkOrderServiceCustomImpl extends MappingService<PplaWorkOrder
     @Autowired
     private ProcessMaterialStackService procMatStackService;
 
+    @Autowired
+    private PplaWorkOrderSequenceService trackingNoService;
+
     @Override
     public PplaWorkOrderInfo findInfoByTrackingNo(String trackingNo) {
         return toDto(workOrders.findByTrackingNo(trackingNo));
@@ -58,7 +62,7 @@ public class PplaWorkOrderServiceCustomImpl extends MappingService<PplaWorkOrder
         PplaWorkOrder workOrder = toEntity(workOrderInfo);
         workOrder.setStatus(PplaWorkOrder.STATUS_OPEN);
         workOrder.setDateCreated(DateTime.now());
-        workOrder.setTrackingNo(RandomStringUtils.randomAlphanumeric(6));
+        workOrder.setTrackingNo(trackingNoService.next());
         PplaWorkOrder saved = workOrders.saveAndFlush(workOrder);
 
         //Save order item relation

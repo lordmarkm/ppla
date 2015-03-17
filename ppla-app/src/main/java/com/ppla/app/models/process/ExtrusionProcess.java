@@ -3,12 +3,16 @@ package com.ppla.app.models.process;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+
+import org.hibernate.annotations.Type;
+import org.joda.time.DateTime;
 
 import com.mysema.query.annotations.QueryInit;
 import com.ppla.app.models.machine.Extruder;
@@ -17,6 +21,10 @@ import com.ppla.app.models.material.ProcessMaterialStack;
 @Entity(name = "EXTRUSION_PROCESS")
 @DiscriminatorValue("EXTRUSION")
 public class ExtrusionProcess extends MachineProcess<Extruder, ProcessMaterialStack> {
+
+    @Column(name = "STAGED")
+    @Type(type="org.jadira.usertype.dateandtime.joda.PersistentDateTime")
+    private DateTime dateStaged;
 
     @ManyToOne
     @JoinColumn(name = "MACHINE_ID")
@@ -69,6 +77,14 @@ public class ExtrusionProcess extends MachineProcess<Extruder, ProcessMaterialSt
 
     public void setMaterialsOut(List<ProcessMaterialStack> materialsOut) {
         this.materialsOut = materialsOut;
+    }
+
+    public DateTime getDateStaged() {
+        return dateStaged;
+    }
+
+    public void setDateStaged(DateTime dateStaged) {
+        this.dateStaged = dateStaged;
     }
 
 }
