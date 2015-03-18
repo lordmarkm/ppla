@@ -43,6 +43,7 @@ define([
   //Extruder end process
   '/operations/modules/extruder/controllers/end/ExtruderEndController.js',
   '/operations/modules/extruder/controllers/end/ExtruderEndMaterialsController.js',
+  '/operations/modules/extruder/controllers/end/ExtruderEndAdditionalController.js',
 
   //Printer common
   '/operations/modules/printer/controllers/PrinterController.js',
@@ -70,6 +71,7 @@ define([
 
   //Cutter end process
   '/operations/modules/cutter/controllers/end/CutterEndController.js',
+  '/operations/modules/cutter/controllers/end/CutterEndAdditionalController.js',
   '/operations/modules/cutter/controllers/end/CutterEndMaterialsController.js'
 
 ], function () {});

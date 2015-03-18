@@ -4,10 +4,12 @@ import static org.springframework.http.HttpStatus.OK;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
+import java.math.BigInteger;
 import java.security.Principal;
 
 import org.apache.commons.lang.RandomStringUtils;
 import org.dozer.Mapper;
+import org.joda.time.DateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -81,12 +83,16 @@ public class SalesOrderResource {
 
         salesOrder.setCustomer(persons.save(salesOrder.getCustomer()));
         salesOrder.setItems(null);
+        salesOrder.setEditSequence(RandomStringUtils.randomAlphanumeric(10));
+        salesOrder.setTimeModified(DateTime.now());
+        salesOrder.setTxnNumber(BigInteger.valueOf(5));
         salesOrder = salesOrders.save(salesOrder);
         salesOrders.flush();
         
         for (PplaOrderItemInfo info : salesOrderInfo.getOrderItems()) {
             PplaOrderItem item = mapper.map(info, PplaOrderItem.class);
             item.setSalesOrder(salesOrder);
+            item.setTxnLineId(RandomStringUtils.randomAlphanumeric(6));
             orderItems.save(item);
         }
 

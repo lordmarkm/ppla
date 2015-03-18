@@ -12,6 +12,10 @@ define(['/operations/controllers/module.js'], function (controllers) {
     }
     $scope.process.endActor = $scope.commonData.actor;
 
+    //for screens where there are no required fields
+    $scope.meta = {
+      additionalsSaved : false
+    };
 
     $scope.confirmEnd = function () {
       delete $scope.process.type;
@@ -41,6 +45,8 @@ define(['/operations/controllers/module.js'], function (controllers) {
         return 'No end actor';
       } else if (!$scope.process.materialsOut.length) {
         return 'None positive material output';
+      } else if (!$scope.meta.additionalsSaved) {
+        return 'Remarks';
       } else if ($scope.process.dateCompleted) {
         return 'Completed';
       } else {

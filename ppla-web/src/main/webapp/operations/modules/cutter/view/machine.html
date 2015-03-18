@@ -32,3 +32,41 @@
   </table>
 </div>
 </div>
+
+<div ng-if="staged.length">
+<div class="panel panel-default">
+<div class="panel-heading">Resume paused process</div>
+<div class="panel-body">
+  <table class="table table-striped" ng-if="cutters.length > 0">
+    <thead>
+      <tr>
+        <th>Cutter code
+        <th>Started by
+        <th>Materials
+        <th>
+      </th>
+    </thead>
+    <tbody>
+      <tr ng-repeat="stagedProc in staged">
+        <td>{{stagedProc.machine.code}}
+        <td>{{stagedProc.actor.name | name}}
+        <td>
+          <ol style="padding: 0;">
+            <li ng-repeat="stack in stagedProc.materialsIn">
+              {{stack.material.name}} - {{stack.quantity}} {{stack.material.unitOfMeasurement}}
+            </li>
+          </ol>
+        </td>
+        <td>{{stagedProc.id}}
+        <td ng-if="stagedProc.machine.currentProcessId">
+          Machine is in use
+        </td>
+        <td ng-if="!stagedProc.machine.currentProcessId">
+          <button ng-click="resumePaused(stagedProc)" class="btn btn-success">Resume paused process</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+</div>
+</div>

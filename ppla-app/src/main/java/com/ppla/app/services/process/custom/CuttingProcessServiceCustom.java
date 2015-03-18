@@ -12,6 +12,7 @@ public interface CuttingProcessServiceCustom extends BasePplaProcessServiceCusto
 
     CuttingProcessInfo findInfoByRollTag(String tag);
     CuttingProcessInfo pauseInfo(CuttingProcessInfo processInfo);
+    CuttingProcessInfo resumeInfo(CuttingProcessInfo processInfo);
     List<CuttingProcessInfo> findPaused();
 
 }

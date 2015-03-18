@@ -9,5 +9,12 @@ define(['/operations/controllers/module.js'], function (controllers) {
       $state.go('cutter.start.additional');
     };
 
+    $scope.startStaged = function (process) {
+      $scope.commonData.process = process;
+      $scope.commonData.staged = true;
+      reloadMachines();
+      loadStagedProcesses();
+    };
+
   }]);
 });

@@ -15,8 +15,6 @@
         <span ng-if="!process.rollIn">No materials to be added</span>
         <span ng-if="process.rollIn">{{process.rollIn.material.name}} - {{process.rollIn.quantity}} {{process.rollIn.material.unitOfMeasurement ? process.rollIn.material.unitOfMeasurement : ''}} ({{process.rollIn.tag}})</span>
       </dd>
-      <dt>Remarks
-      <dd>{{process.remarks}}
     </dl>
     <dl class="dl-horizontal">
       <dt><a ui-sref="cutter.identity">Ended by Operator</a>
@@ -25,10 +23,12 @@
       <dd>{{process.dateCompleted|date}}
       <dt>Quantity Produced
       <dd>{{process.productOut}}
+      <dt>Remarks
+      <dd>{{process.remarks}}
       <dt>Process Status
       <dd>{{processStatus()}}
     </dl>
-    <!-- Uncomment to debug
+    <!-- 
     <dl>
       <dt>Process
       <dd>{{process}}
@@ -36,9 +36,14 @@
     -->
     <div ng-if="processStatus() != 'Complete' && processStatus() != 'Completed'" class="text-right">
       <button ui-sref="cutter.identity" class="btn btn-default">Cancel</button>
+      <span class="btn btn-default" ng-if="!process.paused" ng-click="pause()">Pause</span>
+      <span class="btn btn-primary" ng-if="process.paused" ng-click="resume()" ng-disabled="process.machine.currentProcessId">
+        <span ng-if="!process.machine.currentProcessId">Resume</span>
+        <span ng-if="process.machine.currentProcessId">Machine is in use by another process</span>
+      </span>
     </div>
     <div ng-if="processStatus() === 'Complete'" class="text-right">
-      <button ng-click="confirmEnd()" class="btn btn-primary">End Process</button>
+      <button ng-click="confirmEnd()" class="btn btn-primary" ng-disabled="process.paused">End Process</button>
       <button ui-sref="cutter.identity" class="btn btn-default">Cancel</button>
     </div>
     <div ng-if="processStatus() === 'Completed'" class="text-right">

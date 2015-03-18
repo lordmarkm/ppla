@@ -31,8 +31,8 @@ public class PplaQuickbooksWsEndpoint extends ItemQueryRqSoapImpl {
         ArrayOfString arr = new ArrayOfString();
         //arr.string = new ArrayList<String>();
         arr.getString().add("The first element is a token for the web connector session");
-        arr.getString().add(""); //To use the currently open company, specify an empty string
-        //arr.getString().add("C:/ServerFolders/Quickbooks/PPLA Films.QBW");
+        //arr.getString().add(""); //To use the currently open company, specify an empty string
+        arr.getString().add("C:\\ServerFolders\\Quickbooks\\PPLA Films.QBW");
         return arr;
     }
 

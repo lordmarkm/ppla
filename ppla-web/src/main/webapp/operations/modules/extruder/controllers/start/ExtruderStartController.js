@@ -44,9 +44,9 @@ define(['/operations/controllers/module.js'], function (controllers) {
       //if (!$scope.process.materialsIn || $scope.process.materialsIn.length < 1) {
       //  return state_material;
       //}
-      if (!$scope.meta.additionalsSaved) {
-        return state_additional;
-      }
+      //if (!$scope.meta.additionalsSaved) {
+      //  return state_additional;
+      //}
       return 'Complete';
     };
 

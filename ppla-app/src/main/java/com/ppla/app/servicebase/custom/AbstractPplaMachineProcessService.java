@@ -65,6 +65,10 @@ public class AbstractPplaMachineProcessService
         return mapper.map(machineInfo, machineClass);
     }
 
+    protected MachineInfo toMachineDto(M machine) {
+        return mapper.map(machine, MachineInfo.class);
+    }
+
     public PageInfo<D> pageInfoByMachineId(Long machineId, PageRequest page) {
         Page<E> entities = machineProcessRepo.findByMachine_Id(machineId, page);
 

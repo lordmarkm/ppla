@@ -21,8 +21,6 @@
         </span>
       </dd>
       -->
-      <dt>Remarks
-      <dd>{{process.remarks}}
     </dl>
     <dl class="dl-horizontal">
       <dt><a ui-sref="extruder.identity">Ended by Operator</a>
@@ -38,6 +36,8 @@
           <span ng-repeat="processMaterialStack in process.materialsOut">{{processMaterialStack.material.name}}({{processMaterialStack.tag ? processMaterialStack.tag : 'Untagged'}}) - {{processMaterialStack.quantity}} {{processMaterialStack.material.unitOfMeasurement}}{{$last ? '': ', '}}</span>
         </span>
       </dd>
+      <dt>Remarks
+      <dd>{{process.remarks}}
       <dt>Process Status
       <dd>{{processStatus()}}
       <dt>Code

@@ -34,9 +34,9 @@ define(['/operations/controllers/module.js'], function (controllers) {
     };
 
     $scope.processStatus = function () {
-      if (!$scope.meta.additionalsSaved) {
-        return state_additional;
-      }
+//      if (!$scope.meta.additionalsSaved) {
+//        return state_additional;
+//      }
       return 'Complete';
     };
 

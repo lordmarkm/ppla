@@ -66,6 +66,11 @@ define([
         controller: 'ExtruderEndMaterialsController',
         resolve: ExtruderOutputMaterialResolve
       })
+      .state('extruder.end.additional', {
+        url: '/additional',
+        templateUrl: '/operations/modules/extruder/view/end/additional.html',
+        controller: 'ExtruderEndAdditionalController'
+      })
       .state('extruder.end.confirm', {
         url: '/confirm',
         controller: 'ExtruderEndController'

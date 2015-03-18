@@ -59,6 +59,20 @@ public class CuttingProcessServiceCustomImpl extends AbstractPplaMachineProcessS
     }
 
     @Override
+    public CuttingProcessInfo resumeInfo(CuttingProcessInfo processInfo) {
+        processInfo.setPaused(false);
+        CuttingProcess process = super.save(processInfo);
+
+        Cutter machine = toMachine(processInfo.getMachine());
+        machine.setCurrentProcess(process);
+        machineRepo.save(machine);
+
+        processInfo.setMachine(toMachineDto(machine));
+
+        return processInfo;
+    }
+
+    @Override
     public List<CuttingProcessInfo> findPaused() {
         List<CuttingProcess> pausedProcesses = (List<CuttingProcess>) service.findAll(
             QCuttingProcess.cuttingProcess.paused.isTrue(),

@@ -1,7 +1,7 @@
 define(['/operations/controllers/module.js'], function (controllers) {
   'use strict';
-  controllers.controller('CutterEndMaterialsController', ['$scope', '$state',
-    function($scope, $state) {
+  controllers.controller('CutterEndMaterialsController', ['$scope', '$state', 'CuttingProcessService',
+    function($scope, $state, CuttingProcessService) {
 
     //Set default # of output products produced
     $scope.quantity = 1;
@@ -11,7 +11,7 @@ define(['/operations/controllers/module.js'], function (controllers) {
         return;
       }
       $scope.process.productOut = $scope.quantity;
-      $state.go('cutter.end.confirm');
+      $state.go('cutter.end.additional');
     };
 
   }]);

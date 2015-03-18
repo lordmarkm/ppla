@@ -86,4 +86,12 @@ public class CuttingProcessResource {
         LOG.debug("Pausing cutting process. process={}", process);
         return new ResponseEntity<>(service.pauseInfo(process), OK);
     }
+
+    @RequestMapping(value = "/resume", method = POST)
+    public ResponseEntity<CuttingProcessInfo> resume(Principal principal,
+            @RequestBody CuttingProcessInfo process) {
+        LOG.debug("Resuming cutting process. process={}", process);
+        return new ResponseEntity<>(service.resumeInfo(process), OK);
+    }
+
 }

@@ -53,7 +53,7 @@ define(['/operations/controllers/module.js'], function (controllers) {
         return;
       }
       $scope.process.materialsOut = $scope.toAdd;
-      $state.go('extruder.end.confirm');
+      $state.go('extruder.end.additional');
     };
 
   }]);
