@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.ppla.app.models.machine.Extruder;
 import com.ppla.app.models.process.ExtrusionProcess;
 import com.ppla.app.servicebase.custom.AbstractPplaMachineProcessService;
+import com.ppla.app.services.PplaTagSequenceService;
 import com.ppla.app.services.machine.ExtruderService;
 import com.ppla.app.services.process.ExtrusionProcessService;
 import com.ppla.app.services.process.custom.ExtrusionProcessServiceCustom;
@@ -30,8 +31,11 @@ public class ExtrusionProcessServiceCustomImpl
 
     private static Logger LOG = LoggerFactory.getLogger(ExtrusionProcessServiceCustomImpl.class);
 
+//    @Autowired
+//    private TagGenerator tagGenerator;
+
     @Autowired
-    private TagGenerator tagGenerator;
+    private PplaTagSequenceService tagGenerator;
 
     @Override
     public ExtrusionProcessInfo startInfo(ExtrusionProcessInfo processInfo) {

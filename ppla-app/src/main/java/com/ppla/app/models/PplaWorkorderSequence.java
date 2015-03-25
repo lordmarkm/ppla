@@ -9,7 +9,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import com.tyrael.commons.models.Sequence;
 
-@Entity(name = "WO_SEQUENCE")
+@Entity(name = "ROLL_TAG_SEQUENCE")
 public class PplaWorkorderSequence extends Sequence {
 
     private static final String PADCHAR = "0";
@@ -21,14 +21,31 @@ public class PplaWorkorderSequence extends Sequence {
     @Column(name = "SEQUENCE")
     private Long sequence = 0l;
 
+    @Column(name = "LAST_TEMPORAL")
+    private String lastTemporalPart;
+
+    @Override
+    protected void checkSequenceReset() {
+        String currentTemporalPart = this.getTemporalPart();
+        if (null != lastTemporalPart && !lastTemporalPart.equals(currentTemporalPart)) {
+            sequence = 0l;
+        }
+        this.lastTemporalPart = currentTemporalPart;
+    }
+
     @Override
     public String getTemporalPart() {
         return super.getTemporalPart();
     }
 
     @Override
+    protected String getDelimiter() {
+        return "";
+    }
+
+    @Override
     public String getSequencePart() {
-        return StringUtils.leftPad("" + sequence, 8, PADCHAR);
+        return StringUtils.leftPad("" + sequence, 5, PADCHAR);
     }
 
     public Long getId() {
@@ -47,4 +64,7 @@ public class PplaWorkorderSequence extends Sequence {
         return sequence;
     }
 
+    public static void main(String[] args) {
+        System.out.println(new PplaWorkorderSequence().next());
+    }
 }
