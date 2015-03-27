@@ -18,8 +18,10 @@ define(['/operations/controllers/module.js'], function (controllers) {
 
     $scope.confirmEnd = function () {
       delete $scope.process.type;
+      $scope.processing = true;
       CuttingProcessService.save({action: 'end'}, $scope.process, function (savedProcess) {
         alert('Cutting Process completed.');
+        $scope.processing = false;
         $scope.process = savedProcess;
       });
     };
@@ -41,14 +43,18 @@ define(['/operations/controllers/module.js'], function (controllers) {
     };
 
     $scope.pause = function () {
+      $scope.processing = true;
       CuttingProcessService.save({action: 'pause'}, $scope.process, function () {
         alert('Process has been paused.');
+        $scope.processing = false;
         $state.go('cutter.identity');
       });
     };
     $scope.resume = function () {
+      $scope.processing = true;
       CuttingProcessService.save({action: 'resume'}, $scope.process, function () {
         alert('Process has been resumed.');
+        $scope.processing = false;
         $state.go('cutter.identity');
       });
     };

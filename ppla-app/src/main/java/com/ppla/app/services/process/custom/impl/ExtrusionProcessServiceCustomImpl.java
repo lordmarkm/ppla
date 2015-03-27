@@ -59,15 +59,17 @@ public class ExtrusionProcessServiceCustomImpl
         }
         ExtrusionProcessInfo oldProcess = super.endMachineProcessInfo(processInfo);
 
-        ExtrusionProcessInfo newProcess = new ExtrusionProcessInfo();
-        newProcess.setActor(oldProcess.getEndActor());
-        newProcess.setDateStarted(oldProcess.getDateCompleted());
-        newProcess.setMachine(oldProcess.getMachine());
-        newProcess.setRemarks(oldProcess.getRemarks());
-        newProcess.setWorkOrder(oldProcess.getWorkOrder());
-
-        LOG.debug("Starting new extrusion process. process={}", newProcess);
-        startInfo(newProcess);
+        if (null != oldProcess) {
+            ExtrusionProcessInfo newProcess = new ExtrusionProcessInfo();
+            newProcess.setActor(oldProcess.getEndActor());
+            newProcess.setDateStarted(oldProcess.getDateCompleted());
+            newProcess.setMachine(oldProcess.getMachine());
+            newProcess.setRemarks(oldProcess.getRemarks());
+            newProcess.setWorkOrder(oldProcess.getWorkOrder());
+    
+            LOG.debug("Starting new extrusion process. process={}", newProcess);
+            startInfo(newProcess);
+        }
 
         return oldProcess;
     }

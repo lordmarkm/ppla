@@ -53,8 +53,8 @@
       <button ui-sref="extruder.identity" class="btn btn-default">Cancel</button>
     </div>
     <div ng-if="processStatus() === 'Complete'" class="text-right">
-      <button ng-click="confirmEnd()" class="btn btn-primary">End Process</button>
-      <button ng-click="confirmUnload()" class="btn btn-primary">Unload roll</button>
+      <button ng-click="confirmEnd()" ng-disabled="processing" class="btn btn-primary">End Process</button>
+      <button ng-click="confirmUnload()" ng-disabled="processing" class="btn btn-primary">Unload roll</button>
       <!-- 
       <button ng-click="makeBarcode()" class="btn">Make barcode</button>
       -->

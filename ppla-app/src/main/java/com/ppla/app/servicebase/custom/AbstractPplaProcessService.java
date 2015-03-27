@@ -76,6 +76,13 @@ public abstract class AbstractPplaProcessService<E extends BasePplaProcess,
     }
 
     public E save(D processInfo) {
+        if (processInfo.getId() != null) {
+            E fromDbProcess = repo.findOne(processInfo.getId());
+            if (null != fromDbProcess.getDateCompleted()) {
+                return null;
+            }
+        }
+
         return repo.save(toEntity(processInfo));
     }
 
@@ -85,6 +92,11 @@ public abstract class AbstractPplaProcessService<E extends BasePplaProcess,
     }
 
     public E end(D processInfo) {
+        E fromDbProcess = repo.findOne(processInfo.getId());
+        if (null != fromDbProcess && null != fromDbProcess.getDateCompleted()) {
+            return null;
+        }
+
         processInfo.setDateCompleted(DateTime.now());
         if (null != processInfo.getDateStarted()) {
             Period difference = new Period(processInfo.getDateStarted(), processInfo.getDateCompleted());

@@ -36,14 +36,14 @@
     -->
     <div ng-if="processStatus() != 'Complete' && processStatus() != 'Completed'" class="text-right">
       <button ui-sref="cutter.identity" class="btn btn-default">Cancel</button>
-      <span class="btn btn-default" ng-if="!process.paused" ng-click="pause()">Pause</span>
-      <span class="btn btn-primary" ng-if="process.paused" ng-click="resume()" ng-disabled="process.machine.currentProcessId">
+      <span class="btn btn-default" ng-if="!process.paused" ng-disabled="processing" ng-click="pause()">Pause</span>
+      <span class="btn btn-primary" ng-if="process.paused" ng-disabled="processing" ng-click="resume()" ng-disabled="process.machine.currentProcessId">
         <span ng-if="!process.machine.currentProcessId">Resume</span>
         <span ng-if="process.machine.currentProcessId">Machine is in use by another process</span>
       </span>
     </div>
     <div ng-if="processStatus() === 'Complete'" class="text-right">
-      <button ng-click="confirmEnd()" class="btn btn-primary" ng-disabled="process.paused">End Process</button>
+      <button ng-click="confirmEnd()" ng-disabled="processing" class="btn btn-primary" ng-disabled="process.paused">End Process</button>
       <button ui-sref="cutter.identity" class="btn btn-default">Cancel</button>
     </div>
     <div ng-if="processStatus() === 'Completed'" class="text-right">

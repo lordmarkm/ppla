@@ -41,8 +41,10 @@ define(['/operations/controllers/module.js'], function (controllers) {
     };
 
     $scope.saveProcess = function () {
+      $scope.processing = true;
       CuttingProcessService.save({action: 'start'}, $scope.process, function(process) {
         alert('Process started');
+        $scope.processing = false;
         $scope.process = {};
         resetMeta();
         $state.go('cutter.identity');

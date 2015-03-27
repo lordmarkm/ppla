@@ -19,9 +19,11 @@ define(['/operations/controllers/module.js'], function (controllers) {
 
     $scope.confirmEnd = function () {
       delete $scope.process.type;
+      $scope.processing = true;
       ExtrusionProcessService.save({action: 'end'}, $scope.process, function (savedProcess) {
         var code = savedProcess.materialsOut[0].tag;
         alert('Extrusion Process completed. Output roll code=' + code);
+        $scope.processing = false;
         $scope.process = savedProcess;
 
         angular.element('#scannable-code').barcode(code, "ean13", {barWidth:2, barHeight:100});
@@ -31,9 +33,11 @@ define(['/operations/controllers/module.js'], function (controllers) {
 
     $scope.confirmUnload = function () {
       delete $scope.process.type;
+      $scope.processing = true;
       ExtrusionProcessService.save({action: 'unload'}, $scope.process, function (savedProcess) {
         var code = savedProcess.materialsOut[0].tag;
         alert('Roll unloaded. Output roll code=' + code);
+        $scope.processing = false;
 
         angular.element('#scannable-code').barcode(code, "ean13", {barWidth:2, barHeight:100});
         $scope.process = savedProcess;

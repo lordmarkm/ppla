@@ -19,7 +19,7 @@
       <dd>{{process.remarks}}
     </dl>
     <div ng-if="processStatus() === 'Complete'" class="text-right">
-      <button ng-click="saveProcess()" class="btn btn-primary">Create Process</button>
+      <button ng-click="saveProcess()" ng-disabled="processing" class="btn btn-primary">Create Process</button>
     </div>
   </div>
 </div>

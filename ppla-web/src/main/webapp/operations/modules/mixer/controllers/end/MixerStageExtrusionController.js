@@ -46,10 +46,10 @@ define(['/operations/controllers/module.js'], function (controllers) {
         alert('Staging failed, some input is invalid.');
         return;
       }
-      if (!validateWeights()) {
-        alert('Staged extrusion total exceeds total mixing output.');
-        return;
-      }
+//      if (!validateWeights()) {
+//        alert('Staged extrusion total exceeds total mixing output.');
+//        return;
+//      }
 
       var extrusion, stagedExtrusionCount = 0;
       for (var i in $scope.extrusions) {

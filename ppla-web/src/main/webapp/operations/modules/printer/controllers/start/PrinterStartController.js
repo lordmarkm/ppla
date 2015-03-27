@@ -41,7 +41,9 @@ define(['/operations/controllers/module.js'], function (controllers) {
     };
 
     $scope.saveProcess = function () {
+      $scope.processing = true;
       PrintingProcessService.save({action: 'start'}, $scope.process, function(process) {
+        $scope.processing = false;
         alert('Process started');
         $scope.process = {};
         resetMeta();

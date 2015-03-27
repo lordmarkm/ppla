@@ -60,6 +60,11 @@ public class CuttingProcessServiceCustomImpl extends AbstractPplaMachineProcessS
 
     @Override
     public CuttingProcessInfo resumeInfo(CuttingProcessInfo processInfo) {
+        Cutter fromDbMachine = machineRepo.findOne(processInfo.getMachine().getId());
+        if (null != fromDbMachine && fromDbMachine.getCurrentProcess() != null) {
+            return null;
+        }
+
         processInfo.setPaused(false);
         CuttingProcess process = super.save(processInfo);
 

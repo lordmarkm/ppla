@@ -14,8 +14,10 @@ define(['/operations/controllers/module.js'], function (controllers) {
 
     $scope.confirmEnd = function () {
       delete $scope.process.type;
+      $scope.processing = true;
       MixingProcessService.save({action: 'end'}, $scope.process, function (savedProcess) {
         alert('Mixing Process completed.');
+        $scope.processing = false;
         $scope.process = savedProcess;
       });
     };

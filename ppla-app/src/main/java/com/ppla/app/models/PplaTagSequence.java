@@ -43,6 +43,11 @@ public class PplaTagSequence extends Sequence {
         return StringUtils.leftPad("" + sequence, 8, PADCHAR);
     }
 
+    @Override
+    protected String getDelimiter() {
+        return "";
+    }
+
     public Long getId() {
         return id;
     }

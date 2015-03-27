@@ -43,7 +43,7 @@
     -->
     <div ng-switch on="processStatus()">
       <div ng-switch-when="Complete" class="text-right">
-        <button ng-click="confirmEnd()" class="btn btn-primary">End Process</button>
+        <button ng-click="confirmEnd()" ng-disabled="processing" class="btn btn-primary">End Process</button>
         <button ui-sref="mixer.identity" class="btn btn-default">Cancel</button>
       </div>
       <div ng-switch-when="Completed" class="text-right">

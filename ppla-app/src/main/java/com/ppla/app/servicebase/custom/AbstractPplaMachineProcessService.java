@@ -40,6 +40,12 @@ public class AbstractPplaMachineProcessService
     }
 
     public D startMachineProcessInfo(MachineProcessInfo processInfo) {
+        //Check that machine is not in use
+        M fromDbMachine = machineRepo.findOne(processInfo.getMachine().getId());
+        if (null != fromDbMachine && fromDbMachine.getCurrentProcess() != null) {
+            return null;
+        }
+
         E process = super.start((D) processInfo);
 
         //Set process as machine's current process
