@@ -44,6 +44,7 @@ define([
   '/operations/modules/extruder/controllers/end/ExtruderEndController.js',
   '/operations/modules/extruder/controllers/end/ExtruderEndMaterialsController.js',
   '/operations/modules/extruder/controllers/end/ExtruderEndAdditionalController.js',
+  '/operations/modules/extruder/controllers/end/ExtruderPrintableController.js',
 
   //Printer common
   '/operations/modules/printer/controllers/PrinterController.js',

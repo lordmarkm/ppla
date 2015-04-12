@@ -74,6 +74,12 @@ define([
       .state('extruder.end.confirm', {
         url: '/confirm',
         controller: 'ExtruderEndController'
+      })
+      .state('extruder_print', {
+        url: '/printable/{processId}',
+        templateUrl: '/operations/modules/extruder/view/end/printable.html',
+        controller: 'ExtruderPrintableController',
+        resolve: ExtrusionProcessResolve
       });
     }
   );
