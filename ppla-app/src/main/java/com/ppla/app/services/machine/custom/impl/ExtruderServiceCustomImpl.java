@@ -28,7 +28,7 @@ public class ExtruderServiceCustomImpl extends AbstractPplaMachineService<Extrud
     @Override
     public ExtruderInfo findOneInfo(Long id) {
         ExtruderInfo extruder = super.findOneInfo(id);
-        setStagedProcesses(extruder);
+//        setStagedProcesses(extruder);
 
         return extruder;
     }
@@ -36,9 +36,9 @@ public class ExtruderServiceCustomImpl extends AbstractPplaMachineService<Extrud
     @Override
     public List<ExtruderInfo> findAllInfo() {
         List<ExtruderInfo> extruders = super.findAllInfo();
-        for (ExtruderInfo extruder : extruders) {
-            setStagedProcesses(extruder);
-        }
+//        for (ExtruderInfo extruder : extruders) {
+//            setStagedProcesses(extruder);
+//        }
 
         return extruders;
     }
