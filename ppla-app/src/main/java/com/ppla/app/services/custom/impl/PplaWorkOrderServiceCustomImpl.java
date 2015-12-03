@@ -1,8 +1,8 @@
 package com.ppla.app.services.custom.impl;
 
+import java.math.BigDecimal;
 import java.util.List;
 
-import org.apache.commons.lang.RandomStringUtils;
 import org.joda.time.DateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,10 +16,13 @@ import com.ppla.app.models.PplaWorkOrder;
 import com.ppla.app.models.QPplaOrderItem;
 import com.ppla.app.models.material.ProcessMaterialStack;
 import com.ppla.app.services.PplaOrderItemService;
+import com.ppla.app.services.PplaProductService;
+import com.ppla.app.services.PplaSalesOrderService;
 import com.ppla.app.services.PplaWorkOrderSequenceService;
 import com.ppla.app.services.PplaWorkOrderService;
 import com.ppla.app.services.ProcessMaterialStackService;
 import com.ppla.app.services.custom.PplaWorkOrderServiceCustom;
+import com.ppla.core.dto.ManualWorkOrderDto;
 import com.ppla.core.dto.PplaOrderItemInfo;
 import com.ppla.core.dto.PplaWorkOrderInfo;
 import com.tyrael.commons.dto.PageInfo;
@@ -45,6 +48,12 @@ public class PplaWorkOrderServiceCustomImpl extends MappingService<PplaWorkOrder
     @Autowired
     private PplaWorkOrderSequenceService trackingNoService;
 
+    @Autowired
+    private PplaProductService productService;
+
+    @Autowired
+    private PplaSalesOrderService salesOrderService;
+
     @Override
     public PplaWorkOrderInfo findInfoByTrackingNo(String trackingNo) {
         return toDto(workOrders.findByTrackingNo(trackingNo));
@@ -53,6 +62,28 @@ public class PplaWorkOrderServiceCustomImpl extends MappingService<PplaWorkOrder
     @Override
     public PplaWorkOrderInfo save(PplaWorkOrderInfo workOrderInfo) {
         return toDto(workOrders.save(toEntity(workOrderInfo)));
+    }
+
+    @Override
+    public PplaWorkOrderInfo save(ManualWorkOrderDto workOrderDto) {
+
+        PplaWorkOrder workOrder = new PplaWorkOrder();
+        workOrder.setStatus(PplaWorkOrder.STATUS_OPEN);
+        workOrder.setDateCreated(DateTime.now());
+        workOrder.setTrackingNo(trackingNoService.next());
+        workOrder.setQuantity(workOrderDto.getQuantity());
+        PplaWorkOrder saved = workOrders.saveAndFlush(workOrder);
+
+        //Save order item relation
+        PplaOrderItem orderItem = new PplaOrderItem();
+        orderItem.setWorkOrder(saved);
+        orderItem.setQuantity(new BigDecimal(workOrderDto.getQuantity()));
+        orderItem.setTxnLineId("1");
+        orderItem.setProduct(productService.findOne(Long.valueOf(workOrderDto.getProduct().getId())));
+        orderItem.setSalesOrder(salesOrderService.getDefault());
+        orderItemService.save(orderItem);
+
+        return toDto(saved);
     }
 
     @Override

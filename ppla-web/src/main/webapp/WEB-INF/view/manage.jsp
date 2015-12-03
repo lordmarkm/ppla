@@ -47,6 +47,9 @@
 <script src="/manage/modules/inventory/module.js"></script>
 <script src="/manage/modules/inventory/controllers/InventoryController.js"></script>
 
+<script src="/manage/modules/manual_wo_creation/module.js"></script>
+<script src="/manage/modules/manual_wo_creation/controllers/ManualWorkOrderCreationController.js"></script>
+
 </head>
 
 <body ng-app="ppla">

@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.data.domain.PageRequest;
 
+import com.ppla.core.dto.ManualWorkOrderDto;
 import com.ppla.core.dto.PplaWorkOrderInfo;
 import com.tyrael.commons.dto.PageInfo;
 
@@ -18,6 +19,7 @@ public interface PplaWorkOrderServiceCustom {
     PplaWorkOrderInfo findInfoByTrackingNo(String trackingNo);
     PplaWorkOrderInfo close(String trackingNo);
     PplaWorkOrderInfo findInfoByMaterialTag(String tag);
+    PplaWorkOrderInfo save(ManualWorkOrderDto workOrder);
     List<PplaWorkOrderInfo> findOpenWithSameProductInfo(Long orderItemId);
 
     PageInfo<PplaWorkOrderInfo> page(PageRequest pageRequest);

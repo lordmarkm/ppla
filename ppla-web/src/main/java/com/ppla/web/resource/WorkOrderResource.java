@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ppla.app.services.PplaWorkOrderService;
+import com.ppla.core.dto.ManualWorkOrderDto;
 import com.ppla.core.dto.PplaWorkOrderInfo;
 import com.tyrael.commons.dto.PageInfo;
 
@@ -96,5 +97,14 @@ public class WorkOrderResource {
     public ResponseEntity<PplaWorkOrderInfo> close(Principal principal, @PathVariable String trackingNo) {
         LOG.debug("Close request. user={}, tracking no={}", principal, trackingNo);
         return new ResponseEntity<>(service.close(trackingNo), OK);
+    }
+
+    /**
+     * Manually create a work order w/o an order item
+     */
+    @RequestMapping(method = POST)
+    public ResponseEntity<PplaWorkOrderInfo> create(@RequestBody ManualWorkOrderDto workOrder) {
+        LOG.debug("Manual work order creation request. wo={}", workOrder);
+        return new ResponseEntity<>(service.save(workOrder), OK);
     }
 }

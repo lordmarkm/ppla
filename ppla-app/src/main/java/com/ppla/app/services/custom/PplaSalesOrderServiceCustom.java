@@ -2,6 +2,7 @@ package com.ppla.app.services.custom;
 
 import org.springframework.data.domain.Pageable;
 
+import com.ppla.app.models.PplaSalesOrder;
 import com.ppla.core.dto.PplaSalesOrderInfo;
 import com.tyrael.commons.dto.PageInfo;
 
@@ -12,5 +13,6 @@ public interface PplaSalesOrderServiceCustom {
 
     PplaSalesOrderInfo findInfoByTrackingNo(String trackingNo);
     PageInfo<PplaSalesOrderInfo> page(Pageable page);
+    PplaSalesOrder getDefault();
 
 }
