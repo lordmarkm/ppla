@@ -76,5 +76,10 @@ angular.module('ppla', [
       url: '/workorder/{trackingNo}?salesOrder&orderItem',
       templateUrl: '/manage/workorder.html',
       controller: 'WorkOrderController'
+    })
+    .state('manage/create_workorder', {
+      url: '/create_workorder',
+      template: 'manage/create_workorder.html',
+      controller: 'CreateWorkorderController'
     });
 });

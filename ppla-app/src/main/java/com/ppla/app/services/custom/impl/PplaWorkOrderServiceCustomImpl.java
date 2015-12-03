@@ -66,9 +66,11 @@ public class PplaWorkOrderServiceCustomImpl extends MappingService<PplaWorkOrder
         PplaWorkOrder saved = workOrders.saveAndFlush(workOrder);
 
         //Save order item relation
-        PplaOrderItem orderItem = orderItemService.findOne(orderItemId);
-        orderItem.setWorkOrder(saved);
-        orderItemService.save(orderItem);
+        if (null != orderItemId) {
+            PplaOrderItem orderItem = orderItemService.findOne(orderItemId);
+            orderItem.setWorkOrder(saved);
+            orderItemService.save(orderItem);
+        }
 
         return toDto(saved);
     }

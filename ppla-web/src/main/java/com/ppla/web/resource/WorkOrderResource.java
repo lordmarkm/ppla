@@ -11,6 +11,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -38,12 +40,26 @@ public class WorkOrderResource {
     public ResponseEntity<PageInfo<PplaWorkOrderInfo>> findAll(Principal principal,
             @RequestParam int page,
             @RequestParam int count,
-            @RequestParam(required = false) Boolean closed) {
+            @RequestParam(required = false) Boolean closed,
+            @RequestParam(required = false) String sortStr) {
 
         LOG.debug("Work Order browse query. Principal={}, page={}, count={}, includeClosed={}",
                 principal, page, count, closed);
 
-        PageRequest pageRequest = new PageRequest(page - 1, count);
+        Sort sort = null;
+        if (null != sortStr) {
+            //"dateCreated,DESC"
+            try {
+                String[] sorts = sortStr.split(",");
+                sort = new Sort(Direction.valueOf(sorts[1]), sorts[0]);
+            } catch (Exception e) {
+                LOG.error("There was an error creating sort. str=" + sortStr,  e);
+            }
+        } else {
+            sort = new Sort(Direction.DESC, "dateCreated");
+        }
+        PageRequest pageRequest = new PageRequest(page - 1, count, sort);
+        //PageRequest pageRequest = new PageRequest(page - 1, count);
         return new ResponseEntity<>(service.page(pageRequest, closed), OK);
     }
 
