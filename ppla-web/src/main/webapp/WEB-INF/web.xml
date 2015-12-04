@@ -71,7 +71,6 @@
   </servlet>
 
   <!-- CXF servlet for quickbooks -->
-  <!-- 
   <servlet>
     <description>Apache CXF Endpoint</description>
     <display-name>cxf</display-name>
@@ -83,5 +82,4 @@
     <servlet-name>cxf</servlet-name>
     <url-pattern>/webservices/*</url-pattern>
   </servlet-mapping>
-   -->
 </web-app>
